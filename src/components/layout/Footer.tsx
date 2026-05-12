@@ -1,0 +1,108 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Icon } from "@/components/Icon";
+import type { Footer as FooterData, Contact } from "@/lib/types";
+import { mediaUrl } from "@/lib/utils";
+
+type Props = {
+  footer?: FooterData;
+  contact?: Contact;
+  siteName?: string;
+};
+
+export function Footer({ footer, contact, siteName }: Props) {
+  const logoSrc = footer?.logo?.url ? mediaUrl(footer.logo.url) : null;
+  const logoText = footer?.logoText || siteName || "productsm3";
+  const columns = footer?.columns ?? [];
+  const social = footer?.socialLinks ?? [];
+  const year = new Date().getFullYear();
+  const copyright = footer?.copyright || `© ${year} ${logoText}. Todos os direitos reservados.`;
+
+  return (
+    <footer className="border-t border-border/60 bg-background">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="lg:col-span-1">
+          <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
+            {logoSrc ? (
+              <Image
+                src={logoSrc}
+                alt={logoText}
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain"
+              />
+            ) : (
+              <span className="inline-block h-7 w-7 rounded-md bg-foreground" aria-hidden="true" />
+            )}
+            <span>{logoText}</span>
+          </Link>
+          {footer?.tagline && (
+            <p className="mt-4 max-w-xs text-sm text-muted-foreground">{footer.tagline}</p>
+          )}
+          {contact && (
+            <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
+              {contact.email && (
+                <li>
+                  <a href={`mailto:${contact.email}`} className="hover:text-foreground">
+                    {contact.email}
+                  </a>
+                </li>
+              )}
+              {contact.phone && <li>{contact.phone}</li>}
+              {contact.address && <li>{contact.address}</li>}
+            </ul>
+          )}
+        </div>
+
+        {columns.length > 0 && (
+          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-2">
+            {columns.map((col, i) => (
+              <div key={col.id ?? `col-${i}`}>
+                <h3 className="text-sm font-semibold">{col.title}</h3>
+                <ul className="mt-4 space-y-2">
+                  {col.links?.map((link, j) => (
+                    <li key={link.id ?? `${i}-${j}`}>
+                      <Link
+                        href={link.url}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="text-sm text-muted-foreground hover:text-foreground"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {social.length > 0 && (
+          <div className="lg:col-span-1">
+            <h3 className="text-sm font-semibold">Conecte-se</h3>
+            <div className="mt-4 flex gap-3">
+              {social.map((s, i) => (
+                <Link
+                  key={s.id ?? `s-${i}`}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  <Icon name={s.label.toLowerCase()} className="h-4 w-4" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="border-t border-border/60">
+        <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-muted-foreground sm:px-6 lg:px-8">
+          {copyright}
+        </div>
+      </div>
+    </footer>
+  );
+}
