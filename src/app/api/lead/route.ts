@@ -16,13 +16,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "name e email são obrigatórios" }, { status: 400 });
   }
 
+  // Strapi enum fields reject empty string. Strip optional fields that came
+  // through as empty so the enum/optional fields stay unset instead.
+  const clean = (v: string | undefined) => (v && v.trim() ? v : undefined);
+
   const payload: LeadPayload = {
     name: body.name,
     email: body.email,
-    phone: body.phone,
-    company: body.company,
-    message: body.message,
-    budget: body.budget,
+    phone: clean(body.phone),
+    company: clean(body.company),
+    message: clean(body.message),
+    budget: clean(body.budget),
     source: body.source || "landing-page",
   };
 

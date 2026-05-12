@@ -13,12 +13,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import type { ContactFormSection } from "@/lib/types";
 
+const BUDGET_OPTIONS = [
+  { value: "", label: "Selecione…" },
+  { value: "ate_5k", label: "Até R$ 5.000" },
+  { value: "de_5k_a_15k", label: "R$ 5.000 – R$ 15.000" },
+  { value: "de_15k_a_30k", label: "R$ 15.000 – R$ 30.000" },
+  { value: "acima_30k", label: "Acima de R$ 30.000" },
+  { value: "nao_definido", label: "Ainda não defini" },
+] as const;
+
+const BUDGET_VALUES = ["ate_5k", "de_5k_a_15k", "de_15k_a_30k", "acima_30k", "nao_definido"] as const;
+
 const leadSchema = z.object({
   name: z.string().min(2, "Informe seu nome"),
   email: z.string().email("Email inválido"),
   phone: z.string().optional(),
   company: z.string().optional(),
-  budget: z.string().optional(),
+  budget: z.enum(["", ...BUDGET_VALUES]).optional(),
   message: z.string().min(10, "Conte um pouco mais sobre o projeto"),
 });
 
@@ -127,7 +138,17 @@ export function ContactForm({ data }: { data: ContactFormSection }) {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="budget">Orçamento</Label>
-              <Input id="budget" placeholder="R$ 10k – R$ 50k" {...register("budget")} />
+              <select
+                id="budget"
+                {...register("budget")}
+                className="flex h-11 w-full rounded-md border border-border bg-background px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {BUDGET_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
