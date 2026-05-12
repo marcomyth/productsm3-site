@@ -8,9 +8,13 @@ type FetchOptions = {
   revalidate?: number | false;
 };
 
+// Revalidate every 24h. Manual invalidation via revalidateTag("landing-page" / "global")
+// from a Strapi webhook gives near-instant updates between TTL windows.
+const ONE_DAY_SECONDS = 60 * 60 * 24;
+
 async function strapiFetch<T>(
   path: string,
-  { tags = [], revalidate = 60 }: FetchOptions = {},
+  { tags = [], revalidate = ONE_DAY_SECONDS }: FetchOptions = {},
 ): Promise<T | null> {
   const url = `${STRAPI_URL}${path}`;
   try {
@@ -89,7 +93,7 @@ export async function getLandingPage(): Promise<LandingPage | null> {
 export async function getGlobal(): Promise<Global | null> {
   const res = await strapiFetch<StrapiResponse<Global>>(`/api/global?${GLOBAL_QUERY}`, {
     tags: ["global", "strapi"],
-    revalidate: 60,
+    revalidate: ONE_DAY_SECONDS,
   });
   return res?.data ?? null;
 }

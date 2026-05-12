@@ -9,6 +9,19 @@ const nextConfig: NextConfig = {
         port: "1337",
         pathname: "/**",
       },
+      // Strapi Cloud serves the API and media on different subdomains:
+      //   - API:    <slug>.strapiapp.com
+      //   - Media:  <slug>.media.strapiapp.com
+      {
+        protocol: "https",
+        hostname: "**.strapiapp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.media.strapiapp.com",
+        pathname: "/**",
+      },
     ],
   },
 };

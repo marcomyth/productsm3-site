@@ -95,7 +95,33 @@ Componentes suportados:
 
 ## Cache & revalidação
 
-`lib/strapi.ts` usa `fetch(..., { next: { tags, revalidate: 60 } })`. Para invalidar manualmente, basta chamar `revalidateTag("landing-page")` ou `revalidateTag("global")` em uma route handler (ex.: webhook do Strapi).
+Estratégia: **ISR com TTL longo (24h) como safety net + webhook do Strapi para invalidação instantânea**.
+
+- `lib/strapi.ts` usa `fetch(..., { next: { tags: ["landing-page" | "global"], revalidate: 86400 } })`.
+- A página `/` é prerenderizada estaticamente (`○ Static` no build) e servida do CDN.
+- Quando alguém publica/atualiza algo no Strapi, um webhook bate em `/api/revalidate` e chama `revalidateTag()` — o próximo visitante recebe a versão fresca em segundos.
+- O TTL de 24h só age como rede de segurança caso o webhook falhe ou esteja desconfigurado.
+
+### Configurar o webhook (uma vez)
+
+1. **Gerar o secret** (já está em `.env.local` como `REVALIDATE_SECRET`):
+   ```bash
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+2. **Vercel**: adicionar `REVALIDATE_SECRET` em Project Settings → Environment Variables (mesmo valor).
+3. **Strapi admin** → Settings → Webhooks → Create new webhook:
+   - **Name**: `Next.js revalidate`
+   - **URL**: `https://SEU_DOMINIO/api/revalidate?secret=O_SEU_SECRET`
+   - **Headers**: pode deixar vazio (o secret já vai na URL) ou usar `Authorization: Bearer SEU_SECRET`
+   - **Events**: marcar todos sob `Entry` (`entry.create`, `entry.update`, `entry.publish`, `entry.unpublish`, `entry.delete`) e `Media` se desejar.
+4. **Testar**: no Strapi, publique qualquer alteração. O webhook envia POST para o Next que chama `revalidateTag("landing-page")` e `revalidateTag("global")`. Recarregue a página — deve refletir a mudança.
+
+### Trigger manual (debug)
+
+```bash
+curl "https://SEU_DOMINIO/api/revalidate?secret=O_SEU_SECRET"
+# → { "revalidated": true, "tags": ["landing-page","global"], ... }
+```
 
 ## SEO
 
