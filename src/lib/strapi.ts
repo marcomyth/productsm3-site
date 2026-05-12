@@ -1,11 +1,11 @@
 import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
+import { readEnv } from "./env";
 
 // On Cloudflare Workers (OpenNext), env vars from the dashboard are injected
-// per request — they're empty when modules first evaluate. So we MUST read
-// them inside functions, not at module top level, otherwise we cache the
-// "http://localhost:1337" fallback for the lifetime of the worker.
+// per request and may not always be on process.env. readEnv() falls back to
+// the Cloudflare context bindings.
 function getStrapiUrl(): string | null {
-  const url = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
+  const url = readEnv("STRAPI_URL") || readEnv("NEXT_PUBLIC_STRAPI_URL");
   return url && url.trim().length > 0 ? url : null;
 }
 

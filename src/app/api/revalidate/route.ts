@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
+import { readEnv } from "@/lib/env";
 
 // This route must not be cached — it's the cache buster itself.
 export const dynamic = "force-dynamic";
@@ -26,7 +27,7 @@ function extractSecret(req: Request): string | null {
 }
 
 async function handle(req: Request) {
-  const expected = process.env.REVALIDATE_SECRET;
+  const expected = readEnv("REVALIDATE_SECRET");
   if (!expected) {
     return NextResponse.json(
       { error: "REVALIDATE_SECRET not configured on server" },
