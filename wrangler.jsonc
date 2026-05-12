@@ -10,5 +10,16 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  // Public, non-secret env vars are bound here so they survive every deploy
+  // (dashboard "Plaintext" variables get wiped by `wrangler deploy` unless
+  // keep_vars is set). For secrets like REVALIDATE_SECRET and
+  // STRAPI_PREVIEW_SECRET, add them in the Cloudflare dashboard as type
+  // "Secret" — those persist regardless.
+  "vars": {
+    "STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com",
+    "NEXT_PUBLIC_STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com"
+  },
+  // Don't overwrite dashboard secrets when deploying.
+  "keep_vars": true
 }
