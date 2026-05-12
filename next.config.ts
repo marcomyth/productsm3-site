@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+// Make `next dev` (Node) able to read Cloudflare bindings via
+// getCloudflareContext(). No-op in production.
+initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   images: {
