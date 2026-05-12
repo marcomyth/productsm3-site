@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 export const runtime = "edge";
+// Never prerender layouts that depend on Strapi — keeps /_not-found and any
+// other static pages from hanging when the build env can't reach Strapi.
+export const dynamic = "force-dynamic";
 
 import { Inter, Sora } from "next/font/google";
 import { getGlobal } from "@/lib/strapi";
