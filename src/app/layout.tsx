@@ -8,6 +8,7 @@ import { getGlobal } from "@/lib/strapi";
 import { mediaUrl } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/config/site";
@@ -67,6 +68,7 @@ export default async function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning className={`${inter.variable} ${sora.variable}`}>
       <body className="min-h-screen bg-background antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <PreviewBanner />
           <div className="flex min-h-screen flex-col">
             <Header header={global?.header} siteName={global?.siteName} />
             <main className="flex-1">{children}</main>

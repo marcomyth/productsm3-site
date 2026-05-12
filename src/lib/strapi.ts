@@ -1,3 +1,4 @@
+import { draftMode } from "next/headers";
 import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 import { readEnv } from "./env";
 
@@ -7,6 +8,17 @@ import { readEnv } from "./env";
 function getStrapiUrl(): string | null {
   const url = readEnv("STRAPI_URL") || readEnv("NEXT_PUBLIC_STRAPI_URL");
   return url && url.trim().length > 0 ? url : null;
+}
+
+// Checks Next.js Draft Mode. Wrapped in try/catch because draftMode() throws
+// if called outside a request context (e.g. during static analysis or build).
+async function isDraftMode(): Promise<boolean> {
+  try {
+    const dm = await draftMode();
+    return dm.isEnabled;
+  } catch {
+    return false;
+  }
 }
 
 type FetchOptions = {
@@ -34,11 +46,20 @@ async function strapiFetch<T>(
     return null;
   }
 
-  const url = `${STRAPI_URL}${path}`;
+  // When editing in Strapi Preview, swap status to "draft" and bypass cache
+  // so each preview refresh shows the latest unpublished content.
+  const draft = await isDraftMode();
+  const separator = path.includes("?") ? "&" : "?";
+  const finalPath = draft ? `${path}${separator}status=draft` : path;
+  const url = `${STRAPI_URL}${finalPath}`;
+
   try {
     const res = await fetch(url, {
       headers: { "Content-Type": "application/json" },
-      next: { tags, revalidate: revalidate === false ? undefined : revalidate },
+      next: draft
+        ? { revalidate: 0 } // no cache during preview
+        : { tags, revalidate: revalidate === false ? undefined : revalidate },
+      cache: draft ? "no-store" : undefined,
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
     if (!res.ok) {
