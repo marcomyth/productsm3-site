@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+export const runtime = "edge";
+
 import { Inter, Sora } from "next/font/google";
 import { getGlobal } from "@/lib/strapi";
 import { mediaUrl } from "@/lib/utils";

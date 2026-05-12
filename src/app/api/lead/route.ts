@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { postLead } from "@/lib/strapi";
 import type { LeadPayload } from "@/lib/types";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export async function POST(req: Request) {
   let body: Partial<LeadPayload> = {};
