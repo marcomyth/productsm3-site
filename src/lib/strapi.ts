@@ -1,13 +1,13 @@
 import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 
-const STRAPI_URL =
-  process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-
-// During CI/edge builds without env vars, this falls back to localhost which
-// is unreachable. Detect that case and short-circuit so prerender doesn't hang
-// on ECONNREFUSED retries.
-const STRAPI_REACHABLE_AT_BUILD =
-  !!process.env.STRAPI_URL || !!process.env.NEXT_PUBLIC_STRAPI_URL;
+// On Cloudflare Workers (OpenNext), env vars from the dashboard are injected
+// per request — they're empty when modules first evaluate. So we MUST read
+// them inside functions, not at module top level, otherwise we cache the
+// "http://localhost:1337" fallback for the lifetime of the worker.
+function getStrapiUrl(): string | null {
+  const url = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
+  return url && url.trim().length > 0 ? url : null;
+}
 
 type FetchOptions = {
   tags?: string[];
@@ -26,7 +26,8 @@ async function strapiFetch<T>(
   path: string,
   { tags = [], revalidate = ONE_DAY_SECONDS }: FetchOptions = {},
 ): Promise<T | null> {
-  if (!STRAPI_REACHABLE_AT_BUILD) {
+  const STRAPI_URL = getStrapiUrl();
+  if (!STRAPI_URL) {
     console.warn(
       `[strapi] STRAPI_URL/NEXT_PUBLIC_STRAPI_URL not set — skipping fetch for ${path}`,
     );
@@ -117,6 +118,10 @@ export async function getGlobal(): Promise<Global | null> {
 }
 
 export async function postLead(payload: LeadPayload): Promise<{ ok: boolean; error?: string }> {
+  const STRAPI_URL = getStrapiUrl();
+  if (!STRAPI_URL) {
+    return { ok: false, error: "STRAPI_URL not configured on server" };
+  }
   try {
     const res = await fetch(`${STRAPI_URL}/api/leads`, {
       method: "POST",
@@ -133,4 +138,4 @@ export async function postLead(payload: LeadPayload): Promise<{ ok: boolean; err
   }
 }
 
-export { STRAPI_URL };
+export { getStrapiUrl };
