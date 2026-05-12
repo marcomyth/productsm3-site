@@ -3,7 +3,6 @@ import { getLandingPage } from "@/lib/strapi";
 import { mediaUrl } from "@/lib/utils";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 
-export const runtime = "edge";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getLandingPage();

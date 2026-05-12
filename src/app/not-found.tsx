@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-export const runtime = "edge";
-
 export default function NotFound() {
   return (
     <section className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center gap-6 px-4 py-32 text-center sm:px-6 lg:px-8">

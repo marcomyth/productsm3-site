@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { postLead } from "@/lib/strapi";
 import type { LeadPayload } from "@/lib/types";
 
-export const runtime = "edge";
+// OpenNext for Cloudflare uses the Workers runtime with nodejs_compat;
+// routes stay on the default Node runtime (don't add runtime = "edge").
 
 export async function POST(req: Request) {
   let body: Partial<LeadPayload> = {};

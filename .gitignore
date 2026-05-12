@@ -5,6 +5,7 @@ build/
 dist/
 .vercel/
 .wrangler/
+.open-next/
 .env*.local
 .env
 .DS_Store
