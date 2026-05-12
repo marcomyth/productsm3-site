@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import type { Footer as FooterData, Contact } from "@/lib/types";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 
 type Props = {
   footer?: FooterData;

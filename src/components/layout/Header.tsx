@@ -8,16 +8,21 @@ import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/CtaButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import type { Header as HeaderData } from "@/lib/types";
-import { mediaUrl, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 type Props = {
   header?: HeaderData;
   siteName?: string;
+  /**
+   * Logo src resolved on the server (already prefixed with the Strapi host).
+   * Passed in by the layout so this client component doesn't need to know
+   * how to build media URLs.
+   */
+  logoSrc?: string | null;
 };
 
-export function Header({ header, siteName }: Props) {
+export function Header({ header, siteName, logoSrc }: Props) {
   const [open, setOpen] = React.useState(false);
-  const logoSrc = header?.logo?.url ? mediaUrl(header.logo.url) : null;
   const logoText = header?.logoText || siteName || "productsm3";
   const links = header?.links ?? [];
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { PortfolioSection } from "@/lib/types";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 
 export function Portfolio({ data }: { data: PortfolioSection }) {
   return (

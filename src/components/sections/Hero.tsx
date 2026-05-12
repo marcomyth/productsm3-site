@@ -2,7 +2,7 @@ import Image from "next/image";
 import { CtaButton } from "@/components/CtaButton";
 import { Icon } from "@/components/Icon";
 import type { HeroSection } from "@/lib/types";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 
 function splitHeadline(title: string): { plain: string; gradient: string } {
   // If the title contains " | " split there. Otherwise gradient the last 3 words.

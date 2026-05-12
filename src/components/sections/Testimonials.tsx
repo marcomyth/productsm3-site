@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { TestimonialsSection } from "@/lib/types";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 
 export function Testimonials({ data }: { data: TestimonialsSection }) {
   return (

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getLandingPage } from "@/lib/strapi";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 
 

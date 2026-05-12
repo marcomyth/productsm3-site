@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 import { Inter, Sora } from "next/font/google";
 import { getGlobal } from "@/lib/strapi";
-import { mediaUrl } from "@/lib/utils";
+import { mediaUrl } from "@/lib/media";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PreviewBanner } from "@/components/PreviewBanner";
@@ -63,6 +63,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const global = await getGlobal();
+  const headerLogoSrc = global?.header?.logo?.url ? mediaUrl(global.header.logo.url) : null;
 
   return (
     <html lang="pt-BR" suppressHydrationWarning className={`${inter.variable} ${sora.variable}`}>
@@ -70,7 +71,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <PreviewBanner />
           <div className="flex min-h-screen flex-col">
-            <Header header={global?.header} siteName={global?.siteName} />
+            <Header header={global?.header} siteName={global?.siteName} logoSrc={headerLogoSrc} />
             <main className="flex-1">{children}</main>
             <Footer footer={global?.footer} contact={global?.contact} siteName={global?.siteName} />
           </div>
