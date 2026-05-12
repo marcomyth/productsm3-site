@@ -4,10 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import type { PortfolioSection } from "@/lib/types";
 import { mediaUrl } from "@/lib/utils";
 
-function techName(t: string | { name: string }): string {
-  return typeof t === "string" ? t : t.name;
-}
-
 export function Portfolio({ data }: { data: PortfolioSection }) {
   return (
     <section id="portfolio" className="scroll-mt-20 py-20 md:py-28 px-4 md:px-8">
@@ -31,7 +27,6 @@ export function Portfolio({ data }: { data: PortfolioSection }) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data.projects?.map((p) => {
             const cover = p.cover?.url ? mediaUrl(p.cover.url) : null;
-            const techs = (p.technologies ?? []).slice(0, 4);
             const card = (
               <article className="group glass flex h-full flex-col overflow-hidden rounded-2xl border border-border/50 card-lift hover:border-border">
                 <div className="relative aspect-[4/3] overflow-hidden bg-muted">
@@ -64,18 +59,6 @@ export function Portfolio({ data }: { data: PortfolioSection }) {
                   <h3 className="text-lg font-bold tracking-tight">{p.title}</h3>
                   {p.shortDescription && (
                     <p className="text-sm text-muted-foreground">{p.shortDescription}</p>
-                  )}
-                  {techs.length > 0 && (
-                    <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-                      {techs.map((t, i) => (
-                        <span
-                          key={i}
-                          className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground"
-                        >
-                          {techName(t)}
-                        </span>
-                      ))}
-                    </div>
                   )}
                 </div>
               </article>
