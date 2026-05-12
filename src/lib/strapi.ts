@@ -3,6 +3,12 @@ import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 const STRAPI_URL =
   process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
+// During CI/edge builds without env vars, this falls back to localhost which
+// is unreachable. Detect that case and short-circuit so prerender doesn't hang
+// on ECONNREFUSED retries.
+const STRAPI_REACHABLE_AT_BUILD =
+  !!process.env.STRAPI_URL || !!process.env.NEXT_PUBLIC_STRAPI_URL;
+
 type FetchOptions = {
   tags?: string[];
   revalidate?: number | false;
@@ -12,15 +18,27 @@ type FetchOptions = {
 // from a Strapi webhook gives near-instant updates between TTL windows.
 const ONE_DAY_SECONDS = 60 * 60 * 24;
 
+// Hard cap on each Strapi request — keeps build from hanging if Strapi is
+// down or env vars are missing on the build environment.
+const FETCH_TIMEOUT_MS = 8000;
+
 async function strapiFetch<T>(
   path: string,
   { tags = [], revalidate = ONE_DAY_SECONDS }: FetchOptions = {},
 ): Promise<T | null> {
+  if (!STRAPI_REACHABLE_AT_BUILD) {
+    console.warn(
+      `[strapi] STRAPI_URL/NEXT_PUBLIC_STRAPI_URL not set — skipping fetch for ${path}`,
+    );
+    return null;
+  }
+
   const url = `${STRAPI_URL}${path}`;
   try {
     const res = await fetch(url, {
       headers: { "Content-Type": "application/json" },
       next: { tags, revalidate: revalidate === false ? undefined : revalidate },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
     if (!res.ok) {
       // Use warn (not error) to avoid Next.js dev overlay — the caller handles null gracefully.
