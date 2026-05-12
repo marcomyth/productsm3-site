@@ -67,6 +67,23 @@ export default async function RootLayout({
 
   return (
     <html lang="pt-BR" suppressHydrationWarning className={`${inter.variable} ${sora.variable}`}>
+      <head>
+        {/*
+          esbuild --keep-names sprinkles __name(fn, "name") through bundles for
+          stack-trace fidelity. next-themes' precompiled inline theme script
+          contains __name(...) but the helper isn't defined inline, crashing
+          the page on Cloudflare Workers (and other strict runtimes) with
+          "Uncaught ReferenceError: __name is not defined". A no-op polyfill
+          loaded before any inline scripts run avoids the crash without losing
+          the actual theme detection.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "globalThis.__name||Object.defineProperty(globalThis,'__name',{value:function(f){return f}});",
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <PreviewBanner />
