@@ -1,25 +1,40 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "productsm3-site",
-  "main": ".open-next/worker.js",
-  "compatibility_date": "2025-05-12",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": ".open-next/assets"
-  },
-  "observability": {
-    "enabled": true
-  },
-  // Public, non-secret env vars are bound here so they survive every deploy
-  // (dashboard "Plaintext" variables get wiped by `wrangler deploy` unless
-  // keep_vars is set). For secrets like REVALIDATE_SECRET and
-  // STRAPI_PREVIEW_SECRET, add them in the Cloudflare dashboard as type
-  // "Secret" — those persist regardless.
-  "vars": {
-    "STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com",
-    "NEXT_PUBLIC_STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com"
-  },
-  // Don't overwrite dashboard secrets when deploying.
-  "keep_vars": true
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "productsm3-site",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2025-05-12",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets"
+	},
+	"observability": {
+		"enabled": true
+	},
+	// Public, non-secret env vars are bound here so they survive every deploy
+	// (dashboard "Plaintext" variables get wiped by `wrangler deploy` unless
+	// keep_vars is set). For secrets like REVALIDATE_SECRET and
+	// STRAPI_PREVIEW_SECRET, add them in the Cloudflare dashboard as type
+	// "Secret" — those persist regardless.
+	"vars": {
+		"STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com",
+		"NEXT_PUBLIC_STRAPI_URL": "https://bright-acoustics-53cf5c4332.strapiapp.com"
+	},
+	// Fallback snapshot store. Each successful Strapi fetch persists its JSON
+	// here; if Strapi is unreachable, src/lib/strapi.ts serves the last good
+	// snapshot from this namespace.
+	// Create with: wrangler kv namespace create STRAPI_FALLBACK_KV
+	//              wrangler kv namespace create STRAPI_FALLBACK_KV --preview
+	// then paste the returned IDs below.
+	"kv_namespaces": [
+		{
+			"binding": "STRAPI_FALLBACK_KV",
+			"id": "bc7e5c7e32f4451991d5ba7a0bce9850",
+			"remote": true
+		}
+	],
+	// Don't overwrite dashboard secrets when deploying.
+	"keep_vars": true
 }

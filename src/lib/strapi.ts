@@ -1,6 +1,45 @@
 import { draftMode } from "next/headers";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 import { readEnv } from "./env";
+
+// Minimal shape of the bound KV namespace — avoids depending on the full
+// @cloudflare/workers-types in this file.
+type FallbackKV = {
+  get(key: string): Promise<string | null>;
+  put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
+};
+
+function getFallbackKV(): FallbackKV | null {
+  try {
+    const ctx = getCloudflareContext();
+    const env = ctx?.env as Record<string, unknown> | undefined;
+    const kv = env?.STRAPI_FALLBACK_KV as FallbackKV | undefined;
+    if (kv && typeof kv.get === "function" && typeof kv.put === "function") {
+      return kv;
+    }
+  } catch {
+    // Not running under the Cloudflare runtime — local dev without KV bound.
+  }
+  return null;
+}
+
+// Fire-and-forget on Workers: lets the response return immediately while the
+// KV write completes in the background. No-op outside the CF runtime.
+function runInBackground(promise: Promise<unknown>): void {
+  try {
+    const ctx = getCloudflareContext();
+    const waitUntil = ctx?.ctx?.waitUntil?.bind(ctx.ctx);
+    if (waitUntil) {
+      waitUntil(promise.catch(() => undefined));
+      return;
+    }
+  } catch {
+    // ignore
+  }
+  // Local dev: swallow rejections so we don't crash the request.
+  void promise.catch(() => undefined);
+}
 
 // On Cloudflare Workers (OpenNext), env vars from the dashboard are injected
 // per request and may not always be on process.env. readEnv() falls back to
@@ -34,6 +73,31 @@ const ONE_DAY_SECONDS = 60 * 60 * 24;
 // down or env vars are missing on the build environment.
 const FETCH_TIMEOUT_MS = 8000;
 
+// KV key for the last-good snapshot of `path`. The path already encodes the
+// query (populate, filters, etc.), so different queries get different keys.
+function snapshotKey(path: string): string {
+  return `snapshot:${path}`;
+}
+
+async function readSnapshot<T>(path: string): Promise<T | null> {
+  const kv = getFallbackKV();
+  if (!kv) return null;
+  try {
+    const raw = await kv.get(snapshotKey(path));
+    if (!raw) return null;
+    return JSON.parse(raw) as T;
+  } catch (err) {
+    console.warn(`[strapi] KV snapshot read failed for ${path}`, err);
+    return null;
+  }
+}
+
+function writeSnapshot(path: string, value: unknown): void {
+  const kv = getFallbackKV();
+  if (!kv) return;
+  runInBackground(kv.put(snapshotKey(path), JSON.stringify(value)));
+}
+
 async function strapiFetch<T>(
   path: string,
   { tags = [], revalidate = ONE_DAY_SECONDS }: FetchOptions = {},
@@ -53,6 +117,10 @@ async function strapiFetch<T>(
   const finalPath = draft ? `${path}${separator}status=draft` : path;
   const url = `${STRAPI_URL}${finalPath}`;
 
+  // Draft mode shows in-progress edits to a single editor — caching or
+  // falling back to a stale snapshot would defeat the point.
+  const useFallback = !draft;
+
   try {
     const res = await fetch(url, {
       headers: { "Content-Type": "application/json" },
@@ -65,11 +133,29 @@ async function strapiFetch<T>(
     if (!res.ok) {
       // Use warn (not error) to avoid Next.js dev overlay — the caller handles null gracefully.
       console.warn(`[strapi] ${res.status} ${res.statusText} for ${url}`);
+      if (useFallback) {
+        const snapshot = await readSnapshot<T>(path);
+        if (snapshot) {
+          console.warn(`[strapi] serving KV fallback snapshot for ${path}`);
+          return snapshot;
+        }
+      }
       return null;
     }
-    return (await res.json()) as T;
+    const data = (await res.json()) as T;
+    // Persist the last-good payload for use when Strapi is unreachable. Fire
+    // and forget — the request shouldn't wait on KV.
+    if (useFallback) writeSnapshot(path, data);
+    return data;
   } catch (err) {
     console.warn(`[strapi] fetch failed for ${url}`, err);
+    if (useFallback) {
+      const snapshot = await readSnapshot<T>(path);
+      if (snapshot) {
+        console.warn(`[strapi] serving KV fallback snapshot for ${path}`);
+        return snapshot;
+      }
+    }
     return null;
   }
 }
