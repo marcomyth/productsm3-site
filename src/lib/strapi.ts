@@ -69,9 +69,11 @@ type FetchOptions = {
 // from a Strapi webhook gives near-instant updates between TTL windows.
 const ONE_DAY_SECONDS = 60 * 60 * 24;
 
-// Hard cap on each Strapi request — keeps build from hanging if Strapi is
-// down or env vars are missing on the build environment.
-const FETCH_TIMEOUT_MS = 8000;
+// Hard cap on each Strapi request. The landing-page populate fans out across
+// every dynamic-zone component (services, portfolio, testimonials with nested
+// populate=*) and routinely takes 15–18s end-to-end. Workers allow up to 30s
+// per subrequest on the paid plan, so we sit just under that.
+const FETCH_TIMEOUT_MS = 25000;
 
 // KV key for the last-good snapshot of `path`. The path already encodes the
 // query (populate, filters, etc.), so different queries get different keys.
