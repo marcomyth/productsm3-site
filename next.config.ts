@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
+  productionBrowserSourceMaps: false,
   images: {
     // Cloudflare Pages/Workers don't run Next.js image optimization.
     // Strapi Cloud already exposes resized variants (thumbnail/medium/large/...)
@@ -25,6 +27,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "**.media.strapiapp.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.squareweb.app",
         pathname: "/**",
       },
     ],
