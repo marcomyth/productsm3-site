@@ -29,11 +29,6 @@ const nextConfig: NextConfig = {
         hostname: "**.media.strapiapp.com",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "**.squareweb.app",
-        pathname: "/**",
-      },
     ],
   },
 };
