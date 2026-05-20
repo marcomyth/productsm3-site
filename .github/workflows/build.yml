@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
     paths-ignore: ['.next/**']
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
