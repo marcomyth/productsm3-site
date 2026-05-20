@@ -1,0 +1,26 @@
+name: Build and commit artifacts
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['.next/**']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+        env:
+          STRAPI_URL: https://productsm3-cms.squareweb.app
+          NEXT_PUBLIC_STRAPI_URL: https://productsm3-cms.squareweb.app
+      - name: Commit artifacts
+        run: |
+          git config user.email "ci@productsm3.local"
+          git config user.name "ci-bot"
+          git add -f .next
+          git diff --staged --quiet || git commit -m "ci: rebuild .next [skip ci]"
+          git push
