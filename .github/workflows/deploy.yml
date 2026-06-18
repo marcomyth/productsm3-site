@@ -23,4 +23,9 @@ jobs:
             git pull origin main
             npm install
             npm run build
+            # Next standalone NAO copia public/ e .next/static/ automaticamente —
+            # o server.js procura eles ao lado dele. Sem isso, CSS e public
+            # assets ficam 404 no site.
+            cp -r public .next/standalone/
+            cp -r .next/static .next/standalone/.next/
             pm2 restart productsm3-site
