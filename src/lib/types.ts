@@ -245,7 +245,68 @@ export type LandingPage = {
 
 export type StrapiResponse<T> = {
   data: T;
-  meta?: unknown;
+  meta?: { pagination?: { page: number; pageSize: number; pageCount: number; total: number } };
+};
+
+// ---- Blog ----
+
+export type BlogInlineChild =
+  | {
+      type: "text";
+      text: string;
+      bold?: boolean;
+      italic?: boolean;
+      underline?: boolean;
+      strikethrough?: boolean;
+      code?: boolean;
+    }
+  | {
+      type: "link";
+      url: string;
+      children: Array<{ type: "text"; text: string }>;
+    };
+
+export type BlogBlock =
+  | { type: "paragraph"; children: BlogInlineChild[] }
+  | { type: "heading"; level: 1 | 2 | 3 | 4 | 5 | 6; children: BlogInlineChild[] }
+  | {
+      type: "list";
+      format: "ordered" | "unordered";
+      children: Array<{ type: "list-item"; children: BlogInlineChild[] }>;
+    }
+  | { type: "quote"; children: BlogInlineChild[] }
+  | { type: "code"; children: Array<{ type: "text"; text: string }> }
+  | {
+      type: "image";
+      image: { url: string; alternativeText?: string; width?: number; height?: number };
+    };
+
+export type BlogCategory =
+  | "noticia"
+  | "tutorial"
+  | "case"
+  | "novidade"
+  | "tendencia"
+  | "geral";
+
+export type BlogPost = {
+  id: number;
+  documentId: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  content?: BlogBlock[];
+  cover?: Media;
+  author?: string;
+  category?: BlogCategory;
+  tags?: string[];
+  readingTime?: number;
+  source?: "ascendly" | "manual";
+  externalId?: string;
+  seo?: Seo;
+  publishedAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export type LeadPayload = {

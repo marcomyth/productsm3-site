@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers";
-import type { Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
+import type { BlogPost, Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 import { readEnv } from "./env";
 
 function getStrapiUrl(): string | null {
@@ -133,6 +133,52 @@ export async function getGlobal(): Promise<Global | null> {
     revalidate: ONE_DAY_SECONDS,
   });
   return res?.data ?? null;
+}
+
+// ---- Blog ----
+
+// populate=* puxa cover + seo; content (blocks) já vem por default em scalars.
+const BLOG_POPULATE = "populate[cover]=true&populate[seo][populate]=*";
+
+export async function getBlogPosts(opts?: {
+  page?: number;
+  pageSize?: number;
+  category?: string;
+}): Promise<{ posts: BlogPost[]; pageCount: number; total: number }> {
+  const page = opts?.page ?? 1;
+  const pageSize = opts?.pageSize ?? 12;
+  const params = [
+    BLOG_POPULATE,
+    `pagination[page]=${page}`,
+    `pagination[pageSize]=${pageSize}`,
+    "sort=publishedAt:desc",
+  ];
+  if (opts?.category) params.push(`filters[category][$eq]=${encodeURIComponent(opts.category)}`);
+  const res = await strapiFetch<StrapiResponse<BlogPost[]>>(`/api/blog-posts?${params.join("&")}`, {
+    tags: ["blog-posts", "strapi"],
+    revalidate: 60 * 5, // 5 min
+  });
+  return {
+    posts: res?.data ?? [],
+    pageCount: res?.meta?.pagination?.pageCount ?? 1,
+    total: res?.meta?.pagination?.total ?? 0,
+  };
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const res = await strapiFetch<StrapiResponse<BlogPost[]>>(
+    `/api/blog-posts?filters[slug][$eq]=${encodeURIComponent(slug)}&${BLOG_POPULATE}&pagination[pageSize]=1`,
+    { tags: ["blog-posts", `blog-post-${slug}`, "strapi"], revalidate: 60 * 5 },
+  );
+  return res?.data?.[0] ?? null;
+}
+
+export async function getBlogPostSlugs(): Promise<string[]> {
+  const res = await strapiFetch<StrapiResponse<Array<{ slug: string }>>>(
+    `/api/blog-posts?fields[0]=slug&pagination[pageSize]=200&sort=publishedAt:desc`,
+    { tags: ["blog-posts", "strapi"], revalidate: 60 * 60 },
+  );
+  return (res?.data ?? []).map((p) => p.slug).filter(Boolean);
 }
 
 export async function postLead(payload: LeadPayload): Promise<{ ok: boolean; error?: string }> {
