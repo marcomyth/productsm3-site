@@ -7,8 +7,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/CtaButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import type { Header as HeaderData } from "@/lib/types";
+import type { Header as HeaderData, NavLink } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
+
+// Link "Blog" sempre presente no menu (fallback se o Strapi não tiver cadastrado).
+// Se já vier do Strapi com mesma URL, deduplica.
+const ALWAYS_ON_LINKS: NavLink[] = [{ label: "Blog", url: "/blog" }];
 
 type Props = {
   header?: HeaderData;
@@ -23,20 +28,31 @@ type Props = {
 
 export function Header({ header, siteName, logoSrc }: Props) {
   const [open, setOpen] = React.useState(false);
-  const logoText = header?.logoText || siteName || "productsm3";
-  const links = header?.links ?? [];
+  const logoText = header?.logoText || siteName || siteConfig.name;
+  // Logo: prioridade Strapi → fallback default (public/logo.png).
+  const effectiveLogoSrc = logoSrc ?? siteConfig.defaultLogo ?? null;
+  // Quando há logo PNG (que já contém o nome embutido), esconde o texto pra não duplicar.
+  const showLogoText = !effectiveLogoSrc;
+
+  // Merge dos links do Strapi com os always-on (deduplicando por URL).
+  const strapiLinks = header?.links ?? [];
+  const links: NavLink[] = [
+    ...strapiLinks,
+    ...ALWAYS_ON_LINKS.filter((al) => !strapiLinks.some((sl) => sl.url === al.url)),
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2.5 text-lg font-bold tracking-tight">
-          {logoSrc ? (
+          {effectiveLogoSrc ? (
             <Image
-              src={logoSrc}
+              src={effectiveLogoSrc}
               alt={logoText}
-              width={32}
-              height={32}
-              className="h-8 w-8 object-contain"
+              width={120}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
             />
           ) : (
             <span
@@ -44,7 +60,7 @@ export function Header({ header, siteName, logoSrc }: Props) {
               aria-hidden="true"
             />
           )}
-          <span className="text-brand-gradient">{logoText}</span>
+          {showLogoText && <span className="text-brand-gradient">{logoText}</span>}
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Principal">
