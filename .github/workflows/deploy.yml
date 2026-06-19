@@ -27,9 +27,10 @@ jobs:
             git reset --hard origin/main
             npm install
             npm run build
-            # Next standalone NAO copia public/ e .next/static/ automaticamente —
-            # o server.js procura eles ao lado dele. Sem isso, CSS e public
-            # assets ficam 404 no site.
+            # Next standalone NAO copia public/ e .next/static/ automaticamente.
+            # Limpa o destino antes pra evitar aninhamento (.next/standalone/.next/static/static)
+            # quando deploys acumulam — cp -r não sobrescreve, ele aninha.
+            rm -rf .next/standalone/public .next/standalone/.next/static
             cp -r public .next/standalone/
             cp -r .next/static .next/standalone/.next/
             pm2 restart productsm3-site
