@@ -69,49 +69,19 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <article>
-      {/* Hero */}
-      <header className="border-b border-border bg-gradient-to-b from-card/50 to-background">
-        <div className="container mx-auto max-w-3xl px-4 py-12 md:py-20">
-          <Link
-            href="/blog"
-            className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" /> Voltar para o blog
-          </Link>
+      {/* Voltar — fica acima da capa, alinhado com o container do post */}
+      <div className="container mx-auto max-w-4xl px-4 pt-6 md:pt-10">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" /> Voltar para o blog
+        </Link>
+      </div>
 
-          {categoryLabel && (
-            <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-              <Tag className="h-3 w-3" /> {categoryLabel}
-            </span>
-          )}
-
-          <h1 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-5xl">
-            {post.title}
-          </h1>
-
-          {post.excerpt && (
-            <p className="mt-4 text-lg text-foreground/70 md:text-xl">{post.excerpt}</p>
-          )}
-
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            {post.author && (
-              <span className="inline-flex items-center gap-1.5">
-                <User className="h-4 w-4" /> {post.author}
-              </span>
-            )}
-            {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
-            {post.readingTime && (
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" /> {post.readingTime} min de leitura
-              </span>
-            )}
-          </div>
-        </div>
-      </header>
-
-      {/* Cover */}
+      {/* Cover — agora ANTES do título, no topo */}
       {cover && (
-        <div className="container mx-auto -mt-2 max-w-4xl px-4">
+        <div className="container mx-auto mt-4 max-w-4xl px-4">
           <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-muted shadow-xl">
             <Image
               src={cover}
@@ -124,6 +94,37 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </div>
       )}
+
+      {/* Hero (título + meta) — agora DEPOIS da capa */}
+      <header className="container mx-auto max-w-3xl px-4 pt-10 pb-2 md:pt-14">
+        {categoryLabel && (
+          <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            <Tag className="h-3 w-3" /> {categoryLabel}
+          </span>
+        )}
+
+        <h1 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+          {post.title}
+        </h1>
+
+        {post.excerpt && (
+          <p className="mt-4 text-lg text-foreground/70 md:text-xl">{post.excerpt}</p>
+        )}
+
+        <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+          {post.author && (
+            <span className="inline-flex items-center gap-1.5">
+              <User className="h-4 w-4" /> {post.author}
+            </span>
+          )}
+          {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
+          {post.readingTime && (
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="h-4 w-4" /> {post.readingTime} min de leitura
+            </span>
+          )}
+        </div>
+      </header>
 
       {/* Content */}
       <div className="container mx-auto max-w-3xl px-4 py-12 md:py-16">
