@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import type { Footer as FooterData, Contact } from "@/lib/types";
 import { mediaUrl } from "@/lib/media";
+import { siteConfig } from "@/config/site";
 
 type Props = {
   footer?: FooterData;
@@ -11,8 +12,10 @@ type Props = {
 };
 
 export function Footer({ footer, contact, siteName }: Props) {
-  const logoSrc = footer?.logo?.url ? mediaUrl(footer.logo.url) : null;
-  const logoText = footer?.logoText || siteName || "productsm3";
+  const logoSrc = footer?.logo?.url ? mediaUrl(footer.logo.url) : (siteConfig.defaultLogo ?? null);
+  const logoText = footer?.logoText || siteName || siteConfig.name;
+  // Quando há logo PNG (que já tem o nome embutido), esconde o texto pra não duplicar.
+  const showLogoText = !logoSrc;
   const columns = footer?.columns ?? [];
   const social = footer?.socialLinks ?? [];
   const year = new Date().getFullYear();
@@ -27,14 +30,14 @@ export function Footer({ footer, contact, siteName }: Props) {
               <Image
                 src={logoSrc}
                 alt={logoText}
-                width={32}
-                height={32}
-                className="h-8 w-8 object-contain"
+                width={160}
+                height={48}
+                className="h-12 w-auto object-contain"
               />
             ) : (
               <span className="inline-block h-7 w-7 rounded-md bg-foreground" aria-hidden="true" />
             )}
-            <span>{logoText}</span>
+            {showLogoText && <span>{logoText}</span>}
           </Link>
           {footer?.tagline && (
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">{footer.tagline}</p>
