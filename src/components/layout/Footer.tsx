@@ -94,11 +94,11 @@ export function Footer({ footer, contact, siteName }: Props) {
               className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               <Image
-                src="/ascendly-icon.svg"
+                src="/ascendly-icon.png"
                 alt="Ascendly"
                 width={20}
                 height={20}
-                className="h-5 w-5"
+                className="h-5 w-5 rounded"
               />
               <span>Ascendly</span>
             </Link>
