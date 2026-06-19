@@ -49,9 +49,9 @@ export function Header({ header, siteName, logoSrc }: Props) {
             <Image
               src={effectiveLogoSrc}
               alt={logoText}
-              width={120}
-              height={40}
-              className="h-10 w-auto object-contain"
+              width={180}
+              height={56}
+              className="h-12 w-auto object-contain md:h-14"
               priority
             />
           ) : (
