@@ -19,7 +19,8 @@ export function Footer({ footer, contact, siteName }: Props) {
   const columns = footer?.columns ?? [];
   const social = footer?.socialLinks ?? [];
   const year = new Date().getFullYear();
-  const copyright = footer?.copyright || `© ${year} ${logoText}. Todos os direitos reservados.`;
+  // siteConfig.copyright tem prioridade (override fixo); Strapi como fallback.
+  const copyright = siteConfig.copyright ?? footer?.copyright ?? `© ${year} ${logoText}. Todos os direitos reservados.`;
 
   return (
     <footer className="border-t border-border/60 bg-background">
@@ -42,19 +43,25 @@ export function Footer({ footer, contact, siteName }: Props) {
           {footer?.tagline && (
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">{footer.tagline}</p>
           )}
-          {contact && (
-            <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
-              {contact.email && (
-                <li>
-                  <a href={`mailto:${contact.email}`} className="hover:text-foreground">
-                    {contact.email}
-                  </a>
-                </li>
-              )}
-              {contact.phone && <li>{contact.phone}</li>}
-              {contact.address && <li>{contact.address}</li>}
-            </ul>
-          )}
+          {(() => {
+            // Email vem do siteConfig.contact.email (override), com Strapi como fallback.
+            // Telefone foi removido — não mostrar (decisão de produto).
+            const displayEmail = siteConfig.contact?.email ?? contact?.email;
+            const displayAddress = contact?.address;
+            if (!displayEmail && !displayAddress) return null;
+            return (
+              <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
+                {displayEmail && (
+                  <li>
+                    <a href={`mailto:${displayEmail}`} className="hover:text-foreground">
+                      {displayEmail}
+                    </a>
+                  </li>
+                )}
+                {displayAddress && <li>{displayAddress}</li>}
+              </ul>
+            );
+          })()}
         </div>
 
         {columns.length > 0 && (
