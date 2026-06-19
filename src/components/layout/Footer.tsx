@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Icon } from "@/components/Icon";
 import type { Footer as FooterData, Contact } from "@/lib/types";
 import { mediaUrl } from "@/lib/media";
 import { siteConfig } from "@/config/site";
@@ -17,7 +16,6 @@ export function Footer({ footer, contact, siteName }: Props) {
   // Quando há logo PNG (que já tem o nome embutido), esconde o texto pra não duplicar.
   const showLogoText = !logoSrc;
   const columns = footer?.columns ?? [];
-  const social = footer?.socialLinks ?? [];
   const year = new Date().getFullYear();
   // siteConfig.copyright tem prioridade (override fixo); Strapi como fallback.
   const copyright = siteConfig.copyright ?? footer?.copyright ?? `© ${year} ${logoText}. Todos os direitos reservados.`;
@@ -44,21 +42,17 @@ export function Footer({ footer, contact, siteName }: Props) {
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">{footer.tagline}</p>
           )}
           {(() => {
-            // Email vem do siteConfig.contact.email (override), com Strapi como fallback.
-            // Telefone foi removido — não mostrar (decisão de produto).
+            // Email do siteConfig.contact.email (override do Strapi).
+            // Telefone e endereço removidos — decisão de produto, footer enxuto.
             const displayEmail = siteConfig.contact?.email ?? contact?.email;
-            const displayAddress = contact?.address;
-            if (!displayEmail && !displayAddress) return null;
+            if (!displayEmail) return null;
             return (
               <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
-                {displayEmail && (
-                  <li>
-                    <a href={`mailto:${displayEmail}`} className="hover:text-foreground">
-                      {displayEmail}
-                    </a>
-                  </li>
-                )}
-                {displayAddress && <li>{displayAddress}</li>}
+                <li>
+                  <a href={`mailto:${displayEmail}`} className="hover:text-foreground">
+                    {displayEmail}
+                  </a>
+                </li>
               </ul>
             );
           })()}
@@ -88,25 +82,28 @@ export function Footer({ footer, contact, siteName }: Props) {
           </div>
         )}
 
-        {social.length > 0 && (
-          <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold">Conecte-se</h3>
-            <div className="mt-4 flex gap-3">
-              {social.map((s, i) => (
-                <Link
-                  key={s.id ?? `s-${i}`}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                >
-                  <Icon name={s.label.toLowerCase()} className="h-4 w-4" />
-                </Link>
-              ))}
-            </div>
+        {/* Conecte-se: hardcoded com link pro Ascendly (override do Strapi social). */}
+        <div className="lg:col-span-1">
+          <h3 className="text-sm font-semibold">Conecte-se</h3>
+          <div className="mt-4 flex gap-3">
+            <Link
+              href="https://ascendly.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ascendly"
+              className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <Image
+                src="/ascendly-icon.svg"
+                alt="Ascendly"
+                width={20}
+                height={20}
+                className="h-5 w-5"
+              />
+              <span>Ascendly</span>
+            </Link>
           </div>
-        )}
+        </div>
       </div>
       <div className="border-t border-border/60">
         <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-muted-foreground sm:px-6 lg:px-8">
