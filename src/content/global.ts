@@ -20,15 +20,17 @@ export const LOCAL_GLOBAL: Global = {
   },
   header: {
     links: [
-      { label: "Serviços", url: "#servicos", external: false },
-      { label: "Portfólio", url: "#portfolio", external: false },
-      { label: "Processo", url: "#processo", external: false },
-      { label: "Depoimentos", url: "#depoimentos", external: false },
-      { label: "FAQ", url: "#faq", external: false },
+      // "Serviços" agora é uma página própria; o resto são âncoras da home
+      // (prefixadas com "/" pra funcionarem mesmo estando em outra página).
+      { label: "Serviços", url: "/servicos", external: false },
+      { label: "Portfólio", url: "/#portfolio", external: false },
+      { label: "Processo", url: "/#processo", external: false },
+      { label: "Depoimentos", url: "/#depoimentos", external: false },
+      { label: "FAQ", url: "/#faq", external: false },
     ],
     cta: {
       label: "Fale com a gente",
-      url: "#contato",
+      url: "/#contato",
       variant: "primary",
       external: false,
     },
