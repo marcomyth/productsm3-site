@@ -1,8 +1,8 @@
 import type { FaqSection } from "@/lib/types";
 
 /**
- * Conteúdo da página de FAQ (/faq).
- * Renderizado por src/app/faq/page.tsx via componente Faq.
+ * Conteúdo da seção FAQ da HOME.
+ * Importado por src/content/landing.ts e renderizado na home (âncora #faq).
  */
 export const FAQ_SECTION: FaqSection = {
   __component: "sections.faq",

@@ -1,8 +1,8 @@
 import type { TestimonialsSection } from "@/lib/types";
 
 /**
- * Conteúdo da página de DEPOIMENTOS (/depoimentos).
- * Renderizado por src/app/depoimentos/page.tsx via componente Testimonials.
+ * Conteúdo da seção DEPOIMENTOS da HOME.
+ * Importado por src/content/landing.ts e renderizado na home (âncora #depoimentos).
  */
 export const TESTIMONIALS_SECTION: TestimonialsSection = {
   __component: "sections.testimonials",

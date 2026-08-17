@@ -1,4 +1,6 @@
 import type { LandingPage } from "@/lib/types";
+import { TESTIMONIALS_SECTION } from "@/content/testimonials";
+import { FAQ_SECTION } from "@/content/faq";
 
 /**
  * Conteúdo da PÁGINA INICIAL (home) — fonte da verdade do front.
@@ -7,13 +9,14 @@ import type { LandingPage } from "@/lib/types";
  * getLandingPage). O Strapi é apenas reserva/preview. Para editar qualquer
  * texto da home, edite aqui, rode `npx tsc --noEmit`, commite e faça push.
  *
- * Na migração LP → site multipágina, as seções abaixo saíram da home e viraram
+ * Depoimentos e FAQ são seções DA HOME — o conteúdo mora em
+ * src/content/testimonials.ts e src/content/faq.ts e é importado abaixo.
+ *
+ * Na migração LP → site multipágina, estas seções saíram da home e viraram
  * páginas próprias (conteúdo em src/content/, rota em src/app/):
- *   - Serviços     → /servicos     (src/content/services.ts)
- *   - Portfólio    → /portfolio    (src/content/portfolio.ts)
- *   - Processo     → /processo     (src/content/process.ts)
- *   - Depoimentos  → /depoimentos  (src/content/testimonials.ts)
- *   - FAQ          → /faq          (src/content/faq.ts)
+ *   - Serviços   → /servicos   (src/content/services.ts)
+ *   - Portfólio  → /portfolio  (src/content/portfolio.ts)
+ *   - Processo   → /processo   (src/content/process.ts)
  *
  * A ordem do array `sections` é a ordem de renderização na home.
  */
@@ -119,10 +122,16 @@ export const LOCAL_LANDING_PAGE: LandingPage = {
       ],
     },
 
-    // 4 — CTA
+    // 4 — DEPOIMENTOS (seção da home; conteúdo em src/content/testimonials.ts)
+    TESTIMONIALS_SECTION,
+
+    // 5 — FAQ (seção da home; conteúdo em src/content/faq.ts)
+    FAQ_SECTION,
+
+    // 6 — CTA
     {
       __component: "sections.cta",
-      id: 4,
+      id: 6,
       title: "Pronto para colocar seu projeto no ar?",
       description:
         "Conte para a gente o que você precisa. Em até 24h respondemos com próximos passos e estimativa inicial.",
@@ -140,10 +149,10 @@ export const LOCAL_LANDING_PAGE: LandingPage = {
       },
     },
 
-    // 5 — CONTACT FORM
+    // 7 — CONTACT FORM
     {
       __component: "sections.contact-form",
-      id: 5,
+      id: 7,
       eyebrow: "Contato",
       title: "Vamos conversar sobre o seu projeto.",
       subtitle:
