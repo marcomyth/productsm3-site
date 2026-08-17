@@ -1,14 +1,21 @@
 import type { LandingPage } from "@/lib/types";
 
 /**
- * Conteúdo da LANDING PAGE — fonte da verdade do front.
+ * Conteúdo da PÁGINA INICIAL (home) — fonte da verdade do front.
  *
  * O front renderiza estas seções diretamente (ver src/lib/strapi.ts →
  * getLandingPage). O Strapi é apenas reserva/preview. Para editar qualquer
- * texto do site (hero, serviços, FAQ, depoimentos, etc.), edite aqui,
- * rode `npx tsc --noEmit`, commite e faça push.
+ * texto da home, edite aqui, rode `npx tsc --noEmit`, commite e faça push.
  *
- * A ordem do array `sections` é a ordem de renderização na página.
+ * Na migração LP → site multipágina, as seções abaixo saíram da home e viraram
+ * páginas próprias (conteúdo em src/content/, rota em src/app/):
+ *   - Serviços     → /servicos     (src/content/services.ts)
+ *   - Portfólio    → /portfolio    (src/content/portfolio.ts)
+ *   - Processo     → /processo     (src/content/process.ts)
+ *   - Depoimentos  → /depoimentos  (src/content/testimonials.ts)
+ *   - FAQ          → /faq          (src/content/faq.ts)
+ *
+ * A ordem do array `sections` é a ordem de renderização na home.
  */
 export const LOCAL_LANDING_PAGE: LandingPage = {
   id: 1,
@@ -37,7 +44,7 @@ export const LOCAL_LANDING_PAGE: LandingPage = {
       },
       secondaryCta: {
         label: "Ver portfólio",
-        url: "#portfolio",
+        url: "/portfolio",
         variant: "outline",
         external: false,
       },
@@ -112,236 +119,10 @@ export const LOCAL_LANDING_PAGE: LandingPage = {
       ],
     },
 
-    // Serviços agora é uma página própria (/servicos) — ver src/content/services.ts
-    // e src/app/servicos/page.tsx. Removido da home na migração LP → multipágina.
-
-    // 4 — PROCESS
-    {
-      __component: "sections.process",
-      id: 5,
-      eyebrow: "Como trabalhamos",
-      title: "Um processo claro, do briefing ao deploy.",
-      subtitle:
-        "Você sempre sabe em que etapa está o seu projeto — sem caixas-pretas.",
-      steps: [
-        {
-          id: 1,
-          stepNumber: 1,
-          title: "Briefing e estratégia",
-          description:
-            "Entendemos seu negócio, público e objetivos. Definimos escopo, prazo e métricas de sucesso.",
-          icon: "lucide:compass",
-        },
-        {
-          id: 2,
-          stepNumber: 2,
-          title: "Design e protótipo",
-          description:
-            "Wireframes e protótipos em Figma com aprovação iterativa antes de uma única linha de código.",
-          icon: "lucide:figma",
-        },
-        {
-          id: 3,
-          stepNumber: 3,
-          title: "Desenvolvimento",
-          description:
-            "Sprints semanais com entregas visíveis em ambiente de homologação. Você acompanha tudo.",
-          icon: "lucide:code-2",
-        },
-        {
-          id: 4,
-          stepNumber: 4,
-          title: "Lançamento e otimização",
-          description:
-            "Deploy, testes finais, analytics e SEO. Depois, otimizamos com base em dados reais.",
-          icon: "lucide:rocket",
-        },
-      ],
-    },
-
-    // 5 — PORTFOLIO
-    {
-      __component: "sections.portfolio",
-      id: 6,
-      eyebrow: "Cases recentes",
-      title: "Projetos que nos deixam orgulhosos.",
-      subtitle: "Uma seleção dos últimos trabalhos entregues pela productsm3.",
-      projects: [
-        {
-          id: 1,
-          title: "Plataforma Aurora Finance",
-          slug: "aurora-finance",
-          client: "Aurora Finance",
-          year: 2026,
-          category: "saas",
-          shortDescription:
-            "SaaS de gestão financeira para PMEs, com onboarding em 3 minutos e billing recorrente.",
-          liveUrl: "https://exemplo-aurora.com",
-          technologies: ["Next.js", "TypeScript", "Postgres", "Prisma", "Stripe", "Vercel"],
-        },
-        {
-          id: 2,
-          title: "Site Institucional Vértice Arquitetura",
-          slug: "vertice-arquitetura",
-          client: "Vértice Arquitetura",
-          year: 2025,
-          category: "site-institucional",
-          shortDescription:
-            "Site institucional minimalista que valoriza o portfólio de um escritório de arquitetura premium.",
-          liveUrl: "https://exemplo-vertice.com",
-          technologies: ["Astro", "TailwindCSS", "Strapi", "Cloudflare"],
-        },
-        {
-          id: 3,
-          title: "E-commerce Brutto Coffee",
-          slug: "brutto-coffee",
-          client: "Brutto Coffee",
-          year: 2025,
-          category: "ecommerce",
-          shortDescription:
-            "Loja virtual headless de café especial, com clube de assinatura e checkout otimizado.",
-          liveUrl: "https://exemplo-brutto.com",
-          technologies: ["Next.js", "Shopify", "Sanity", "Stripe"],
-        },
-        {
-          id: 4,
-          title: "Landing Page Lançamento Helix Pro",
-          slug: "helix-pro-launch",
-          client: "Helix Tecnologia",
-          year: 2026,
-          category: "landing-page",
-          shortDescription:
-            "Landing page de lançamento que converteu 18% do tráfego pago na primeira semana.",
-          liveUrl: "https://exemplo-helix.com",
-          technologies: ["Astro", "TailwindCSS", "GTM", "Meta Ads"],
-        },
-        {
-          id: 5,
-          title: "Portal de Conteúdo Norte Médico",
-          slug: "norte-medico",
-          client: "Norte Médico",
-          year: 2025,
-          category: "blog",
-          shortDescription:
-            "Portal de saúde com mais de 400 artigos otimizados para SEO e geração de leads.",
-          liveUrl: "https://exemplo-norte.com",
-          technologies: ["Next.js", "Strapi", "Postgres", "Algolia"],
-        },
-        {
-          id: 6,
-          title: "App Web Coletta Logística",
-          slug: "coletta-logistica",
-          client: "Coletta",
-          year: 2026,
-          category: "app-web",
-          shortDescription:
-            "Aplicação web para gestão de coletas e rotas, usada por 1.200 motoristas diariamente.",
-          liveUrl: "https://exemplo-coletta.com",
-          technologies: ["React", "PWA", "Node.js", "Postgres", "Mapbox"],
-        },
-      ],
-    },
-
-    // 6 — TESTIMONIALS
-    {
-      __component: "sections.testimonials",
-      id: 7,
-      eyebrow: "Depoimentos",
-      title: "O que nossos clientes dizem.",
-      subtitle: "Confiança construída projeto por projeto.",
-      testimonials: [
-        {
-          id: 1,
-          name: "Mariana Costa",
-          role: "CEO",
-          company: "Aurora Finance",
-          quote:
-            "A productsm3 entendeu nosso produto desde o primeiro briefing. Entregaram um SaaS robusto, escalável e bonito — fechamos a Série A 3 meses depois do lançamento.",
-          rating: 5,
-        },
-        {
-          id: 2,
-          name: "Rafael Linhares",
-          role: "Sócio-fundador",
-          company: "Vértice Arquitetura",
-          quote:
-            "Pela primeira vez nosso site representa de verdade o nível dos nossos projetos. Recebemos mais briefings qualificados em 2 meses do que em todo o ano anterior.",
-          rating: 5,
-        },
-        {
-          id: 3,
-          name: "Camila Tavares",
-          role: "Head de Marketing",
-          company: "Helix Tecnologia",
-          quote:
-            "A landing converteu 18% no lançamento. A equipe da productsm3 é técnica de verdade e entende de marketing — uma combinação rara.",
-          rating: 5,
-        },
-        {
-          id: 4,
-          name: "Diego Almeida",
-          role: "Fundador",
-          company: "Brutto Coffee",
-          quote:
-            "Migramos para o headless e o resultado foi imediato: site 4x mais rápido, conversão +35% e SEO crescendo todo mês.",
-          rating: 5,
-        },
-        {
-          id: 5,
-          name: "Patricia Nunes",
-          role: "Diretora de Conteúdo",
-          company: "Norte Médico",
-          quote:
-            "Saímos de um WordPress travado para uma plataforma de verdade. Hoje publicamos sem depender de ninguém e o tráfego orgânico não para de crescer.",
-          rating: 5,
-        },
-      ],
-    },
-
-    // 7 — FAQ
-    {
-      __component: "sections.faq",
-      id: 8,
-      title: "Perguntas frequentes",
-      subtitle: "Dúvidas comuns de quem está pensando em contratar a gente.",
-      items: [
-        {
-          id: 1,
-          question: "Quanto custa um site com a productsm3?",
-          answer:
-            "O investimento varia conforme o escopo. Sites institucionais começam em R$ 9.000. Landing pages a partir de R$ 4.500. SaaS são orçados por sprint. Após o briefing inicial, enviamos uma proposta detalhada.",
-        },
-        {
-          id: 2,
-          question: "Quanto tempo leva para entregar um projeto?",
-          answer:
-            "Landing pages ficam prontas em 2 a 3 semanas. Sites institucionais entre 4 e 8 semanas. Projetos de SaaS variam — em média começam a rodar em produção em 8 a 12 semanas.",
-        },
-        {
-          id: 3,
-          question: "Vocês oferecem hospedagem?",
-          answer:
-            "Sim. Usamos Vercel, Cloudflare e AWS como padrão. Cuidamos do deploy, do domínio e do SSL. Você pode optar por usar a nossa infra ou hospedar com seu provedor.",
-        },
-        {
-          id: 4,
-          question: "E depois que o site entra no ar?",
-          answer:
-            "Oferecemos um plano mensal de manutenção opcional: atualizações, monitoramento, backups, ajustes e melhorias contínuas de performance e SEO.",
-        },
-        {
-          id: 5,
-          question: "Posso editar os textos e imagens sozinho?",
-          answer:
-            "Sim. Entregamos com um CMS amigável (Strapi, Sanity ou WordPress headless, conforme o caso). Sua equipe edita sem precisar de desenvolvedor.",
-        },
-      ],
-    },
-
-    // 8 — CTA
+    // 4 — CTA
     {
       __component: "sections.cta",
-      id: 9,
+      id: 4,
       title: "Pronto para colocar seu projeto no ar?",
       description:
         "Conte para a gente o que você precisa. Em até 24h respondemos com próximos passos e estimativa inicial.",
@@ -359,10 +140,10 @@ export const LOCAL_LANDING_PAGE: LandingPage = {
       },
     },
 
-    // 9 — CONTACT FORM
+    // 5 — CONTACT FORM
     {
       __component: "sections.contact-form",
-      id: 10,
+      id: 5,
       eyebrow: "Contato",
       title: "Vamos conversar sobre o seu projeto.",
       subtitle:

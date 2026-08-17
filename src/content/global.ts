@@ -20,15 +20,15 @@ export const LOCAL_GLOBAL: Global = {
   },
   header: {
     links: [
-      // "Serviços" agora é uma página própria; o resto são âncoras da home
-      // (prefixadas com "/" pra funcionarem mesmo estando em outra página).
+      // Cada item é uma página própria do site (migração LP → multipágina).
       { label: "Serviços", url: "/servicos", external: false },
-      { label: "Portfólio", url: "/#portfolio", external: false },
-      { label: "Processo", url: "/#processo", external: false },
-      { label: "Depoimentos", url: "/#depoimentos", external: false },
-      { label: "FAQ", url: "/#faq", external: false },
+      { label: "Portfólio", url: "/portfolio", external: false },
+      { label: "Processo", url: "/processo", external: false },
+      { label: "Depoimentos", url: "/depoimentos", external: false },
+      { label: "FAQ", url: "/faq", external: false },
     ],
     cta: {
+      // Formulário de contato permanece na home (âncora #contato).
       label: "Fale com a gente",
       url: "/#contato",
       variant: "primary",
