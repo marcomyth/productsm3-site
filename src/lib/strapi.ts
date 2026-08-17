@@ -1,6 +1,8 @@
 import { draftMode } from "next/headers";
 import type { BlogPost, Global, LandingPage, LeadPayload, StrapiResponse } from "./types";
 import { readEnv } from "./env";
+import { LOCAL_LANDING_PAGE } from "@/content/landing";
+import { LOCAL_GLOBAL } from "@/content/global";
 
 function getStrapiUrl(): string | null {
   const url = readEnv("STRAPI_URL") || readEnv("NEXT_PUBLIC_STRAPI_URL");
@@ -119,20 +121,27 @@ const GLOBAL_QUERY = [
   "populate[contact]=*",
 ].join("&");
 
+// Fonte da verdade do conteúdo é LOCAL (src/content/*). O Strapi é apenas
+// reserva: usado no modo Preview (edição ao vivo no admin) e como fallback se,
+// por algum motivo, o conteúdo local não existir. Para editar o site, edite
+// src/content/landing.ts e src/content/global.ts — não o Strapi.
 export async function getLandingPage(): Promise<LandingPage | null> {
+  // Fora do preview, o conteúdo local sempre vence.
+  if (!(await isDraftMode()) && LOCAL_LANDING_PAGE) return LOCAL_LANDING_PAGE;
   const res = await strapiFetch<StrapiResponse<LandingPage>>(
     `/api/landing-page?${LANDING_PAGE_QUERY}`,
     { tags: ["landing-page", "strapi"], revalidate: 60 },
   );
-  return res?.data ?? null;
+  return res?.data ?? LOCAL_LANDING_PAGE ?? null;
 }
 
 export async function getGlobal(): Promise<Global | null> {
+  if (!(await isDraftMode()) && LOCAL_GLOBAL) return LOCAL_GLOBAL;
   const res = await strapiFetch<StrapiResponse<Global>>(`/api/global?${GLOBAL_QUERY}`, {
     tags: ["global", "strapi"],
     revalidate: ONE_DAY_SECONDS,
   });
-  return res?.data ?? null;
+  return res?.data ?? LOCAL_GLOBAL ?? null;
 }
 
 // ---- Blog ----
