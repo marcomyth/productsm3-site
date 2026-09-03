@@ -3,11 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, User } from "lucide-react";
-import { getBlogPostBySlug } from "@/lib/strapi";
+import { getBlogPostBySlug, getBlogPostSlugs } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
 import { BlocksRenderer } from "@/components/blog/BlocksRenderer";
 
-export const dynamic = "force-dynamic";
 
 const CATEGORY_LABEL: Record<string, string> = {
   noticia: "Notícia",
@@ -25,6 +24,15 @@ function formatDate(iso?: string): string {
     month: "long",
     year: "numeric",
   });
+}
+
+/**
+ * Prerenderiza todos os posts no build. Slug desconhecido continua sendo
+ * resolvido sob demanda (dynamicParams default) e cai em notFound().
+ */
+export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
+  const slugs = await getBlogPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 interface PageProps {

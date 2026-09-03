@@ -2,121 +2,97 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { CtaButton } from "@/components/CtaButton";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import type { Header as HeaderData, NavLink } from "@/lib/types";
+import type { SiteHeader } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
-
-// Link "Blog" sempre presente no menu (fallback se o Strapi não tiver cadastrado).
-// Se já vier do Strapi com mesma URL, deduplica.
-const ALWAYS_ON_LINKS: NavLink[] = [{ label: "Blog", url: "/blog" }];
 
 type Props = {
-  header?: HeaderData;
-  siteName?: string;
-  /**
-   * Logo src resolved on the server (already prefixed with the Strapi host).
-   * Passed in by the layout so this client component doesn't need to know
-   * how to build media URLs.
-   */
-  logoSrc?: string | null;
+  content: SiteHeader;
 };
 
-export function Header({ header, siteName, logoSrc }: Props) {
+export function Header({ content }: Props) {
   const [open, setOpen] = React.useState(false);
-  const logoText = header?.logoText || siteName || siteConfig.name;
-  // Logo: prioridade Strapi → fallback default (public/logo.png).
-  const effectiveLogoSrc = logoSrc ?? siteConfig.defaultLogo ?? null;
-  // Quando há logo PNG (que já contém o nome embutido), esconde o texto pra não duplicar.
-  const showLogoText = !effectiveLogoSrc;
-
-  // Merge dos links do Strapi com os always-on (deduplicando por URL).
-  const strapiLinks = header?.links ?? [];
-  const links: NavLink[] = [
-    ...strapiLinks,
-    ...ALWAYS_ON_LINKS.filter((al) => !strapiLinks.some((sl) => sl.url === al.url)),
-  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
-        <Link href="/" className="flex items-center gap-2.5 text-lg font-bold tracking-tight">
-          {effectiveLogoSrc ? (
-            <Image
-              src={effectiveLogoSrc}
-              alt={logoText}
-              width={180}
-              height={56}
-              className="h-12 w-auto object-contain md:h-14"
-              priority
-            />
-          ) : (
-            <span
-              className="inline-block h-7 w-7 rounded-lg bg-brand-gradient shadow-brand-glow"
-              aria-hidden="true"
-            />
-          )}
-          {showLogoText && <span className="text-brand-gradient">{logoText}</span>}
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-surface-variant/80 bg-surface/90 shadow-[0_1px_10px_rgba(24,24,27,0.03)] backdrop-blur-md">
+      <div className="flex h-16 w-full items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+        <Link href="/" className="group flex items-center gap-4">
+          <span className="flex items-baseline gap-1.5">
+            <span className="font-serif text-[28px] font-bold leading-none tracking-tight text-primary">
+              {content.logoLabel}
+            </span>
+            <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary">
+              {content.logoSuffix}
+            </span>
+          </span>
+          <span className="ml-1 hidden border-l border-outline-variant pl-3 font-label-meta text-label-meta uppercase tracking-wider text-on-surface-variant sm:inline-block">
+            {content.tagline}
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Principal">
-          {links.map((link, i) => (
+        <nav className="hidden items-center gap-space-md md:flex" aria-label="Principal">
+          {content.navLinks.map((link) => (
             <Link
-              key={link.id ?? `${link.url}-${i}`}
+              key={link.url}
               href={link.url}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="font-body-sm text-body-sm tracking-wide text-on-surface-variant transition-colors hover:text-on-surface"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <div className="hidden md:block">
-            <CtaButton cta={header?.cta ?? undefined} size="default" />
+        <div className="flex items-center gap-space-sm">
+          <div className="hidden items-center gap-1.5 rounded-full bg-sage-light/70 px-2.5 py-1 text-[11px] font-medium tracking-wide text-sage lg:flex">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sage" />
+            <span>{content.uptimeLabel}</span>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
+          <Link
+            href={content.ctaUrl}
+            className="hidden items-center rounded border border-outline-variant bg-surface-container-lowest px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-primary transition-all duration-150 hover:border-secondary hover:text-secondary sm:inline-flex"
+          >
+            {content.ctaLabel}
+          </Link>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded text-primary md:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          </button>
         </div>
       </div>
 
       <div
         className={cn(
-          "md:hidden overflow-hidden border-t border-border/60 transition-[max-height] duration-300",
-          open ? "max-h-[400px]" : "max-h-0",
+          "overflow-hidden border-t border-surface-variant/80 transition-[max-height] duration-300 md:hidden",
+          open ? "max-h-[360px]" : "max-h-0",
         )}
       >
-        <div className="flex flex-col gap-1 px-4 py-4 sm:px-6">
-          {links.map((link, i) => (
+        <div className="flex flex-col gap-1 px-grid-margin-mobile py-space-sm">
+          {content.navLinks.map((link) => (
             <Link
-              key={link.id ?? `m-${link.url}-${i}`}
+              key={link.url}
               href={link.url}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="rounded-md px-3 py-2 text-sm text-foreground hover:bg-accent"
+              className="rounded px-3 py-2 font-body-sm text-body-sm text-on-surface hover:bg-accent"
               onClick={() => setOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="mt-2">
-            <CtaButton cta={header?.cta ?? undefined} size="default" className="w-full" />
-          </div>
+          <Link
+            href={content.ctaUrl}
+            className="mt-2 inline-flex items-center justify-center rounded bg-secondary px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-secondary"
+            onClick={() => setOpen(false)}
+          >
+            {content.ctaLabel}
+          </Link>
         </div>
       </div>
     </header>

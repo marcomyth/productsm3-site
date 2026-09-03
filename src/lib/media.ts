@@ -1,12 +1,13 @@
 import "server-only";
-import { readEnv } from "./env";
 
-// Server-only Strapi media URL builder. Prepends the Strapi host to relative
-// upload paths (e.g. "/uploads/foo.jpg" -> "https://cms.example.com/uploads/foo.jpg").
+/**
+ * Resolve a URL pública de uma mídia.
+ *
+ * Com o conteúdo no repo, uma mídia é ou uma URL absoluta ou um caminho
+ * relativo servido de `public/`. A função continua existindo — em vez de os
+ * componentes montarem URL na mão — porque é aqui que entra o bucket do
+ * Supabase Storage quando as imagens migrarem.
+ */
 export function mediaUrl(url: string | null | undefined): string {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  const base =
-    readEnv("STRAPI_URL") || readEnv("NEXT_PUBLIC_STRAPI_URL") || "http://localhost:1337";
-  return `${base}${url}`;
+  return url ?? "";
 }

@@ -8,244 +8,142 @@ export type Media = {
   formats?: Record<string, { url: string; width: number; height: number }>;
 } | null;
 
-export type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
-
-export type StrapiButton = {
-  id?: number;
-  label: string;
-  url: string;
-  variant: ButtonVariant;
-  external?: boolean;
-};
-
 export type Seo = {
+  id?: number;
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string;
   shareImage?: Media;
-  canonicalURL?: string;
+  canonicalURL?: string | null;
+  preventIndexing?: boolean;
 };
 
 export type NavLink = {
-  id?: number;
   label: string;
   url: string;
   external?: boolean;
 };
 
-export type Header = {
-  logo?: Media;
-  logoText?: string;
-  links?: NavLink[];
-  cta?: StrapiButton | null;
+// ---- Chrome do site (header/footer) ----
+
+export type SiteHeader = {
+  logoLabel: string;
+  logoSuffix: string;
+  tagline: string;
+  navLinks: NavLink[];
+  uptimeLabel: string;
+  ctaLabel: string;
+  ctaUrl: string;
 };
 
-export type Footer = {
-  logo?: Media;
-  logoText?: string;
-  tagline?: string;
-  columns?: Array<{
-    id?: number;
-    title: string;
-    links: NavLink[];
-  }>;
-  socialLinks?: NavLink[];
-  copyright?: string;
-};
-
-export type Contact = {
-  email?: string;
-  phone?: string;
-  address?: string;
-};
-
-export type Global = {
-  siteName?: string;
-  defaultSeo?: Seo;
-  header?: Header;
-  footer?: Footer;
-  contact?: Contact;
-};
-
-// ---- Section types ----
-
-export type HeroSection = {
-  __component: "sections.hero";
-  id: number;
-  eyebrow?: string;
+export type FooterColumn = {
   title: string;
-  subtitle?: string;
-  image?: Media;
-  primaryCta?: StrapiButton | null;
-  secondaryCta?: StrapiButton | null;
+  links: NavLink[];
 };
 
-export type StatsSection = {
-  __component: "sections.stats";
-  id: number;
-  title?: string;
-  subtitle?: string;
-  items: Array<{
-    id?: number;
-    value: string;
-    label: string;
-    suffix?: string;
-  }>;
+export type SiteFooter = {
+  tagline: string;
+  locations: string;
+  columns: FooterColumn[];
+  contactEmail: string;
+  contactPhone: string;
+  statusLabel: string;
+  copyright: string;
+  legalLinks: NavLink[];
 };
 
-export type FeatureGridSection = {
-  __component: "sections.feature-grid";
-  id: number;
-  eyebrow?: string;
+// ---- Landing page ----
+
+export type HeroMetaItem = {
+  label: string;
+  value: string;
+};
+
+export type HeroContent = {
+  eyebrow: string;
   title: string;
-  subtitle?: string;
-  features: Array<{
-    id?: number;
-    icon: string;
-    title: string;
-    description: string;
-  }>;
+  subtitle: string;
+  primaryCta: { label: string; url: string };
+  secondaryCta: { label: string; url: string };
+  meta: HeroMetaItem[];
+  figure: {
+    imageUrl: string;
+    imageAlt: string;
+    caption: string;
+    year: string;
+    liveLabel: string;
+    syncLabel: string;
+  };
 };
 
-export type ServiceFeature =
-  | string
-  | {
-      id?: number;
-      label?: string;
-      title?: string;
-      text?: string;
-      name?: string;
-      description?: string;
-      icon?: string;
-    };
+export type ProofStat = {
+  value: string;
+  label: string;
+  description: string;
+};
 
 export type ServiceItem = {
-  id: number;
+  index: string;
+  category: string;
   title: string;
-  slug: string;
-  icon: string;
-  shortDescription: string;
-  features?: ServiceFeature[];
+  description: string;
+  ctaLabel: string;
+  bullets: string[];
 };
 
-export type ServicesListSection = {
-  __component: "sections.services-list";
-  id: number;
-  eyebrow?: string;
+export type MethodPhase = {
+  index: string;
+  phaseLabel: string;
   title: string;
-  subtitle?: string;
+  description: string;
+  timeframe: string;
+};
+
+export type CaseStudy = {
+  category: string;
+  reference: string;
+  imageUrl: string;
+  imageAlt: string;
+  metricValue: string;
+  metricLabel: string;
+  metricAccent?: boolean;
+  description: string;
+  platform: string;
+  badge: string;
+};
+
+export type FinalCtaMetaItem = {
+  label: string;
+  value: string;
+};
+
+export type FinalCtaContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  capacityLabel: string;
+  meta: FinalCtaMetaItem[];
+};
+
+export type SeoContent = {
+  title: string;
+  description: string;
+  keywords: string[];
+};
+
+export type SiteContent = {
+  seo: SeoContent;
+  header: SiteHeader;
+  footer: SiteFooter;
+  hero: HeroContent;
+  proofBar: ProofStat[];
   services: ServiceItem[];
-};
-
-export type ProcessSection = {
-  __component: "sections.process";
-  id: number;
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  steps: Array<{
-    id?: number;
-    stepNumber: number;
-    title: string;
-    description: string;
-    icon: string;
-  }>;
-};
-
-export type ProjectItem = {
-  id: number;
-  title: string;
-  slug: string;
-  client?: string;
-  year?: number | string;
-  category?: string;
-  shortDescription?: string;
-  cover?: Media;
-  liveUrl?: string;
-  technologies?: Array<string | { id?: number; name: string }>;
-};
-
-export type PortfolioSection = {
-  __component: "sections.portfolio";
-  id: number;
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  projects: ProjectItem[];
-};
-
-export type TestimonialItem = {
-  id: number;
-  name: string;
-  role?: string;
-  company?: string;
-  quote: string;
-  rating?: number;
-  photo?: Media;
-};
-
-export type TestimonialsSection = {
-  __component: "sections.testimonials";
-  id: number;
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  testimonials: TestimonialItem[];
-};
-
-export type FaqSection = {
-  __component: "sections.faq";
-  id: number;
-  title: string;
-  subtitle?: string;
-  items: Array<{
-    id?: number;
-    question: string;
-    answer: string;
-  }>;
-};
-
-export type CtaSection = {
-  __component: "sections.cta";
-  id: number;
-  title: string;
-  description?: string;
-  primaryCta?: StrapiButton | null;
-  secondaryCta?: StrapiButton | null;
-};
-
-export type ContactFormSection = {
-  __component: "sections.contact-form";
-  id: number;
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  submitLabel?: string;
-  successMessage?: string;
-};
-
-export type Section =
-  | HeroSection
-  | StatsSection
-  | FeatureGridSection
-  | ServicesListSection
-  | ProcessSection
-  | PortfolioSection
-  | TestimonialsSection
-  | FaqSection
-  | CtaSection
-  | ContactFormSection;
-
-export type LandingPage = {
-  id: number;
-  title?: string;
-  seo?: Seo;
-  sections: Section[];
-};
-
-export type StrapiResponse<T> = {
-  data: T;
-  meta?: { pagination?: { page: number; pageSize: number; pageCount: number; total: number } };
+  method: MethodPhase[];
+  cases: CaseStudy[];
+  techStack: string[];
+  finalCta: FinalCtaContent;
 };
 
 // ---- Blog ----
@@ -303,18 +201,8 @@ export type BlogPost = {
   readingTime?: number;
   source?: "ascendly" | "manual";
   externalId?: string;
-  seo?: Seo;
+  seo?: Seo | null;
   publishedAt?: string;
   createdAt?: string;
   updatedAt?: string;
-};
-
-export type LeadPayload = {
-  name: string;
-  email: string;
-  phone?: string;
-  company?: string;
-  message?: string;
-  budget?: string;
-  source?: string;
 };

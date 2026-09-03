@@ -1,97 +1,94 @@
+import Link from "next/link";
 import Image from "next/image";
-import { CtaButton } from "@/components/CtaButton";
-import { Icon } from "@/components/Icon";
-import type { HeroSection } from "@/lib/types";
-import { mediaUrl } from "@/lib/media";
+import { ArrowRight } from "lucide-react";
+import type { HeroContent } from "@/lib/types";
 
-function splitHeadline(title: string): { plain: string; gradient: string } {
-  // If the title contains " | " split there. Otherwise gradient the last 3 words.
-  if (title.includes(" | ")) {
-    const [a, b] = title.split(" | ");
-    return { plain: a, gradient: b };
-  }
-  const words = title.trim().split(/\s+/);
-  if (words.length <= 3) return { plain: "", gradient: title };
-  const cut = Math.max(words.length - 3, Math.ceil(words.length / 2));
-  return {
-    plain: words.slice(0, cut).join(" "),
-    gradient: words.slice(cut).join(" "),
-  };
-}
+type Props = {
+  data: HeroContent;
+};
 
-export function Hero({ data }: { data: HeroSection }) {
-  const { plain, gradient } = splitHeadline(data.title);
-
+export function Hero({ data }: Props) {
   return (
-    <section className="relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-28 px-4 md:px-8">
-      {/* Background blobs */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-      >
-        <div
-          className="absolute -top-32 -left-32 h-96 w-96 rounded-full opacity-30 blur-3xl animate-blob-1"
-          style={{ background: "var(--color-brand-green)" }}
-        />
-        <div
-          className="absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full opacity-25 blur-3xl animate-blob-2"
-          style={{ background: "var(--color-brand-blue)" }}
-        />
-      </div>
-
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-        <div className="flex flex-col gap-7 text-center lg:text-left">
-          {data.eyebrow && (
-            <div className="flex justify-center lg:justify-start">
-              <div
-                className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] md:text-xs font-black uppercase tracking-widest text-white bg-brand-gradient shadow-brand-glow-intense"
-              >
-                <Icon name="sparkles" className="h-3.5 w-3.5" />
-                <span>{data.eyebrow}</span>
-              </div>
+    <section className="w-full border-b border-surface-variant/60 px-grid-margin-mobile pb-space-2xl pt-space-lg md:px-grid-margin-tablet md:pt-space-xl lg:px-grid-margin-desktop">
+      <div className="grid grid-cols-1 items-center gap-gutter-desktop lg:grid-cols-12">
+        <div className="flex flex-col justify-between space-y-space-md lg:col-span-7 lg:pr-space-md">
+          <div className="space-y-space-xs">
+            <div className="inline-flex items-center gap-2 rounded-full border border-surface-variant/80 bg-surface-container px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-secondary" />
+              <span className="font-label-meta text-[10.5px] font-medium uppercase tracking-[0.2em] text-on-surface-variant">
+                {data.eyebrow}
+              </span>
             </div>
-          )}
-
-          <h1 className="font-black tracking-tight leading-[1.05] text-4xl md:text-6xl lg:text-7xl">
-            {plain && <span className="text-foreground">{plain}</span>}
-            {plain && <br />}
-            <span className="text-brand-gradient">{gradient}</span>
-          </h1>
-
-          {data.subtitle && (
-            <p className="max-w-2xl text-pretty text-base md:text-xl text-muted-foreground leading-relaxed lg:mx-0 mx-auto">
-              {data.subtitle}
-            </p>
-          )}
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:justify-start">
-            <CtaButton cta={data.primaryCta} size="lg" showArrow />
-            <CtaButton
-              cta={data.secondaryCta ? { ...data.secondaryCta, variant: "outline" } : null}
-              size="lg"
-            />
+            <h1 className="mt-space-xs font-serif text-display-xl-mobile font-normal leading-[1.05] tracking-tight text-primary md:text-display-xl">
+              {data.title}
+            </h1>
+          </div>
+          <p className="max-w-2xl pt-space-2xs font-sans text-body-lead font-normal leading-relaxed text-on-surface-variant">
+            {data.subtitle}
+          </p>
+          <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+            <Link
+              href={data.primaryCta.url}
+              className="inline-flex items-center justify-center rounded bg-secondary px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-secondary shadow-sm transition-all duration-150 hover:brightness-105"
+            >
+              {data.primaryCta.label}
+            </Link>
+            <Link
+              href={data.secondaryCta.url}
+              className="group inline-flex items-center gap-2 font-sans text-body-default text-primary transition-colors hover:text-secondary"
+            >
+              <span className="border-b border-outline pb-0.5 group-hover:border-secondary">
+                {data.secondaryCta.label}
+              </span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-gutter-tablet border-t border-surface-variant/80 pt-space-lg sm:grid-cols-3">
+            {data.meta.map((item) => (
+              <div key={item.label} className="pt-space-xs">
+                <span className="block font-label-index text-label-index uppercase tracking-wider text-outline">
+                  {item.label}
+                </span>
+                <span className="mt-0.5 block font-body-sm text-body-sm font-medium text-on-surface">
+                  {item.value}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {data.image?.url && (
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-4 -z-10 rounded-3xl blur-2xl opacity-40"
-              style={{ background: "var(--brand-gradient)" }}
-            />
-            <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-border/50 bg-muted shadow-premium lg:aspect-[4/5]">
+        <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0">
+          <div className="rounded-lg border border-surface-variant bg-surface-container-low p-2.5 shadow-sm">
+            <div className="relative aspect-[4/5] overflow-hidden rounded bg-surface-container-high">
               <Image
-                src={mediaUrl(data.image.url)}
-                alt={data.image.alternativeText || data.title}
+                src={data.figure.imageUrl}
+                alt={data.figure.imageAlt}
                 fill
+                className="object-cover object-center transition-all duration-700 hover:scale-[1.02]"
                 priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
               />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-tertiary/85 via-tertiary/40 to-transparent p-space-sm">
+                <div className="flex items-center justify-between text-on-tertiary">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                    <span className="font-label-meta text-label-meta tracking-[0.2em] text-surface-bright">
+                      {data.figure.liveLabel}
+                    </span>
+                  </div>
+                  <span className="font-mono font-label-meta text-label-meta text-emerald-300">
+                    {data.figure.syncLabel}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between px-2 pb-1 pt-2 text-[11px] text-outline">
+              <span className="font-label-index text-label-index uppercase">{data.figure.caption}</span>
+              <span className="font-label-meta tracking-widest text-on-surface-variant">
+                {data.figure.year}
+              </span>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

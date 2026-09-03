@@ -1,114 +1,101 @@
 import Link from "next/link";
-import Image from "next/image";
-import type { Footer as FooterData, Contact } from "@/lib/types";
-import { mediaUrl } from "@/lib/media";
-import { siteConfig } from "@/config/site";
+import type { SiteFooter } from "@/lib/types";
 
 type Props = {
-  footer?: FooterData;
-  contact?: Contact;
-  siteName?: string;
+  content: SiteFooter;
 };
 
-export function Footer({ footer, contact, siteName }: Props) {
-  const logoSrc = footer?.logo?.url ? mediaUrl(footer.logo.url) : (siteConfig.defaultLogo ?? null);
-  const logoText = footer?.logoText || siteName || siteConfig.name;
-  // Quando há logo PNG (que já tem o nome embutido), esconde o texto pra não duplicar.
-  const showLogoText = !logoSrc;
-  const columns = footer?.columns ?? [];
-  const year = new Date().getFullYear();
-  // siteConfig.copyright tem prioridade (override fixo); Strapi como fallback.
-  const copyright = siteConfig.copyright ?? footer?.copyright ?? `© ${year} ${logoText}. Todos os direitos reservados.`;
-
+export function Footer({ content }: Props) {
   return (
-    <footer className="border-t border-border/60 bg-background">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div className="lg:col-span-1">
-          <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
-            {logoSrc ? (
-              <Image
-                src={logoSrc}
-                alt={logoText}
-                width={160}
-                height={48}
-                className="h-12 w-auto object-contain"
-              />
-            ) : (
-              <span className="inline-block h-7 w-7 rounded-md bg-foreground" aria-hidden="true" />
-            )}
-            {showLogoText && <span>{logoText}</span>}
-          </Link>
-          {footer?.tagline && (
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">{footer.tagline}</p>
-          )}
-          {(() => {
-            // Email do siteConfig.contact.email (override do Strapi).
-            // Telefone e endereço removidos — decisão de produto, footer enxuto.
-            const displayEmail = siteConfig.contact?.email ?? contact?.email;
-            if (!displayEmail) return null;
-            return (
-              <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
-                <li>
-                  <a href={`mailto:${displayEmail}`} className="hover:text-foreground">
-                    {displayEmail}
-                  </a>
-                </li>
-              </ul>
-            );
-          })()}
-        </div>
+    <footer className="relative w-full overflow-hidden border-t border-[#2A2A2E] bg-[#18181B] text-surface-bright">
+      <div className="w-full px-grid-margin-mobile py-space-xl md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+        <div className="grid grid-cols-1 gap-gutter-desktop md:grid-cols-12">
+          {/* Marca + diretriz operacional */}
+          <div className="flex flex-col justify-between md:col-span-5">
+            <div className="space-y-space-sm">
+              <span className="flex items-baseline gap-1.5">
+                <span className="font-serif text-[28px] font-bold leading-none tracking-tight text-surface-bright">
+                  M3
+                </span>
+                <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary">
+                  BRASIL
+                </span>
+              </span>
+              <p className="max-w-sm font-body-sm text-body-sm text-[#A1A1AA]">{content.tagline}</p>
+            </div>
+            <div className="mt-space-lg">
+              <span className="mb-space-2xs block font-label-index text-label-index uppercase text-secondary-fixed-dim">
+                01 / Diretriz Operacional
+              </span>
+              <span className="font-body-sm text-body-sm text-surface-container-high">
+                {content.locations}
+              </span>
+            </div>
+          </div>
 
-        {columns.length > 0 && (
-          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-2">
-            {columns.map((col, i) => (
-              <div key={col.id ?? `col-${i}`}>
-                <h3 className="text-sm font-semibold">{col.title}</h3>
-                <ul className="mt-4 space-y-2">
-                  {col.links?.map((link, j) => (
-                    <li key={link.id ?? `${i}-${j}`}>
-                      <Link
-                        href={link.url}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
-                        className="text-sm text-muted-foreground hover:text-foreground"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+          {/* Colunas de navegação + contato */}
+          <div className="grid grid-cols-2 gap-gutter-desktop sm:grid-cols-3 md:col-span-7">
+            {content.columns.map((col) => (
+              <div key={col.title} className="flex flex-col space-y-space-xs">
+                <span className="font-label-index text-label-index uppercase tracking-wider text-[#A1A1AA]">
+                  {col.title}
+                </span>
+                {col.links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.url}
+                    className="font-body-sm text-body-sm text-surface-bright transition-colors hover:text-secondary"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             ))}
+            <div className="col-span-2 flex flex-col space-y-space-xs sm:col-span-1">
+              <span className="font-label-index text-label-index uppercase tracking-wider text-[#A1A1AA]">
+                Contato Direto
+              </span>
+              <a
+                href={`mailto:${content.contactEmail}`}
+                className="font-body-sm text-body-sm text-surface-bright hover:text-secondary"
+              >
+                {content.contactEmail}
+              </a>
+              <span className="font-body-sm text-body-sm text-surface-bright">
+                {content.contactPhone}
+              </span>
+              <div className="mt-space-sm flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="font-label-meta text-label-meta uppercase text-emerald-300">
+                  {content.statusLabel}
+                </span>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
 
-        {/* Conecte-se: hardcoded com link pro Ascendly (override do Strapi social). */}
-        <div className="lg:col-span-1">
-          <h3 className="text-sm font-semibold">Conecte-se</h3>
-          <div className="mt-4 flex gap-3">
-            <Link
-              href="https://ascendly.com.br"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ascendly"
-              className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-            >
-              <Image
-                src="/ascendly-icon.png"
-                alt="Ascendly"
-                width={20}
-                height={20}
-                className="h-5 w-5 rounded"
-              />
-              <span>Ascendly</span>
-            </Link>
+        <div className="mt-space-xl flex flex-col items-center justify-between gap-space-sm border-t border-[#2E2E33] pt-space-md sm:flex-row">
+          <span className="font-label-meta text-label-meta uppercase text-[#A1A1AA]">
+            {content.copyright}
+          </span>
+          <div className="flex items-center gap-space-md">
+            {content.legalLinks.map((link) => (
+              <span key={link.label} className="font-label-meta text-label-meta uppercase text-[#A1A1AA]">
+                {link.label}
+              </span>
+            ))}
           </div>
         </div>
       </div>
-      <div className="border-t border-border/60">
-        <div className="mx-auto max-w-7xl px-4 py-6 text-xs text-muted-foreground sm:px-6 lg:px-8">
-          {copyright}
-        </div>
+
+      {/* Wordmark monumental cortado, estilo revista editorial */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none -mb-10 flex w-full select-none justify-center overflow-hidden opacity-10 md:-mb-16 lg:-mb-24"
+      >
+        <span className="font-serif text-[160px] font-normal leading-none tracking-tighter text-[#A1A1AA] md:text-[280px] lg:text-[400px]">
+          M3
+        </span>
       </div>
     </footer>
   );

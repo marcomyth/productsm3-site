@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Newspaper } from "lucide-react";
-import { getBlogPosts } from "@/lib/strapi";
+import { getBlogPosts } from "@/lib/content";
 import { BlogCard } from "@/components/blog/BlogCard";
 
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
