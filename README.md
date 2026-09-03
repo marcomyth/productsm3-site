@@ -1,6 +1,6 @@
 # productsm3 — site
 
-Frontend Next.js 15 (App Router, Server Components) que consome um Strapi 5 com landing page dinâmica.
+Frontend Next.js 15 (App Router, Server Components). Site content e blog vêm do Supabase (`src/lib/content.ts`) — ver seção [Supabase](#supabase).
 
 ## Stack
 
@@ -16,17 +16,16 @@ Frontend Next.js 15 (App Router, Server Components) que consome um Strapi 5 com 
 ## Requisitos
 
 - Node.js 20+ (recomendado 22+)
-- Strapi 5 rodando em `http://localhost:1337` com os single types `landing-page` e `global` publicados
+- Um projeto Supabase com o schema de `supabase/migrations/` aplicado (ver [Supabase](#supabase))
 
 ## Como rodar
 
 ```bash
-# 1. Instalar deps (use pnpm se disponível, senão npm)
+# 1. Instalar deps
 npm install
 
-# 2. Copiar / ajustar .env.local
-# NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
-# STRAPI_URL=http://localhost:1337
+# 2. Copiar .env.local.example → .env.local e preencher SUPABASE_URL / SUPABASE_ANON_KEY
+cp .env.local.example .env.local
 
 # 3. Subir o servidor de desenvolvimento
 npm run dev
@@ -39,12 +38,25 @@ npm start
 
 ## Variáveis de ambiente
 
-| Variável | Onde é usada | Default |
-|---|---|---|
-| `STRAPI_URL` | Server (`lib/strapi.ts`, `mediaUrl`) | `http://localhost:1337` |
-| `NEXT_PUBLIC_STRAPI_URL` | Client (fallback de `mediaUrl`) | `http://localhost:1337` |
+Ver `.env.local.example`. `SUPABASE_URL` / `SUPABASE_ANON_KEY` são obrigatórias em qualquer ambiente (`src/lib/supabase.ts` lança erro se faltarem). `SUPABASE_SERVICE_ROLE_KEY` só é usada por `scripts/seed-supabase.ts`, nunca pelo app.
 
-> Não precisamos de token enquanto os endpoints estiverem públicos no Strapi. Caso passe a exigir auth, basta adicionar um `STRAPI_TOKEN` e injetar o header `Authorization` em `lib/strapi.ts`.
+## Supabase
+
+Site content e blog vivem em duas tabelas (schema em `supabase/migrations/20260903000000_content_backend.sql`):
+
+- **`site_content`** — linha única (`id=1`) com o payload `SiteContent` inteiro em `data jsonb`.
+- **`blog_posts`** — uma linha por post, espelha o tipo `BlogPost` de `src/lib/types.ts`. RLS só expõe posts com `published_at` no passado pra chave anon.
+
+`src/lib/content.ts` (`getSiteContent`, `getBlogPosts`, `getBlogPostBySlug`, `getBlogPostSlugs`) lê dessas tabelas via `src/lib/supabase.ts` (client server-only, anon key).
+
+### Setup (uma vez)
+
+1. **Conectar o repo ao projeto Supabase**: dashboard do projeto → Settings → Integrations → GitHub → *Connect GitHub* → selecionar `marcomyth/productsm3-site`.
+2. **Aplicar o schema**: cole o conteúdo de `supabase/migrations/20260903000000_content_backend.sql` no SQL Editor do dashboard e rode.
+3. **Pegar as chaves**: Settings → API Keys → copiar a Project URL, a `anon`/publishable key e a `service_role` key pro `.env.local`.
+4. **Popular com o conteúdo atual**: `npm run seed:supabase` — importa `src/content/site.ts` e `src/content/blog-posts.ts` (que continuam no repo só como fonte do seed) e faz upsert no Supabase.
+
+Pra editar conteúdo depois, é direto no Table Editor do Supabase (ou via SQL) — não precisa mais editar `src/content/*.ts` nem redeployar.
 
 ## Estrutura
 
@@ -68,9 +80,14 @@ src/
     CtaButton.tsx           # mapeia StrapiButton → <Button asChild><Link/></Button>
     ThemeProvider.tsx / ThemeToggle.tsx
   lib/
-    strapi.ts               # fetch helper com cache tag-based + revalidate 60s
-    types.ts                # tipos derivados dos schemas Strapi 5
-    utils.ts                # cn() + mediaUrl()
+    content.ts              # getSiteContent/getBlogPosts* — lê do Supabase
+    supabase.ts             # client server-only (anon key)
+    types.ts                # SiteContent, BlogPost, etc.
+    media.ts                # mediaUrl() — hoje passthrough, migra p/ Supabase Storage
+    utils.ts                # cn()
+  content/
+    site.ts                 # fonte do seed de site_content (npm run seed:supabase)
+    blog-posts.ts            # fonte do seed de blog_posts
   config/site.ts            # nome/descrição/og default
 ```
 

@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:supabase": "tsx scripts/seed-supabase.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "@supabase/supabase-js": "^2.114.0",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.5",
@@ -33,5 +35,7 @@
     "typescript": "^5.7.3",
     "zod": "^3.24.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tsx": "^4.23.13"
+  }
 }
