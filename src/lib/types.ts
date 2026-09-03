@@ -161,7 +161,7 @@ export type BlogInlineChild =
   | {
       type: "link";
       url: string;
-      children: Array<{ type: "text"; text: string }>;
+      children: BlogInlineChild[];
     };
 
 export type BlogBlock =
@@ -176,7 +176,8 @@ export type BlogBlock =
   | { type: "code"; children: Array<{ type: "text"; text: string }> }
   | {
       type: "image";
-      image: { url: string; alternativeText?: string; width?: number; height?: number };
+      image: NonNullable<Media>;
+      children?: Array<{ type: "text"; text: string }>;
     };
 
 export type BlogCategory =

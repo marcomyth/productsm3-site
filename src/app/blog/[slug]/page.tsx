@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, User } from "lucide-react";
 import { getBlogPostBySlug, getBlogPostSlugs } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
+import { siteConfig } from "@/config/site";
 import { BlocksRenderer } from "@/components/blog/BlocksRenderer";
 
 
@@ -44,11 +45,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Post não encontrado" };
   const ogImage = post.cover?.url ? mediaUrl(post.cover.url) : undefined;
+  const canonical = post.seo?.canonicalURL || `${siteConfig.url}/blog/${post.slug}`;
   return {
     title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
     keywords: post.seo?.keywords?.split(",").map((k) => k.trim()) ?? post.tags,
-    alternates: post.seo?.canonicalURL ? { canonical: post.seo.canonicalURL } : undefined,
+    alternates: { canonical },
     openGraph: {
       type: "article",
       title: post.seo?.metaTitle || post.title,
@@ -75,8 +77,23 @@ export default async function BlogPostPage({ params }: PageProps) {
   const cover = post.cover?.url ? mediaUrl(post.cover.url) : null;
   const categoryLabel = post.category ? CATEGORY_LABEL[post.category] : null;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
+    ...(post.author ? { author: { "@type": "Person", name: post.author } } : {}),
+    ...(cover ? { image: [cover] } : {}),
+  };
+
   return (
     <article>
+      {/* JSON.stringify escapa aspas mas não `</script>` — post.title/author vêm do Ascendly (fonte externa) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Voltar — fica acima da capa, alinhado com o container do post */}
       <div className="container mx-auto max-w-4xl px-4 pt-6 md:pt-10">
         <Link

@@ -104,7 +104,7 @@ function Inline({ children }: { children: BlogInlineChild[] }) {
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
             >
-              {child.children.map((c) => c.text).join("")}
+              <Inline children={child.children} />
             </Link>
           );
         }

@@ -59,7 +59,9 @@ async function main() {
       title: post.title,
       excerpt: post.excerpt ?? null,
       content: post.content ?? null,
-      cover: post.cover ?? null,
+      // Capa é uma FK pra media (id devolvido por /api/upload) — conteúdo
+      // estático não tem media row, então nasce sem capa.
+      cover_id: null,
       author: post.author ?? null,
       category: post.category ?? null,
       tags: post.tags ?? [],
