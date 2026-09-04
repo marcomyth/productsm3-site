@@ -65,9 +65,9 @@ export const siteContent: SiteContent = {
         title: "Publicações & Índices",
         links: [
           { label: "Auditorias de Conversão", url: "#auditoria" },
-          { label: "Headless & Custom", url: "#servicos" },
-          { label: "Performance Media", url: "#servicos" },
-          { label: "Lifecycle & CRM", url: "#servicos" },
+          { label: "Consultoria & Governança", url: "#servicos" },
+          { label: "Redesenho de Sistema", url: "#servicos" },
+          { label: "Governança de Mídia", url: "#servicos" },
         ],
       },
       {
