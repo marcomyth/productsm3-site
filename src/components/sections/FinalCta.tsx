@@ -11,8 +11,8 @@ export function FinalCta({ data }: Props) {
       className="relative w-full overflow-hidden bg-[#18181B] py-space-3xl text-surface-bright"
     >
       <div className="relative z-10 w-full px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
-        <div className="grid grid-cols-1 items-start gap-gutter-desktop lg:grid-cols-12">
-          <div className="space-y-space-md lg:col-span-7">
+        <div className="flex flex-col gap-gutter-desktop lg:flex-row lg:items-start">
+          <div className="space-y-space-md lg:basis-7/12">
             <span className="block font-label-index text-label-index font-medium uppercase tracking-[0.22em] text-secondary-fixed-dim">
               {data.eyebrow}
             </span>
@@ -48,7 +48,9 @@ export function FinalCta({ data }: Props) {
             </div>
           </div>
 
-          <div className="space-y-space-sm rounded border border-[#2E2E33] bg-[#1D1D20] p-space-md lg:col-span-5">
+          <div aria-hidden="true" className="hidden w-px shrink-0 self-stretch bg-[#2E2E33] lg:block" />
+
+          <div className="space-y-space-sm rounded border border-[#2E2E33] bg-[#1D1D20] p-space-md lg:basis-5/12">
             <p className="font-sans text-body-lead font-semibold leading-relaxed text-[#FBF9F5]">
               {data.painPoints.intro}
             </p>
