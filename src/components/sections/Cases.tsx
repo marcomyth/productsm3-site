@@ -23,7 +23,7 @@ export function Cases({ data }: Props) {
           </h2>
         </div>
         <span className="font-label-meta text-label-meta uppercase text-outline">
-          Período de Análise: 2023–2024
+          Período de Análise: 2022–2026
         </span>
       </div>
 
