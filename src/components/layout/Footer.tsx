@@ -23,8 +23,8 @@ export function Footer({ content }: Props) {
               </span>
               <div className="max-w-sm space-y-space-2xs">
                 {content.tagline.map((line) => (
-                  <div key={line} className="flex items-center gap-2">
-                    <span className="text-secondary">•</span>
+                  <div key={line} className="flex items-start gap-2">
+                    <span className="mt-0.5 text-secondary">•</span>
                     <span className="font-body-sm text-body-sm text-[#A1A1AA]">{line}</span>
                   </div>
                 ))}
