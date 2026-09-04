@@ -54,18 +54,14 @@ export type SiteFooter = {
 
 // ---- Landing page ----
 
-export type HeroMetaItem = {
-  label: string;
-  value: string;
-};
-
 export type HeroContent = {
   eyebrow: string;
   title: string;
   subtitle: string;
   primaryCta: { label: string; url: string };
   secondaryCta: { label: string; url: string };
-  meta: HeroMetaItem[];
+  /** Faixa sob o hero: uma pergunta de qualificação por coluna. */
+  meta: string[];
   figure: {
     imageUrl: string;
     imageAlt: string;

@@ -43,14 +43,11 @@ export function Hero({ data }: Props) {
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-gutter-tablet border-t border-surface-variant/80 pt-space-lg sm:grid-cols-3">
-            {data.meta.map((item) => (
-              <div key={item.label} className="pt-space-xs">
-                <span className="block font-label-index text-label-index uppercase tracking-wider text-outline">
-                  {item.label}
-                </span>
-                <span className="mt-0.5 block font-body-sm text-body-sm font-medium text-on-surface">
-                  {item.value}
+          <div className="grid grid-cols-1 gap-gutter-tablet border-t border-surface-variant/80 pt-space-lg sm:grid-cols-3">
+            {data.meta.map((question) => (
+              <div key={question} className="pt-space-xs">
+                <span className="block font-body-sm text-body-sm font-medium text-on-surface">
+                  {question}
                 </span>
               </div>
             ))}

@@ -92,9 +92,9 @@ export const siteContent: SiteContent = {
     primaryCta: { label: "Agendar Diagnóstico", url: "#auditoria" },
     secondaryCta: { label: "Cases de sucessos", url: "#cases" },
     meta: [
-      { label: "Modelo de Remuneração", value: "Indexado à Margem Líquida" },
-      { label: "Atribuição de Dados", value: "Server-Side First (CAPI / GA4)" },
-      { label: "Cadência Executiva", value: "Comitê Semanal de P&L" },
+      "Você contrata marketing na fé e reza para vender mais?",
+      "Já está na terceira empresa de marketing e nenhuma dá resultado?",
+      "Está sobrecarregado de leads desqualificados?",
     ],
     figure: {
       imageUrl: PLACEHOLDER_HERO_IMAGE,
