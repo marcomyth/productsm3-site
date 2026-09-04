@@ -83,7 +83,7 @@ export function Footer({ content }: Props) {
 
         <div className="mt-space-xl flex flex-col items-center justify-between gap-space-sm border-t border-[#2E2E33] pt-space-md sm:flex-row">
           <span className="font-label-meta text-label-meta uppercase text-[#A1A1AA]">
-            {content.copyright}
+            © {new Date().getFullYear()} {content.copyrightHolder}
           </span>
           <div className="flex items-center gap-space-md">
             {content.legalLinks.map((link) => (

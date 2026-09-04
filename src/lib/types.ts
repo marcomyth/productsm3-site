@@ -48,7 +48,7 @@ export type SiteFooter = {
   contactEmail: string;
   contactPhone: string;
   statusLabel: string;
-  copyright: string;
+  copyrightHolder: string;
   legalLinks: NavLink[];
 };
 

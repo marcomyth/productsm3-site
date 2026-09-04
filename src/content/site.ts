@@ -83,7 +83,7 @@ export const siteContent: SiteContent = {
     contactEmail: "growth@m3brasil.com",
     contactPhone: "+55 11 3090-4200",
     statusLabel: "Rede Ativa (99.98%)",
-    copyright: "© 2024 M3 Brasil Engenharia e Consultoria em Comércio Digital S.A.",
+    copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
       { label: "Privacidade & Governança", url: "#" },
       { label: "Compliance Jurídico", url: "#" },
