@@ -42,7 +42,7 @@ export type FooterColumn = {
 };
 
 export type SiteFooter = {
-  tagline: string;
+  tagline: string[];
   locations: string;
   columns: FooterColumn[];
   contactEmail: string;

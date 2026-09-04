@@ -51,8 +51,14 @@ export const siteContent: SiteContent = {
   },
 
   footer: {
-    tagline:
-      "Engenharia proprietária de e-commerce, arquitetura headless e aceleração contínua de comércio digital com precisão editorial e rigor analítico.",
+    tagline: [
+      "Eliminar o desperdício causado por uma gestão de tráfego genérica",
+      "Lucratividade superior a média do mercado de forma sustentável",
+      "Transparência total da gestão de fontes de tráfego",
+      "Melhoria contínua da qualidade dos serviços de marketing com redução de custo operacional",
+      "Inovação contínua",
+      "Tornar-se incomparável",
+    ],
     locations: "São Paulo — Zurique — Lisboa",
     columns: [
       {

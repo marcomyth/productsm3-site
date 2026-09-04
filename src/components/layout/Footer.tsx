@@ -21,7 +21,14 @@ export function Footer({ content }: Props) {
                   BRASIL
                 </span>
               </span>
-              <p className="max-w-sm font-body-sm text-body-sm text-[#A1A1AA]">{content.tagline}</p>
+              <div className="max-w-sm space-y-space-2xs">
+                {content.tagline.map((line) => (
+                  <div key={line} className="flex items-start gap-2">
+                    <span className="mt-0.5 font-mono text-secondary">—</span>
+                    <span className="font-body-sm text-body-sm text-[#A1A1AA]">{line}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="mt-space-lg">
               <span className="mb-space-2xs block font-label-index text-label-index uppercase text-secondary-fixed-dim">
