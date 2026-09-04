@@ -264,7 +264,7 @@ export const siteContent: SiteContent = {
 
   finalCta: {
     eyebrow: "05 / Próximo Passo",
-    title: "Comece reclassificando o problema.",
+    title: "Comece reclassificando o problema",
     description:
       "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
     ctaLabel: "Solicitar diagnóstico gratuito",

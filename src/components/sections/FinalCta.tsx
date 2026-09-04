@@ -49,7 +49,7 @@ export function FinalCta({ data }: Props) {
           </div>
 
           <div className="space-y-space-sm rounded border border-[#2E2E33] bg-[#1D1D20] p-space-md lg:col-span-5">
-            <p className="font-sans text-body-default leading-relaxed text-[#A1A1AA]">
+            <p className="font-sans text-body-lead font-semibold leading-relaxed text-[#FBF9F5]">
               {data.painPoints.intro}
             </p>
             <div className="space-y-space-2xs pt-space-2xs">
