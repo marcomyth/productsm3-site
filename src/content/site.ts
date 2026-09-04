@@ -138,6 +138,9 @@ export const siteContent: SiteContent = {
         "Growth e performance para e-commerce. Gestão de tráfego com foco no lucro operacional",
       ctaLabel: "Ver detalhes operacionais",
       bullets: [
+        "Maior margem; maior controle do orçamento de campanha",
+        "Leads mais qualificados; redução no custo operacional",
+        "Maior produtividade do setor de mídia; maior previsibilidade de custos e receitas; maior performance de tráfego",
         "Google Ads & Performance Max",
         "Meta Ads com foco em incremento",
         "Marketplaces & Retail Media",
