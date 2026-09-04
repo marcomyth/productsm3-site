@@ -59,7 +59,7 @@ export const siteContent: SiteContent = {
       "Inovação contínua",
       "Tornar-se incomparável",
     ],
-    locations: "São Paulo — Zurique — Lisboa",
+    locations: "São Paulo — Santa Catarina — Valência",
     columns: [
       {
         title: "Publicações & Índices",
