@@ -40,13 +40,13 @@ export const siteContent: SiteContent = {
     logoSuffix: "BRASIL",
     tagline: "Consultoria",
     navLinks: [
-      { label: "Serviços", url: "#servicos" },
-      { label: "Cases", url: "#cases" },
-      { label: "Método", url: "#metodo" },
-      { label: "Auditoria", url: "#auditoria" },
+      { label: "Serviços", url: "/#servicos" },
+      { label: "Cases", url: "/#cases" },
+      { label: "Método", url: "/#metodo" },
+      { label: "Auditoria", url: "/#auditoria" },
     ],
     ctaLabel: "Pedir Diagnóstico",
-    ctaUrl: "#auditoria",
+    ctaUrl: "/#auditoria",
   },
 
   footer: {
@@ -63,19 +63,19 @@ export const siteContent: SiteContent = {
       {
         title: "Publicações & Índices",
         links: [
-          { label: "Auditorias de Conversão", url: "#auditoria" },
-          { label: "Consultoria & Governança", url: "#servico-01" },
-          { label: "Redesenho de Sistema", url: "#servico-02" },
-          { label: "Governança de Mídia", url: "#servico-03" },
+          { label: "Auditorias de Conversão", url: "/#auditoria" },
+          { label: "Consultoria & Governança", url: "/#servico-01" },
+          { label: "Redesenho de Sistema", url: "/#servico-02" },
+          { label: "Governança de Mídia", url: "/#servico-03" },
         ],
       },
       {
         title: "Estrutura",
         links: [
-          { label: "Índice de Cases", url: "#cases" },
-          { label: "O Método M3", url: "#metodo" },
-          { label: "Liderança Técnica", url: "#auditoria" },
-          { label: "Requisitar Parecer", url: "#auditoria" },
+          { label: "Índice de Cases", url: "/#cases" },
+          { label: "O Método M3", url: "/#metodo" },
+          { label: "Liderança Técnica", url: "/#auditoria" },
+          { label: "Requisitar Parecer", url: "/#auditoria" },
         ],
       },
     ],
@@ -93,8 +93,8 @@ export const siteContent: SiteContent = {
     title: "Você não precisa de mais orçamento de tráfego",
     subtitle:
       "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
-    primaryCta: { label: "Agendar Diagnóstico", url: "#auditoria" },
-    secondaryCta: { label: "Cases de sucesso", url: "#cases" },
+    primaryCta: { label: "Agendar Diagnóstico", url: "/#auditoria" },
+    secondaryCta: { label: "Cases de sucesso", url: "/#cases" },
     meta: [
       "Você contrata marketing na fé e reza para vender mais?",
       "Já está na terceira empresa de marketing e nenhuma dá resultado?",

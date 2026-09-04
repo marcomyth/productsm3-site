@@ -53,7 +53,7 @@ export function Services({ data }: Props) {
                 </p>
                 <div className="pt-space-xs">
                   <Link
-                    href="#auditoria"
+                    href="/#auditoria"
                     className="inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest text-secondary transition-colors hover:text-primary"
                   >
                     {service.ctaLabel}

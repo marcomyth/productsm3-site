@@ -2,19 +2,19 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center gap-6 px-4 py-32 text-center sm:px-6 lg:px-8">
-      <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+    <section className="flex min-h-[60vh] w-full flex-col items-center justify-center gap-space-sm px-grid-margin-mobile py-space-3xl text-center md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+      <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
         Erro 404
-      </p>
-      <h1 className="text-4xl font-black tracking-tight sm:text-6xl">
-        <span className="text-brand-gradient">Página não encontrada</span>
+      </span>
+      <h1 className="font-serif text-display-lg-mobile font-normal leading-tight tracking-tight text-primary md:text-display-lg">
+        Página não encontrada
       </h1>
-      <p className="text-base text-muted-foreground sm:text-lg">
+      <p className="max-w-md font-sans text-body-lead leading-relaxed text-on-surface-variant">
         O link que você seguiu pode estar quebrado ou a página foi removida.
       </p>
       <Link
         href="/"
-        className="inline-flex items-center gap-2 rounded-2xl bg-brand-gradient px-7 py-3 text-sm font-semibold text-white shadow-brand-glow-intense transition-all hover:scale-[1.03] active:scale-[0.98]"
+        className="mt-space-xs inline-flex items-center justify-center rounded bg-secondary px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-secondary shadow-sm transition-all duration-150 hover:brightness-105"
       >
         Voltar para o início
       </Link>
