@@ -32,7 +32,8 @@ export function Services({ data }: Props) {
         {data.map((service) => (
           <div
             key={service.index}
-            className="group rounded px-2 py-space-xl transition-colors duration-200 hover:bg-surface-container-low/60 sm:px-4"
+            id={`servico-${service.index}`}
+            className="group scroll-mt-20 rounded px-2 py-space-xl transition-colors duration-200 hover:bg-surface-container-low/60 sm:px-4"
           >
             <div className="grid grid-cols-1 gap-gutter-desktop lg:grid-cols-12">
               <div className="lg:col-span-2">
