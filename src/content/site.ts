@@ -133,9 +133,9 @@ export const siteContent: SiteContent = {
     {
       index: "01",
       category: "Aquisição Paga",
-      title: "Growth e performance para e-commerce",
+      title: "Consultoria, auditoria e governança de marketing digital",
       description:
-        "Gestão completa de aquisição paga com meta de contribuição, não de ROAS de vitrine. Estrutura de campanha, criativo, feed e mensuração no mesmo time.",
+        "Growth e performance para e-commerce. Gestão de tráfego com foco no lucro operacional",
       ctaLabel: "Ver detalhes operacionais",
       bullets: [
         "Google Ads & Performance Max",
