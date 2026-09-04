@@ -52,7 +52,7 @@ export const siteContent: SiteContent = {
   footer: {
     tagline: [
       "Eliminar o desperdício causado por uma gestão de tráfego genérica",
-      "Lucratividade superior a média do mercado de forma sustentável",
+      "Lucratividade superior à média do mercado de forma sustentável",
       "Transparência total da gestão de fontes de tráfego",
       "Melhoria contínua da qualidade dos serviços de marketing com redução de custo operacional",
       "Inovação contínua",
@@ -79,7 +79,7 @@ export const siteContent: SiteContent = {
         ],
       },
     ],
-    contactEmail: "growth@m3brasil.com",
+    contactEmail: "contato@m3brasil.com.br",
     contactPhone: "+55 11 3090-4200",
     copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
@@ -94,7 +94,7 @@ export const siteContent: SiteContent = {
     subtitle:
       "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
     primaryCta: { label: "Agendar Diagnóstico", url: "#auditoria" },
-    secondaryCta: { label: "Cases de sucessos", url: "#cases" },
+    secondaryCta: { label: "Cases de sucesso", url: "#cases" },
     meta: [
       "Você contrata marketing na fé e reza para vender mais?",
       "Já está na terceira empresa de marketing e nenhuma dá resultado?",
@@ -112,7 +112,7 @@ export const siteContent: SiteContent = {
     {
       value: "R$ 40 mi+",
       label: "Funil sinérgico de vendas",
-      description: "Consultoria, Auditoria e governança de tráfego pago",
+      description: "Consultoria, auditoria e governança de tráfego pago",
     },
     {
       value: "4,2x",
@@ -205,7 +205,7 @@ export const siteContent: SiteContent = {
       title: "Reestruturação",
       description:
         "Limpeza de feeds, reengenharia de campanhas e implementação CAPI/GA4. Otimização de tags e saneamento dos sinais enviados ao algoritmo.",
-      timeframe: "Lucratividade superior a média do mercado de forma sustentável",
+      timeframe: "Lucratividade superior à média do mercado de forma sustentável",
     },
     {
       index: "03",
@@ -221,7 +221,7 @@ export const siteContent: SiteContent = {
       title: "Governança",
       description:
         "Reuniões semanais de P&L, testes contínuos de criativos e previsão de estoque em estreita cooperação com o CFO e o time de engenharia.",
-      timeframe: "Qualidade superior com redução de custo - tornar-se incomparável",
+      timeframe: "Qualidade superior com redução de custo — tornar-se incomparável",
     },
   ],
 
@@ -250,7 +250,7 @@ export const siteContent: SiteContent = {
       description:
         "Filtragem de termos de busca e ativação de audiências de alta intenção com mensuração server-side de primeira parte e infraestrutura dedicada.",
       platform: "Plataforma: E-commerce Customizado Sob Medida",
-      badge: "ROAS Líquido: 5.8x",
+      badge: "ROAS Líquido: 5,8x",
     },
     // Placeholders — vão sair assim que o cliente mandar imagem/copy real
     // de cada case. Sem imageUrl de propósito: Cases.tsx mostra uma caixa
@@ -293,13 +293,14 @@ export const siteContent: SiteContent = {
     description:
       "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
     ctaLabel: "Solicitar diagnóstico gratuito",
-    ctaUrl: "mailto:contato@m3brasil.com.br?subject=Solicitacao%20de%20Auditoria%20M3",
+    ctaUrl:
+      "mailto:contato@m3brasil.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Auditoria%20M3",
     capacityLabel: "Capacidade mensal: 4 pareceres periciais",
     meta: [
       { label: "Requisito de Verba", value: "Investimento > R$ 30k/mês" },
       {
         label: "Entregável Principal",
-        value: "Aumento na qualidade dos serviços de marketing e redução de custos operacional",
+        value: "Aumento na qualidade dos serviços de marketing e redução de custos operacionais",
       },
       { label: "Tempo de Implementação", value: "10 dias corridos" },
     ],
