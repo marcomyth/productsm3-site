@@ -43,6 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
       title: seo.title,
       description: seo.description,
       type: "website",
+      url: siteConfig.url,
+      siteName: "M3 Brasil",
+      locale: "pt_BR",
     },
     twitter: {
       card: "summary_large_image",
