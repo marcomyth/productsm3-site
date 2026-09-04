@@ -272,7 +272,10 @@ export const siteContent: SiteContent = {
     capacityLabel: "Capacidade mensal: 4 pareceres periciais",
     meta: [
       { label: "Requisito de Verba", value: "Investimento > R$ 30k/mês" },
-      { label: "Entregável Principal", value: "Relatório Pericial de Incremento" },
+      {
+        label: "Entregável Principal",
+        value: "Aumento na qualidade dos serviços de marketing e redução de custos operacional",
+      },
       { label: "Tempo de Execução", value: "10 dias úteis de imersão" },
     ],
     painPoints: {
