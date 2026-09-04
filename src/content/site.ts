@@ -156,6 +156,8 @@ export const siteContent: SiteContent = {
         "Engenharia de E-commerce Customizado e Aplicações Web. Arquitetura e desenvolvimento proprietário sob medida para cada modelo de negócio. Sistemas headless, stack moderna, APIs sob demanda, Core Web Vitals < 1.0s e camada analítica nativa desde o primeiro commit.",
       ctaLabel: "Ver especificações técnicas",
       bullets: [
+        "Leads mais qualificados",
+        "Redução no custo operacional",
         "Arquitetura Headless & Customizada",
         "Sistemas de Checkout Proprietários",
         "APIs e Microsserviços sob Medida",
