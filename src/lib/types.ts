@@ -113,6 +113,11 @@ export type FinalCtaMetaItem = {
   value: string;
 };
 
+export type FinalCtaPainPoints = {
+  intro: string;
+  items: string[];
+};
+
 export type FinalCtaContent = {
   eyebrow: string;
   title: string;
@@ -121,6 +126,7 @@ export type FinalCtaContent = {
   ctaUrl: string;
   capacityLabel: string;
   meta: FinalCtaMetaItem[];
+  painPoints: FinalCtaPainPoints;
 };
 
 export type SeoContent = {

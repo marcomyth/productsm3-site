@@ -264,9 +264,9 @@ export const siteContent: SiteContent = {
 
   finalCta: {
     eyebrow: "05 / Próximo Passo",
-    title: "Comece pela auditoria.",
+    title: "Comece reclassificando o problema.",
     description:
-      "Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
+      "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
     ctaLabel: "Solicitar diagnóstico gratuito",
     ctaUrl: "mailto:contato@m3brasil.com.br?subject=Solicitacao%20de%20Auditoria%20M3",
     capacityLabel: "Capacidade mensal: 4 pareceres periciais",
@@ -275,5 +275,18 @@ export const siteContent: SiteContent = {
       { label: "Entregável Principal", value: "Relatório Pericial de Incremento" },
       { label: "Tempo de Execução", value: "10 dias úteis de imersão" },
     ],
+    painPoints: {
+      intro: "Talvez a sua empresa ou o seu produto seja muito fácil de copiar. Por isso você:",
+      items: [
+        "Não tem margem",
+        "Não fideliza",
+        "Não tem valor de equity",
+        "Não consegue cobrar sobrepreço",
+        "É refém de agências de publicidade",
+        "É refém da sazonalidade",
+        "Não tem identidade de marca reconhecível",
+        "Não acumula conhecimento de marketing",
+      ],
+    },
   },
 };
