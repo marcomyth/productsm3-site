@@ -18,12 +18,13 @@ export function Services({ data }: Props) {
             02 / Áreas de Domínio
           </span>
           <h2 className="mt-space-2xs font-serif text-display-lg font-normal tracking-tight text-primary">
-            Engenharia de Aquisição &amp; Plataforma
+            Funil sinérgico de venda
           </h2>
         </div>
         <p className="mt-space-xs max-w-md font-body-sm text-body-sm text-on-surface-variant md:mt-0">
-          Trabalhamos exclusivamente no cruzamento entre mídia de intenção, modelagem de dados e
-          integridade tecnológica de sistemas proprietários.
+          Elevamos a qualidade dos seus processos de marketing sem elevar o custo operacional.
+          Implementamos e gerenciamos o funil sinérgico de vendas com transparência total, para que
+          cada atividade da sua operação de tráfego trabalhe pelos objetivos do seu negócio.
         </p>
       </div>
 
