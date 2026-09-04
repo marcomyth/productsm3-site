@@ -86,11 +86,11 @@ export const siteContent: SiteContent = {
 
   hero: {
     eyebrow: "Qualidade com Redução de Custo",
-    title: "Sua verba de mídia está financiando aprendizado ou faturamento?",
+    title: "Você não precisa de mais orçamento de tráfego",
     subtitle:
-      "Assumimos a operação de aquisição e a engenharia proprietária de e-commerces que já vendem e precisam escalar sem destruir a margem. Google, Meta e infraestrutura web sob um único P&L.",
+      "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
     primaryCta: { label: "Agendar Diagnóstico", url: "#auditoria" },
-    secondaryCta: { label: "Ver cases selecionados", url: "#cases" },
+    secondaryCta: { label: "Cases de sucessos", url: "#cases" },
     meta: [
       { label: "Modelo de Remuneração", value: "Indexado à Margem Líquida" },
       { label: "Atribuição de Dados", value: "Server-Side First (CAPI / GA4)" },
