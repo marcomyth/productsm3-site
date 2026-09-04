@@ -165,9 +165,9 @@ export const siteContent: SiteContent = {
     {
       index: "03",
       category: "Diagnóstico",
-      title: "Auditoria de mídia paga",
+      title: "Governança de mídia paga",
       description:
-        "Diagnóstico independente da sua operação atual. Onde a verba vaza, o que a mensuração esconde e quanto da receita atribuída é incremental.",
+        "Excelência operacional complementar ou suplementar. Diagnóstico independente da sua operação atual. Onde a verba vaza, o que a mensuração esconde e quanto da receita atribuída é incremental.",
       ctaLabel: "Solicitar escopo pericial",
       bullets: [
         "Auditoria de estrutura de contas",
