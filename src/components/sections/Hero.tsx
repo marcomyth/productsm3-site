@@ -64,19 +64,6 @@ export function Hero({ data }: Props) {
                 className="object-cover object-center transition-all duration-700 hover:scale-[1.02]"
                 priority
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-tertiary/85 via-tertiary/40 to-transparent p-space-sm">
-                <div className="flex items-center justify-between text-on-tertiary">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                    <span className="font-label-meta text-label-meta tracking-[0.2em] text-surface-bright">
-                      {data.figure.liveLabel}
-                    </span>
-                  </div>
-                  <span className="font-mono font-label-meta text-label-meta text-emerald-300">
-                    {data.figure.syncLabel}
-                  </span>
-                </div>
-              </div>
             </div>
             <div className="flex items-center justify-between px-2 pb-1 pt-2 text-[11px] text-outline">
               <span className="font-label-index text-label-index uppercase">{data.figure.caption}</span>

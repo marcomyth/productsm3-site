@@ -105,8 +105,6 @@ export const siteContent: SiteContent = {
       imageAlt: "Estação de trabalho com dashboard de performance de mídia",
       caption: "Fig. 01 / Operação & Monitoramento Ativo",
       year: "EST. 2013",
-      liveLabel: "LIVE AUDIT FEED",
-      syncLabel: "99.94% SYNC",
     },
   },
 

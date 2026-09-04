@@ -65,8 +65,6 @@ export type HeroContent = {
     imageAlt: string;
     caption: string;
     year: string;
-    liveLabel: string;
-    syncLabel: string;
   };
 };
 
