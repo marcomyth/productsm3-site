@@ -38,7 +38,7 @@ export const siteContent: SiteContent = {
   header: {
     logoLabel: "M3",
     logoSuffix: "BRASIL",
-    tagline: "Consultoria & Engenharia",
+    tagline: "Consultoria",
     navLinks: [
       { label: "Serviços", url: "#servicos" },
       { label: "Cases", url: "#cases" },
