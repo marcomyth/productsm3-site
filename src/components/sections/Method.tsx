@@ -15,7 +15,7 @@ export function Method({ data }: Props) {
           03 / Método de Trabalho
         </span>
         <h2 className="mt-space-2xs font-serif text-display-lg font-normal tracking-tight text-primary">
-          Rigor analítico em quatro fases irredutíveis.
+          Rigor analítico em quatro fases irredutíveis
         </h2>
         <p className="mt-space-xs font-sans text-body-lead text-on-surface-variant">
           Eliminamos o desperdício antes de acelerar. A escala só acontece após a estabilização da
