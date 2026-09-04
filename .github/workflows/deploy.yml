@@ -26,6 +26,12 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             npm install
+            # O conteudo do site vem do Supabase, nao de arquivo versionado.
+            # O Next cacheia a resposta do supabase-js em .next/cache/fetch-cache
+            # e, como o grafo de modulos nao muda numa alteracao so de conteudo,
+            # ele reaproveita o prerender antigo e a mudanca nao sai no ar.
+            # Limpar so o fetch-cache (nao o .next inteiro) preserva swc/webpack.
+            rm -rf .next/cache/fetch-cache
             npm run build
             # Next standalone NAO copia public/ e .next/static/ automaticamente.
             # Limpa o destino antes pra evitar aninhamento (.next/standalone/.next/static/static)
