@@ -194,7 +194,7 @@ export const siteContent: SiteContent = {
       title: "Diagnóstico",
       description:
         "Mapeamento profundo da conta, margens e histórico de atribuição real para isolar o que é receita assistida e o que é pura canibalização.",
-      timeframe: "Semanas 01 — 02",
+      timeframe: "Eliminar o desperdício causado por uma gestão de tráfego genérica",
     },
     {
       index: "02",
@@ -202,7 +202,7 @@ export const siteContent: SiteContent = {
       title: "Reestruturação",
       description:
         "Limpeza de feeds, reengenharia de campanhas e implementação CAPI/GA4. Otimização de tags e saneamento dos sinais enviados ao algoritmo.",
-      timeframe: "Semanas 03 — 05",
+      timeframe: "Lucratividade superior a média do mercado de forma sustentável",
     },
     {
       index: "03",
@@ -210,7 +210,7 @@ export const siteContent: SiteContent = {
       title: "Escala",
       description:
         "Aumento progressivo de orçamento indexado à margem de contribuição líquida. Testes sistemáticos de novos formatos e audiências proprietárias.",
-      timeframe: "Contínuo",
+      timeframe: "Inovação contínua",
     },
     {
       index: "04",
@@ -218,7 +218,7 @@ export const siteContent: SiteContent = {
       title: "Governança",
       description:
         "Reuniões semanais de P&L, testes contínuos de criativos e previsão de estoque em estreita cooperação com o CFO e o time de engenharia.",
-      timeframe: "Semanal & Mensal",
+      timeframe: "Qualidade superior com redução de custo - tornar-se incomparável",
     },
   ],
 
