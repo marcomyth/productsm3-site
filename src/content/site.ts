@@ -252,12 +252,11 @@ export const siteContent: SiteContent = {
       badge: "ROAS Líquido: 5.8x",
     },
     // Placeholders — vão sair assim que o cliente mandar imagem/copy real
-    // de cada case (mesma imagem reaproveitada só pra preencher o grid).
+    // de cada case. Sem imageUrl de propósito: Cases.tsx mostra uma caixa
+    // "Imagem pendente" em vez de reaproveitar foto de outro case.
     {
       category: "Eletrônicos",
       reference: "Auditoria #059",
-      imageUrl: PLACEHOLDER_CASE_MODA_IMAGE,
-      imageAlt: "[Placeholder — trocar pela imagem real do case]",
       metricValue: "+000%",
       metricLabel: "[métrica a definir]",
       metricAccent: true,
@@ -268,8 +267,6 @@ export const siteContent: SiteContent = {
     {
       category: "Moda Feminina",
       reference: "Auditoria #093",
-      imageUrl: PLACEHOLDER_CASE_CASA_IMAGE,
-      imageAlt: "[Placeholder — trocar pela imagem real do case]",
       metricValue: "+000%",
       metricLabel: "[métrica a definir]",
       metricAccent: false,
@@ -280,8 +277,6 @@ export const siteContent: SiteContent = {
     {
       category: "Beleza & Cosméticos",
       reference: "Auditoria #112",
-      imageUrl: PLACEHOLDER_CASE_MODA_IMAGE,
-      imageAlt: "[Placeholder — trocar pela imagem real do case]",
       metricValue: "+000%",
       metricLabel: "[métrica a definir]",
       metricAccent: true,

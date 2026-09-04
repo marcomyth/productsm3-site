@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ImageOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { CaseStudy } from "@/lib/types";
 
@@ -41,13 +42,22 @@ export function Cases({ data }: Props) {
                   {item.reference}
                 </span>
               </div>
-              <div className="relative aspect-[16/10] overflow-hidden rounded bg-surface-container">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
+              <div className="relative aspect-[16/10] overflow-hidden rounded border border-dashed border-surface-variant bg-surface-container">
+                {item.imageUrl ? (
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.imageAlt ?? ""}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-outline">
+                    <ImageOff className="h-6 w-6" />
+                    <span className="font-label-meta text-label-meta uppercase tracking-wider">
+                      Imagem pendente
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="pt-space-xs">
                 <div className="flex items-baseline gap-3">

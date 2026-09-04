@@ -94,8 +94,8 @@ export type MethodPhase = {
 export type CaseStudy = {
   category: string;
   reference: string;
-  imageUrl: string;
-  imageAlt: string;
+  imageUrl?: string;
+  imageAlt?: string;
   metricValue: string;
   metricLabel: string;
   metricAccent?: boolean;
