@@ -174,6 +174,9 @@ export const siteContent: SiteContent = {
         "Excelência operacional complementar ou suplementar. Diagnóstico independente da sua operação atual. Onde a verba vaza, o que a mensuração esconde e quanto da receita atribuída é incremental.",
       ctaLabel: "Solicitar escopo pericial",
       bullets: [
+        "Maior produtividade do setor de mídia",
+        "Maior previsibilidade de custos e receitas",
+        "Maior performance de tráfego",
         "Auditoria de estrutura de contas",
         "Revisão analítica de GA4 e eventos",
         "Análise empírica de incrementalidade",
