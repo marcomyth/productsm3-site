@@ -85,7 +85,7 @@ export const siteContent: SiteContent = {
   },
 
   hero: {
-    eyebrow: "Engenharia & Operação de Mídia para E-Commerce",
+    eyebrow: "Qualidade com Redução de Custo",
     title: "Sua verba de mídia está financiando aprendizado ou faturamento?",
     subtitle:
       "Assumimos a operação de aquisição e a engenharia proprietária de e-commerces que já vendem e precisam escalar sem destruir a margem. Google, Meta e infraestrutura web sob um único P&L.",
