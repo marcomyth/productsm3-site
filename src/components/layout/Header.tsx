@@ -47,7 +47,7 @@ export function Header({ content }: Props) {
         <div className="flex items-center gap-space-sm">
           <Link
             href={content.ctaUrl}
-            className="hidden items-center rounded bg-secondary px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-on-secondary shadow-sm transition-all duration-150 hover:brightness-110 sm:inline-flex"
+            className="hidden items-center rounded bg-sage px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-on-sage shadow-sm transition-all duration-150 hover:brightness-110 sm:inline-flex"
           >
             {content.ctaLabel}
           </Link>
@@ -84,7 +84,7 @@ export function Header({ content }: Props) {
           ))}
           <Link
             href={content.ctaUrl}
-            className="mt-2 inline-flex items-center justify-center rounded bg-secondary px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-secondary"
+            className="mt-2 inline-flex items-center justify-center rounded bg-sage px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-sage"
             onClick={() => setOpen(false)}
           >
             {content.ctaLabel}
