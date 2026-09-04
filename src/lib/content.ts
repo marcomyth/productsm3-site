@@ -15,16 +15,30 @@ import { supabase } from "./supabase";
  * cada create/update via /api/blog-posts.
  */
 
+/**
+ * site_content é escrito por scripts/seed-supabase.ts (fora do processo do
+ * Next — não tem como chamar revalidateTag dali), então usa TTL em vez de
+ * invalidação por tag: sem isso, o fetch do Supabase fica congelado no
+ * `.next/cache/fetch-cache` de um build antigo (Vercel e a maioria dos
+ * pipelines de deploy reaproveitam esse cache entre builds pra acelerar) e
+ * uma edição de conteúdo não aparece nem depois de redeployar.
+ */
 export async function getSiteContent(): Promise<SiteContent> {
-  const { data, error } = await supabase
-    .from("site_content")
-    .select("data")
-    .eq("id", 1)
-    .single();
+  return unstable_cache(
+    async () => {
+      const { data, error } = await supabase
+        .from("site_content")
+        .select("data")
+        .eq("id", 1)
+        .single();
 
-  if (error) throw new Error(`Falha ao carregar site_content: ${error.message}`);
+      if (error) throw new Error(`Falha ao carregar site_content: ${error.message}`);
 
-  return data.data as SiteContent;
+      return data.data as SiteContent;
+    },
+    ["site-content"],
+    { revalidate: 60 },
+  )();
 }
 
 // ---- Blog ----
