@@ -146,7 +146,7 @@ export const siteContent: SiteContent = {
         "Meta Ads com foco em incremento",
         "Marketplaces & Retail Media",
         "Gestão de catálogo Merchant",
-        "Mensuração Server-Side CAPI",
+        "Mensuração Server-Side (GTM + Meta CAPI)",
         "Relatório de margem por canal",
       ],
     },
@@ -184,6 +184,7 @@ export const siteContent: SiteContent = {
         "Análise empírica de incrementalidade",
         "Fadiga criativa e relevância",
         "Plano de correção priorizado",
+        "Dashboards executivos em Looker Studio",
         "Apresentação executiva à diretoria",
       ],
     },
@@ -284,17 +285,6 @@ export const siteContent: SiteContent = {
       platform: "Plataforma: [a definir]",
       badge: "[Badge a definir]",
     },
-  ],
-
-  techStack: [
-    "TypeScript",
-    "Next.js",
-    "Node.js",
-    "Headless Commerce",
-    "Google Cloud / AWS",
-    "GA4 & GTM Server-Side",
-    "Meta Conversions API",
-    "Looker Studio",
   ],
 
   finalCta: {

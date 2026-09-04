@@ -140,7 +140,6 @@ export type SiteContent = {
   services: ServiceItem[];
   method: MethodPhase[];
   cases: CaseStudy[];
-  techStack: string[];
   finalCta: FinalCtaContent;
 };
 
