@@ -47,7 +47,7 @@ export function Header({ content }: Props) {
         <div className="flex items-center gap-space-sm">
           <Link
             href={content.ctaUrl}
-            className="hidden items-center rounded border border-outline-variant bg-surface-container-lowest px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-primary transition-all duration-150 hover:border-secondary hover:text-secondary sm:inline-flex"
+            className="hidden items-center rounded bg-secondary px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-on-secondary shadow-sm transition-all duration-150 hover:brightness-110 sm:inline-flex"
           >
             {content.ctaLabel}
           </Link>
