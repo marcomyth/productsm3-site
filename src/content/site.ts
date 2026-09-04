@@ -109,18 +109,18 @@ export const siteContent: SiteContent = {
   proofBar: [
     {
       value: "R$ 40 mi+",
-      label: "Gerenciados em Mídia Paga",
-      description: "Volume acumulado em Google Ads, Meta Ads, TikTok Ads e Pinterest.",
+      label: "Funil sinérgico de vendas",
+      description: "Consultoria, Auditoria e governança de tráfego pago",
     },
     {
       value: "4,2x",
       label: "ROAS Médio em 12 Meses",
-      description: "Eficiência de carteira mensurada sob receita líquida confirmada em checkout.",
+      description: "Maior performance de tráfego sem aumentar o custo operacional",
     },
     {
       value: "+10 anos",
       label: "De Mercado",
-      description: "Engenharia proprietária e resiliência analítica através dos ciclos de mercado.",
+      description: "Redesenhando sistemas competitivos para indústrias em transição para o B2C",
     },
     {
       value: "+30",
