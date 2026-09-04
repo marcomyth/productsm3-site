@@ -6,13 +6,13 @@ import type { SiteContent } from "@/lib/types";
  * stitch_m3_brasil_editorial_landing_page.zip (code.html), fonte de verdade
  * visual e de copy aprovada para este brief.
  *
- * As imagens de hero/cases ainda são os placeholders do Stitch
- * (lh3.googleusercontent.com/aida-public/...) — trocar por fotografia real
- * antes de qualquer publicação em produção.
+ * A imagem do Hero já é fotografia real (public/images/hero.jpg). As dos 2
+ * cases reais (Moda & Lifestyle, Casa & Design) ainda são os placeholders do
+ * Stitch (lh3.googleusercontent.com/aida-public/...) — trocar antes de
+ * qualquer publicação em produção.
  */
 
-const PLACEHOLDER_HERO_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAvYdhIxKSbUKLaiXsAvIqyQdZ3Z4ABvUdhUiKrQUWP_z65OWzrtCIcJBvW7b0l0L7Pf-hndfb9lB4n-IKq0WFeRsidGrBBWmQcntqUtTFbzXsb88eEKg_udCvp_CTqN4yU0hmjCY-U_l_t0OgEJwPCfhRx3bQ4br5f_RHXxmcXjfVYFDeycgNyIW7BU-R8p12tareFL-isRrkEAnxYzPiXc2FZ6lzh4m2g1jcKjXAb33_94_BLORTefQ";
+const HERO_IMAGE = "/images/hero.jpg";
 
 const PLACEHOLDER_CASE_MODA_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
@@ -101,7 +101,7 @@ export const siteContent: SiteContent = {
       "Está sobrecarregado de leads desqualificados?",
     ],
     figure: {
-      imageUrl: PLACEHOLDER_HERO_IMAGE,
+      imageUrl: HERO_IMAGE,
       imageAlt: "Estação de trabalho com dashboard de performance de mídia",
       caption: "Fig. 01 / Operação & Monitoramento Ativo",
       year: "EST. 2013",
