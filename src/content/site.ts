@@ -149,9 +149,8 @@ export const siteContent: SiteContent = {
     {
       index: "02",
       category: "Engenharia Web",
-      title: "Engenharia de E-commerce Customizado e Aplicações Web",
-      description:
-        "Arquitetura e desenvolvimento proprietário sob medida para cada modelo de negócio. Sistemas headless, stack moderna, APIs sob demanda, Core Web Vitals < 1.0s e camada analítica nativa desde o primeiro commit.",
+      title: "Redesenho de sistema competitivo",
+      description: "Engenharia de E-commerce Customizado e Aplicações Web",
       ctaLabel: "Ver especificações técnicas",
       bullets: [
         "Arquitetura Headless & Customizada",
