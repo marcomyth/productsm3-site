@@ -125,7 +125,7 @@ export const siteContent: SiteContent = {
     {
       value: "+30",
       label: "E-Commerces Ativos",
-      description: "Clientes nacionais e internacionais, com operações na Europa e América do Norte.",
+      description: "Gestão de tráfego com plataforma proprietária para clientes...",
     },
   ],
 
