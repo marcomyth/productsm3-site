@@ -151,7 +151,7 @@ export const siteContent: SiteContent = {
       category: "Engenharia Web",
       title: "Redesenho de sistema competitivo",
       description:
-        "Arquitetura e desenvolvimento proprietário sob medida para cada modelo de negócio. Sistemas headless, stack moderna, APIs sob demanda, Core Web Vitals < 1.0s e camada analítica nativa desde o primeiro commit.",
+        "Engenharia de E-commerce Customizado e Aplicações Web. Arquitetura e desenvolvimento proprietário sob medida para cada modelo de negócio. Sistemas headless, stack moderna, APIs sob demanda, Core Web Vitals < 1.0s e camada analítica nativa desde o primeiro commit.",
       ctaLabel: "Ver especificações técnicas",
       bullets: [
         "Arquitetura Headless & Customizada",
