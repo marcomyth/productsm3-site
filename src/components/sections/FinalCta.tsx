@@ -50,7 +50,7 @@ export function FinalCta({ data }: Props) {
 
           <div aria-hidden="true" className="hidden w-px shrink-0 self-stretch bg-[#2E2E33] lg:block" />
 
-          <div className="space-y-space-sm lg:basis-5/12 lg:pl-space-md lg:pt-space-lg">
+          <div className="space-y-space-sm lg:basis-5/12 lg:pl-space-md lg:pt-space-xl">
             <p className="font-sans text-body-lead font-semibold leading-relaxed text-[#FBF9F5]">
               {data.painPoints.intro}
             </p>
