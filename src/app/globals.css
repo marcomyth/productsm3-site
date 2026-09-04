@@ -187,8 +187,12 @@
   * {
     border-color: var(--color-border);
   }
-  html {
-    scroll-behavior: smooth;
+  /* Toda a navegação do site é por âncora, então o scroll suave dispara o
+     tempo todo — respeitar quem pediu menos movimento no sistema. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     background-color: var(--color-background);

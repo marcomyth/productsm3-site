@@ -14,7 +14,7 @@ export function Footer({ content }: Props) {
           <div className="flex flex-col justify-between md:col-span-5">
             <div className="space-y-space-sm">
               <span className="flex items-baseline gap-1.5">
-                <span className="font-serif text-[28px] font-bold leading-none tracking-tight text-on-dark">
+                <span className="font-serif text-[28px] leading-none tracking-tight text-on-dark">
                   M3
                 </span>
                 <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary-fixed-dim">
@@ -68,9 +68,12 @@ export function Footer({ content }: Props) {
               >
                 {content.contactEmail}
               </a>
-              <span className="font-body-sm text-body-sm text-on-dark">
+              <a
+                href={`tel:${content.contactPhone.replace(/[^\d+]/g, "")}`}
+                className="font-body-sm text-body-sm text-on-dark hover:text-secondary-fixed-dim"
+              >
                 {content.contactPhone}
-              </span>
+              </a>
             </div>
           </div>
         </div>

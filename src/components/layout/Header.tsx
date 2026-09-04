@@ -18,7 +18,7 @@ export function Header({ content }: Props) {
       <div className="flex h-16 w-full items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         <Link href="/" className="group flex items-center gap-4">
           <span className="flex items-baseline gap-1.5">
-            <span className="font-serif text-[28px] font-bold leading-none tracking-tight text-primary">
+            <span className="font-serif text-[28px] leading-none tracking-tight text-primary">
               {content.logoLabel}
             </span>
             <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary">
@@ -56,6 +56,7 @@ export function Header({ content }: Props) {
             className="inline-flex h-10 w-10 items-center justify-center rounded text-primary md:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
+            aria-controls="menu-mobile"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -63,7 +64,12 @@ export function Header({ content }: Props) {
         </div>
       </div>
 
+      {/* `inert` tira os links da ordem de tabulação quando o menu está
+          fechado — max-h-0 só os esconde visualmente, e sem isso quem navega
+          por teclado passava por 5 links invisíveis. */}
       <div
+        id="menu-mobile"
+        inert={!open}
         className={cn(
           "overflow-hidden border-t border-surface-variant/80 transition-[max-height] duration-300 md:hidden",
           open ? "max-h-[360px]" : "max-h-0",
