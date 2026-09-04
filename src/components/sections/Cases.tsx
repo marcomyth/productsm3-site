@@ -18,7 +18,7 @@ export function Cases({ data }: Props) {
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
             04 / Evidências Práticas
           </span>
-          <h2 className="mt-space-2xs font-serif text-display-lg font-normal tracking-tight text-primary">
+          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
             Cases Selecionados
           </h2>
         </div>
@@ -60,10 +60,10 @@ export function Cases({ data }: Props) {
                 )}
               </div>
               <div className="pt-space-xs">
-                <div className="flex items-baseline gap-3">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span
                     className={cn(
-                      "font-serif text-display-xl font-normal tracking-tight",
+                      "font-serif text-display-xl-mobile font-normal tracking-tight md:text-display-xl",
                       item.metricAccent ? "text-secondary" : "text-primary",
                     )}
                   >

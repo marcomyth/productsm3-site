@@ -14,7 +14,7 @@ export function Method({ data }: Props) {
         <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
           03 / Método de Trabalho
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg font-normal tracking-tight text-primary">
+        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
           Rigor analítico em quatro fases irredutíveis
         </h2>
         <p className="mt-space-xs font-sans text-body-lead text-on-surface-variant">

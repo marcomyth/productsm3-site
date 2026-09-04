@@ -14,7 +14,7 @@ export function ProofBar({ data }: Props) {
               key={stat.label}
               className="flex flex-col pt-space-sm first:lg:pl-0 last:lg:pr-0 lg:px-space-md lg:pt-0"
             >
-              <span className="font-serif text-display-lg font-normal tracking-tight text-on-dark">
+              <span className="font-serif text-display-lg-mobile font-normal tracking-tight text-on-dark md:text-display-lg">
                 {stat.value}
               </span>
               <span className="mt-space-2xs font-label-index text-label-index uppercase tracking-wider text-secondary-fixed-dim">

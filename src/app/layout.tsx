@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Newsreader } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { getSiteContent } from "@/lib/content";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -17,13 +17,6 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-instrument-serif",
-  display: "swap",
-  fallback: ["Georgia", "ui-serif", "serif"],
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
   display: "swap",
   fallback: ["Georgia", "ui-serif", "serif"],
 });
@@ -65,9 +58,9 @@ export default async function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${instrumentSerif.variable} ${newsreader.variable}`}
+      className={`${inter.variable} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-screen bg-background font-sans text-body-default text-foreground antialiased selection:bg-secondary selection:text-on-secondary">
+      <body className="min-h-screen bg-background font-sans text-body-default text-foreground antialiased">
         <div className="flex min-h-screen flex-col">
           <Header content={header} />
           <main className="flex-1 pt-16">{children}</main>

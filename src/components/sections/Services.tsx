@@ -17,7 +17,7 @@ export function Services({ data }: Props) {
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
             02 / Áreas de Domínio
           </span>
-          <h2 className="mt-space-2xs font-serif text-display-lg font-normal tracking-tight text-primary">
+          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
             Funil sinérgico de venda
           </h2>
         </div>

@@ -25,7 +25,11 @@
   --color-surface-container-highest: #d6dbda;
   --color-on-surface: #0b1214;
   --color-on-surface-variant: #4a5453;
-  --color-outline: #727b7a;
+  /* #727b7a reprovava AA (4.0:1 sobre a surface) e é usado em rótulos de 11px,
+     que contam como texto normal — precisa de 4.5:1. Este dá 5.47:1 sobre a
+     surface e 4.93:1 sobre surface-container, e continua mais claro que
+     on-surface-variant, preservando a hierarquia. */
+  --color-outline: #5c6564;
   --color-outline-variant: #c8cfce;
   --color-inverse-surface: #18211f;
   --color-inverse-on-surface: #eff2f1;
@@ -97,7 +101,7 @@
   --radius-full: 9999px;
 
   /* ---- Tipografia — serif editorial (display/headline) + sans utilitário (body/label) ---- */
-  --font-serif: var(--font-instrument-serif), var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --text-display-xl: 4.875rem;
@@ -191,8 +195,26 @@
     color: var(--color-foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /**
+   * Foco e seleção herdam a cor por variável em vez de fixar o acento escuro.
+   * O teal profundo dá 1.9:1 contra os blocos escuros — quem navega por
+   * teclado no rodapé ou no CTA final não enxergaria onde está. As seções
+   * escuras redefinem as variáveis pra versão clara do acento, e por herança
+   * isso alcança todos os descendentes.
+   */
+  :root {
+    --focus-ring-color: var(--color-secondary);
+    --selection-bg: var(--color-secondary);
+    --selection-fg: var(--color-on-secondary);
+  }
+  .bg-dark-surface {
+    --focus-ring-color: var(--color-secondary-fixed-dim);
+    --selection-bg: var(--color-secondary-fixed-dim);
+    --selection-fg: var(--color-dark-surface);
+  }
   :focus-visible {
-    outline: 2px solid var(--color-secondary);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: 2px;
   }
   input[type="checkbox"],
@@ -200,8 +222,8 @@
     accent-color: var(--color-primary);
   }
   ::selection {
-    background-color: var(--color-secondary);
-    color: var(--color-on-secondary);
+    background-color: var(--selection-bg);
+    color: var(--selection-fg);
   }
 }
 
