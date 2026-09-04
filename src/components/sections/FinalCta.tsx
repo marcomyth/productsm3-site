@@ -50,14 +50,14 @@ export function FinalCta({ data }: Props) {
 
           <div aria-hidden="true" className="hidden w-px shrink-0 self-stretch bg-[#2E2E33] lg:block" />
 
-          <div className="space-y-space-sm lg:basis-5/12 lg:pl-space-md">
+          <div className="space-y-space-sm lg:basis-5/12 lg:pl-space-md lg:pt-space-lg">
             <p className="font-sans text-body-lead font-semibold leading-relaxed text-[#FBF9F5]">
               {data.painPoints.intro}
             </p>
             <div className="space-y-space-xs pt-space-xs">
               {data.painPoints.items.map((item) => (
-                <div key={item} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-secondary">•</span>
+                <div key={item} className="flex items-center gap-2">
+                  <span className="text-secondary">•</span>
                   <span className="font-body-sm text-body-sm text-[#A1A1AA]">{item}</span>
                 </div>
               ))}
