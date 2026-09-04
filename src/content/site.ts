@@ -276,7 +276,7 @@ export const siteContent: SiteContent = {
         label: "Entregável Principal",
         value: "Aumento na qualidade dos serviços de marketing e redução de custos operacional",
       },
-      { label: "Tempo de Execução", value: "10 dias úteis de imersão" },
+      { label: "Tempo de Implementação", value: "10 dias corridos" },
     ],
     painPoints: {
       intro: "Talvez a sua empresa ou o seu produto seja muito fácil de copiar. Por isso você:",
