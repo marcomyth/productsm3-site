@@ -26,14 +26,11 @@ export function Cases({ data }: Props) {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 items-start gap-gutter-desktop lg:grid-cols-12">
-        {data.map((item, i) => (
+      <div className="grid grid-cols-1 items-start gap-gutter-desktop sm:grid-cols-2">
+        {data.map((item) => (
           <article
             key={item.reference}
-            className={cn(
-              "flex flex-col justify-between space-y-space-md rounded border border-surface-variant/80 bg-surface-container-lowest p-space-md shadow-sm",
-              i === 0 ? "lg:col-span-7" : "lg:col-span-5",
-            )}
+            className="flex flex-col justify-between space-y-space-md rounded border border-surface-variant/80 bg-surface-container-lowest p-space-md shadow-sm"
           >
             <div className="space-y-space-sm">
               <div className="flex items-center justify-between">
