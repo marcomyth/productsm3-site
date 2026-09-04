@@ -45,10 +45,6 @@ export function Header({ content }: Props) {
         </nav>
 
         <div className="flex items-center gap-space-sm">
-          <div className="hidden items-center gap-1.5 rounded-full bg-sage-light/70 px-2.5 py-1 text-[11px] font-medium tracking-wide text-sage lg:flex">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sage" />
-            <span>{content.uptimeLabel}</span>
-          </div>
           <Link
             href={content.ctaUrl}
             className="hidden items-center rounded border border-outline-variant bg-surface-container-lowest px-4 py-2 font-label-meta text-label-meta uppercase tracking-wider text-primary transition-all duration-150 hover:border-secondary hover:text-secondary sm:inline-flex"

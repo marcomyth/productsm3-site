@@ -71,12 +71,6 @@ export function Footer({ content }: Props) {
               <span className="font-body-sm text-body-sm text-surface-bright">
                 {content.contactPhone}
               </span>
-              <div className="mt-space-sm flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                <span className="font-label-meta text-label-meta uppercase text-emerald-300">
-                  {content.statusLabel}
-                </span>
-              </div>
             </div>
           </div>
         </div>

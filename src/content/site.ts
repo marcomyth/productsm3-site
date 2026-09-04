@@ -45,7 +45,6 @@ export const siteContent: SiteContent = {
       { label: "Método", url: "#metodo" },
       { label: "Auditoria", url: "#auditoria" },
     ],
-    uptimeLabel: "99.98% Uptime",
     ctaLabel: "Pedir Diagnóstico",
     ctaUrl: "#auditoria",
   },
@@ -82,7 +81,6 @@ export const siteContent: SiteContent = {
     ],
     contactEmail: "growth@m3brasil.com",
     contactPhone: "+55 11 3090-4200",
-    statusLabel: "Rede Ativa (99.98%)",
     copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
       { label: "Privacidade & Governança", url: "#" },

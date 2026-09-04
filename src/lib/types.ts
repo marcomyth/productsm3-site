@@ -31,7 +31,6 @@ export type SiteHeader = {
   logoSuffix: string;
   tagline: string;
   navLinks: NavLink[];
-  uptimeLabel: string;
   ctaLabel: string;
   ctaUrl: string;
 };
@@ -47,7 +46,6 @@ export type SiteFooter = {
   columns: FooterColumn[];
   contactEmail: string;
   contactPhone: string;
-  statusLabel: string;
   copyrightHolder: string;
   legalLinks: NavLink[];
 };
