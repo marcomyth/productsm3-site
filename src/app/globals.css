@@ -72,13 +72,19 @@
   /**
    * Bloco verde escuro do Método. Existe pra dar massa ao teal, que como
    * acento ocupava 0,4% da tela, e pra quebrar os 4.200px sem cor entre o
-   * ProofBar e o CTA final. É o mesmo teal do acento levado a uma escala
-   * escura, não uma cor nova. Compartilha on-dark / on-dark-variant com o
-   * bloco azul: 10,2:1 e 5,4:1 sobre este fundo.
+   * ProofBar e o CTA final.
+   *
+   * Saturação em 50%, logo abaixo dos 54% do azul. A primeira versão estava
+   * em 73% e virava a superfície mais saturada do site — destoava não por ser
+   * verde, mas por ser mais viva que tudo em volta. Nesta faixa ela lê como
+   * irmã do bloco azul: mesma profundidade, matiz diferente.
+   *
+   * Compartilha on-dark / on-dark-variant com o bloco azul: 11,5:1 e 6,1:1
+   * sobre este fundo.
    */
-  --color-dark-green: #0a3f3a;
-  --color-dark-green-panel: #0e4a44;
-  --color-dark-green-divider: #16544c;
+  --color-dark-green: #123632;
+  --color-dark-green-panel: #183f3b;
+  --color-dark-green-divider: #1f4c48;
 
   /**
    * Verde de ação — só para o que leva a falar com a M3 (os CTAs vão apontar
