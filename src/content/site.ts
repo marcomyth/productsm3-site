@@ -6,13 +6,15 @@ import type { SiteContent } from "@/lib/types";
  * stitch_m3_brasil_editorial_landing_page.zip (code.html), fonte de verdade
  * visual e de copy aprovada para este brief.
  *
- * A imagem do Hero já é fotografia real (public/images/hero.jpg). As dos 2
- * cases reais (Moda & Lifestyle, Casa & Design) ainda são os placeholders do
- * Stitch (lh3.googleusercontent.com/aida-public/...) — trocar antes de
- * qualquer publicação em produção.
+ * Fotografia real já em public/images/: hero.jpg e case-eletronicos.jpg. As
+ * imagens dos 2 cases reais (Moda & Lifestyle, Casa & Design) ainda são os
+ * placeholders do Stitch (lh3.googleusercontent.com/aida-public/...) — trocar
+ * antes de qualquer publicação em produção.
  */
 
 const HERO_IMAGE = "/images/hero.jpg";
+
+const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
 
 const PLACEHOLDER_CASE_MODA_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
@@ -250,12 +252,14 @@ export const siteContent: SiteContent = {
       platform: "Plataforma: E-commerce Customizado Sob Medida",
       badge: "ROAS Líquido: 5,8x",
     },
-    // Placeholders — vão sair assim que o cliente mandar imagem/copy real
-    // de cada case. Sem imageUrl de propósito: Cases.tsx mostra uma caixa
-    // "Imagem pendente" em vez de reaproveitar foto de outro case.
+    // Placeholders — a copy vai sair assim que o cliente mandar a real. Os
+    // dois últimos seguem sem imageUrl de propósito: Cases.tsx mostra uma
+    // caixa "Imagem pendente" em vez de reaproveitar foto de outro case.
     {
       category: "Eletrônicos",
       reference: "Auditoria #059",
+      imageUrl: CASE_ELETRONICOS_IMAGE,
+      imageAlt: "Cozinha moderna com eletrodomésticos de aço inox e parede de plantas",
       metricValue: "+000%",
       metricLabel: "[métrica a definir]",
       metricAccent: true,
