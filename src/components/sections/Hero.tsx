@@ -29,7 +29,7 @@ export function Hero({ data }: Props) {
           <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
             <Link
               href={data.primaryCta.url}
-              className="inline-flex items-center justify-center rounded bg-secondary px-space-md py-space-sm font-label-meta text-label-meta uppercase tracking-[0.14em] text-on-secondary shadow-sm transition-all duration-150 hover:brightness-105"
+              className="inline-flex items-center justify-center rounded bg-action px-space-md py-space-sm font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] text-on-action shadow-sm transition-all duration-150 hover:brightness-95"
             >
               {data.primaryCta.label}
             </Link>

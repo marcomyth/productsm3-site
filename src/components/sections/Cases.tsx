@@ -82,12 +82,11 @@ export function Cases({ data }: Props) {
               <span className="font-body-sm text-body-sm font-medium text-on-surface-variant">
                 {item.platform}
               </span>
-              <span
-                className={cn(
-                  "font-label-meta text-label-meta font-semibold uppercase tracking-wider",
-                  item.metricAccent ? "text-sage" : "text-secondary",
-                )}
-              >
+              {/* Sempre teal: os dois badges ocupam a mesma posição e fazem o
+                  mesmo trabalho — variar a cor entre eles lia como inconsistência,
+                  não como sinal. A distinção fica no número, que é teal quando o
+                  case é destaque e preto quando não é. */}
+              <span className="font-label-meta text-label-meta font-semibold uppercase tracking-wider text-secondary">
                 {item.badge}
               </span>
             </div>

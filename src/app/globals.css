@@ -61,10 +61,19 @@
   --color-on-dark: #eef2f5;
   --color-on-dark-variant: #9fb2c1;
 
-  --color-sage: #356b57;
-  --color-sage-light: #e3efea;
-  --color-sage-fixed-dim: #63b98a;
-  --color-on-sage: #ffffff;
+  /**
+   * Verde de ação — só para o que leva a falar com a M3 (os CTAs vão apontar
+   * pro WhatsApp). É o verde do WhatsApp de propósito: o reconhecimento é o
+   * ponto. Substituiu o sage, que era um segundo verde escuro sem função
+   * própria e ficava a 1,26:1 do teal — perto demais pra significar algo,
+   * longe o bastante pra parecer erro.
+   *
+   * Texto escuro, não branco: branco sobre este verde dá 1,98:1, ilegível.
+   * Com on-action dá 9:1, e o mesmo par funciona sobre o fundo claro e sobre
+   * o azul dos blocos escuros (7,25:1 de separação do fundo).
+   */
+  --color-action: #25d366;
+  --color-on-action: #0b1214;
 
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
