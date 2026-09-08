@@ -62,6 +62,17 @@
   --color-on-dark-variant: #9fb2c1;
 
   /**
+   * Bloco verde escuro do Método. Existe pra dar massa ao teal, que como
+   * acento ocupava 0,4% da tela, e pra quebrar os 4.200px sem cor entre o
+   * ProofBar e o CTA final. É o mesmo teal do acento levado a uma escala
+   * escura, não uma cor nova. Compartilha on-dark / on-dark-variant com o
+   * bloco azul: 10,2:1 e 5,4:1 sobre este fundo.
+   */
+  --color-dark-green: #0a3f3a;
+  --color-dark-green-panel: #0e4a44;
+  --color-dark-green-divider: #16544c;
+
+  /**
    * Verde de ação — só para o que leva a falar com a M3 (os CTAs vão apontar
    * pro WhatsApp). É o verde do WhatsApp de propósito: o reconhecimento é o
    * ponto. Substituiu o sage, que era um segundo verde escuro sem função
@@ -221,7 +232,8 @@
     --selection-bg: var(--color-secondary);
     --selection-fg: var(--color-on-secondary);
   }
-  .bg-dark-surface {
+  .bg-dark-surface,
+  .bg-dark-green {
     --focus-ring-color: var(--color-secondary-fixed-dim);
     --selection-bg: var(--color-secondary-fixed-dim);
     --selection-fg: var(--color-dark-surface);
