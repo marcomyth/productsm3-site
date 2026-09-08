@@ -12,25 +12,33 @@
  */
 @theme {
   /* ---- Cores (nomes do Stitch, usados diretamente no JSX) ---- */
-  /* Neutros frios com fundo levemente petróleo — substituíram o papel quente
-     original (#fbf9f5 e cia.), que puxava a leitura pra "agência criativa". */
-  --color-surface: #f4f6f5;
-  --color-surface-dim: #d9dcdb;
-  --color-surface-bright: #fafbfa;
-  --color-surface-variant: #dfe3e2;
+  /**
+   * Todos os neutros no matiz 190° — o mesmo do preto da tipografia, e o meio
+   * do caminho entre o verde (174°) e o azul (209°). Assim os 55% de tela que
+   * são fundo claro viram a ponte entre as duas cores, em vez de uma família
+   * à parte: antes o papel estava a 150° (verde amarelado), a borda a 165° e
+   * os textos a 173°, vagando por 23° sem eixo comum.
+   *
+   * A saturação cai conforme o tom escurece, pra o matiz aparecer nos claros
+   * sem tingir o texto.
+   */
+  --color-surface: #f4f6f6;
+  --color-surface-dim: #d6dbdc;
+  --color-surface-bright: #f9fafb;
+  --color-surface-variant: #dbe0e1;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #eef1f0;
-  --color-surface-container: #e7ebea;
-  --color-surface-container-high: #dfe4e3;
-  --color-surface-container-highest: #d6dbda;
+  --color-surface-container-low: #eef1f1;
+  --color-surface-container: #e6eaea;
+  --color-surface-container-high: #dee2e3;
+  --color-surface-container-highest: #d3d9da;
   --color-on-surface: #0b1214;
-  --color-on-surface-variant: #4a5453;
-  /* #727b7a reprovava AA (4.0:1 sobre a surface) e é usado em rótulos de 11px,
-     que contam como texto normal — precisa de 4.5:1. Este dá 5.47:1 sobre a
-     surface e 4.93:1 sobre surface-container, e continua mais claro que
-     on-surface-variant, preservando a hierarquia. */
-  --color-outline: #5c6564;
-  --color-outline-variant: #c8cfce;
+  --color-on-surface-variant: #455254;
+  /* Usado em rótulos de 11px, que contam como texto normal e precisam de
+     4.5:1. Dá 5.67:1 sobre a surface, 5.07:1 sobre surface-container e 6.15:1
+     sobre branco, e continua mais claro que on-surface-variant, preservando a
+     hierarquia. */
+  --color-outline: #566467;
+  --color-outline-variant: #c3ced0;
   --color-inverse-surface: #18211f;
   --color-inverse-on-surface: #eff2f1;
 
@@ -91,7 +99,7 @@
   --color-error-container: #ffdad6;
   --color-on-error-container: #93000a;
 
-  --color-background: #f4f6f5;
+  --color-background: #f4f6f6;
   --color-on-background: #0b1214;
 
   /* ---- Aliases shadcn (Button/Input/blog usam esses nomes semânticos) ---- */
