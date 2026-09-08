@@ -65,12 +65,6 @@ export function Hero({ data }: Props) {
                 priority
               />
             </div>
-            <div className="flex items-center justify-between px-2 pb-1 pt-2 text-[11px] text-outline">
-              <span className="font-label-index text-label-index uppercase">{data.figure.caption}</span>
-              <span className="font-label-meta tracking-widest text-on-surface-variant">
-                {data.figure.year}
-              </span>
-            </div>
           </div>
         </div>
       </div>

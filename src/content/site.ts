@@ -103,8 +103,6 @@ export const siteContent: SiteContent = {
     figure: {
       imageUrl: HERO_IMAGE,
       imageAlt: "Estação de trabalho com dashboard de performance de mídia",
-      caption: "Fig. 01 / Operação & Monitoramento Ativo",
-      year: "EST. 2013",
     },
   },
 
