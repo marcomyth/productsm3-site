@@ -6,9 +6,9 @@ import type { SiteContent } from "@/lib/types";
  * stitch_m3_brasil_editorial_landing_page.zip (code.html), fonte de verdade
  * visual e de copy aprovada para este brief.
  *
- * Fotografia real já em public/images/: hero.jpg, case-eletronicos.jpg e
- * case-moda-feminina.jpg. As imagens dos 2 cases reais (Moda & Lifestyle,
- * Casa & Design) ainda são os placeholders do Stitch
+ * Fotografia real já em public/images/: hero.jpg, case-eletronicos.jpg,
+ * case-moda-feminina.jpg e case-beleza.jpg. As imagens dos 2 cases reais
+ * (Moda & Lifestyle, Casa & Design) ainda são os placeholders do Stitch
  * (lh3.googleusercontent.com/aida-public/...) — trocar antes de qualquer
  * publicação em produção.
  */
@@ -17,6 +17,7 @@ const HERO_IMAGE = "/images/hero.jpg";
 
 const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
 const CASE_MODA_FEMININA_IMAGE = "/images/case-moda-feminina.jpg";
+const CASE_BELEZA_IMAGE = "/images/case-beleza.jpg";
 
 const PLACEHOLDER_CASE_MODA_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
@@ -254,9 +255,9 @@ export const siteContent: SiteContent = {
       platform: "Plataforma: E-commerce Customizado Sob Medida",
       badge: "ROAS Líquido: 5,8x",
     },
-    // Placeholders — a copy vai sair assim que o cliente mandar a real. O
-    // último segue sem imageUrl de propósito: Cases.tsx mostra uma caixa
-    // "Imagem pendente" em vez de reaproveitar foto de outro case.
+    // Os três já têm foto do cliente; falta a copy real (métrica, descrição,
+    // plataforma e badge). O fallback "Imagem pendente" do Cases.tsx continua
+    // valendo pra qualquer case que entre sem imageUrl.
     {
       category: "Eletrônicos",
       reference: "Auditoria #059",
@@ -284,6 +285,8 @@ export const siteContent: SiteContent = {
     {
       category: "Beleza & Cosméticos",
       reference: "Auditoria #112",
+      imageUrl: CASE_BELEZA_IMAGE,
+      imageAlt: "Maquiadora aplicando produto em cliente num salão de beleza",
       metricValue: "+000%",
       metricLabel: "[métrica a definir]",
       metricAccent: true,
