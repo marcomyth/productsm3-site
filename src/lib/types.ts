@@ -91,6 +91,8 @@ export type MethodPhase = {
 
 export type CaseStudy = {
   category: string;
+  /** Identificador da auditoria. Não aparece mais no card — segue como chave
+      estável da lista, que não pode depender de texto que muda na copy. */
   reference: string;
   imageUrl?: string;
   imageAlt?: string;

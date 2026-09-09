@@ -34,12 +34,9 @@ export function Cases({ data }: Props) {
             className="flex flex-col justify-between space-y-space-md rounded border border-surface-variant/80 bg-surface-container-lowest p-space-md shadow-sm"
           >
             <div className="space-y-space-sm">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <span className="rounded bg-surface-container px-space-xs py-1 font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] text-on-surface">
                   {item.category}
-                </span>
-                <span className="font-label-index text-label-index uppercase text-outline">
-                  {item.reference}
                 </span>
               </div>
               <div className="relative aspect-[16/10] overflow-hidden rounded border border-dashed border-surface-variant bg-surface-container">
