@@ -19,7 +19,7 @@ export function Cases({ data }: Props) {
             04 / Evidências Práticas
           </span>
           <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
-            Cases Selecionados
+            Cases de Sucesso
           </h2>
         </div>
         <span className="font-label-meta text-label-meta uppercase text-outline">
