@@ -22,19 +22,13 @@ export function FinalCta({ data }: Props) {
             <p className="max-w-2xl font-sans text-body-lead font-normal leading-relaxed text-on-dark-variant">
               {data.description}
             </p>
-            <div className="flex flex-col gap-space-md pt-space-md sm:flex-row sm:items-center">
+            <div className="pt-space-md">
               <a
                 href={data.ctaUrl}
                 className="inline-flex items-center justify-center rounded bg-action px-space-md py-space-sm font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] text-on-action shadow-md transition-all hover:brightness-95"
               >
                 {data.ctaLabel}
               </a>
-              <div className="inline-flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-action" />
-                <span className="font-label-meta text-label-meta uppercase tracking-wider text-on-dark-variant">
-                  {data.capacityLabel}
-                </span>
-              </div>
             </div>
             <div className="grid grid-cols-1 gap-gutter-desktop border-t border-dark-divider pt-space-xl sm:grid-cols-3">
               {data.meta.map((item) => (

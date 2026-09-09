@@ -118,7 +118,6 @@ export type FinalCtaContent = {
   description: string;
   ctaLabel: string;
   ctaUrl: string;
-  capacityLabel: string;
   meta: FinalCtaMetaItem[];
   painPoints: FinalCtaPainPoints;
 };

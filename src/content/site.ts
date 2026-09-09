@@ -304,7 +304,6 @@ export const siteContent: SiteContent = {
     ctaLabel: "Solicitar diagnóstico gratuito",
     ctaUrl:
       "mailto:contato@m3brasil.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Auditoria%20M3",
-    capacityLabel: "Capacidade mensal: 4 pareceres periciais",
     meta: [
       { label: "Requisito de Verba", value: "Investimento > R$ 30k/mês" },
       {
