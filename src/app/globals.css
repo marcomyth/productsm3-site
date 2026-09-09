@@ -266,6 +266,21 @@
   }
 }
 
+/**
+ * Corpo do post do blog. Cada elemento que o BlocksRenderer emite já traz as
+ * próprias classes de tipografia — o que sobra pra este wrapper é o que não
+ * dá pra resolver por elemento: zerar a margem do primeiro e do último filho,
+ * que somava com o padding do container e abria um buraco no topo e no pé do
+ * texto. A classe já era usada no JSX mas não existia em lugar nenhum, então
+ * até agora não gerava CSS.
+ */
+.prose-blog > :first-child {
+  margin-top: 0;
+}
+.prose-blog > :last-child {
+  margin-bottom: 0;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }

@@ -29,7 +29,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-secondary/40 hover:shadow-lg"
     >
       {cover ? (
         <div className="relative aspect-video w-full overflow-hidden bg-muted">
@@ -42,17 +42,17 @@ export function BlogCard({ post }: { post: BlogPost }) {
           />
         </div>
       ) : (
-        <div className="aspect-video w-full bg-gradient-to-br from-primary/20 via-primary/5 to-accent/20" />
+        <div className="aspect-video w-full bg-gradient-to-br from-secondary/20 via-secondary/5 to-surface-container" />
       )}
 
       <div className="flex flex-1 flex-col gap-3 p-5">
         {categoryLabel && (
-          <span className="inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-primary">
+          <span className="inline-flex w-fit items-center gap-1 rounded-full bg-secondary/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-secondary">
             <Tag className="h-3 w-3" /> {categoryLabel}
           </span>
         )}
 
-        <h3 className="font-display text-lg font-bold leading-snug text-foreground group-hover:text-primary md:text-xl">
+        <h3 className="font-sans text-headline-sm font-semibold leading-snug text-foreground group-hover:text-secondary">
           {post.title}
         </h3>
 

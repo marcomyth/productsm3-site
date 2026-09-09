@@ -49,6 +49,7 @@ export const siteContent: SiteContent = {
       { label: "Cases", url: "/#cases" },
       { label: "Método", url: "/#metodo" },
       { label: "Auditoria", url: "/#auditoria" },
+      { label: "Blog", url: "/blog" },
     ],
     ctaLabel: "Pedir Diagnóstico",
     ctaUrl: "/#auditoria",

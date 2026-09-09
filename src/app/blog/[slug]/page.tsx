@@ -123,12 +123,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       {/* Hero (título + meta) — agora DEPOIS da capa */}
       <header className="container mx-auto max-w-3xl px-4 pt-10 pb-2 md:pt-14">
         {categoryLabel && (
-          <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+          <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
             <Tag className="h-3 w-3" /> {categoryLabel}
           </span>
         )}
 
-        <h1 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+        <h1 className="font-serif text-display-lg-mobile font-normal leading-tight tracking-tight md:text-display-lg">
           {post.title}
         </h1>
 

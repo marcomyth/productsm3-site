@@ -53,7 +53,7 @@ function Block({ block }: { block: BlogBlock }) {
     }
     case "quote":
       return (
-        <blockquote className="my-6 border-l-4 border-primary/40 bg-muted/30 py-3 pl-4 italic text-foreground/80">
+        <blockquote className="my-6 border-l-4 border-secondary/40 bg-muted/30 py-3 pl-4 italic text-foreground/80">
           <Inline children={block.children} />
         </blockquote>
       );
@@ -100,7 +100,7 @@ function Inline({ children }: { children: BlogInlineChild[] }) {
             <Link
               key={i}
               href={child.url}
-              className="text-primary underline-offset-4 hover:underline"
+              className="text-secondary underline-offset-4 hover:underline"
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
             >
@@ -121,19 +121,25 @@ function Inline({ children }: { children: BlogInlineChild[] }) {
 }
 
 function headingClass(level: 1 | 2 | 3 | 4 | 5 | 6): string {
-  const base = "font-display font-bold tracking-tight";
+  // `font-display` não existe no @theme — os títulos caíam no Inter. A
+  // serifada do tema é `font-serif`, e ela só tem peso 400: `font-bold` aqui
+  // pedia um negrito que o browser teria que falsificar.
+  const serif = "font-serif font-normal tracking-tight";
+  // Nos dois níveis menores a serifada não segura o tamanho; o resto do site
+  // resolve títulos pequenos em sans semibold (ver Cases.tsx).
+  const sans = "font-sans font-semibold tracking-tight";
   switch (level) {
     case 1:
-      return cn(base, "mt-8 mb-4 text-4xl md:text-5xl");
+      return cn(serif, "mt-8 mb-4 text-4xl md:text-5xl");
     case 2:
-      return cn(base, "mt-8 mb-3 text-2xl md:text-3xl");
+      return cn(serif, "mt-8 mb-3 text-2xl md:text-3xl");
     case 3:
-      return cn(base, "mt-6 mb-2 text-xl md:text-2xl");
+      return cn(serif, "mt-6 mb-2 text-xl md:text-2xl");
     case 4:
-      return cn(base, "mt-5 mb-2 text-lg md:text-xl");
+      return cn(serif, "mt-5 mb-2 text-lg md:text-xl");
     case 5:
-      return cn(base, "mt-4 mb-2 text-base font-semibold");
+      return cn(sans, "mt-4 mb-2 text-base");
     case 6:
-      return cn(base, "mt-4 mb-2 text-sm font-semibold uppercase tracking-wider");
+      return cn(sans, "mt-4 mb-2 text-sm uppercase tracking-wider");
   }
 }

@@ -7,7 +7,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Blog | productsm3",
+    title: "Blog",
     description:
       "Conteúdo sobre desenvolvimento web, SaaS, e-commerce, performance e SEO. Artigos práticos pra quem cria produtos digitais.",
   };
@@ -24,12 +24,12 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
   const { posts, pageCount, total } = await getBlogPosts({ page, category });
 
   return (
-    <main className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+    <div className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
       <header className="mb-12 max-w-2xl space-y-4">
-        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+        <span className="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
           <Newspaper className="h-3.5 w-3.5" /> Blog
         </span>
-        <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+        <h1 className="font-serif text-display-lg-mobile font-normal tracking-tight md:text-display-lg">
           Ideias, insights e bastidores
         </h1>
         <p className="text-base text-foreground/70 md:text-lg">
@@ -62,7 +62,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
           {pageCount > 1 && <Pagination current={page} total={pageCount} category={category} />}
         </>
       )}
-    </main>
+    </div>
   );
 }
 
@@ -87,7 +87,7 @@ function Pagination({
       {current > 1 && (
         <Link
           href={qs(current - 1)}
-          className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium hover:border-primary/40"
+          className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium hover:border-secondary/40"
         >
           ← Anterior
         </Link>
@@ -98,7 +98,7 @@ function Pagination({
       {current < total && (
         <Link
           href={qs(current + 1)}
-          className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium hover:border-primary/40"
+          className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium hover:border-secondary/40"
         >
           Próxima →
         </Link>
