@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { SiteFooter } from "@/lib/types";
 
 type Props = {
@@ -13,14 +14,13 @@ export function Footer({ content }: Props) {
           {/* Marca + diretriz operacional */}
           <div className="flex flex-col justify-between md:col-span-5">
             <div className="space-y-space-sm">
-              <span className="flex items-baseline gap-1.5">
-                <span className="font-serif text-[28px] leading-none tracking-tight text-on-dark">
-                  M3
-                </span>
-                <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary-fixed-dim">
-                  BRASIL
-                </span>
-              </span>
+              <Image
+                src="/images/logo-m3-claro.png"
+                alt="Agência M3"
+                width={548}
+                height={442}
+                className="h-11 w-auto"
+              />
               <div className="max-w-sm space-y-space-2xs">
                 {content.tagline.map((line) => (
                   <div key={line} className="flex items-start gap-2">

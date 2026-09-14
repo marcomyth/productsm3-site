@@ -108,7 +108,7 @@ export default async function RootLayout({
         </a>
         <div className="flex min-h-screen flex-col">
           <Header content={header} />
-          <main id="conteudo" className="flex-1 pt-16">
+          <main id="conteudo" className="flex-1 pt-[72px]">
             {children}
           </main>
           <Footer content={footer} />

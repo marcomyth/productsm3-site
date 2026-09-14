@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import type { SiteHeader } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -15,16 +16,16 @@ export function Header({ content }: Props) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-surface-variant/80 bg-surface/90 shadow-[0_1px_10px_rgba(24,24,27,0.03)] backdrop-blur-md">
-      <div className="flex h-16 w-full items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+      <div className="flex h-[72px] w-full items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         <Link href="/" className="group flex items-center gap-4">
-          <span className="flex items-baseline gap-1.5">
-            <span className="font-serif text-[28px] leading-none tracking-tight text-primary">
-              {content.logoLabel}
-            </span>
-            <span className="font-sans text-[11px] font-semibold tracking-[0.25em] text-secondary">
-              {content.logoSuffix}
-            </span>
-          </span>
+          <Image
+            src="/images/logo-m3.png"
+            alt="Agência M3"
+            width={548}
+            height={442}
+            priority
+            className="h-11 w-auto"
+          />
           <span className="ml-1 hidden border-l border-outline-variant pl-3 font-label-meta text-label-meta uppercase tracking-wider text-on-surface-variant sm:inline-block">
             {content.tagline}
           </span>
