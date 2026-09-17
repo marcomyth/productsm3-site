@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       )}
 
       {/* Hero (título + meta) — agora DEPOIS da capa */}
-      <header className="container mx-auto max-w-3xl px-4 pt-10 pb-2 md:pt-14">
+      <header className="container mx-auto max-w-[40rem] px-4 pt-10 pb-2 md:pt-14">
         {categoryLabel && (
           <span className="mb-4 inline-flex w-fit items-center gap-1 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
             <Tag className="h-3 w-3" /> {categoryLabel}
@@ -152,7 +152,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       </header>
 
       {/* Content */}
-      <div className="container mx-auto max-w-3xl px-4 py-12 md:py-16">
+      <div className="container mx-auto max-w-[40rem] px-4 py-12 md:py-16">
         <BlocksRenderer blocks={post.content} />
 
         {/* Tags */}
