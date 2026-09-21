@@ -66,10 +66,10 @@ export function Cases({ data }: Props) {
                         vier primeiro — assim uma marca vertical ocupa a altura
                         inteira em vez de encolher dentro de um quadro largo.
                         170px é o teto que segura a menor delas (CIMVI, 138px de
-                        origem) sem ampliação visível; a altura de 112px existe
+                        origem) sem ampliação visível; a altura de 144px existe
                         pro brasão vertical do Vale Europeu, e não afeta as
                         horizontais, que travam na largura antes. */}
-                    <div className="relative h-28 w-[170px]">
+                    <div className="relative h-36 w-[170px]">
                       <Image
                         src={item.imageUrl}
                         alt={item.imageAlt ?? ""}
