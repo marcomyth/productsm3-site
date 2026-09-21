@@ -9,3 +9,16 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+/**
+ * Atributos de segurança para um link que sai do site.
+ *
+ * Derivado do próprio endereço, e não de um campo booleano no conteúdo: os
+ * botões de CTA passaram a apontar pro WhatsApp, e um flag separado da URL
+ * fatalmente divergiria dela na próxima troca. Âncora interna (`/#auditoria`)
+ * continua abrindo na mesma aba.
+ */
+export function externalLinkProps(url: string) {
+  if (!/^https?:\/\//i.test(url)) return {};
+  return { target: "_blank", rel: "noopener noreferrer" } as const;
+}

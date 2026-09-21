@@ -21,6 +21,17 @@ const CASE_BELEZA_IMAGE = "/images/case-beleza.jpg";
 
 const CASES_DIR = "/images/cases";
 
+/**
+ * Destino dos dois botões de diagnóstico — o do topo e o da seção final.
+ *
+ * É o mesmo número do rodapé, só que sem formatação: o wa.me aceita
+ * dígitos e nada mais. A mensagem já vem escrita pra quem chega do outro
+ * lado saber o que está sendo pedido, que era o papel do `?subject=`
+ * quando o botão abria e-mail.
+ */
+const WHATSAPP_URL =
+  "https://wa.me/557199216851?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ag%C3%AAncia%20M3%20e%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20gratuito.";
+
 const PLACEHOLDER_CASE_MODA_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
 
@@ -54,7 +65,7 @@ export const siteContent: SiteContent = {
       { label: "Blog", url: "/blog" },
     ],
     ctaLabel: "Pedir Diagnóstico",
-    ctaUrl: "/#auditoria",
+    ctaUrl: WHATSAPP_URL,
   },
 
   footer: {
@@ -87,8 +98,8 @@ export const siteContent: SiteContent = {
         ],
       },
     ],
-    contactEmail: "contato@m3brasil.com.br",
-    contactPhone: "+55 11 3090-4200",
+    contactEmail: "joaomirandacomercial@gmail.com",
+    contactPhone: "+55 71 9921-6851",
     copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
       { label: "Privacidade & Governança", url: "/privacidade" },
@@ -342,8 +353,7 @@ export const siteContent: SiteContent = {
     description:
       "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
     ctaLabel: "Solicitar diagnóstico gratuito",
-    ctaUrl:
-      "mailto:contato@m3brasil.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Auditoria%20M3",
+    ctaUrl: WHATSAPP_URL,
     meta: [
       { label: "Requisito de Verba", value: "Investimento > R$ 30k/mês" },
       {

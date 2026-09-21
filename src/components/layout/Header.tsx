@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import type { SiteHeader } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, externalLinkProps } from "@/lib/utils";
 
 type Props = {
   content: SiteHeader;
@@ -48,6 +48,7 @@ export function Header({ content }: Props) {
         <div className="flex items-center gap-space-sm">
           <Link
             href={content.ctaUrl}
+            {...externalLinkProps(content.ctaUrl)}
             className="hidden items-center rounded bg-action px-4 py-2 font-label-meta text-label-meta font-semibold uppercase tracking-wider text-on-action shadow-sm transition-all duration-150 hover:brightness-95 sm:inline-flex"
           >
             {content.ctaLabel}
@@ -91,6 +92,7 @@ export function Header({ content }: Props) {
           ))}
           <Link
             href={content.ctaUrl}
+            {...externalLinkProps(content.ctaUrl)}
             className="mt-2 inline-flex items-center justify-center rounded bg-action px-space-md py-space-sm font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] text-on-action transition-all duration-150 hover:brightness-95"
             onClick={() => setOpen(false)}
           >

@@ -73,10 +73,21 @@ export default async function PrivacidadePage() {
 
       <Secao titulo="O que acontece quando você clica em um botão de contato">
         <p>
-          Os botões abrem o seu próprio programa de e-mail, com destinatário e assunto já
-          preenchidos. Nada é enviado até que você mesmo envie, e a mensagem trafega pelo seu
-          provedor de e-mail — não por este site. O que você nos escrever fica na nossa caixa de
-          entrada e é usado apenas para responder você.
+          Os botões de diagnóstico levam você para uma conversa no WhatsApp, com a mensagem já
+          escrita. Nada é enviado até que você mesmo envie, e nenhum dado seu trafega por este site
+          no caminho: o link apenas abre o aplicativo, sem informar ao WhatsApp de que página você
+          veio.
+        </p>
+        <p>
+          Dali em diante a conversa acontece dentro do WhatsApp, serviço da Meta, que tem política
+          de privacidade própria e independente desta. Como em qualquer conversa por lá, o seu
+          número de telefone fica visível para nós. O que você nos escrever é usado apenas para
+          responder você.
+        </p>
+        <p>
+          O endereço de e-mail no rodapé funciona do mesmo jeito: abre o seu próprio programa de
+          e-mail, com o destinatário preenchido, e a mensagem trafega pelo seu provedor — não por
+          este site.
         </p>
       </Secao>
 
@@ -110,9 +121,9 @@ export default async function PrivacidadePage() {
 
       <Secao titulo="Quando isso mudar">
         <p>
-          O texto acima descreve a situação de hoje. Se passarmos a usar ferramentas de medição,
-          atendimento por WhatsApp ou formulários no site, atualizamos esta página antes de a
-          mudança entrar no ar, e a data no topo indica a revisão.
+          O texto acima descreve a situação de hoje. Se passarmos a usar ferramentas de medição
+          ou formulários no site, atualizamos esta página antes de a mudança entrar no ar, e a data
+          no topo indica a revisão.
         </p>
       </Secao>
     </div>

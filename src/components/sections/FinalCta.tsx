@@ -1,4 +1,5 @@
 import type { FinalCtaContent } from "@/lib/types";
+import { externalLinkProps } from "@/lib/utils";
 
 type Props = {
   data: FinalCtaContent;
@@ -25,6 +26,7 @@ export function FinalCta({ data }: Props) {
             <div className="pt-space-md">
               <a
                 href={data.ctaUrl}
+                {...externalLinkProps(data.ctaUrl)}
                 className="inline-flex items-center justify-center rounded bg-action px-space-md py-space-sm font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] text-on-action shadow-md transition-all hover:brightness-95"
               >
                 {data.ctaLabel}
