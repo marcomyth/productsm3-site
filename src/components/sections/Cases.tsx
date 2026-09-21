@@ -39,13 +39,19 @@ export function Cases({ data }: Props) {
                   {item.category}
                 </span>
               </div>
-              <div className="relative aspect-[16/10] overflow-hidden rounded border border-dashed border-surface-variant bg-surface-container">
+              {/* Logo de cliente, não fotografia: `contain` com folga, pra a
+                  marca caber inteira. `cover` cortaria o desenho, e ampliar
+                  logo até preencher o quadro deforma o traço. O quadro é uma
+                  chapa clara porque as logos vêm em cores diferentes e várias
+                  não têm contraste sobre o branco do card. */}
+              <div className="relative aspect-[16/10] overflow-hidden rounded border border-surface-variant bg-surface">
                 {item.imageUrl ? (
                   <Image
                     src={item.imageUrl}
                     alt={item.imageAlt ?? ""}
                     fill
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-contain p-space-lg"
                   />
                 ) : (
                   <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-outline">
@@ -56,25 +62,37 @@ export function Cases({ data }: Props) {
                   </div>
                 )}
               </div>
-              <div className="pt-space-xs">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span
-                    className={cn(
-                      "font-serif text-display-xl-mobile font-normal tracking-tight md:text-display-xl",
-                      item.metricAccent ? "text-secondary" : "text-primary",
-                    )}
-                  >
-                    {item.metricValue}
-                  </span>
-                  <span className="font-sans text-headline-sm font-normal text-primary">
-                    {item.metricLabel}
-                  </span>
+              {/* Um cliente pode entrar só com a logo. Enquanto o case não
+                  fecha, o card não inventa um "+000%" nem uma descrição
+                  vazia — simplesmente não mostra o bloco. */}
+              {(item.metricValue || item.description) && (
+                <div className="pt-space-xs">
+                  {item.metricValue && (
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span
+                        className={cn(
+                          "font-serif text-display-xl-mobile font-normal tracking-tight md:text-display-xl",
+                          item.metricAccent ? "text-secondary" : "text-primary",
+                        )}
+                      >
+                        {item.metricValue}
+                      </span>
+                      {item.metricLabel && (
+                        <span className="font-sans text-headline-sm font-normal text-primary">
+                          {item.metricLabel}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  {item.description && (
+                    <p className="mt-space-xs font-sans text-body-default leading-relaxed text-on-surface-variant">
+                      {item.description}
+                    </p>
+                  )}
                 </div>
-                <p className="mt-space-xs font-sans text-body-default leading-relaxed text-on-surface-variant">
-                  {item.description}
-                </p>
-              </div>
+              )}
             </div>
+            {(item.platform || item.badge) && (
             <div className="flex items-center justify-between border-t border-surface-variant pt-space-sm">
               <span className="font-body-sm text-body-sm font-medium text-on-surface-variant">
                 {item.platform}
@@ -87,6 +105,7 @@ export function Cases({ data }: Props) {
                 {item.badge}
               </span>
             </div>
+            )}
           </article>
         ))}
       </div>

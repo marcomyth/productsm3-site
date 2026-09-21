@@ -19,6 +19,8 @@ const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
 const CASE_MODA_FEMININA_IMAGE = "/images/case-moda-feminina.jpg";
 const CASE_BELEZA_IMAGE = "/images/case-beleza.jpg";
 
+const CASES_DIR = "/images/cases";
+
 const PLACEHOLDER_CASE_MODA_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
 
@@ -229,71 +231,60 @@ export const siteContent: SiteContent = {
     },
   ],
 
+  /**
+   * Um card por cliente, com a logo no lugar da foto. Métrica, descrição,
+   * plataforma e selo seguem como placeholder até o cliente enviar.
+   *
+   * Dois números reais vieram do brief original mas ainda não têm empresa
+   * atribuída, então ficam guardados aqui em vez de entrarem num card com
+   * nome: "+212% receita paga em 8 meses" (selo "Margem Bruta Mantida",
+   * plataforma "Arquitetura Proprietária Headless") e "-34% CAC com mesma
+   * verba" (selo "ROAS Líquido: 5,8x", plataforma "E-commerce Customizado
+   * Sob Medida"). Número de performance só entra num card depois que
+   * soubermos de qual cliente ele é.
+   */
   cases: [
     {
-      category: "Moda & Lifestyle",
-      reference: "Auditoria #084",
-      imageUrl: PLACEHOLDER_CASE_MODA_IMAGE,
-      imageAlt: "Produtos de moda embalados para envio",
-      metricValue: "+212%",
-      metricLabel: "receita paga em 8 meses",
-      metricAccent: true,
-      description:
-        "Reestruturação completa de catálogo e estratégia de criativos em vídeo gerando escala de margem no Meta e Google Shopping com arquitetura moderna e checkout proprietário ultra-rápido.",
-      platform: "Plataforma: Arquitetura Proprietária Headless",
-      badge: "Margem Bruta Mantida",
+      category: "CIMVI",
+      reference: "cimvi",
+      imageUrl: `${CASES_DIR}/cimvi.png`,
+      imageAlt: "Logo da CIMVI",
     },
     {
-      category: "Casa & Design",
-      reference: "Auditoria #071",
-      imageUrl: PLACEHOLDER_CASE_CASA_IMAGE,
-      imageAlt: "Ambiente residencial com decoração",
-      metricValue: "-34%",
-      metricLabel: "CAC com mesma verba",
-      metricAccent: false,
-      description:
-        "Filtragem de termos de busca e ativação de audiências de alta intenção com mensuração server-side de primeira parte e infraestrutura dedicada.",
-      platform: "Plataforma: E-commerce Customizado Sob Medida",
-      badge: "ROAS Líquido: 5,8x",
-    },
-    // Os três já têm foto do cliente; falta a copy real (métrica, descrição,
-    // plataforma e badge). O fallback "Imagem pendente" do Cases.tsx continua
-    // valendo pra qualquer case que entre sem imageUrl.
-    {
-      category: "Eletrônicos",
-      reference: "Auditoria #059",
-      imageUrl: CASE_ELETRONICOS_IMAGE,
-      imageAlt: "Cozinha moderna com eletrodomésticos de aço inox e parede de plantas",
-      metricValue: "+000%",
-      metricLabel: "[métrica a definir]",
-      metricAccent: true,
-      description: "[Placeholder — descrição do case a ser enviada pelo cliente.]",
-      platform: "Plataforma: [a definir]",
-      badge: "[Badge a definir]",
+      category: "Fogatti",
+      reference: "fogatti",
+      imageUrl: `${CASES_DIR}/fogatti.png`,
+      imageAlt: "Logo da Fogatti",
     },
     {
-      category: "Moda Feminina",
-      reference: "Auditoria #093",
-      imageUrl: CASE_MODA_FEMININA_IMAGE,
-      imageAlt: "Pilhas de roupas femininas dobradas sobre a mesa de um ateliê",
-      metricValue: "+000%",
-      metricLabel: "[métrica a definir]",
-      metricAccent: false,
-      description: "[Placeholder — descrição do case a ser enviada pelo cliente.]",
-      platform: "Plataforma: [a definir]",
-      badge: "[Badge a definir]",
+      category: "Lexus Brasília",
+      reference: "lexus-brasilia",
+      imageUrl: `${CASES_DIR}/lexus-brasilia.png`,
+      imageAlt: "Logo da Lexus Brasília",
     },
     {
-      category: "Beleza & Cosméticos",
-      reference: "Auditoria #112",
-      imageUrl: CASE_BELEZA_IMAGE,
-      imageAlt: "Maquiadora aplicando produto em cliente num salão de beleza",
-      metricValue: "+000%",
-      metricLabel: "[métrica a definir]",
-      metricAccent: true,
-      description: "[Placeholder — descrição do case a ser enviada pelo cliente.]",
-      platform: "Plataforma: [a definir]",
-      badge: "[Badge a definir]",
+      category: "Mueller",
+      reference: "mueller",
+      imageUrl: `${CASES_DIR}/mueller.png`,
+      imageAlt: "Logo da Mueller",
+    },
+    {
+      category: "Musa",
+      reference: "musa",
+      imageUrl: `${CASES_DIR}/musa.png`,
+      imageAlt: "Logo da Musa",
+    },
+    {
+      category: "Somos Cria",
+      reference: "somos-cria",
+      imageUrl: `${CASES_DIR}/somos-cria.png`,
+      imageAlt: "Logo da Somos Cria",
+    },
+    {
+      category: "Vale Europeu Turismo",
+      reference: "vale-europeu",
+      imageUrl: `${CASES_DIR}/vale-europeu.png`,
+      imageAlt: "Logo do Vale Europeu Turismo",
     },
   ],
 

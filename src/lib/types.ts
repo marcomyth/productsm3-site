@@ -96,12 +96,14 @@ export type CaseStudy = {
   reference: string;
   imageUrl?: string;
   imageAlt?: string;
-  metricValue: string;
-  metricLabel: string;
+  /** Campos de resultado. Opcionais: um cliente entra na seção assim que a
+      logo existe, e ganha os números quando o case for fechado. */
+  metricValue?: string;
+  metricLabel?: string;
   metricAccent?: boolean;
-  description: string;
-  platform: string;
-  badge: string;
+  description?: string;
+  platform?: string;
+  badge?: string;
 };
 
 export type FinalCtaMetaItem = {
