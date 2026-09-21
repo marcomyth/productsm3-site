@@ -65,11 +65,13 @@ export function Cases({ data }: Props) {
                         formato e é limitada pela largura OU pela altura, o que
                         vier primeiro — assim uma marca vertical ocupa a altura
                         inteira em vez de encolher dentro de um quadro largo.
-                        170px é o teto que segura a menor delas (CIMVI, 138px de
-                        origem) sem ampliação visível; a altura de 144px existe
+                        190px é o teto: seis das sete logos têm arquivo maior que
+                        isso e só reduzem; a do CIMVI, de 138px, é a única que
+                        amplia, e ganhar tamanho é o que torna o subtítulo dela
+                        legível; a altura de 144px existe
                         pro brasão vertical do Vale Europeu, e não afeta as
                         horizontais, que travam na largura antes. */}
-                    <div className="relative h-36 w-[170px]">
+                    <div className="relative h-36 w-[190px]">
                       <Image
                         src={item.imageUrl}
                         alt={item.imageAlt ?? ""}
