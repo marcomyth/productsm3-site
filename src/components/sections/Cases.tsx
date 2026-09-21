@@ -39,22 +39,48 @@ export function Cases({ data }: Props) {
                   {item.category}
                 </span>
               </div>
-              {/* Logo de cliente, não fotografia: `contain` com folga, pra a
-                  marca caber inteira. `cover` cortaria o desenho, e ampliar
-                  logo até preencher o quadro deforma o traço. O quadro é uma
-                  chapa clara porque as logos vêm em cores diferentes e várias
-                  não têm contraste sobre o branco do card. */}
+              {/* Foto do próprio site do cliente ao fundo, bem apagada, com a
+                  logo menor por cima. Diminuir a logo é o que devolve nitidez:
+                  vários arquivos são pequenos — o do CIMVI tem 138px de largura
+                  — e no tamanho anterior o navegador ampliava e borrava. Agora
+                  ele reduz, que é a operação que preserva o traço. */}
               <div className="relative aspect-[16/10] overflow-hidden rounded border border-surface-variant bg-surface">
+                {item.backgroundUrl && (
+                  <>
+                    <Image
+                      src={item.backgroundUrl}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                    {/* Véu quase opaco: a foto fica como atmosfera, não como
+                        assunto, e o contraste da logo não depende dela. */}
+                    <div className="absolute inset-0 bg-surface/[0.8]" />
+                  </>
+                )}
                 {item.imageUrl ? (
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.imageAlt ?? ""}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className="object-contain p-space-lg"
-                  />
+                  <div className="absolute inset-0 flex items-center justify-center p-space-md">
+                    {/* Caixa fixa com `contain`: cada logo entra no próprio
+                        formato e é limitada pela largura OU pela altura, o que
+                        vier primeiro — assim uma marca vertical ocupa a altura
+                        inteira em vez de encolher dentro de um quadro largo.
+                        170px é o teto que segura a menor delas (CIMVI, 138px de
+                        origem) sem ampliação visível; a altura de 112px existe
+                        pro brasão vertical do Vale Europeu, e não afeta as
+                        horizontais, que travam na largura antes. */}
+                    <div className="relative h-28 w-[170px]">
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.imageAlt ?? ""}
+                        fill
+                        sizes="170px"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
                 ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-outline">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-outline">
                     <ImageOff className="h-6 w-6" />
                     <span className="font-label-meta text-label-meta uppercase tracking-wider">
                       Imagem pendente

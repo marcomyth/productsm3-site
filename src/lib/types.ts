@@ -96,6 +96,9 @@ export type CaseStudy = {
   reference: string;
   imageUrl?: string;
   imageAlt?: string;
+  /** Foto do próprio site do cliente, exibida bem apagada atrás da
+      logo. Decorativa: entra com alt vazio. */
+  backgroundUrl?: string;
   /** Campos de resultado. Opcionais: um cliente entra na seção assim que a
       logo existe, e ganha os números quando o case for fechado. */
   metricValue?: string;
