@@ -6,8 +6,10 @@ import { getSiteContent } from "@/lib/content";
  * o que é jurídico precisa de histórico e revisão, não de edição direta.
  *
  * A seção sobre os números dos cases existe porque a seção "Cases de Sucesso"
- * mostra percentuais de mercado ao lado de logos de clientes. O card diz isso
- * no rótulo da métrica e no selo; aqui fica por escrito.
+ * mostra percentuais de mercado ao lado de logos de clientes. O rodapé do card,
+ * que trazia a fonte e o selo "Dado de mercado", saiu a pedido do cliente — o
+ * que restou lá é o rótulo da métrica, que nem sempre se explica sozinho. Esta
+ * página passou a ser o único lugar onde a distinção está registrada.
  */
 export const metadata: Metadata = {
   title: "Compliance Jurídico",
@@ -73,9 +75,9 @@ export default async function CompliancePage() {
         <p>
           Na seção de cases, os percentuais exibidos ao lado de cada cliente são{" "}
           <strong className="font-semibold text-on-surface">dados de mercado</strong> do setor em
-          que aquela empresa atua — não resultados obtidos por nós para ela. O selo &ldquo;Dado de
-          mercado&rdquo;, no próprio card, marca essa distinção; a fonte de cada número é pública e
-          fica disponível a quem pedir pelo e-mail acima.
+          que aquela empresa atua — não resultados obtidos por nós para ela. É esta página que registra
+          essa distinção, e a fonte de cada número é pública e fica disponível a quem pedir pelo
+          e-mail acima.
         </p>
         <p>
           Quando um resultado de trabalho nosso for publicado, ele virá identificado como tal, com o
