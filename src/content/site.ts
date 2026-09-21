@@ -235,9 +235,11 @@ export const siteContent: SiteContent = {
    * Um card por cliente, com a logo no lugar da foto.
    *
    * Os números NÃO são resultado entregue pela M3 — são dados de mercado
-   * do setor de cada cliente, com fonte citada em `platform` e o selo
-   * "Dado de mercado" em `badge` pra não haver leitura ambígua. Quando
-   * o case real fechar, é só substituir os seis campos do card.
+   * do setor de cada cliente, e quem diz isso no card é o selo "Dado de
+   * mercado" em `badge`. A citação da fonte saiu do rodapé do card a
+   * pedido do cliente: aquele espaço (`platform`) fica reservado para uma
+   * frase da própria empresa sobre o trabalho realizado. Enquanto a frase
+   * não chega, o campo fica de fora e o rodapé mostra só o selo.
    *
    * Dois números reais vieram do brief original mas ainda não têm empresa
    * atribuída, então ficam guardados aqui em vez de entrarem num card com
@@ -258,7 +260,6 @@ export const siteContent: SiteContent = {
       metricLabel: "meta de esgotamento sanitário até 2033",
       metricAccent: true,
       description: "Consórcio público de municípios do Médio Vale do Itajaí — Indaial, Timbó e Pomerode entre eles — que opera resíduos em escala. É o modelo que o marco legal de 2020 elegeu para as cidades que não teriam porte para fazer sozinhas.",
-      platform: "Fonte: Lei 14.026/2020 e Novo PAC",
       badge: "Dado de mercado",
     },
     {
@@ -271,7 +272,6 @@ export const siteContent: SiteContent = {
       metricLabel: "linha branca, de janeiro a maio de 2026",
       metricAccent: false,
       description: "Fabricante de cooktops, fogões de mesa, fornos de embutir, coifas e depuradores. A cocção está dentro do bloco de linha branca que puxou os duráveis no período.",
-      platform: "Fonte: Eletros, 2026",
       badge: "Dado de mercado",
     },
     {
@@ -284,7 +284,6 @@ export const siteContent: SiteContent = {
       metricLabel: "mercado de automóveis de luxo em 2025",
       metricAccent: true,
       description: "Concessionária Lexus no Distrito Federal. O segmento premium foi de 51,2 mil para 54,6 mil unidades em 2025 — quase o triplo do avanço do mercado automotivo como um todo.",
-      platform: "Fonte: Fenabrave, 2026",
       badge: "Dado de mercado",
     },
     {
@@ -297,7 +296,6 @@ export const siteContent: SiteContent = {
       metricLabel: "bens duráveis, de janeiro a maio de 2026",
       metricAccent: false,
       description: "Há mais de setenta anos fabricando para cozinha e lavanderia: fogões, cooktops, fornos, tanquinhos, lavadoras e secadoras. Vende em quase todas as categorias que somam os 53,6 milhões de unidades do período.",
-      platform: "Fonte: Eletros, 2026",
       badge: "Dado de mercado",
     },
     {
@@ -310,7 +308,6 @@ export const siteContent: SiteContent = {
       metricLabel: "mercado de moda praia projetado até 2026",
       metricAccent: true,
       description: "Moda praia com loja própria: biquínis e saídas de praia. O setor movimenta mais de R$ 7 bilhões ao ano, e nichos específicos correm acima da média — a linha plus size avançou mais de 20% em dois anos.",
-      platform: "Fonte: IEMI e Sebrae, 2026",
       badge: "Dado de mercado",
     },
     {
@@ -323,7 +320,6 @@ export const siteContent: SiteContent = {
       metricLabel: "varejo de móveis e colchões em 2024",
       metricAccent: false,
       description: "Móveis de design autoral — poltronas, bancos e peças exclusivas — vendidos direto pelo site. Disputa um varejo que movimentou R$ 127,7 bilhões no ano.",
-      platform: "Fonte: ABIMÓVEL e IEMI, 2025",
       badge: "Dado de mercado",
     },
     {
@@ -336,7 +332,6 @@ export const siteContent: SiteContent = {
       metricLabel: "atividades turísticas no Brasil em 2025",
       metricAccent: true,
       description: "Circuito regional com sete roteiros qualificados, do cicloturismo à rota cervejeira. Opera na atividade que bateu o recorde da série do IBGE em 2025.",
-      platform: "Fonte: IBGE, 2026",
       badge: "Dado de mercado",
     },
   ],

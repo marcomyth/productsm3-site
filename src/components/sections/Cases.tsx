@@ -122,9 +122,15 @@ export function Cases({ data }: Props) {
             </div>
             {(item.platform || item.badge) && (
             <div className="flex items-center justify-between border-t border-surface-variant pt-space-sm">
-              <span className="font-body-sm text-body-sm font-medium text-on-surface-variant">
-                {item.platform}
-              </span>
+              {/* Condicional, e não um span vazio: com `justify-between`, um
+                  único filho encosta à esquerda. Assim o selo sozinho alinha
+                  com o resto do card em vez de flutuar na margem direita, e
+                  volta pra direita sozinho quando a frase do cliente chegar. */}
+              {item.platform && (
+                <span className="font-body-sm text-body-sm font-medium text-on-surface-variant">
+                  {item.platform}
+                </span>
+              )}
               {/* Sempre teal: os dois badges ocupam a mesma posição e fazem o
                   mesmo trabalho — variar a cor entre eles lia como inconsistência,
                   não como sinal. A distinção fica no número, que é teal quando o
