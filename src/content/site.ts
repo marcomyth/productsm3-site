@@ -57,10 +57,14 @@ export const siteContent: SiteContent = {
     logoLabel: "M3",
     logoSuffix: "BRASIL",
     tagline: "Consultoria",
+    // Na mesma ordem em que as seções aparecem na página — que é a
+    // numeração que elas mesmas exibem: 02 Serviços, 03 Método, 04 Cases,
+    // 05 Auditoria. Cases e Método estavam trocados, então o menu descia e
+    // subia a página em vez de acompanhá-la.
     navLinks: [
       { label: "Serviços", url: "/#servicos" },
-      { label: "Cases", url: "/#cases" },
       { label: "Método", url: "/#metodo" },
+      { label: "Cases", url: "/#cases" },
       { label: "Auditoria", url: "/#auditoria" },
       { label: "Blog", url: "/blog" },
     ],
