@@ -83,10 +83,16 @@ export function Footer({ content }: Props) {
             © {new Date().getFullYear()} {content.copyrightHolder}
           </span>
           <div className="flex items-center gap-space-md">
+            {/* Eram <span>: tinham cara de link, mas não levavam a lugar
+                nenhum — nem com o cursor de mão, nem pelo teclado. */}
             {content.legalLinks.map((link) => (
-              <span key={link.label} className="font-label-meta text-label-meta uppercase text-on-dark-variant">
+              <Link
+                key={link.label}
+                href={link.url}
+                className="font-label-meta text-label-meta uppercase text-on-dark-variant transition-colors hover:text-on-dark"
+              >
                 {link.label}
-              </span>
+              </Link>
             ))}
           </div>
         </div>

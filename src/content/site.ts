@@ -91,8 +91,8 @@ export const siteContent: SiteContent = {
     contactPhone: "+55 11 3090-4200",
     copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
-      { label: "Privacidade & Governança", url: "#" },
-      { label: "Compliance Jurídico", url: "#" },
+      { label: "Privacidade & Governança", url: "/privacidade" },
+      { label: "Compliance Jurídico", url: "/compliance" },
     ],
   },
 
