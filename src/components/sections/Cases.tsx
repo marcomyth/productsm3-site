@@ -27,7 +27,11 @@ export function Cases({ data }: Props) {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 items-start gap-gutter-desktop sm:grid-cols-2">
+      {/* Sem `items-start`: o padrão do grid é esticar, e é isso que faz os
+          dois cards de uma mesma linha terminarem na mesma altura, ainda
+          que uma descrição seja mais longa que a outra. É a borda de baixo
+          alinhada que dá a sensação de organizado. */}
+      <div className="grid grid-cols-1 gap-gutter-desktop sm:grid-cols-2">
         {data.map((item) => (
           <article
             key={item.reference}
