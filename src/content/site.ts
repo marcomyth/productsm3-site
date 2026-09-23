@@ -249,17 +249,23 @@ export const siteContent: SiteContent = {
   /**
    * Um card por cliente, com a logo no lugar da foto.
    *
-   * Os números NÃO são resultado entregue pela M3 — são dados de mercado
-   * do setor de cada cliente. O rodapé do card saiu inteiro a pedido do
-   * cliente: primeiro a fonte (`platform`), depois o selo "Dado de
-   * mercado" (`badge`). Os dois campos seguem no tipo, vazios, porque
-   * `platform` vai receber uma frase da própria empresa sobre o trabalho
-   * realizado.
+   * Convivem aqui dois tipos de número, e a diferença importa.
    *
-   * Com o rodapé fora, o único aviso que sobrou no card é o `metricLabel`,
-   * e ele varia: "mercado de automóveis de luxo em 2025" se explica, mas
-   * "linha branca, de janeiro a maio de 2026" pode ser lido como resultado
-   * nosso. Quem sustenta a distinção agora é /compliance.
+   * Resultado entregue pela M3: o `metricLabel` nomeia a métrica e o
+   * período — "de engajamento e visibilidade em 24 meses". Hoje só o CIMVI.
+   *
+   * Dado de mercado do setor do cliente: o `metricLabel` diz "mercado",
+   * "varejo", "bens duráveis". NÃO é resultado nosso.
+   *
+   * O rodapé do card saiu inteiro a pedido do cliente — primeiro a fonte
+   * (`platform`), depois o selo "Dado de mercado" (`badge`) —, então não
+   * há mais um rótulo separando os dois tipos: quem separa é o próprio
+   * `metricLabel`, e é por isso que ele não pode ser genérico. Ao trocar
+   * um dado de mercado por um resultado real, escreva métrica e período,
+   * e confira /compliance, que descreve os dois casos.
+   *
+   * `platform` segue no tipo, vazio, esperando uma frase da própria
+   * empresa sobre o trabalho realizado.
    *
    * Dois números reais vieram do brief original mas ainda não têm empresa
    * atribuída, então ficam guardados aqui em vez de entrarem num card com
@@ -276,10 +282,10 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/cimvi.png`,
       imageAlt: "Logo da CIMVI",
       backgroundUrl: `${CASES_DIR}/fundo-cimvi.jpg`,
-      metricValue: "90%",
-      metricLabel: "meta de esgotamento sanitário até 2033",
+      metricValue: "+50%",
+      metricLabel: "de engajamento e visibilidade em 24 meses",
       metricAccent: true,
-      description: "Consórcio público de municípios do Médio Vale do Itajaí — Indaial, Timbó e Pomerode entre eles — que opera resíduos em escala. É o modelo que o marco legal de 2020 elegeu para as cidades que não teriam porte para fazer sozinhas.",
+      description: "Catorze prefeituras do Médio Vale do Itajaí operando resíduos como uma coisa só, com um público que vai do gabinete ao morador de cada cidade. Em 24 meses de trabalho contínuo, o consórcio somou 50% mais engajamento, ampliou a visibilidade na região e firmou autoridade e domínio na pauta do saneamento.",
     },
     {
       category: "Fogatti",

@@ -6,10 +6,10 @@ import { getSiteContent } from "@/lib/content";
  * o que é jurídico precisa de histórico e revisão, não de edição direta.
  *
  * A seção sobre os números dos cases existe porque a seção "Cases de Sucesso"
- * mostra percentuais de mercado ao lado de logos de clientes. O rodapé do card,
- * que trazia a fonte e o selo "Dado de mercado", saiu a pedido do cliente — o
- * que restou lá é o rótulo da métrica, que nem sempre se explica sozinho. Esta
- * página passou a ser o único lugar onde a distinção está registrada.
+ * mistura duas coisas ao lado de logos de clientes: resultado que entregamos e
+ * dado de mercado do setor. O rodapé do card, que trazia a fonte e o selo
+ * "Dado de mercado", saiu a pedido do cliente, então o que separa os dois é o
+ * rótulo da métrica. Aqui fica escrito como ler cada um.
  */
 export const metadata: Metadata = {
   title: "Compliance Jurídico",
@@ -73,15 +73,21 @@ export default async function CompliancePage() {
 
       <Secao titulo="Os números apresentados nos cases">
         <p>
-          Na seção de cases, os percentuais exibidos ao lado de cada cliente são{" "}
-          <strong className="font-semibold text-on-surface">dados de mercado</strong> do setor em
-          que aquela empresa atua — não resultados obtidos por nós para ela. É esta página que registra
-          essa distinção, e a fonte de cada número é pública e fica disponível a quem pedir pelo
-          e-mail acima.
+          Na seção de cases convivem dois tipos de número, e eles não significam a mesma coisa.
         </p>
         <p>
-          Quando um resultado de trabalho nosso for publicado, ele virá identificado como tal, com o
-          período e a métrica a que se refere.
+          Quando o percentual é{" "}
+          <strong className="font-semibold text-on-surface">resultado de trabalho nosso</strong>, o
+          card diz a métrica e o período a que ele se refere — por exemplo, &ldquo;de engajamento e
+          visibilidade em 24 meses&rdquo;.
+        </p>
+        <p>
+          Quando o percentual é{" "}
+          <strong className="font-semibold text-on-surface">dado de mercado</strong>, o card nomeia
+          o setor — &ldquo;mercado de automóveis de luxo em 2025&rdquo;, &ldquo;varejo de móveis e
+          colchões em 2024&rdquo;. Esses números descrevem o setor em que a empresa atua e não são
+          resultados obtidos por nós para ela. A fonte de cada um é pública e fica disponível a quem
+          pedir pelo e-mail acima.
         </p>
       </Secao>
 
