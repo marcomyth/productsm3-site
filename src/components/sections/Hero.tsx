@@ -11,7 +11,7 @@ export function Hero({ data }: Props) {
   return (
     <section className="w-full border-b border-surface-variant/60 px-grid-margin-mobile pb-space-2xl pt-space-lg md:px-grid-margin-tablet md:pt-space-xl lg:px-grid-margin-desktop">
       <div className="grid grid-cols-1 items-center gap-gutter-desktop lg:grid-cols-12">
-        <div className="flex flex-col justify-between space-y-space-md lg:col-span-7 lg:pr-space-md">
+        <div className="flex flex-col justify-between space-y-space-md lg:col-span-7 lg:pr-space-md xl:col-span-6">
           <div className="space-y-space-xs">
             <div className="inline-flex items-center gap-2 rounded-full border border-surface-variant/80 bg-surface-container px-3 py-1">
               <span className="h-2 w-2 rounded-full bg-secondary" />
@@ -54,14 +54,22 @@ export function Hero({ data }: Props) {
           </div>
         </div>
 
-        <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0">
+        <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0 xl:col-span-6">
           <div className="rounded-lg border border-surface-variant bg-surface-container-low p-2.5 shadow-sm">
-            <div className="relative aspect-[4/5] overflow-hidden rounded bg-surface-container-high">
+            {/* 17:10 é o recorte da foto, que agora corta fora teto, chão e
+                cadeira: os monitores já ocupavam 96% da largura, então o
+                desperdício era todo vertical.
+
+                A coluna só vai a 6 de 12 a partir de 1280px. Em 1024 ela
+                deixava o título com 78px numa caixa de 440px, quebrando em
+                quatro linhas, e as três perguntas viravam colunas de 130px.
+                Até lá a divisão continua 7/5. */}
+            <div className="relative aspect-[17/10] overflow-hidden rounded bg-surface-container-high">
               <Image
                 src={data.figure.imageUrl}
                 alt={data.figure.imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 40vw, 50vw"
                 className="object-cover object-center transition-all duration-700 hover:scale-[1.02]"
                 priority
               />
