@@ -130,7 +130,7 @@ export const siteContent: SiteContent = {
     ],
     figure: {
       imageUrl: HERO_IMAGE,
-      imageAlt: "Estação de trabalho com um monitor ultrawide exibindo o painel de performance de mídia, com R$ 126.832 investidos e ROAS de 10x, um notebook ao lado com a programação de mídia por canal e uma caixa de som sobre a mesa",
+      imageAlt: "Estação de trabalho com um monitor ultrawide exibindo o painel de performance de mídia, com R$ 126.832 investidos e ROAS de 10x, um notebook ao lado com a programação de mídia por canal",
     },
   },
 
