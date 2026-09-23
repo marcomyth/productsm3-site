@@ -327,10 +327,10 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/musa.png`,
       imageAlt: "Logo da Musa",
       backgroundUrl: `${CASES_DIR}/fundo-musa.jpg`,
-      metricValue: "+6%",
-      metricLabel: "mercado de moda praia projetado até 2026",
+      metricValue: "+120%",
+      metricLabel: "de reconhecimento de marca",
       metricAccent: true,
-      description: "Moda praia com loja própria: biquínis e saídas de praia. O setor movimenta mais de R$ 7 bilhões ao ano, e nichos específicos correm acima da média — a linha plus size avançou mais de 20% em dois anos.",
+      description: "Moda praia com loja própria: biquínis e saídas de praia, num varejo em que a coleção tem estação e a venda tem janela curta — marca é o que sustenta a procura fora do pico. O reconhecimento mais que dobrou, a autoridade de domínio e o engajamento subiram junto, e a operação passou a vender tanto na loja online quanto nos marketplaces.",
     },
     {
       category: "Somos Cria",
