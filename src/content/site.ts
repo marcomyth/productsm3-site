@@ -13,9 +13,11 @@ import type { SiteContent } from "@/lib/types";
  * publicação em produção.
  */
 
-/* A mesma foto de estação de trabalho, com os paineis reais do cliente
-   projetados na perspectiva de cada tela. A foto original segue em
-   hero.jpg, intacta, e é a base de onde esta é gerada. */
+/* A mesma foto de estação de trabalho, com os dois monitores fundidos num
+   ultrawide só e o painel real do cliente projetado na perspectiva da tela.
+   O notebook ao lado recebeu uma programação de mídia por canal, sem data
+   nenhuma. A foto original segue em hero.jpg, intacta, e é a base de onde
+   esta é gerada. */
 const HERO_IMAGE = "/images/hero-estacao.jpg";
 
 const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
@@ -128,7 +130,7 @@ export const siteContent: SiteContent = {
     ],
     figure: {
       imageUrl: HERO_IMAGE,
-      imageAlt: "Estação de trabalho com dois monitores e um notebook exibindo o painel de performance de mídia, com R$ 126.832 investidos e ROAS de 10x",
+      imageAlt: "Estação de trabalho com um monitor ultrawide exibindo o painel de performance de mídia, com R$ 126.832 investidos e ROAS de 10x, e um notebook ao lado com a programação de mídia por canal",
     },
   },
 
