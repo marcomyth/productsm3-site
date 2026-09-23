@@ -249,20 +249,20 @@ export const siteContent: SiteContent = {
   /**
    * Um card por cliente, com a logo no lugar da foto.
    *
-   * Convivem aqui dois tipos de número, e a diferença importa.
+   * Os sete números são resultado entregue pela M3. Nenhum é mais dado de
+   * mercado: a seção nasceu assim, com percentuais de setor no lugar dos
+   * números reais, e foi trocada card a card conforme o cliente mandou os
+   * resultados.
    *
-   * Resultado entregue pela M3: o `metricLabel` nomeia a métrica e o
-   * período — "de engajamento e visibilidade em 24 meses". Hoje só o CIMVI.
+   * O `metricLabel` nomeia a métrica, e o período quando ele é conhecido:
+   * "de crescimento de marca em 12 meses". A janela de análise da seção
+   * está no cabeçalho, em Cases.tsx.
    *
-   * Dado de mercado do setor do cliente: o `metricLabel` diz "mercado",
-   * "varejo", "bens duráveis". NÃO é resultado nosso.
-   *
-   * O rodapé do card saiu inteiro a pedido do cliente — primeiro a fonte
-   * (`platform`), depois o selo "Dado de mercado" (`badge`) —, então não
-   * há mais um rótulo separando os dois tipos: quem separa é o próprio
-   * `metricLabel`, e é por isso que ele não pode ser genérico. Ao trocar
-   * um dado de mercado por um resultado real, escreva métrica e período,
-   * e confira /compliance, que descreve os dois casos.
+   * Se algum dia voltar um dado de mercado para cá, o `metricLabel` tem de
+   * nomear o setor ("mercado de", "varejo de"), porque o card não tem mais
+   * selo que o distinga: o rodapé saiu inteiro a pedido do cliente,
+   * primeiro a fonte (`platform`) e depois o selo (`badge`). /compliance
+   * descreve os dois casos.
    *
    * `platform` segue no tipo, vazio, esperando uma frase da própria
    * empresa sobre o trabalho realizado.
@@ -350,10 +350,10 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/vale-europeu.png`,
       imageAlt: "Logo do Vale Europeu Turismo",
       backgroundUrl: `${CASES_DIR}/fundo-vale-europeu.jpg`,
-      metricValue: "+4,6%",
-      metricLabel: "atividades turísticas no Brasil em 2025",
+      metricValue: "+150%",
+      metricLabel: "de crescimento de marca em 12 meses",
       metricAccent: true,
-      description: "Circuito regional com sete roteiros qualificados, do cicloturismo à rota cervejeira. Opera na atividade que bateu o recorde da série do IBGE em 2025.",
+      description: "O Vale Europeu Catarinense reúne sete roteiros qualificados, do cicloturismo à rota cervejeira. Um destino não se vende como produto: ele precisa ser lembrado no momento em que alguém decide onde passar as férias, disputando esse lugar com nomes muito mais conhecidos. O trabalho construiu marca, autoridade de domínio e posicionamento para essa disputa.",
     },
   ],
 
