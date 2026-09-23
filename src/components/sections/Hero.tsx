@@ -56,10 +56,7 @@ export function Hero({ data }: Props) {
 
         <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0">
           <div className="rounded-lg border border-surface-variant bg-surface-container-low p-2.5 shadow-sm">
-            {/* 2:3 é a proporção do próprio recorte, então nada é cortado
-                pelo `cover`. Antes era 4:5, herdado da foto de estação de
-                trabalho que estava aqui. */}
-            <div className="relative aspect-[2/3] overflow-hidden rounded bg-surface-container-high">
+            <div className="relative aspect-[4/5] overflow-hidden rounded bg-surface-container-high">
               <Image
                 src={data.figure.imageUrl}
                 alt={data.figure.imageAlt}
