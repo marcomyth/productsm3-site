@@ -305,10 +305,10 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/lexus-brasilia.png`,
       imageAlt: "Logo da Lexus Brasília",
       backgroundUrl: `${CASES_DIR}/fundo-lexus-brasilia.jpg`,
-      metricValue: "+6,6%",
-      metricLabel: "mercado de automóveis de luxo em 2025",
+      metricValue: "+20%",
+      metricLabel: "de reconhecimento de marca em Brasília",
       metricAccent: true,
-      description: "Concessionária Lexus no Distrito Federal. O segmento premium foi de 51,2 mil para 54,6 mil unidades em 2025 — quase o triplo do avanço do mercado automotivo como um todo.",
+      description: "Concessionária Lexus no Distrito Federal — segmento em que a decisão passa por reputação antes de passar por preço, e em que a disputa é local: quem compra premium em Brasília escolhe entre poucas casas. O trabalho ficou concentrado nessa praça e subiu o reconhecimento de marca em 20%, com a autoridade de domínio acompanhando.",
     },
     {
       category: "Mueller",

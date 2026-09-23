@@ -78,8 +78,9 @@ export default async function CompliancePage() {
         <p>
           Quando o percentual é{" "}
           <strong className="font-semibold text-on-surface">resultado de trabalho nosso</strong>, o
-          card diz a métrica e o período a que ele se refere — por exemplo, &ldquo;de engajamento e
-          visibilidade em 24 meses&rdquo;.
+          card nomeia a métrica a que ele se refere — &ldquo;de engajamento e visibilidade em 24
+          meses&rdquo;, &ldquo;de venda na loja online&rdquo; — e o cabeçalho da seção informa a
+          janela de análise.
         </p>
         <p>
           Quando o percentual é{" "}
