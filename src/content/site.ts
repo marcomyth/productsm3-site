@@ -13,7 +13,10 @@ import type { SiteContent } from "@/lib/types";
  * publicação em produção.
  */
 
-const HERO_IMAGE = "/images/hero.jpg";
+/* Recorte do topo do painel que o cliente mandou, na proporção 2:3 da
+   moldura do hero. Para no começo do gráfico de propósito: o corte na borda
+   diz que a tela continua abaixo, que é como um painel de verdade é. */
+const HERO_IMAGE = "/images/hero-dashboard.jpg";
 
 const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
 const CASE_MODA_FEMININA_IMAGE = "/images/case-moda-feminina.jpg";
@@ -125,7 +128,7 @@ export const siteContent: SiteContent = {
     ],
     figure: {
       imageUrl: HERO_IMAGE,
-      imageAlt: "Estação de trabalho com dashboard de performance de mídia",
+      imageAlt: "Painel de performance de mídia: R$ 126.832 investidos, 425.477 cliques, 866 conversões e ROAS de 10x",
     },
   },
 
