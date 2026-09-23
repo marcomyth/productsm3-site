@@ -102,7 +102,7 @@ export const siteContent: SiteContent = {
         ],
       },
     ],
-    contactEmail: "joaomirandacomercial@gmail.com",
+    contactEmail: "contato@agenciam3.com.br",
     contactPhone: "+55 71 9921-6851",
     copyrightHolder: "Meta 3 Digital Serviços de Marketing LTDA — CNPJ 45.964.223/0001-07",
     legalLinks: [
