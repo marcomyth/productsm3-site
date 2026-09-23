@@ -89,6 +89,11 @@ export type MethodPhase = {
   timeframe: string;
 };
 
+export type CaseExtraMetric = {
+  value: string;
+  label: string;
+};
+
 export type CaseStudy = {
   category: string;
   /** Identificador da auditoria. Não aparece mais no card — segue como chave
@@ -104,6 +109,11 @@ export type CaseStudy = {
   metricValue?: string;
   metricLabel?: string;
   metricAccent?: boolean;
+  /** Resultados além do principal, quando o case entregou mais de um.
+      Entram como linha compacta abaixo do número grande: dois números
+      do mesmo tamanho brigariam entre si, e a seção perde o ritmo se
+      cada card tiver uma âncora visual diferente. */
+  extraMetrics?: CaseExtraMetric[];
   description?: string;
   platform?: string;
   badge?: string;

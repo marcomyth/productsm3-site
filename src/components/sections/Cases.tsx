@@ -97,7 +97,7 @@ export function Cases({ data }: Props) {
               {/* Um cliente pode entrar só com a logo. Enquanto o case não
                   fecha, o card não inventa um "+000%" nem uma descrição
                   vazia — simplesmente não mostra o bloco. */}
-              {(item.metricValue || item.description) && (
+              {(item.metricValue || item.extraMetrics?.length || item.description) && (
                 <div className="pt-space-xs">
                   {item.metricValue && (
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -115,6 +115,20 @@ export function Cases({ data }: Props) {
                         </span>
                       )}
                     </div>
+                  )}
+                  {item.extraMetrics && item.extraMetrics.length > 0 && (
+                    <ul className="mt-space-xs space-y-1">
+                      {item.extraMetrics.map((metric) => (
+                        <li key={metric.label} className="flex items-baseline gap-2">
+                          <span className="font-sans text-body-default font-semibold text-secondary">
+                            {metric.value}
+                          </span>
+                          <span className="font-sans text-body-default text-on-surface-variant">
+                            {metric.label}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
                   {item.description && (
                     <p className="mt-space-xs font-sans text-body-default leading-relaxed text-on-surface-variant">
