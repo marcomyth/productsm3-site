@@ -339,10 +339,10 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/somos-cria.png`,
       imageAlt: "Logo da Somos Cria",
       backgroundUrl: `${CASES_DIR}/fundo-somos-cria.jpg`,
-      metricValue: "+10,6%",
-      metricLabel: "varejo de móveis e colchões em 2024",
+      metricValue: "+30%",
+      metricLabel: "de crescimento de marca em 24 meses",
       metricAccent: false,
-      description: "Móveis de design autoral — poltronas, bancos e peças exclusivas — vendidos direto pelo site. Disputa um varejo que movimentou R$ 127,7 bilhões no ano.",
+      description: "Móveis de design autoral — poltronas, bancos e peças exclusivas — vendidos direto pelo site. Quem compra decide por uma peça de ticket alto sem tocar nela, e é a marca que sustenta esse salto de confiança. Em 24 meses ela cresceu 30%, com a autoridade de domínio e o engajamento subindo junto.",
     },
     {
       category: "Vale Europeu Turismo",
