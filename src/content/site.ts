@@ -285,7 +285,7 @@ export const siteContent: SiteContent = {
       metricValue: "+50%",
       metricLabel: "de engajamento e visibilidade em 24 meses",
       metricAccent: true,
-      description: "Catorze prefeituras do Médio Vale do Itajaí operando resíduos como uma coisa só, com um público que vai do gabinete ao morador de cada cidade. Em 24 meses de trabalho contínuo, o consórcio somou 50% mais engajamento, ampliou a visibilidade na região e firmou autoridade e domínio na pauta do saneamento.",
+      description: "Catorze prefeituras do Médio Vale do Itajaí operam resíduos como uma coisa só. O público vai do gabinete de cada cidade ao morador da rua, e falar com os dois ao mesmo tempo é um problema de estrutura, não de anúncio. O trabalho contínuo deu ao consórcio visibilidade na região e autoridade reconhecida na pauta do saneamento.",
     },
     {
       category: "Fogatti",
@@ -297,7 +297,7 @@ export const siteContent: SiteContent = {
       metricLabel: "de venda na loja online",
       metricAccent: false,
       extraMetrics: [{ value: "+27%", label: "na autoridade de domínio" }],
-      description: "Fabricante de cooktops, fogões de mesa, fornos de embutir, coifas e depuradores — linha branca, categoria em que o consumidor compara preço lado a lado antes de decidir. O trabalho elevou a autoridade de domínio em 27% e construiu reconhecimento de marca, enquanto a loja online cresceu 30% e a operação ganhou presença nos marketplaces.",
+      description: "A Fogatti fabrica cooktops, fogões de mesa, fornos de embutir, coifas e depuradores. É linha branca, uma categoria em que o consumidor compara preço lado a lado antes de decidir, e em que a marca precisa aparecer antes da comparação. O trabalho construiu autoridade de domínio e reconhecimento de marca, e levou a venda para além da loja própria, com presença firmada nos marketplaces.",
     },
     {
       category: "Lexus Brasília",
@@ -308,7 +308,7 @@ export const siteContent: SiteContent = {
       metricValue: "+20%",
       metricLabel: "de reconhecimento de marca em Brasília",
       metricAccent: true,
-      description: "Concessionária Lexus no Distrito Federal — segmento em que a decisão passa por reputação antes de passar por preço, e em que a disputa é local: quem compra premium em Brasília escolhe entre poucas casas. O trabalho ficou concentrado nessa praça e subiu o reconhecimento de marca em 20%, com a autoridade de domínio acompanhando.",
+      description: "A concessionária Lexus do Distrito Federal atua num segmento em que a decisão passa por reputação antes de passar por preço. A disputa também é local: quem compra premium em Brasília escolhe entre poucas casas. O trabalho ficou concentrado nessa praça, construindo reconhecimento de marca e autoridade de domínio.",
     },
     {
       category: "Mueller",
@@ -320,7 +320,7 @@ export const siteContent: SiteContent = {
       metricLabel: "de venda na loja online",
       extraMetrics: [{ value: "+30%", label: "na autoridade de domínio" }],
       metricAccent: false,
-      description: "Mais de setenta anos fabricando para cozinha e lavanderia: fogões, cooktops, fornos, tanquinhos, lavadoras e secadoras. Uma marca que as pessoas conhecem de ver em casa, e que precisava existir também na prateleira digital, onde quem decide nunca entrou numa loja. A autoridade de domínio subiu 30%, o reconhecimento acompanhou, e a loja online cresceu 34%, com presença firmada nos marketplaces.",
+      description: "Há mais de setenta anos a Mueller fabrica para cozinha e lavanderia: fogões, cooktops, fornos, tanquinhos, lavadoras e secadoras. É uma marca que as pessoas reconhecem dentro de casa e que precisava ter o mesmo peso na prateleira digital. O trabalho traduziu esse reconhecimento para o ambiente online, firmando autoridade de domínio e abrindo presença nos marketplaces.",
     },
     {
       category: "Musa",
@@ -331,7 +331,7 @@ export const siteContent: SiteContent = {
       metricValue: "+120%",
       metricLabel: "de reconhecimento de marca",
       metricAccent: true,
-      description: "Moda praia com loja própria: biquínis e saídas de praia, num varejo em que a coleção tem estação e a venda tem janela curta — marca é o que sustenta a procura fora do pico. O reconhecimento mais que dobrou, a autoridade de domínio e o engajamento subiram junto, e a operação passou a vender tanto na loja online quanto nos marketplaces.",
+      description: "A Musa vende moda praia em loja própria: biquínis e saídas de praia. Num varejo em que a coleção tem estação e a venda tem janela curta, é a marca que sustenta a procura fora do pico. O trabalho construiu reconhecimento de marca, autoridade de domínio e engajamento, e levou a operação a vender tanto na loja online quanto nos marketplaces.",
     },
     {
       category: "Somos Cria",
@@ -342,7 +342,7 @@ export const siteContent: SiteContent = {
       metricValue: "+30%",
       metricLabel: "de crescimento de marca em 24 meses",
       metricAccent: false,
-      description: "Móveis de design autoral — poltronas, bancos e peças exclusivas — vendidos direto pelo site. Quem compra decide por uma peça de ticket alto sem tocar nela, e é a marca que sustenta esse salto de confiança. Em 24 meses ela cresceu 30%, com a autoridade de domínio e o engajamento subindo junto.",
+      description: "A Somos Cria vende móveis de design autoral direto pelo site: poltronas, bancos e peças exclusivas. Quem compra decide por uma peça de ticket alto sem tocar nela, e é a marca que sustenta essa decisão. O trabalho foi construir exatamente isso: marca, autoridade de domínio e engajamento.",
     },
     {
       category: "Vale Europeu Turismo",
