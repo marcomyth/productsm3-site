@@ -116,14 +116,22 @@ export function Cases({ data }: Props) {
                       )}
                     </div>
                   )}
+                  {/* Mesma estrutura do número principal, um degrau abaixo na
+                      escala. Antes era sans em corpo de texto ao lado de um
+                      serifado gigante: a troca de família somada ao salto de
+                      tamanho fazia os dois lerem como coisas diferentes, e não
+                      como resultado principal e resultado de apoio. */}
                   {item.extraMetrics && item.extraMetrics.length > 0 && (
-                    <ul className="mt-space-xs space-y-1">
+                    <ul className="mt-space-2xs space-y-space-2xs">
                       {item.extraMetrics.map((metric) => (
-                        <li key={metric.label} className="flex items-baseline gap-2">
-                          <span className="font-sans text-body-default font-semibold text-secondary">
+                        <li
+                          key={metric.label}
+                          className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
+                        >
+                          <span className="font-serif text-headline-md-mobile font-normal tracking-tight text-secondary md:text-headline-md">
                             {metric.value}
                           </span>
-                          <span className="font-sans text-body-default text-on-surface-variant">
+                          <span className="font-sans text-body-lead font-normal text-on-surface-variant">
                             {metric.label}
                           </span>
                         </li>

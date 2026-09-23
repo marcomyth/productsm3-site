@@ -295,7 +295,7 @@ export const siteContent: SiteContent = {
       backgroundUrl: `${CASES_DIR}/fundo-fogatti.jpg`,
       metricValue: "+30%",
       metricLabel: "de venda na loja online",
-      metricAccent: false,
+      metricAccent: true,
       extraMetrics: [{ value: "+27%", label: "na autoridade de domínio" }],
       description: "A Fogatti fabrica cooktops, fogões de mesa, fornos de embutir, coifas e depuradores. É linha branca, uma categoria em que o consumidor compara preço lado a lado antes de decidir, e em que a marca precisa aparecer antes da comparação. O trabalho construiu autoridade de domínio e reconhecimento de marca, e levou a venda para além da loja própria, com presença firmada nos marketplaces.",
     },
@@ -319,7 +319,7 @@ export const siteContent: SiteContent = {
       metricValue: "+34%",
       metricLabel: "de venda na loja online",
       extraMetrics: [{ value: "+30%", label: "na autoridade de domínio" }],
-      metricAccent: false,
+      metricAccent: true,
       description: "Há mais de setenta anos a Mueller fabrica para cozinha e lavanderia: fogões, cooktops, fornos, tanquinhos, lavadoras e secadoras. É uma marca que as pessoas reconhecem dentro de casa e que precisava ter o mesmo peso na prateleira digital. O trabalho traduziu esse reconhecimento para o ambiente online, firmando autoridade de domínio e abrindo presença nos marketplaces.",
     },
     {
@@ -341,7 +341,7 @@ export const siteContent: SiteContent = {
       backgroundUrl: `${CASES_DIR}/fundo-somos-cria.jpg`,
       metricValue: "+30%",
       metricLabel: "de crescimento de marca em 24 meses",
-      metricAccent: false,
+      metricAccent: true,
       description: "A Somos Cria vende móveis de design autoral direto pelo site: poltronas, bancos e peças exclusivas. Quem compra decide por uma peça de ticket alto sem tocar nela, e é a marca que sustenta essa decisão. O trabalho foi construir exatamente isso: marca, autoridade de domínio e engajamento.",
     },
     {
