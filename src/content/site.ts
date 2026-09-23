@@ -13,7 +13,10 @@ import type { SiteContent } from "@/lib/types";
  * publicação em produção.
  */
 
-const HERO_IMAGE = "/images/hero.jpg";
+/* A mesma foto de estação de trabalho, com os paineis reais do cliente
+   projetados na perspectiva de cada tela. A foto original segue em
+   hero.jpg, intacta, e é a base de onde esta é gerada. */
+const HERO_IMAGE = "/images/hero-estacao.jpg";
 
 const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
 const CASE_MODA_FEMININA_IMAGE = "/images/case-moda-feminina.jpg";
@@ -125,7 +128,7 @@ export const siteContent: SiteContent = {
     ],
     figure: {
       imageUrl: HERO_IMAGE,
-      imageAlt: "Estação de trabalho com dashboard de performance de mídia",
+      imageAlt: "Estação de trabalho com dois monitores e um notebook exibindo o painel de performance de mídia, com R$ 126.832 investidos e ROAS de 10x",
     },
   },
 
