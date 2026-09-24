@@ -224,16 +224,32 @@ export default async function PrivacidadePage() {
         </Base>
       </Secao>
 
-      <Secao titulo="10. Atuação fora do Brasil">
+      <Secao titulo="10. Operação na União Europeia">
         <p>
-          Se o tratamento vier a ocorrer no contexto de atividades de estabelecimento nosso na União
-          Europeia, ou a oferta de serviços for dirigida a pessoas que ali estejam, aplica-se também
-          o Regulamento Geral de Proteção de Dados europeu, cumulativamente com a LGPD. Nesse caso,
-          esta página será atualizada para descrever os direitos adicionais correspondentes.
+          Parte da nossa operação fica em Valência, Espanha. No que o tratamento de dados ocorrer no
+          contexto das atividades desse estabelecimento, aplica-se também o Regulamento Geral de
+          Proteção de Dados europeu, cumulativamente com a LGPD. Onde as duas normas divergirem em
+          extensão, vale para você a que for mais protetiva.
+        </p>
+        <p>
+          Sob o RGPD, os fundamentos do tratamento aqui descrito são os mesmos, lidos pelos seus
+          dispositivos correspondentes: execução de medidas pré-contratuais a seu pedido,
+          cumprimento de obrigação legal e interesse legítimo. Os seus direitos incluem, além dos já
+          listados acima, a limitação do tratamento, a oposição a tratamento fundado em interesse
+          legítimo e o direito de não ficar sujeito a decisão tomada exclusivamente por meio
+          automatizado que produza efeitos jurídicos sobre você. Este site não toma decisões desse
+          tipo.
+        </p>
+        <p>
+          Se você estiver na União Europeia e entender que algum direito seu não foi atendido, pode
+          apresentar reclamação à autoridade de controlo do seu país. Na Espanha, essa autoridade é
+          a Agencia Española de Protección de Datos.
         </p>
         <Base>
-          Base legal: Regulamento (UE) 2016/679 (RGPD), art. 3º, 1 e 2, sobre âmbito territorial, e
-          LGPD, art. 3º, I e II.
+          Base legal: Regulamento (UE) 2016/679 (RGPD), art. 3º, 1, sobre tratamento no contexto das
+          atividades de um estabelecimento na União; art. 6º, 1, alíneas b, c e f, sobre os
+          fundamentos de licitude; arts. 15 a 22, sobre os direitos do titular; e art. 77, sobre o
+          direito de reclamação à autoridade de controlo. Na LGPD, art. 3º, I e II.
         </Base>
       </Secao>
 

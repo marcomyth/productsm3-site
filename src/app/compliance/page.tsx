@@ -136,13 +136,19 @@ export default async function CompliancePage() {
           titularidade e sem implicar endosso ou patrocínio além do vínculo existente.
         </p>
         <p>
+          A exibição de cada marca, e a divulgação do resultado a ela associado, ocorre com
+          autorização do respectivo titular. Autorização de uso de marca é revogável, e a revogação
+          produz efeito a partir do momento em que nos chega.
+        </p>
+        <p>
           Se você é titular de alguma dessas marcas e quer que a menção seja ajustada ou removida,
           escreva para {email} e atendemos.
         </p>
         <Base>
           Base legal: Lei 9.279/1996 (Lei da Propriedade Industrial), art. 130, III, sobre o direito
           de zelar pela integridade e reputação da marca, e art. 132, IV, que ressalva o uso da marca
-          por terceiros quando não houver conotação comercial indevida.
+          por terceiros quando não houver conotação comercial indevida. A autorização do titular é o
+          que afasta a hipótese de uso indevido do art. 190, I, da mesma lei.
         </Base>
       </Secao>
 
