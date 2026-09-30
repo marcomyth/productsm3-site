@@ -4,9 +4,11 @@ import type { ServiceItem } from "@/lib/types";
 
 type Props = {
   data: ServiceItem[];
+  /** Número da seção, calculado na ordem de renderização em page.tsx. */
+  index: string;
 };
 
-export function Services({ data }: Props) {
+export function Services({ data, index }: Props) {
   return (
     <section
       id="servicos"
@@ -15,7 +17,7 @@ export function Services({ data }: Props) {
       <div className="mb-space-xl flex flex-col justify-between border-b border-surface-variant pb-space-sm md:flex-row md:items-end">
         <div>
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
-            02 / Áreas de Domínio
+            {index} / Áreas de Domínio
           </span>
           <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
             Funil sinérgico de venda

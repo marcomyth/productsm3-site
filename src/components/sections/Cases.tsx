@@ -5,9 +5,11 @@ import type { CaseStudy } from "@/lib/types";
 
 type Props = {
   data: CaseStudy[];
+  /** Número da seção, calculado na ordem de renderização em page.tsx. */
+  index: string;
 };
 
-export function Cases({ data }: Props) {
+export function Cases({ data, index }: Props) {
   return (
     <section
       id="cases"
@@ -16,7 +18,7 @@ export function Cases({ data }: Props) {
       <div className="mb-space-xl flex flex-col justify-between border-b border-surface-variant pb-space-sm md:flex-row md:items-end">
         <div>
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
-            04 / Evidências Práticas
+            {index} / Evidências Práticas
           </span>
           <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
             Cases de Sucesso

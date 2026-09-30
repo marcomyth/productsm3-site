@@ -68,8 +68,8 @@ export const siteContent: SiteContent = {
     // subia a página em vez de acompanhá-la.
     navLinks: [
       { label: "Serviços", url: "/#servicos" },
-      { label: "Método", url: "/#metodo" },
       { label: "Cases", url: "/#cases" },
+      { label: "Método", url: "/#metodo" },
       { label: "Auditoria", url: "/#auditoria" },
       { label: "Blog", url: "/blog" },
     ],
@@ -363,7 +363,7 @@ export const siteContent: SiteContent = {
   ],
 
   finalCta: {
-    eyebrow: "05 / Próximo Passo",
+    eyebrow: "Próximo Passo",
     title: "Comece reclassificando o problema",
     description:
       "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",

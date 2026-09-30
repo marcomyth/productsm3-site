@@ -81,12 +81,62 @@ export type ServiceItem = {
   bullets: string[];
 };
 
+/** Um entregável concreto de uma fase do método: o que o cliente recebe. */
+export type MethodDeliverable = {
+  title: string;
+  description: string;
+};
+
 export type MethodPhase = {
   index: string;
   phaseLabel: string;
   title: string;
   description: string;
   timeframe: string;
+  /** Entregáveis da fase. Opcional: a fase existe sem eles, e ganha a lista
+      quando a empresa definir o que entra em cada uma. */
+  deliverables?: MethodDeliverable[];
+};
+
+/**
+ * Cabeçalho comum das seções novas. O número não vem daqui: ele é calculado
+ * na ordem de renderização em page.tsx, porque estas seções são opcionais e
+ * uma sequência fixa abriria buraco na contagem enquanto elas não existirem.
+ */
+export type SectionIntro = {
+  eyebrow: string;
+  title: string;
+  description?: string;
+};
+
+export type DifferentiatorItem = {
+  title: string;
+  description: string;
+};
+
+export type DifferentiatorsContent = SectionIntro & {
+  items: DifferentiatorItem[];
+};
+
+export type EngagementFormat = {
+  label: string;
+  title: string;
+  description: string;
+};
+
+export type FormatsContent = SectionIntro & {
+  items: EngagementFormat[];
+  /** Fecho abaixo dos cards, quando existir. */
+  closing?: string;
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type FaqContent = SectionIntro & {
+  items: FaqItem[];
 };
 
 export type CaseExtraMetric = {
@@ -154,6 +204,14 @@ export type SiteContent = {
   services: ServiceItem[];
   method: MethodPhase[];
   cases: CaseStudy[];
+  /**
+   * As três seções abaixo são opcionais de propósito. A estrutura da página
+   * já as prevê, mas cada uma só é renderizada quando tiver conteúdo: seção
+   * vazia no ar é pior do que seção ausente.
+   */
+  differentiators?: DifferentiatorsContent;
+  formats?: FormatsContent;
+  faq?: FaqContent;
   finalCta: FinalCtaContent;
 };
 

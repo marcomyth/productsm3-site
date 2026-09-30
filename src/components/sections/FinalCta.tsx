@@ -3,9 +3,11 @@ import { externalLinkProps } from "@/lib/utils";
 
 type Props = {
   data: FinalCtaContent;
+  /** Número da seção, calculado na ordem de renderização em page.tsx. */
+  index: string;
 };
 
-export function FinalCta({ data }: Props) {
+export function FinalCta({ data, index }: Props) {
   return (
     <section
       id="auditoria"
@@ -15,7 +17,7 @@ export function FinalCta({ data }: Props) {
         <div className="flex flex-col gap-gutter-desktop lg:flex-row lg:items-start">
           <div className="space-y-space-md lg:basis-7/12">
             <span className="block font-label-index text-label-index font-medium uppercase tracking-[0.22em] text-secondary-fixed-dim">
-              {data.eyebrow}
+              {index} / {data.eyebrow}
             </span>
             <h2 className="font-serif text-display-xl-mobile font-normal leading-[1.02] tracking-tight text-on-dark md:text-display-xl">
               {data.title}
