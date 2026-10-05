@@ -9,6 +9,7 @@ import { Differentiators } from "@/components/sections/Differentiators";
 import { Formats } from "@/components/sections/Formats";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { UltimosPosts } from "@/components/sections/UltimosPosts";
 
 /**
  * A ordem das seções é a argumentação da página: o problema (Hero), o tamanho
@@ -41,6 +42,8 @@ export default async function HomePage() {
       {formats?.items.length ? <Formats data={formats} /> : null}
       {faq?.items.length ? <Faq data={faq} /> : null}
       <FinalCta data={finalCta} />
+      {/* Nao renderiza enquanto nao houver post publicado. */}
+      <UltimosPosts />
     </>
   );
 }
