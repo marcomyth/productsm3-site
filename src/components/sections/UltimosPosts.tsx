@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FileText } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { getBlogPosts } from "@/lib/content";
 
@@ -11,13 +12,18 @@ import { getBlogPosts } from "@/lib/content";
  * degrau acima do fundo da seção: a separação vem do preenchimento, não de uma
  * linha, que é o que mantém a fileira leve.
  *
- * Não renderiza nada enquanto não houver post publicado. Hoje é o caso: a
- * conexão com o Ascendly ainda não trouxe nenhum. Seção de blog vazia num site
- * de agência diz que a operação parou, e é pior do que não ter a seção.
+ * Sem post publicado, a seção aparece assim mesmo, com três lugares vazios
+ * marcados. A decisão é do cliente, e tem lógica: o espaço fica visível desde
+ * já e vai sendo preenchido conforme os artigos saem, em vez de a página mudar
+ * de tamanho no dia do primeiro post.
+ *
+ * O lugar vazio não finge conteúdo. Não há título falso nem imagem de
+ * exemplo: é uma moldura com a palavra "Em breve", e quem olha entende que ali
+ * ainda não tem nada em vez de achar que algo não carregou.
  */
 export async function UltimosPosts() {
   const { posts } = await getBlogPosts({ page: 1, pageSize: 3 });
-  if (posts.length === 0) return null;
+  const vazios = Math.max(0, 3 - posts.length);
 
   return (
     <Section tom="claro-alt">
@@ -47,6 +53,19 @@ export async function UltimosPosts() {
                 {post.title}
               </p>
             </Link>
+          </li>
+        ))}
+
+        {Array.from({ length: vazios }, (_, i) => (
+          <li key={`vazio-${i}`} aria-hidden="true">
+            <div className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-dashed border-regua">
+              <div className="flex aspect-[16/10] items-center justify-center bg-surface-container/50">
+                <FileText className="h-7 w-7 t-apagado opacity-50" />
+              </div>
+              <p className="p-space-md font-label-meta text-label-meta uppercase tracking-widest t-apagado">
+                Em breve
+              </p>
+            </div>
           </li>
         ))}
       </ul>

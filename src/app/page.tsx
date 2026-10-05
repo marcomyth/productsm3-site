@@ -50,7 +50,6 @@ export default async function HomePage() {
       {formats?.items.length ? <Formats data={formats} /> : null}
       {faq?.items.length ? <Faq data={faq} /> : null}
       <FinalCta data={finalCta} />
-      {/* Nao renderiza enquanto nao houver post publicado. */}
       <UltimosPosts />
     </>
   );
