@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import { getSiteContent } from "@/lib/content";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,13 +13,11 @@ const inter = Inter({
   fallback: ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument-serif",
-  display: "swap",
-  fallback: ["Georgia", "ui-serif", "serif"],
-});
+/**
+ * A Instrument Serif saiu daqui junto com o `font-serif` do site: a estrutura
+ * que o cliente pediu resolve titulo em sans pesado e caixa alta, e manter a
+ * fonte carregada significaria baixar um arquivo que nenhuma regra usa.
+ */
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getSiteContent();
@@ -88,7 +86,7 @@ export default async function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${instrumentSerif.variable}`}
+      className={inter.variable}
     >
       <body className="min-h-screen bg-background font-sans text-body-default text-foreground antialiased">
         <script

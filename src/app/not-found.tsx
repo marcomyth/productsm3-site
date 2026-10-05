@@ -6,7 +6,7 @@ export default function NotFound() {
       <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
         Erro 404
       </span>
-      <h1 className="font-serif text-display-lg-mobile font-normal leading-tight tracking-tight text-primary md:text-display-lg">
+      <h1 className="font-sans text-display-lg-mobile font-bold leading-tight tracking-tight text-primary md:text-display-lg">
         Página não encontrada
       </h1>
       <p className="max-w-md font-sans text-body-lead leading-relaxed text-on-surface-variant">

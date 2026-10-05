@@ -29,7 +29,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-secondary">
           <Newspaper className="h-3.5 w-3.5" /> Blog
         </span>
-        <h1 className="font-serif text-display-lg-mobile font-normal tracking-tight md:text-display-lg">
+        <h1 className="font-sans text-display-lg-mobile font-bold tracking-tight md:text-display-lg">
           Ideias, insights e bastidores
         </h1>
         <p className="text-base text-foreground/70 md:text-lg">

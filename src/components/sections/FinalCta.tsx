@@ -24,7 +24,7 @@ export function FinalCta({ data, index }: Props) {
           <span className="block font-label-index text-label-index font-medium uppercase tracking-[0.22em] t-acento">
             {index} / {data.eyebrow}
           </span>
-          <h2 className="font-serif text-display-xl-mobile font-normal leading-[1.08] tracking-tight t-forte md:text-display-xl">
+          <h2 className="font-sans text-display-xl-mobile font-bold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-xl">
             {data.title}
           </h2>
           <p className="max-w-2xl font-sans text-body-lead font-normal leading-relaxed t-fraco">

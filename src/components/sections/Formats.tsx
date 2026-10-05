@@ -25,7 +25,7 @@ export function Formats({ data, index }: Props) {
         <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / {data.eyebrow}
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+        <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
           {data.title}
         </h2>
         {data.description && (
@@ -44,7 +44,7 @@ export function Formats({ data, index }: Props) {
             <span className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] t-acento">
               {item.label}
             </span>
-            <h3 className="mt-space-xs font-serif text-headline-md-mobile font-normal leading-tight t-forte md:text-headline-md">
+            <h3 className="mt-space-xs font-sans text-headline-md-mobile font-extrabold uppercase leading-tight t-forte md:text-headline-md">
               {item.title}
             </h3>
             <p className="mt-space-sm font-sans text-body-default leading-relaxed t-fraco">

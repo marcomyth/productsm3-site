@@ -135,7 +135,11 @@
   --radius-full: 9999px;
 
   /* ---- Tipografia — serif editorial (display/headline) + sans utilitário (body/label) ---- */
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  /* A serifada saiu de uso. O token fica apontando so para a pilha do
+     sistema: sem isso, `var(--font-instrument-serif)` sem fallback deixaria a
+     declaracao invalida e qualquer `font-serif` esquecido herdaria a sans sem
+     avisar. */
+  --font-serif: ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /**

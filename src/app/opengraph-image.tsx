@@ -32,12 +32,16 @@ async function loadGoogleFont(query: string): Promise<ArrayBuffer | null> {
  * e não reflui, então copy de tamanho imprevisível quebraria o layout.
  */
 export default async function OpenGraphImage() {
-  const [serif, sans] = await Promise.all([
-    loadGoogleFont("Instrument+Serif"),
+  /**
+   * O cartao acompanha o site, que deixou de usar serifada: a marca "M3" sai
+   * no peso 800 da Inter. Dois pesos da mesma familia, e nao duas familias,
+   * porque o Satori resolve peso dentro da familia pelo valor de fontWeight.
+   */
+  const [pesado, sans] = await Promise.all([
+    loadGoogleFont("Inter:wght@800"),
     loadGoogleFont("Inter:wght@600"),
   ]);
-  const serifFamily = serif ? "Instrument Serif" : undefined;
-  const sansFamily = sans ? "Inter" : undefined;
+  const sansFamily = sans || pesado ? "Inter" : undefined;
 
   return new ImageResponse(
     (
@@ -59,11 +63,12 @@ export default async function OpenGraphImage() {
           <div style={{ display: "flex", alignItems: "baseline" }}>
             <span
               style={{
-                fontFamily: serifFamily,
+                fontFamily: sansFamily,
+                fontWeight: 800,
                 fontSize: 148,
                 lineHeight: 1,
                 color: "#eef2f5",
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.02em",
               }}
             >
               M3
@@ -126,8 +131,8 @@ export default async function OpenGraphImage() {
     {
       ...size,
       fonts: [
-        ...(serif
-          ? [{ name: "Instrument Serif", data: serif, weight: 400 as const, style: "normal" as const }]
+        ...(pesado
+          ? [{ name: "Inter", data: pesado, weight: 800 as const, style: "normal" as const }]
           : []),
         ...(sans ? [{ name: "Inter", data: sans, weight: 600 as const, style: "normal" as const }] : []),
       ],

@@ -30,7 +30,7 @@ export function Faq({ data, index }: Props) {
         <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / {data.eyebrow}
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+        <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
           {data.title}
         </h2>
         {data.description && (

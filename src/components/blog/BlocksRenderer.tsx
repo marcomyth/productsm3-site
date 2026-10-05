@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { mediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
@@ -121,22 +121,23 @@ function Inline({ children }: { children: BlogInlineChild[] }) {
 }
 
 function headingClass(level: 1 | 2 | 3 | 4 | 5 | 6): string {
-  // `font-display` não existe no @theme — os títulos caíam no Inter. A
-  // serifada do tema é `font-serif`, e ela só tem peso 400: `font-bold` aqui
-  // pedia um negrito que o browser teria que falsificar.
-  const serif = "font-serif font-normal tracking-tight";
-  // Nos dois níveis menores a serifada não segura o tamanho; o resto do site
-  // resolve títulos pequenos em sans semibold (ver Cases.tsx).
+  // O site deixou de usar serifada: a estrutura que o cliente pediu resolve
+  // tÃ­tulo em sans pesado. Aqui o peso Ã© `bold` e nÃ£o `extrabold` como na
+  // home, e sem caixa alta, porque post Ã© leitura corrida e nÃ£o peÃ§a de
+  // venda â€” tÃ­tulo de artigo em caixa alta cansa antes do segundo parÃ¡grafo.
+  const forte = "font-sans font-bold tracking-tight";
+  // Nos dois nÃ­veis menores o peso cede um degrau, senÃ£o h5 e h6 competem com
+  // os tÃ­tulos de verdade acima deles.
   const sans = "font-sans font-semibold tracking-tight";
   switch (level) {
     case 1:
-      return cn(serif, "mt-8 mb-4 text-4xl md:text-5xl");
+      return cn(forte, "mt-8 mb-4 text-4xl md:text-5xl");
     case 2:
-      return cn(serif, "mt-8 mb-3 text-2xl md:text-3xl");
+      return cn(forte, "mt-8 mb-3 text-2xl md:text-3xl");
     case 3:
-      return cn(serif, "mt-6 mb-2 text-xl md:text-2xl");
+      return cn(forte, "mt-6 mb-2 text-xl md:text-2xl");
     case 4:
-      return cn(serif, "mt-5 mb-2 text-lg md:text-xl");
+      return cn(forte, "mt-5 mb-2 text-lg md:text-xl");
     case 5:
       return cn(sans, "mt-4 mb-2 text-base");
     case 6:

@@ -106,7 +106,7 @@ export function Footer({ content }: Props) {
         aria-hidden="true"
         className="pointer-events-none -mb-10 flex w-full select-none justify-center overflow-hidden opacity-10 md:-mb-16 lg:-mb-24"
       >
-        <span className="font-serif text-[160px] font-normal leading-none tracking-tighter text-on-dark-variant md:text-[280px] lg:text-[400px]">
+        <span className="font-sans text-[160px] font-bold leading-none tracking-tighter text-on-dark-variant md:text-[280px] lg:text-[400px]">
           M3
         </span>
       </div>

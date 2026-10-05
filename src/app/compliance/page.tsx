@@ -54,7 +54,7 @@ export default async function CompliancePage() {
       <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
         Informações Legais
       </span>
-      <h1 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
+      <h1 className="mt-space-2xs font-sans text-display-lg-mobile font-bold tracking-tight text-primary md:text-display-lg">
         Compliance Jurídico
       </h1>
       <p className="mt-space-2xs font-label-meta text-label-meta uppercase tracking-wider text-outline">

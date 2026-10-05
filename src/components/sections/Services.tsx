@@ -25,7 +25,7 @@ export function Services({ data, index }: Props) {
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
             {index} / Áreas de Domínio
           </span>
-          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+          <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
             Funil sinérgico de venda
           </h2>
         </div>
@@ -45,7 +45,7 @@ export function Services({ data, index }: Props) {
           >
             <div className="grid grid-cols-1 gap-gutter-desktop lg:grid-cols-12">
               <div className="lg:col-span-2">
-                <span className="font-serif text-display-lg font-normal t-apagado transition-colors group-hover:t-acento">
+                <span className="font-sans text-display-lg font-extrabold t-apagado transition-colors group-hover:t-acento">
                   {service.index}
                 </span>
                 <span className="mt-1 block font-label-meta text-label-meta uppercase tracking-widest t-fraco">
@@ -53,7 +53,7 @@ export function Services({ data, index }: Props) {
                 </span>
               </div>
               <div className="space-y-space-xs lg:col-span-5">
-                <h3 className="font-serif text-headline-md font-normal leading-tight t-forte">
+                <h3 className="font-sans text-headline-md font-extrabold uppercase leading-tight t-forte">
                   {service.title}
                 </h3>
                 <p className="font-sans text-body-default leading-relaxed t-fraco">

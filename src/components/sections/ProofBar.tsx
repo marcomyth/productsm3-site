@@ -22,7 +22,7 @@ export function ProofBar({ data }: Props) {
             key={stat.label}
             className="flex flex-col pt-space-sm first:lg:pl-0 last:lg:pr-0 lg:px-space-md lg:pt-0"
           >
-            <span className="font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+            <span className="font-sans text-display-lg-mobile font-extrabold tracking-[-0.01em] t-forte md:text-display-lg">
               {stat.value}
             </span>
             <span className="mt-space-2xs font-label-index text-label-index uppercase tracking-wider t-acento">

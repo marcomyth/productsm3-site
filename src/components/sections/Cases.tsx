@@ -18,7 +18,7 @@ export function Cases({ data, index }: Props) {
           <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
             {index} / Evidências Práticas
           </span>
-          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+          <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
             Cases de Sucesso
           </h2>
         </div>
@@ -103,7 +103,7 @@ export function Cases({ data, index }: Props) {
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                       <span
                         className={cn(
-                          "font-serif text-display-xl-mobile font-normal tracking-tight md:text-display-xl",
+                          "font-sans text-display-xl-mobile font-extrabold tracking-[-0.01em] md:text-display-xl",
                           item.metricAccent ? "t-acento" : "t-forte",
                         )}
                       >
@@ -128,7 +128,7 @@ export function Cases({ data, index }: Props) {
                           key={metric.label}
                           className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
                         >
-                          <span className="font-serif text-headline-md-mobile font-normal tracking-tight t-acento md:text-headline-md">
+                          <span className="font-sans text-headline-md-mobile font-bold tracking-[-0.01em] t-acento md:text-headline-md">
                             {metric.value}
                           </span>
                           <span className="font-sans text-body-lead font-normal t-fraco">

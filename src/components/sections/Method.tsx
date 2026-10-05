@@ -23,7 +23,7 @@ export function Method({ data, index }: Props) {
         <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / Método de Trabalho
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
+        <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
           Rigor analítico em quatro fases irredutíveis
         </h2>
         <p className="mt-space-xs font-sans text-body-lead t-fraco">
@@ -45,7 +45,7 @@ export function Method({ data, index }: Props) {
           >
             <div>
               <div className="mb-space-md flex items-center justify-between border-b border-dark-green-divider pb-space-xs">
-                <span className="font-serif text-headline-md font-normal t-forte">
+                <span className="font-sans text-headline-md font-extrabold t-forte">
                   {phase.index}
                 </span>
                 <span className="font-label-meta text-label-meta uppercase tracking-widest t-fraco">
