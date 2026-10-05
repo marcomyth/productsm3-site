@@ -1,6 +1,7 @@
 import { getSiteContent } from "@/lib/content";
 import { Hero } from "@/components/sections/Hero";
 import { FaixaCorrida } from "@/components/layout/FaixaCorrida";
+import { FaixaFios } from "@/components/layout/FaixaFios";
 import { LinhaServicos } from "@/components/sections/LinhaServicos";
 import { Declaracao } from "@/components/sections/Declaracao";
 import { ProofBar } from "@/components/sections/ProofBar";
@@ -50,6 +51,9 @@ export default async function HomePage() {
       {formats?.items.length ? <Formats data={formats} /> : null}
       {faq?.items.length ? <Faq data={faq} /> : null}
       <FinalCta data={finalCta} />
+      {/* Mesma posicao da referencia: respiro animado entre o fecho e os
+          artigos, devolvendo a assinatura do hero no meio da pagina. */}
+      <FaixaFios />
       <UltimosPosts />
     </>
   );
