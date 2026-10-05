@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
+import { Section } from "@/components/layout/Section";
 import { cn } from "@/lib/utils";
 import type { CaseStudy } from "@/lib/types";
 
@@ -11,20 +12,17 @@ type Props = {
 
 export function Cases({ data, index }: Props) {
   return (
-    <section
-      id="cases"
-      className="w-full bg-surface px-grid-margin-mobile py-space-2xl md:px-grid-margin-tablet lg:px-grid-margin-desktop"
-    >
-      <div className="mb-space-xl flex flex-col justify-between border-b border-surface-variant pb-space-sm md:flex-row md:items-end">
+    <Section id="cases" tom="claro">
+      <div className="mb-space-xl flex flex-col justify-between border-b border-regua pb-space-sm md:flex-row md:items-end">
         <div>
-          <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
+          <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
             {index} / Evidências Práticas
           </span>
-          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
+          <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
             Cases de Sucesso
           </h2>
         </div>
-        <span className="font-label-meta text-label-meta uppercase text-outline">
+        <span className="font-label-meta text-label-meta uppercase t-apagado">
           Período de Análise: 2022–2026
         </span>
       </div>
@@ -37,11 +35,11 @@ export function Cases({ data, index }: Props) {
         {data.map((item) => (
           <article
             key={item.reference}
-            className="flex flex-col justify-between space-y-space-md rounded border border-surface-variant/80 bg-surface-container-lowest p-space-md shadow-sm"
+            className="flex flex-col justify-between space-y-space-md rounded border border-painel-regua bg-painel p-space-md shadow-sm transition-shadow duration-300 hover:shadow-md"
           >
             <div className="space-y-space-sm">
               <div className="flex items-center">
-                <span className="rounded bg-surface-container px-space-xs py-1 font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] text-on-surface">
+                <span className="rounded-full bg-surface-container px-space-xs py-1 font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] t-texto">
                   {item.category}
                 </span>
               </div>
@@ -50,7 +48,7 @@ export function Cases({ data, index }: Props) {
                   vários arquivos são pequenos — o do CIMVI tem 138px de largura
                   — e no tamanho anterior o navegador ampliava e borrava. Agora
                   ele reduz, que é a operação que preserva o traço. */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded border border-surface-variant bg-surface">
+              <div className="relative aspect-[16/10] overflow-hidden rounded border border-regua bg-surface">
                 {item.backgroundUrl && (
                   <>
                     <Image
@@ -74,9 +72,9 @@ export function Cases({ data, index }: Props) {
                         190px é o teto: seis das sete logos têm arquivo maior que
                         isso e só reduzem; a do CIMVI, de 138px, é a única que
                         amplia, e ganhar tamanho é o que torna o subtítulo dela
-                        legível; a altura de 144px existe
-                        pro brasão vertical do Vale Europeu, e não afeta as
-                        horizontais, que travam na largura antes. */}
+                        legível; a altura de 144px existe pro brasão vertical do
+                        Vale Europeu, e não afeta as horizontais, que travam na
+                        largura antes. */}
                     <div className="relative h-36 w-[190px]">
                       <Image
                         src={item.imageUrl}
@@ -88,7 +86,7 @@ export function Cases({ data, index }: Props) {
                     </div>
                   </div>
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-outline">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 t-apagado">
                     <ImageOff className="h-6 w-6" />
                     <span className="font-label-meta text-label-meta uppercase tracking-wider">
                       Imagem pendente
@@ -106,13 +104,13 @@ export function Cases({ data, index }: Props) {
                       <span
                         className={cn(
                           "font-serif text-display-xl-mobile font-normal tracking-tight md:text-display-xl",
-                          item.metricAccent ? "text-secondary" : "text-primary",
+                          item.metricAccent ? "t-acento" : "t-forte",
                         )}
                       >
                         {item.metricValue}
                       </span>
                       {item.metricLabel && (
-                        <span className="font-sans text-headline-sm font-normal text-primary">
+                        <span className="font-sans text-headline-sm font-normal t-forte">
                           {item.metricLabel}
                         </span>
                       )}
@@ -130,10 +128,10 @@ export function Cases({ data, index }: Props) {
                           key={metric.label}
                           className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
                         >
-                          <span className="font-serif text-headline-md-mobile font-normal tracking-tight text-secondary md:text-headline-md">
+                          <span className="font-serif text-headline-md-mobile font-normal tracking-tight t-acento md:text-headline-md">
                             {metric.value}
                           </span>
-                          <span className="font-sans text-body-lead font-normal text-on-surface-variant">
+                          <span className="font-sans text-body-lead font-normal t-fraco">
                             {metric.label}
                           </span>
                         </li>
@@ -141,7 +139,7 @@ export function Cases({ data, index }: Props) {
                     </ul>
                   )}
                   {item.description && (
-                    <p className="mt-space-xs font-sans text-body-default leading-relaxed text-on-surface-variant">
+                    <p className="mt-space-xs font-sans text-body-default leading-relaxed t-fraco">
                       {item.description}
                     </p>
                   )}
@@ -149,28 +147,28 @@ export function Cases({ data, index }: Props) {
               )}
             </div>
             {(item.platform || item.badge) && (
-            <div className="flex items-center justify-between border-t border-surface-variant pt-space-sm">
-              {/* Condicional, e não um span vazio: com `justify-between`, um
-                  único filho encosta à esquerda. Assim o selo sozinho alinha
-                  com o resto do card em vez de flutuar na margem direita, e
-                  volta pra direita sozinho quando a frase do cliente chegar. */}
-              {item.platform && (
-                <span className="font-body-sm text-body-sm font-medium text-on-surface-variant">
-                  {item.platform}
+              <div className="flex items-center justify-between border-t border-regua pt-space-sm">
+                {/* Condicional, e não um span vazio: com `justify-between`, um
+                    único filho encosta à esquerda. Assim o selo sozinho alinha
+                    com o resto do card em vez de flutuar na margem direita, e
+                    volta pra direita sozinho quando a frase do cliente chegar. */}
+                {item.platform && (
+                  <span className="font-body-sm text-body-sm font-medium t-fraco">
+                    {item.platform}
+                  </span>
+                )}
+                {/* Sempre teal: os dois badges ocupam a mesma posição e fazem o
+                    mesmo trabalho — variar a cor entre eles lia como
+                    inconsistência, não como sinal. A distinção fica no número,
+                    que é teal quando o case é destaque e preto quando não é. */}
+                <span className="font-label-meta text-label-meta font-semibold uppercase tracking-wider t-acento">
+                  {item.badge}
                 </span>
-              )}
-              {/* Sempre teal: os dois badges ocupam a mesma posição e fazem o
-                  mesmo trabalho — variar a cor entre eles lia como inconsistência,
-                  não como sinal. A distinção fica no número, que é teal quando o
-                  case é destaque e preto quando não é. */}
-              <span className="font-label-meta text-label-meta font-semibold uppercase tracking-wider text-secondary">
-                {item.badge}
-              </span>
-            </div>
+              </div>
             )}
           </article>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

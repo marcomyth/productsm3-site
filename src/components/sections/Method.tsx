@@ -1,3 +1,4 @@
+import { Section } from "@/components/layout/Section";
 import { cn } from "@/lib/utils";
 import type { MethodPhase } from "@/lib/types";
 
@@ -9,26 +10,23 @@ type Props = {
 
 export function Method({ data, index }: Props) {
   /**
-   * Quatro colunas só caber enquanto a fase for título mais parágrafo. Com
-   * entregáveis nomeados dentro do card, a coluna de 1/4 fica estreita
-   * demais e cada card viraria uma torre de texto — então a grade cai para
-   * duas colunas assim que alguma fase tiver entregáveis.
+   * Quatro colunas só cabem enquanto a fase for título mais parágrafo. Com
+   * entregáveis nomeados dentro do card, a coluna de 1/4 fica estreita demais
+   * e cada card viraria uma torre de texto — então a grade cai para duas
+   * colunas assim que alguma fase tiver entregáveis.
    */
   const temEntregaveis = data.some((phase) => (phase.deliverables?.length ?? 0) > 0);
 
   return (
-    <section
-      id="metodo"
-      className="w-full bg-dark-green px-grid-margin-mobile py-space-2xl text-on-dark md:px-grid-margin-tablet lg:px-grid-margin-desktop"
-    >
+    <Section id="metodo" tom="verde">
       <div className="mb-space-xl max-w-3xl">
-        <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary-fixed-dim">
+        <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / Método de Trabalho
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-on-dark md:text-display-lg">
+        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
           Rigor analítico em quatro fases irredutíveis
         </h2>
-        <p className="mt-space-xs font-sans text-body-lead text-on-dark-variant">
+        <p className="mt-space-xs font-sans text-body-lead t-fraco">
           Eliminamos o desperdício antes de acelerar. A escala só acontece após a estabilização da
           margem.
         </p>
@@ -47,27 +45,27 @@ export function Method({ data, index }: Props) {
           >
             <div>
               <div className="mb-space-md flex items-center justify-between border-b border-dark-green-divider pb-space-xs">
-                <span className="font-serif text-headline-md font-normal text-on-dark">
+                <span className="font-serif text-headline-md font-normal t-forte">
                   {phase.index}
                 </span>
-                <span className="font-label-meta text-label-meta uppercase tracking-widest text-on-dark-variant">
+                <span className="font-label-meta text-label-meta uppercase tracking-widest t-fraco">
                   {phase.phaseLabel}
                 </span>
               </div>
-              <h3 className="mb-space-xs font-sans text-headline-sm font-semibold text-on-dark">
+              <h3 className="mb-space-xs font-sans text-headline-sm font-semibold t-forte">
                 {phase.title}
               </h3>
-              <p className="font-body-sm text-body-sm leading-relaxed text-on-dark-variant">
+              <p className="font-body-sm text-body-sm leading-relaxed t-fraco">
                 {phase.description}
               </p>
               {phase.deliverables && phase.deliverables.length > 0 && (
                 <ul className="mt-space-md space-y-space-xs border-t border-dark-green-divider pt-space-md">
                   {phase.deliverables.map((deliverable) => (
                     <li key={deliverable.title}>
-                      <span className="font-sans text-body-sm font-semibold text-on-dark">
+                      <span className="font-sans text-body-sm font-semibold t-forte">
                         {deliverable.title}
                       </span>
-                      <p className="mt-1 font-body-sm text-body-sm leading-relaxed text-on-dark-variant">
+                      <p className="mt-1 font-body-sm text-body-sm leading-relaxed t-fraco">
                         {deliverable.description}
                       </p>
                     </li>
@@ -76,13 +74,13 @@ export function Method({ data, index }: Props) {
               )}
             </div>
             <div className="mt-space-md border-t border-dark-green-divider pt-space-md">
-              <span className="font-label-meta text-label-meta font-semibold uppercase text-secondary-fixed-dim">
+              <span className="font-label-meta text-label-meta font-semibold uppercase t-acento">
                 {phase.timeframe}
               </span>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

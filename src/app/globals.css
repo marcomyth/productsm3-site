@@ -138,44 +138,55 @@
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --text-display-xl: 4.875rem;
-  --text-display-xl--line-height: 5.375rem;
-  --text-display-xl--letter-spacing: -0.025em;
+  /**
+   * Escala medida no CSS da pagina de referencia: titulo principal 40px,
+   * titulo de secao 32px, titulo de card 24px, titulo de acordeao 20px e
+   * corpo 17.6px. A escala anterior era quase o dobro no topo (78px no
+   * display-xl), e era ela que fazia o site parecer largo e solto em vez de
+   * editorial. O nome dos tokens nao muda, so o valor, para que nenhum
+   * componente precise ser reescrito por causa disso.
+   *
+   * O tracking negativo diminuiu junto: -0.025em existia para fechar o
+   * espaco de uma serifada de 78px, e no mesmo texto a 40px ele aperta.
+   */
+  --text-display-xl: 2.5rem;
+  --text-display-xl--line-height: 2.875rem;
+  --text-display-xl--letter-spacing: -0.015em;
   --text-display-xl--font-weight: 400;
 
-  --text-display-xl-mobile: 2.875rem;
-  --text-display-xl-mobile--line-height: 3.125rem;
-  --text-display-xl-mobile--letter-spacing: -0.025em;
+  --text-display-xl-mobile: 2rem;
+  --text-display-xl-mobile--line-height: 2.375rem;
+  --text-display-xl-mobile--letter-spacing: -0.015em;
   --text-display-xl-mobile--font-weight: 400;
 
-  --text-display-lg: 3.25rem;
-  --text-display-lg--line-height: 3.625rem;
-  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg: 2rem;
+  --text-display-lg--line-height: 2.5rem;
+  --text-display-lg--letter-spacing: -0.012em;
   --text-display-lg--font-weight: 400;
 
-  --text-display-lg-mobile: 2.125rem;
-  --text-display-lg-mobile--line-height: 2.375rem;
-  --text-display-lg-mobile--letter-spacing: -0.02em;
+  --text-display-lg-mobile: 1.75rem;
+  --text-display-lg-mobile--line-height: 2.125rem;
+  --text-display-lg-mobile--letter-spacing: -0.012em;
   --text-display-lg-mobile--font-weight: 400;
 
-  --text-headline-md: 2.25rem;
-  --text-headline-md--line-height: 2.625rem;
-  --text-headline-md--letter-spacing: -0.02em;
+  --text-headline-md: 1.5rem;
+  --text-headline-md--line-height: 2rem;
+  --text-headline-md--letter-spacing: -0.01em;
   --text-headline-md--font-weight: 400;
 
-  --text-headline-md-mobile: 1.625rem;
-  --text-headline-md-mobile--line-height: 2rem;
+  --text-headline-md-mobile: 1.375rem;
+  --text-headline-md-mobile--line-height: 1.875rem;
   --text-headline-md-mobile--letter-spacing: -0.01em;
   --text-headline-md-mobile--font-weight: 400;
 
-  --text-headline-sm: 1.375rem;
+  --text-headline-sm: 1.25rem;
   --text-headline-sm--line-height: 1.75rem;
-  --text-headline-sm--letter-spacing: -0.01em;
+  --text-headline-sm--letter-spacing: -0.005em;
   --text-headline-sm--font-weight: 600;
 
-  --text-body-lead: 1.125rem;
-  --text-body-lead--line-height: 1.875rem;
-  --text-body-lead--letter-spacing: -0.01em;
+  --text-body-lead: 1.1rem;
+  --text-body-lead--line-height: 1.75rem;
+  --text-body-lead--letter-spacing: 0em;
   --text-body-lead--font-weight: 400;
 
   --text-body-default: 1rem;
@@ -197,6 +208,20 @@
   --text-label-index--line-height: 0.875rem;
   --text-label-index--letter-spacing: 0.14em;
   --text-label-index--font-weight: 600;
+
+  /**
+   * ---- Largura do conteudo ----
+   *
+   * A referencia centraliza tudo num container de 1140px, e abre para 1600px
+   * so no hero. O site estava sem limite nenhum: num monitor de 1920px o
+   * texto se espalhava por 1824px, que e linha longa demais para ler.
+   *
+   * Vive no namespace --container-* porque e dele que o Tailwind v4 gera as
+   * classes max-w-*, entao isto habilita `max-w-content` e
+   * `max-w-content-wide` sem precisar de valor arbitrario no JSX.
+   */
+  --container-content: 71.25rem;
+  --container-content-wide: 100rem;
 
   /* ---- Espaçamento & grid editorial ---- */
   --spacing-hairline: 1px;
@@ -332,4 +357,123 @@
 }
 .acordeao > summary::marker {
   content: "";
+}
+
+/**
+ * ---- Tons de seção ----
+ *
+ * A referência que o cliente pediu alterna fundos escuros e claros a cada
+ * seção. No site isso era impossível de manter: cada componente fixava a
+ * própria cor de texto (`text-primary`, `text-on-dark-variant`, ...), então
+ * inverter uma seção obrigava a reescrever todas as classes dos filhos, e o
+ * ritmo ficava preso no primeiro arranjo escolhido.
+ *
+ * Aqui o fundo e os papéis de texto viram um par. A seção declara `tom-claro`
+ * ou `tom-escuro`, os filhos usam os papéis (`t-forte`, `t-fraco`,
+ * `border-regua`, `bg-painel`), e trocar o tom de uma seção passa a ser uma
+ * linha só.
+ *
+ * Os valores não são novos: são os mesmos tokens da paleta, agrupados pelo
+ * papel que cada um já cumpria em fundo claro e em fundo escuro.
+ */
+@layer base {
+  .tom-claro {
+    --tom-forte: var(--color-primary);
+    --tom-texto: var(--color-on-surface);
+    --tom-fraco: var(--color-on-surface-variant);
+    --tom-apagado: var(--color-outline);
+    --tom-acento: var(--color-secondary);
+    --tom-regua: var(--color-surface-variant);
+    --tom-painel: var(--color-surface-container-lowest);
+    --tom-painel-regua: var(--color-outline-variant);
+  }
+
+  /**
+   * Em fundo escuro o acento muda de valor, não de matiz: o teal profundo dá
+   * 1.9:1 contra o azul dos blocos e ficaria ilegível. É o mesmo motivo pelo
+   * qual --color-secondary-fixed-dim existe.
+   */
+  .tom-escuro {
+    --tom-forte: var(--color-on-dark);
+    --tom-texto: var(--color-on-dark);
+    --tom-fraco: var(--color-on-dark-variant);
+    --tom-apagado: var(--color-on-dark-variant);
+    --tom-acento: var(--color-secondary-fixed-dim);
+    --tom-regua: var(--color-dark-divider);
+    --tom-painel: var(--color-dark-border);
+    --tom-painel-regua: var(--color-dark-divider);
+  }
+
+  /* O foco e a seleção seguem o tom pelo mesmo motivo de contraste. */
+  .tom-escuro {
+    --focus-ring-color: var(--color-secondary-fixed-dim);
+    --selection-bg: var(--color-secondary-fixed-dim);
+    --selection-fg: var(--color-dark-surface);
+  }
+}
+
+@utility t-forte {
+  color: var(--tom-forte);
+}
+@utility t-texto {
+  color: var(--tom-texto);
+}
+@utility t-fraco {
+  color: var(--tom-fraco);
+}
+@utility t-apagado {
+  color: var(--tom-apagado);
+}
+@utility t-acento {
+  color: var(--tom-acento);
+}
+@utility border-regua {
+  border-color: var(--tom-regua);
+}
+/**
+ * `divide-y` do Tailwind desenha a borda nos filhos, não no elemento, então
+ * colorir o elemento aqui não teria efeito nenhum: a régua cairia no padrão
+ * de `* { border-color }` da camada base, que é claro, e apareceria errada em
+ * toda seção escura. O seletor é o mesmo que o Tailwind usa, para que os dois
+ * atinjam exatamente os mesmos filhos.
+ */
+@utility divide-regua {
+  :where(& > :not(:last-child)) {
+    border-color: var(--tom-regua);
+  }
+}
+@utility bg-painel {
+  background-color: var(--tom-painel);
+}
+@utility border-painel-regua {
+  border-color: var(--tom-painel-regua);
+}
+
+/**
+ * ---- Desfoque ligado ao scroll ----
+ *
+ * O único efeito de scroll da referência: a imagem de fundo de uma seção
+ * entra desfocada em 4px e fica nítida conforme a seção sobe na tela.
+ *
+ * Feito com animação de timeline de scroll, que é CSS puro e não custa um
+ * listener nem uma dependência. Onde não existe (Firefox, Safari mais
+ * antigo), o `@supports` é ignorado e a imagem simplesmente aparece nítida,
+ * que é o estado final de qualquer forma. Nada quebra, só não anima.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes desfoque-para-nitido {
+      from {
+        filter: blur(4px);
+      }
+      to {
+        filter: blur(0);
+      }
+    }
+    .desfoque-no-scroll {
+      animation: desfoque-para-nitido linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 60%;
+    }
+  }
 }

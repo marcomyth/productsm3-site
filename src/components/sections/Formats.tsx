@@ -1,3 +1,4 @@
+import { Section } from "@/components/layout/Section";
 import type { FormatsContent } from "@/lib/types";
 
 type Props = {
@@ -19,19 +20,16 @@ export function Formats({ data, index }: Props) {
   if (data.items.length === 0) return null;
 
   return (
-    <section
-      id="formatos"
-      className="w-full bg-surface-container-low px-grid-margin-mobile py-space-2xl md:px-grid-margin-tablet lg:px-grid-margin-desktop"
-    >
+    <Section id="formatos" tom="escuro">
       <div className="mb-space-xl max-w-3xl">
-        <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
+        <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / {data.eyebrow}
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
+        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
           {data.title}
         </h2>
         {data.description && (
-          <p className="mt-space-xs font-sans text-body-lead leading-relaxed text-on-surface-variant">
+          <p className="mt-space-xs font-sans text-body-lead leading-relaxed t-fraco">
             {data.description}
           </p>
         )}
@@ -41,15 +39,15 @@ export function Formats({ data, index }: Props) {
         {data.items.map((item) => (
           <article
             key={item.title}
-            className="flex flex-col rounded border border-surface-variant/80 bg-surface-container-lowest p-space-md shadow-sm transition-shadow duration-300 hover:shadow-md"
+            className="flex flex-col rounded border border-painel-regua bg-painel p-space-md shadow-sm transition-shadow duration-300 hover:shadow-md"
           >
-            <span className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] text-secondary">
+            <span className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] t-acento">
               {item.label}
             </span>
-            <h3 className="mt-space-xs font-serif text-headline-md-mobile font-normal leading-tight text-primary md:text-headline-md">
+            <h3 className="mt-space-xs font-serif text-headline-md-mobile font-normal leading-tight t-forte md:text-headline-md">
               {item.title}
             </h3>
-            <p className="mt-space-sm font-sans text-body-default leading-relaxed text-on-surface-variant">
+            <p className="mt-space-sm font-sans text-body-default leading-relaxed t-fraco">
               {item.description}
             </p>
           </article>
@@ -57,10 +55,10 @@ export function Formats({ data, index }: Props) {
       </div>
 
       {data.closing && (
-        <p className="mt-space-xl max-w-2xl font-sans text-body-lead leading-relaxed text-on-surface">
+        <p className="mt-space-xl max-w-2xl font-sans text-body-lead leading-relaxed t-texto">
           {data.closing}
         </p>
       )}
-    </section>
+    </Section>
   );
 }

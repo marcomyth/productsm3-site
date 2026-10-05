@@ -9,7 +9,10 @@ type Props = {
 export function Footer({ content }: Props) {
   return (
     <footer className="relative w-full overflow-hidden border-t border-dark-border bg-dark-surface text-on-dark">
-      <div className="w-full px-grid-margin-mobile py-space-xl md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+      {/* Mesma medida das seções da página, senão o rodapé é o único bloco
+          que vaza para fora da coluna de 1140px e a quebra de alinhamento
+          aparece justamente no fim da leitura. */}
+      <div className="mx-auto w-full max-w-content px-grid-margin-mobile py-space-xl md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         <div className="grid grid-cols-1 gap-gutter-desktop md:grid-cols-12">
           {/* Marca + diretriz operacional */}
           <div className="flex flex-col justify-between md:col-span-5">

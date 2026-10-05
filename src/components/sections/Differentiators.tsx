@@ -1,3 +1,4 @@
+import { Section } from "@/components/layout/Section";
 import type { DifferentiatorsContent } from "@/lib/types";
 
 type Props = {
@@ -16,19 +17,16 @@ export function Differentiators({ data, index }: Props) {
   if (data.items.length === 0) return null;
 
   return (
-    <section
-      id="diferenciais"
-      className="w-full bg-surface px-grid-margin-mobile py-space-2xl md:px-grid-margin-tablet lg:px-grid-margin-desktop"
-    >
+    <Section id="diferenciais" tom="claro-alt">
       <div className="mb-space-xl max-w-3xl">
-        <span className="font-label-index text-label-index uppercase tracking-[0.2em] text-secondary">
+        <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
           {index} / {data.eyebrow}
         </span>
-        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight text-primary md:text-display-lg">
+        <h2 className="mt-space-2xs font-serif text-display-lg-mobile font-normal tracking-tight t-forte md:text-display-lg">
           {data.title}
         </h2>
         {data.description && (
-          <p className="mt-space-xs font-sans text-body-lead leading-relaxed text-on-surface-variant">
+          <p className="mt-space-xs font-sans text-body-lead leading-relaxed t-fraco">
             {data.description}
           </p>
         )}
@@ -36,14 +34,14 @@ export function Differentiators({ data, index }: Props) {
 
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg md:grid-cols-2">
         {data.items.map((item) => (
-          <div key={item.title} className="border-t border-surface-variant pt-space-sm">
-            <h3 className="font-sans text-headline-sm font-semibold text-primary">{item.title}</h3>
-            <p className="mt-space-2xs font-sans text-body-default leading-relaxed text-on-surface-variant">
+          <div key={item.title} className="border-t border-regua pt-space-sm">
+            <h3 className="font-sans text-headline-sm font-semibold t-forte">{item.title}</h3>
+            <p className="mt-space-2xs font-sans text-body-default leading-relaxed t-fraco">
               {item.description}
             </p>
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

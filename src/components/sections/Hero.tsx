@@ -1,52 +1,60 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Section } from "@/components/layout/Section";
+import { BOTAO_ACAO } from "@/lib/utils";
 import type { HeroContent } from "@/lib/types";
 
 type Props = {
   data: HeroContent;
 };
 
+/**
+ * Hero no formato da referência: fundo escuro em gradiente, conteúdo na
+ * medida larga (1600px, a única seção que abre além dos 1140px), texto à
+ * esquerda e imagem à direita.
+ *
+ * O título caiu de 78px para 40px junto com a escala nova. Não é perda de
+ * presença: a referência ganha presença pelo fundo escuro e pelo botão em
+ * pílula, não pelo corpo da letra.
+ */
 export function Hero({ data }: Props) {
   return (
-    <section className="w-full border-b border-surface-variant/60 px-grid-margin-mobile pb-space-2xl pt-space-lg md:px-grid-margin-tablet md:pt-space-xl lg:px-grid-margin-desktop">
+    <Section tom="gradiente" largura="ampla" respiro="grande">
       <div className="grid grid-cols-1 items-center gap-gutter-desktop lg:grid-cols-12">
         <div className="flex flex-col justify-between space-y-space-md lg:col-span-7 lg:pr-space-md xl:col-span-6">
           <div className="space-y-space-xs">
-            <div className="inline-flex items-center gap-2 rounded-full border border-surface-variant/80 bg-surface-container px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-secondary" />
-              <span className="font-label-meta text-[10.5px] font-medium uppercase tracking-[0.2em] text-on-surface-variant">
+            <div className="inline-flex items-center gap-2 rounded-full border border-regua bg-painel px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-secondary-fixed-dim" />
+              <span className="font-label-meta text-[10.5px] font-medium uppercase tracking-[0.2em] t-fraco">
                 {data.eyebrow}
               </span>
             </div>
-            <h1 className="mt-space-xs font-serif text-display-xl-mobile font-normal leading-[1.05] tracking-tight text-primary md:text-display-xl">
+            <h1 className="mt-space-xs font-serif text-display-xl-mobile font-normal leading-[1.08] tracking-tight t-forte md:text-display-xl">
               {data.title}
             </h1>
           </div>
-          <p className="max-w-2xl pt-space-2xs font-sans text-body-lead font-normal leading-relaxed text-on-surface-variant">
+          <p className="max-w-2xl pt-space-2xs font-sans text-body-lead font-normal leading-relaxed t-fraco">
             {data.subtitle}
           </p>
           <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
-            <Link
-              href={data.primaryCta.url}
-              className="inline-flex items-center justify-center rounded bg-action px-space-md py-space-sm font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] text-on-action shadow-sm transition-all duration-150 hover:brightness-95"
-            >
+            <Link href={data.primaryCta.url} className={BOTAO_ACAO}>
               {data.primaryCta.label}
             </Link>
             <Link
               href={data.secondaryCta.url}
-              className="group inline-flex items-center gap-2 font-sans text-body-default text-primary transition-colors hover:text-secondary"
+              className="group inline-flex items-center gap-2 font-sans text-body-default t-texto transition-colors hover:t-acento"
             >
-              <span className="border-b border-outline pb-0.5 group-hover:border-secondary">
+              <span className="border-b border-regua pb-0.5 group-hover:border-secondary-fixed-dim">
                 {data.secondaryCta.label}
               </span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-gutter-tablet border-t border-surface-variant/80 pt-space-lg sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-gutter-tablet border-t border-regua pt-space-lg sm:grid-cols-3">
             {data.meta.map((question) => (
               <div key={question} className="pt-space-xs">
-                <span className="block font-body-sm text-body-sm font-medium text-on-surface">
+                <span className="block font-body-sm text-body-sm font-medium t-texto">
                   {question}
                 </span>
               </div>
@@ -55,16 +63,14 @@ export function Hero({ data }: Props) {
         </div>
 
         <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0 xl:col-span-6">
-          <div className="rounded-lg border border-surface-variant bg-surface-container-low p-2.5 shadow-sm">
-            {/* 17:10 é o recorte da foto, que agora corta fora teto, chão e
-                cadeira: os monitores já ocupavam 96% da largura, então o
-                desperdício era todo vertical.
+          <div className="rounded-lg border border-regua bg-painel p-2.5 shadow-sm">
+            {/* 17:10 é o recorte da foto, que corta fora teto, chão e cadeira:
+                os monitores já ocupavam 96% da largura, então o desperdício
+                era todo vertical.
 
-                A coluna só vai a 6 de 12 a partir de 1280px. Em 1024 ela
-                deixava o título com 78px numa caixa de 440px, quebrando em
-                quatro linhas, e as três perguntas viravam colunas de 130px.
-                Até lá a divisão continua 7/5. */}
-            <div className="relative aspect-[17/10] overflow-hidden rounded bg-surface-container-high">
+                A coluna só vai a 6 de 12 a partir de 1280px. Até lá a divisão
+                continua 7/5. */}
+            <div className="relative aspect-[17/10] overflow-hidden rounded bg-dark-surface">
               <Image
                 src={data.figure.imageUrl}
                 alt={data.figure.imageAlt}
@@ -77,6 +83,6 @@ export function Hero({ data }: Props) {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
