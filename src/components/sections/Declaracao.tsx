@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 
 /**
@@ -44,6 +46,27 @@ export function Declaracao() {
             de tráfego é uma diretriz da casa, e é também o que torna o resultado auditável por
             você.
           </p>
+
+          {/* O bloco terminava no ponto final do terceiro parágrafo e deixava
+              o leitor sem próximo passo. Os dois caminhos daqui são ver como o
+              trabalho é feito e ver o que ele produziu, e são exatamente as
+              duas seções seguintes. */}
+          <div className="flex flex-wrap items-center gap-x-space-lg gap-y-space-xs pt-space-xs">
+            <Link
+              href="/#servicos"
+              className="group inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest t-acento transition-colors hover:t-forte"
+            >
+              Como trabalhamos
+              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/cases"
+              className="group inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest t-acento transition-colors hover:t-forte"
+            >
+              O que entregamos
+              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </div>
     </Section>
