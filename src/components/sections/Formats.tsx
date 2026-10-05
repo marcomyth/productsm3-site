@@ -36,7 +36,7 @@ export function Formats({ data }: Props) {
             <span className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] t-acento">
               {item.label}
             </span>
-            <h3 className="mt-space-xs font-sans text-headline-md-mobile font-extrabold uppercase leading-tight t-forte md:text-headline-md">
+            <h3 className="mt-space-xs font-sans text-headline-md-mobile font-extrabold leading-tight t-forte md:text-headline-md">
               {item.title}
             </h3>
             <p className="mt-space-sm font-sans text-body-default leading-relaxed t-fraco">

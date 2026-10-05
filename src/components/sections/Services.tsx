@@ -43,7 +43,7 @@ export function Services({ data }: Props) {
                 </span>
               </div>
               <div className="space-y-space-xs lg:col-span-5">
-                <h3 className="font-sans text-headline-md font-extrabold uppercase leading-tight t-forte">
+                <h3 className="font-sans text-headline-md font-extrabold leading-tight t-forte">
                   {service.title}
                 </h3>
                 <p className="font-sans text-body-default leading-relaxed t-fraco">

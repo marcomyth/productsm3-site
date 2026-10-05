@@ -39,7 +39,7 @@ export function TituloSecao({ destaque, afirmacao, descricao, centro, className 
       {afirmacao && (
         <h2
           className={cn(
-            "font-sans text-display-lg-mobile font-extrabold uppercase leading-tight tracking-[0.01em] t-forte md:text-display-lg",
+            "font-sans text-display-lg-mobile font-extrabold leading-tight tracking-[0.01em] t-forte md:text-display-lg",
             destaque && "mt-space-3xs",
           )}
         >

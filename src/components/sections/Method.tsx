@@ -33,7 +33,7 @@ export function Method({ data }: Props) {
             key={phase.index}
             className="rounded-[1.5rem] bg-dark-green-panel p-space-md md:p-space-lg"
           >
-            <h3 className="font-sans text-headline-sm font-extrabold uppercase tracking-[0.02em] t-acento">
+            <h3 className="font-sans text-headline-sm font-extrabold tracking-[0.02em] t-acento">
               {phase.index}. {phase.title}
             </h3>
 

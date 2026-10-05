@@ -1,6 +1,7 @@
 import { getSiteContent } from "@/lib/content";
 import { Hero } from "@/components/sections/Hero";
 import { ProofBar } from "@/components/sections/ProofBar";
+import { Clientes } from "@/components/sections/Clientes";
 import { Services } from "@/components/sections/Services";
 import { Cases } from "@/components/sections/Cases";
 import { Method } from "@/components/sections/Method";
@@ -11,10 +12,14 @@ import { FinalCta } from "@/components/sections/FinalCta";
 
 /**
  * A ordem das seções é a argumentação da página: o problema (Hero), o tamanho
- * dele (ProofBar), o que fazemos (Services), a prova de que já fizemos
- * (Cases), como fazemos (Method), por que nós (Differentiators), como
- * contratar (Formats), o que ainda pesa na decisão (Faq) e o próximo passo
- * (FinalCta).
+ * dele (ProofBar), com quem já trabalhamos (Clientes), o que fazemos
+ * (Services), a prova do que entregamos (Cases), como fazemos (Method), por
+ * que nós (Differentiators), como contratar (Formats), o que ainda pesa na
+ * decisão (Faq) e o próximo passo (FinalCta).
+ *
+ * Clientes entra logo no começo, como na home da referência: a grade de logos
+ * faz num relance o trabalho que os cases fazem em dois minutos de leitura, e
+ * as logos já existiam, só que escondidas uma a uma dentro dos cards.
  *
  * A numeração "02 / 03 / 04" que existia nos rótulos saiu: a referência não
  * numera seção nenhuma, e o número era invenção nossa. No lugar dele, cada
@@ -28,6 +33,7 @@ export default async function HomePage() {
     <>
       <Hero data={hero} />
       <ProofBar data={proofBar} />
+      <Clientes data={cases} />
       <Services data={services} />
       <Cases data={cases} />
       <Method data={method} />

@@ -96,8 +96,18 @@ export function Section({
            * A foto sozinha não sustenta texto em cima: o véu garante o
            * contraste que os papéis de texto do tom escuro assumem ter.
            * `scale-105` na foto evita que a borda desfocada mostre o fundo.
+           *
+           * São dois véus. O plano cobre a foto inteira; o segundo é um
+           * gradiente que escurece o lado esquerdo, onde o texto fica. Com véu
+           * uniforme a única saída seria aumentá-lo até apagar a foto — e aí
+           * não valeria a pena ter foto. Assim a imagem continua legível à
+           * direita e o texto ganha contraste à esquerda.
            */}
-          <div aria-hidden="true" className="absolute inset-0 bg-dark-surface/85" />
+          <div aria-hidden="true" className="absolute inset-0 bg-dark-surface/75" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-dark-surface via-dark-surface/70 to-transparent"
+          />
         </>
       )}
 

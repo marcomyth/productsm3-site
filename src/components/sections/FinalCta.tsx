@@ -34,7 +34,7 @@ export function FinalCta({ data }: Props) {
         </p>
         <div className="lg:col-span-8" />
 
-        <h2 className="font-sans text-display-lg-mobile font-extrabold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-lg lg:col-span-4">
+        <h2 className="font-sans text-display-lg-mobile font-extrabold leading-[1.1] tracking-[0.01em] t-forte md:text-display-lg lg:col-span-4">
           {data.title}
         </h2>
         <p className="font-sans text-body-default leading-relaxed t-fraco lg:col-span-7 lg:pt-space-2xs">
