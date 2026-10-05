@@ -2,6 +2,7 @@ import { getSiteContent } from "@/lib/content";
 import { Hero } from "@/components/sections/Hero";
 import { FaixaCorrida } from "@/components/layout/FaixaCorrida";
 import { LinhaServicos } from "@/components/sections/LinhaServicos";
+import { Declaracao } from "@/components/sections/Declaracao";
 import { ProofBar } from "@/components/sections/ProofBar";
 import { Clientes } from "@/components/sections/Clientes";
 import { Services } from "@/components/sections/Services";
@@ -39,6 +40,7 @@ export default async function HomePage() {
           sao a transicao entre a promessa e o conteudo. */}
       <FaixaCorrida frases={footer.tagline} />
       <LinhaServicos data={services} />
+      <Declaracao />
       <ProofBar data={proofBar} />
       <Clientes data={cases} />
       <Services data={services} />
