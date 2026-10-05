@@ -40,9 +40,17 @@ export function Faq({ data, index }: Props) {
         )}
       </div>
 
-      <div className="max-w-3xl divide-y divide-regua border-y border-regua">
+      {/* Duas colunas, como na referência, onde os acordeões ficam em duas
+          metades e não numa lista única: com `columns` em vez de grid, os
+          itens se distribuem sozinhos entre as colunas conforme a quantidade,
+          sem eu precisar fatiar o array e sem deixar uma coluna vazia quando
+          houver um número ímpar de perguntas. */}
+      <div className="md:columns-2 md:gap-gutter-desktop">
         {data.items.map((item) => (
-          <details key={item.question} className="acordeao group">
+          <details
+            key={item.question}
+            className="acordeao group break-inside-avoid border-b border-regua first:border-t"
+          >
             <summary className="flex items-start justify-between gap-space-sm py-space-sm">
               <h3 className="font-sans text-headline-sm font-semibold t-forte transition-colors group-hover:t-acento">
                 {item.question}

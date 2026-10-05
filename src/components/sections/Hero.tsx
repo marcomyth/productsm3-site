@@ -22,7 +22,7 @@ export function Hero({ data }: Props) {
   return (
     <Section tom="gradiente" largura="ampla" respiro="grande">
       <div className="grid grid-cols-1 items-center gap-gutter-desktop lg:grid-cols-12">
-        <div className="flex flex-col justify-between space-y-space-md lg:col-span-7 lg:pr-space-md xl:col-span-6">
+        <div className="flex flex-col justify-between space-y-space-md lg:col-span-6 lg:pr-space-md">
           <div className="space-y-space-xs">
             <div className="inline-flex items-center gap-2 rounded-full border border-regua bg-painel px-3 py-1">
               <span className="h-2 w-2 rounded-full bg-secondary-fixed-dim" />
@@ -62,20 +62,22 @@ export function Hero({ data }: Props) {
           </div>
         </div>
 
-        <div className="mt-space-md flex flex-col lg:col-span-5 lg:mt-0 xl:col-span-6">
+        <div className="mt-space-md flex flex-col lg:col-span-6 lg:mt-0">
           <div className="rounded-lg border border-regua bg-painel p-2.5 shadow-sm">
             {/* 17:10 é o recorte da foto, que corta fora teto, chão e cadeira:
                 os monitores já ocupavam 96% da largura, então o desperdício
                 era todo vertical.
 
-                A coluna só vai a 6 de 12 a partir de 1280px. Até lá a divisão
-                continua 7/5. */}
+                As duas colunas são metades iguais, como na referência. A
+                divisão 7/5 anterior existia porque o título tinha 78px e
+                quebrava em quatro linhas numa caixa de 440px; com 40px ele
+                cabe em meia tela. */}
             <div className="relative aspect-[17/10] overflow-hidden rounded bg-dark-surface">
               <Image
                 src={data.figure.imageUrl}
                 alt={data.figure.imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 40vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover object-center transition-all duration-700 hover:scale-[1.02]"
                 priority
               />
