@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import { mediaUrl } from "@/lib/media";
 import { cn } from "@/lib/utils";
@@ -122,12 +122,12 @@ function Inline({ children }: { children: BlogInlineChild[] }) {
 
 function headingClass(level: 1 | 2 | 3 | 4 | 5 | 6): string {
   // O site deixou de usar serifada: a estrutura que o cliente pediu resolve
-  // tÃ­tulo em sans pesado. Aqui o peso Ã© `bold` e nÃ£o `extrabold` como na
-  // home, e sem caixa alta, porque post Ã© leitura corrida e nÃ£o peÃ§a de
-  // venda â€” tÃ­tulo de artigo em caixa alta cansa antes do segundo parÃ¡grafo.
+  // título em sans pesado. Aqui o peso é `bold` e não `extrabold` como na
+  // home, e sem caixa alta, porque post é leitura corrida e não peça de
+  // venda — título de artigo em caixa alta cansa antes do segundo parágrafo.
   const forte = "font-sans font-bold tracking-tight";
-  // Nos dois nÃ­veis menores o peso cede um degrau, senÃ£o h5 e h6 competem com
-  // os tÃ­tulos de verdade acima deles.
+  // Nos dois níveis menores o peso cede um degrau, senão h5 e h6 competem com
+  // os títulos de verdade acima deles.
   const sans = "font-sans font-semibold tracking-tight";
   switch (level) {
     case 1:

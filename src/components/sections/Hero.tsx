@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { BOTAO_ACAO } from "@/lib/utils";
 import type { HeroContent } from "@/lib/types";
@@ -10,17 +9,16 @@ type Props = {
 
 /**
  * Hero no arranjo da home da referência, que é diferente do da página de
- * serviço: não são duas colunas com imagem ao lado. É um bloco escuro de
- * ponta a ponta, com a peça visual ocupando o fundo inteiro e o texto
- * alinhado à esquerda por cima dela.
+ * serviço: não são duas colunas com imagem ao lado. É um bloco escuro de ponta
+ * a ponta, com a peça visual ocupando o fundo inteiro e o texto alinhado à
+ * esquerda por cima dela.
  *
- * O título também muda de tratamento: na home dele é caixa normal e bem
- * maior (cerca de 64px), enquanto a caixa alta pesada fica restrita à página
- * de serviço. Eu tinha aplicado caixa alta no site todo.
+ * O título também muda de tratamento: na home deles é caixa normal e bem maior
+ * (cerca de 64px), enquanto a caixa alta pesada fica restrita à página de
+ * serviço. Eu tinha aplicado caixa alta no site todo.
  *
- * No lugar da foto, um fundo animado de fios luminosos, desenhado em canvas
- * e reagindo ao ponteiro. A referência usa uma malha de pontos em movimento
- * no mesmo lugar; a foto da estação de trabalho saiu junto com as demais
+ * No lugar da foto, um fundo animado de fios luminosos, desenhado em canvas e
+ * reagindo ao ponteiro. A foto da estação de trabalho saiu junto com as demais
  * imagens do site, por decisão do cliente: ficam só as logos.
  */
 export function Hero({ data }: Props) {
@@ -48,18 +46,14 @@ export function Hero({ data }: Props) {
           {data.subtitle}
         </p>
 
-        <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
+        {/* Um botão só, como na referência. O link secundário para os cases
+            saiu daqui: dois caminhos lado a lado dividem a atenção logo na
+            primeira tela, e os cases já têm entrada pelo menu e pela grade de
+            logos logo abaixo. O campo `secondaryCta` continua no conteúdo,
+            intacto, caso ele volte a ser usado em outro lugar. */}
+        <div className="pt-space-xs">
           <Link href={data.primaryCta.url} className={BOTAO_ACAO}>
             {data.primaryCta.label}
-          </Link>
-          <Link
-            href={data.secondaryCta.url}
-            className="group inline-flex items-center gap-2 font-sans text-body-default t-texto transition-colors hover:t-acento"
-          >
-            <span className="border-b border-regua pb-0.5 group-hover:border-secondary-fixed-dim">
-              {data.secondaryCta.label}
-            </span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 

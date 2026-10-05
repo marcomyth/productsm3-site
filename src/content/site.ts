@@ -121,7 +121,7 @@ export const siteContent: SiteContent = {
     title: "Você não precisa de mais orçamento de tráfego",
     subtitle:
       "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
-    primaryCta: { label: "Agendar Diagnóstico", url: "/#auditoria" },
+    primaryCta: { label: "Conversar com nossos especialistas", url: "/#auditoria" },
     secondaryCta: { label: "Cases de sucesso", url: "/#cases" },
     meta: [
       "Você contrata marketing na fé e reza para vender mais?",
