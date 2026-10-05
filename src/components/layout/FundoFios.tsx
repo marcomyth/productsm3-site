@@ -58,14 +58,22 @@ export function FundoFios({ cores = PADRAO, className }: Props) {
     const alvo = { x: 0.42, y: 0.5 };
     const foco = { x: 0.42, y: 0.5 };
 
-    const fios: Fio[] = Array.from({ length: 11 }, (_, i) => {
-      const t = i / 10;
+    /**
+     * Brilho que acompanha o cursor. `forca` sobe quando o ponteiro está sobre
+     * a área e desce quando sai, com amortecimento: acender e apagar na hora
+     * pisca, e piscar chama mais atenção do que o efeito merece.
+     */
+    const brilho = { x: 0.5, y: 0.5, forca: 0, alvoForca: 0 };
+
+    const TOTAL = 16;
+    const fios: Fio[] = Array.from({ length: TOTAL }, (_, i) => {
+      const t = i / (TOTAL - 1);
       return {
-        amplitude: 0.1 + 0.26 * Math.abs(Math.sin(i * 1.7)),
+        amplitude: 0.09 + 0.28 * Math.abs(Math.sin(i * 1.7)),
         frequencia: 1.1 + 1.9 * ((i * 0.37) % 1),
         fase: i * 1.21,
         velocidade: 0.08 + 0.16 * ((i * 0.53) % 1),
-        deslocamento: (t - 0.5) * 0.7,
+        deslocamento: (t - 0.5) * 0.82,
         cor: cores[i % cores.length],
         espessura: i % 3 === 0 ? 1.5 : 1,
       };
@@ -134,6 +142,28 @@ export function FundoFios({ cores = PADRAO, className }: Props) {
         }
       }
 
+      /**
+       * Halo no ponteiro, por cima dos fios e ainda em modo `lighter`: ele
+       * soma luz ao que já está desenhado, então os fios que cruzam a área
+       * acendem junto, em vez de ficar uma mancha por cima deles.
+       *
+       * Um gradiente radial por quadro custa quase nada perto de redesenhar
+       * os dezesseis fios uma segunda vez com mais alfa, que foi a primeira
+       * ideia e saiu caro.
+       */
+      brilho.forca += (brilho.alvoForca - brilho.forca) * 0.07;
+      if (brilho.forca > 0.01) {
+        const bx = brilho.x * L;
+        const by = brilho.y * A;
+        const raio = Math.min(L, A) * 0.55 + 140;
+        const g = ctx!.createRadialGradient(bx, by, 0, bx, by, raio);
+        g.addColorStop(0, cores[0]);
+        g.addColorStop(1, "transparent");
+        ctx!.globalAlpha = 0.16 * brilho.forca;
+        ctx!.fillStyle = g;
+        ctx!.fillRect(0, 0, L, A);
+      }
+
       ctx!.globalAlpha = 1;
       ctx!.globalCompositeOperation = "source-over";
     }
@@ -146,8 +176,22 @@ export function FundoFios({ cores = PADRAO, className }: Props) {
 
     function aoMover(e: PointerEvent) {
       const r = canvas!.getBoundingClientRect();
-      alvo.x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
-      alvo.y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+
+      alvo.x = Math.min(1, Math.max(0, px));
+      alvo.y = Math.min(1, Math.max(0, py));
+
+      // O halo só acende com o ponteiro dentro da área. O listener é na
+      // janela, e não no canvas, porque o canvas tem `pointer-events: none`:
+      // ele não pode capturar clique nenhum, senão roubaria o do conteúdo
+      // que vive por cima dele.
+      const dentro = px >= 0 && px <= 1 && py >= 0 && py <= 1;
+      brilho.alvoForca = dentro ? 1 : 0;
+      if (dentro) {
+        brilho.x = px;
+        brilho.y = py;
+      }
     }
 
     dimensionar();
