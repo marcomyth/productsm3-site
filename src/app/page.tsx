@@ -1,5 +1,7 @@
 import { getSiteContent } from "@/lib/content";
 import { Hero } from "@/components/sections/Hero";
+import { FaixaCorrida } from "@/components/layout/FaixaCorrida";
+import { LinhaServicos } from "@/components/sections/LinhaServicos";
 import { ProofBar } from "@/components/sections/ProofBar";
 import { Clientes } from "@/components/sections/Clientes";
 import { Services } from "@/components/sections/Services";
@@ -27,12 +29,16 @@ import { UltimosPosts } from "@/components/sections/UltimosPosts";
  * seção abre com a linha serifada em caixa baixa que a nomeia (TituloSecao).
  */
 export default async function HomePage() {
-  const { hero, proofBar, services, cases, method, differentiators, formats, faq, finalCta } =
+  const { hero, proofBar, services, cases, method, differentiators, formats, faq, finalCta, footer } =
     await getSiteContent();
 
   return (
     <>
       <Hero data={hero} />
+      {/* Faixa e linha de servicos vem coladas no hero, como na referencia:
+          sao a transicao entre a promessa e o conteudo. */}
+      <FaixaCorrida frases={footer.tagline} />
+      <LinhaServicos data={services} />
       <ProofBar data={proofBar} />
       <Clientes data={cases} />
       <Services data={services} />

@@ -482,3 +482,32 @@
     }
   }
 }
+
+/**
+ * ---- Faixa corrida ----
+ *
+ * A tarja que atravessa a pagina repetindo o posicionamento, como a da
+ * referencia. O truque e a trilha ser duplicada exatamente: deslocar 50% da
+ * largura total devolve o conteudo a posicao inicial, entao o laco nao tem
+ * emenda visivel e nao precisa de JavaScript medindo nada.
+ *
+ * Sem `prefers-reduced-motion` ela para no lugar em vez de sumir — o texto e
+ * conteudo, nao decoracao, e quem pediu menos movimento continua lendo.
+ */
+@keyframes faixa-corre {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.faixa-trilha {
+  animation: faixa-corre 42s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faixa-trilha {
+    animation: none;
+  }
+}
