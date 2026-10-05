@@ -43,7 +43,7 @@ export default async function HomePage() {
       <LinhaServicos data={services} />
       <Declaracao />
       <ProofBar data={proofBar} />
-      <Clientes data={cases} comLink />
+      <Clientes data={cases} comLink id="cases" />
       <Services data={services} />
       <Method data={method} />
       {differentiators?.items.length ? <Differentiators data={differentiators} /> : null}

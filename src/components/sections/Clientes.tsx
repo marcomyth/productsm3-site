@@ -11,6 +11,10 @@ type Props = {
   /** Link para a página de cases. Na home ele é a ponte para o detalhe, que
       saiu dali; na própria página de cases não faz sentido e é omitido. */
   comLink?: boolean;
+  /** Âncora da seção. Na home ela recebe "cases": com a galeria fora dali, a
+      grade de logos passou a ser o destino de quem clica em Cases no menu, e
+      o mesmo link continua valendo nas duas versões do site. */
+  id?: string;
 };
 
 /**
@@ -25,12 +29,12 @@ type Props = {
  * diferentes (um brasão vertical ao lado de marcas horizontais), e travar a
  * altura é o que faz a fileira parecer alinhada em vez de sete imagens soltas.
  */
-export function Clientes({ data, comLink = false }: Props) {
+export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
   const comLogo = data.filter((item) => item.imageUrl);
   if (comLogo.length === 0) return null;
 
   return (
-    <Section id="clientes" tom="claro">
+    <Section id={id} tom="claro">
       <h2 className="font-sans text-headline-md-mobile font-bold leading-tight t-forte md:text-headline-md">
         Marcas que já fazem parte da nossa operação
       </h2>
