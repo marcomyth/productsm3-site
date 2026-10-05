@@ -32,7 +32,7 @@ export function LinhaServicos({ data }: Props) {
       aria-label="Serviços"
       className="tom-claro w-full border-b border-regua bg-surface-container-low"
     >
-      <ul className="mx-auto flex w-full max-w-content flex-wrap items-center justify-between gap-x-space-lg gap-y-space-xs px-grid-margin-mobile py-space-md md:px-grid-margin-tablet lg:px-grid-margin-desktop">
+      <ul className="mx-auto flex w-full max-w-content flex-wrap items-center justify-start gap-x-space-lg md:justify-between gap-y-space-xs px-grid-margin-mobile py-space-md md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         {data.map((service) => (
           <li key={service.index}>
             <Link

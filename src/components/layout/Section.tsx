@@ -84,7 +84,12 @@ export function Section({
       className={cn(
         "relative w-full overflow-hidden",
         FUNDO[tom],
-        respiro === "grande" ? "py-space-3xl" : "py-space-2xl",
+        // 88px de respiro e a medida da referencia, medida no desktop. No
+        // celular ela vira rolagem vazia entre blocos, entao cede para 56px e
+        // so volta a partir de 768px.
+        respiro === "grande"
+          ? "py-space-2xl md:py-space-3xl"
+          : "py-space-xl md:py-space-2xl",
         className,
       )}
       style={ziguezague ? { clipPath: recorteZiguezague() } : undefined}
@@ -92,11 +97,15 @@ export function Section({
       {fios && (
         <>
           <FundoFios className="pointer-events-none absolute inset-0 h-full w-full" />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-dark-surface/80 via-dark-surface/40 to-transparent"
+          />
           {/* Vinheta: puxa o brilho para o centro e devolve contraste ao texto
               nas bordas, onde os fios cruzam com mais densidade. */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,transparent_0%,var(--color-dark-surface)_85%)] opacity-80"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_55%_45%,transparent_0%,var(--color-dark-surface)_80%)] opacity-90"
           />
         </>
       )}

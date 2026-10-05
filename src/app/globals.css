@@ -186,32 +186,49 @@
   --text-headline-sm--letter-spacing: -0.005em;
   --text-headline-sm--font-weight: 600;
 
-  --text-body-lead: 1.1rem;
-  --text-body-lead--line-height: 1.75rem;
+  /**
+   * `body-lead` estava em 1.1rem, exatamente o mesmo valor de `body-default`:
+   * o paragrafo de destaque nao destacava nada, e os dois tokens eram o mesmo
+   * tamanho com nomes diferentes. Agora ele e de fato um degrau acima.
+   */
+  --text-body-lead: 1.25rem;
+  --text-body-lead--line-height: 2rem;
   --text-body-lead--letter-spacing: 0em;
   --text-body-lead--font-weight: 400;
 
-  /* 1.1rem e o tamanho de corpo da referencia, e foi o valor mais frequente
-     no CSS dela. O site estava em 1rem: 1.6px de diferenca por caractere que,
-     num paragrafo, muda a mancha de texto inteira. */
-  --text-body-default: 1.1rem;
-  --text-body-default--line-height: 1.75rem;
+  /**
+   * Corpo em 18px. A referencia usa 17.6px, e subir esse meio pixel paga: em
+   * tela de celular, que e onde a maior parte do trafego le, 18px e o degrau
+   * em que a linha para de pedir esforco.
+   */
+  --text-body-default: 1.125rem;
+  --text-body-default--line-height: 1.8rem;
   --text-body-default--letter-spacing: 0em;
   --text-body-default--font-weight: 400;
 
-  --text-body-sm: 0.875rem;
-  --text-body-sm--line-height: 1.375rem;
+  /* 15px no lugar de 14px. Este token carrega texto de verdade (marcadores
+     dos servicos, rodape, metadados), nao so legenda, e 14px num paragrafo de
+     tres linhas no celular ja cansa. */
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.5rem;
   --text-body-sm--letter-spacing: 0em;
   --text-body-sm--font-weight: 400;
 
-  --text-label-meta: 0.6875rem;
-  --text-label-meta--line-height: 0.875rem;
-  --text-label-meta--letter-spacing: 0.12em;
+  /**
+   * Rotulos de 11px para 12px. Eles estao em caixa alta e com bastante
+   * espacamento entre letras, o que ja dificulta; a 11px, na navegacao e na
+   * linha de servicos do celular, viravam enfeite ilegivel. O espacamento
+   * tambem cedeu um ponto, porque com a letra maior ele nao precisa trabalhar
+   * tanto para separar.
+   */
+  --text-label-meta: 0.75rem;
+  --text-label-meta--line-height: 1rem;
+  --text-label-meta--letter-spacing: 0.1em;
   --text-label-meta--font-weight: 500;
 
-  --text-label-index: 0.6875rem;
-  --text-label-index--line-height: 0.875rem;
-  --text-label-index--letter-spacing: 0.14em;
+  --text-label-index: 0.75rem;
+  --text-label-index--line-height: 1rem;
+  --text-label-index--letter-spacing: 0.12em;
   --text-label-index--font-weight: 600;
 
   /**

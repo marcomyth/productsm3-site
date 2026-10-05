@@ -60,13 +60,19 @@ export function Hero({ data }: Props) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-gutter-tablet border-t border-regua pt-space-md sm:grid-cols-3">
+        {/* No celular as tres perguntas viram uma lista empilhada e cada uma
+            ganha regua propria: sem isso elas encostavam umas nas outras e
+            liam como um paragrafo so. Em tela larga voltam a ser colunas. */}
+        <ul className="grid grid-cols-1 gap-space-sm border-t border-regua pt-space-md sm:grid-cols-3 sm:gap-gutter-tablet">
           {data.meta.map((question) => (
-            <span key={question} className="font-body-sm text-body-sm font-medium t-fraco">
+            <li
+              key={question}
+              className="border-b border-regua pb-space-sm font-body-sm text-body-sm font-medium t-fraco last:border-b-0 sm:border-b-0 sm:pb-0"
+            >
               {question}
-            </span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </Section>
   );
