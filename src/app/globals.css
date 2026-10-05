@@ -193,8 +193,11 @@
   --text-body-lead--letter-spacing: 0em;
   --text-body-lead--font-weight: 400;
 
-  --text-body-default: 1rem;
-  --text-body-default--line-height: 1.625rem;
+  /* 1.1rem e o tamanho de corpo da referencia, e foi o valor mais frequente
+     no CSS dela. O site estava em 1rem: 1.6px de diferenca por caractere que,
+     num paragrafo, muda a mancha de texto inteira. */
+  --text-body-default: 1.1rem;
+  --text-body-default--line-height: 1.75rem;
   --text-body-default--letter-spacing: 0em;
   --text-body-default--font-weight: 400;
 

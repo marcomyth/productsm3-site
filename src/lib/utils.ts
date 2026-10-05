@@ -24,20 +24,21 @@ export function externalLinkProps(url: string) {
 }
 
 /**
- * Botão de ação, no formato da referência: pílula, caixa alta, e grande o
- * bastante para ser o próximo passo óbvio da seção.
+ * Botão de ação, no formato da referência: pílula, caixa alta, e deliberadamente
+ * grande — lá ele tem 1.8rem, maior que vários dos títulos da própria página.
  *
- * A referência usa 32px nesse botão, maior que vários dos títulos dela. Ali
- * funciona porque é magenta sobre preto. Com o verde de ação da M3, que é
- * muito mais claro, 32px vira um bloco de cor que briga com o título — então
- * ficou em 20px, que mantém a presença sem virar o assunto da tela.
+ * Eu tinha reduzido isso para 20px por conta própria, com o argumento de que
+ * o verde da M3 é muito mais claro que o magenta deles e pesaria demais. O
+ * pedido era fidelidade, e o tamanho do botão é uma das coisas que mais
+ * define a aparência da referência, então voltou ao tamanho dela. Se pesar na
+ * tela, o ajuste é este número.
  *
  * Vive aqui como constante, e não como componente, porque os cinco lugares
  * que usam isso precisam de tags diferentes: `Link` do Next na navegação
  * interna e `<a>` cru nos que vão pro WhatsApp.
  */
 export const BOTAO_ACAO =
-  "inline-flex items-center justify-center rounded-full bg-action px-space-lg py-space-sm font-sans text-headline-sm font-semibold uppercase tracking-[0.08em] text-on-action shadow-sm transition-all duration-300 hover:brightness-95";
+  "inline-flex max-w-full items-center justify-center rounded-full bg-action px-space-md py-space-sm text-center font-sans text-[1.25rem] font-bold uppercase leading-tight tracking-[0.04em] text-on-action shadow-sm transition-all duration-300 hover:brightness-95 md:px-space-lg md:py-space-md md:text-[1.8rem]";
 
 /** Mesma pílula, na medida que caiba na barra de 72px do cabeçalho. */
 export const BOTAO_ACAO_COMPACTO =
