@@ -29,7 +29,10 @@ export function FinalCta({ data }: Props) {
           embaixo dos dois: e a composicao do fecho da referencia, e o unico
           lugar em que ela centraliza alguma coisa. */}
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-md lg:grid-cols-12">
-        <p className="font-serif text-headline-md-mobile font-normal leading-tight t-acento md:text-headline-md lg:col-span-4">
+        {/* Mesma proporcao das demais secoes: a serifada e maior que a
+            afirmacao. Aqui ela estava menor, e o fecho da pagina era a unica
+            parte do site com a hierarquia invertida. */}
+        <p className="font-serif text-display-xl-mobile font-normal leading-[1.1] t-acento md:text-display-xl lg:col-span-4">
           {data.eyebrow}
         </p>
         <div className="lg:col-span-8" />

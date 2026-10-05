@@ -57,7 +57,10 @@ export function Footer({ content }: Props) {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-gutter-desktop gap-y-space-lg sm:grid-cols-3 md:col-span-8">
+          {/* Duas colunas, nao tres: o conteudo tem dois grupos de links, e uma
+              grade de tres deixava o terco da direita vazio justo no fim da
+              pagina, onde o olho repara. */}
+          <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg sm:grid-cols-2 md:col-span-8">
             {content.columns.map((col) => (
               <div key={col.title} className="flex flex-col space-y-space-xs">
                 <span className="font-label-index text-label-index font-semibold uppercase tracking-[0.14em] text-on-dark">
