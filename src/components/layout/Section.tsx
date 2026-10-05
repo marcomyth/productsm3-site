@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { FundoFios } from "@/components/layout/FundoFios";
 
 /**
  * Invólucro de seção da home.
@@ -56,6 +57,8 @@ type Props = {
   ziguezague?: boolean;
   /** Obrigatória quando `tom` é "foto". Sem ela a seção cai no fundo escuro. */
   fotoUrl?: string;
+  /** Fundo animado de fios luminosos. Só faz sentido em tom escuro. */
+  fios?: boolean;
   /** Texto alternativo não se aplica: a foto é decorativa e fica no fundo. */
   className?: string;
   /** Respiro vertical. O padrão casa com os 80px da referência. */
@@ -69,6 +72,7 @@ export function Section({
   largura = "normal",
   ziguezague = false,
   fotoUrl,
+  fios = false,
   className,
   respiro = "normal",
 }: Props) {
@@ -85,6 +89,18 @@ export function Section({
       )}
       style={ziguezague ? { clipPath: recorteZiguezague() } : undefined}
     >
+      {fios && (
+        <>
+          <FundoFios className="pointer-events-none absolute inset-0 h-full w-full" />
+          {/* Vinheta: puxa o brilho para o centro e devolve contraste ao texto
+              nas bordas, onde os fios cruzam com mais densidade. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,transparent_0%,var(--color-dark-surface)_85%)] opacity-80"
+          />
+        </>
+      )}
+
       {comFoto && (
         <>
           <div

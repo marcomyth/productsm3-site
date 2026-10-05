@@ -18,15 +18,16 @@ type Props = {
  * maior (cerca de 64px), enquanto a caixa alta pesada fica restrita à página
  * de serviço. Eu tinha aplicado caixa alta no site todo.
  *
- * A foto entra como fundo da seção (`tom="foto"`), o que traz junto o véu de
- * contraste e o desfoque ligado ao scroll — o único efeito de scroll que a
- * referência usa, e que até aqui estava construído mas sem lugar.
+ * No lugar da foto, um fundo animado de fios luminosos, desenhado em canvas
+ * e reagindo ao ponteiro. A referência usa uma malha de pontos em movimento
+ * no mesmo lugar; a foto da estação de trabalho saiu junto com as demais
+ * imagens do site, por decisão do cliente: ficam só as logos.
  */
 export function Hero({ data }: Props) {
   return (
     <Section
-      tom="foto"
-      fotoUrl={data.figure.imageUrl}
+      tom="escuro"
+      fios
       largura="ampla"
       respiro="grande"
       className="pt-[9rem] md:pt-[12rem]"

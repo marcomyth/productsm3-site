@@ -41,20 +41,6 @@ export function Cases({ data }: Props) {
                   — e no tamanho anterior o navegador ampliava e borrava. Agora
                   ele reduz, que é a operação que preserva o traço. */}
               <div className="relative aspect-[16/10] overflow-hidden rounded border border-regua bg-surface">
-                {item.backgroundUrl && (
-                  <>
-                    <Image
-                      src={item.backgroundUrl}
-                      alt=""
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                    {/* Véu quase opaco: a foto fica como atmosfera, não como
-                        assunto, e o contraste da logo não depende dela. */}
-                    <div className="absolute inset-0 bg-surface/[0.8]" />
-                  </>
-                )}
                 {item.imageUrl ? (
                   <div className="absolute inset-0 flex items-center justify-center p-space-md">
                     {/* Caixa fixa com `contain`: cada logo entra no próprio
