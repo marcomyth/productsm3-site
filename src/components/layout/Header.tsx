@@ -39,11 +39,41 @@ export function Header({ content }: Props) {
   const solida = rolou || open || !naHome;
 
   React.useEffect(() => {
-    const aoRolar = () => setRolou(window.scrollY > 24);
-    aoRolar();
+    /**
+     * A barra só vira sólida depois que o hero termina, e não aos 24px de
+     * rolagem.
+     *
+     * Com o limite curto, bastava rolar um dedo para a barra opaca aparecer
+     * por cima da animação: o fundo a 90% não casa com os fios atrás dele e a
+     * borda de baixo marcava uma linha atravessando a tela. Esperando o hero
+     * passar, a barra só ganha corpo quando já há conteúdo claro atrás dela,
+     * que é onde ela precisa de corpo.
+     *
+     * A altura vem do próprio hero, medida no DOM, em vez de um número fixo:
+     * ela muda com a largura da tela, com o tamanho do título e com a quebra
+     * de linha do texto. Um valor fixo acertaria numa tela e erraria em todas
+     * as outras.
+     */
+    const hero = naHome ? document.querySelector<HTMLElement>("main > section") : null;
+    let limite = 24;
+
+    const medir = () => {
+      limite = hero ? Math.max(24, hero.offsetHeight - 72) : 24;
+      aoRolar();
+    };
+    const aoRolar = () => setRolou(window.scrollY > limite);
+
+    medir();
     window.addEventListener("scroll", aoRolar, { passive: true });
-    return () => window.removeEventListener("scroll", aoRolar);
-  }, []);
+
+    const ro = hero ? new ResizeObserver(medir) : null;
+    if (hero && ro) ro.observe(hero);
+
+    return () => {
+      window.removeEventListener("scroll", aoRolar);
+      ro?.disconnect();
+    };
+  }, [naHome]);
 
   return (
     <header
