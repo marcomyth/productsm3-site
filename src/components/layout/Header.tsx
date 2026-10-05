@@ -57,38 +57,40 @@ export function Header({ content }: Props) {
       {/* Mesma medida larga do hero, pra logo alinhar com a primeira palavra
           do título em vez de encostar na borda da tela. */}
       <div className="mx-auto flex h-[72px] w-full max-w-content-wide items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
-        <Link href="/" className="group flex items-center gap-4">
+        {/* Só a marca, sem rótulo ao lado. O "CONSULTORIA" que ficava aqui,
+            separado por uma régua, não tem equivalente na referência e era o
+            que deixava o canto esquerdo apertado. Continua no conteúdo
+            (`header.tagline`), disponível para outro lugar. */}
+        <Link href="/" className="flex items-center">
           <Image
             src="/images/logo-m3-claro.png"
             alt="Agência M3"
             width={548}
             height={442}
             priority
-            className="h-11 w-auto"
+            className="h-12 w-auto"
           />
-          <span className="ml-1 hidden border-l border-regua pl-3 font-label-meta text-label-meta uppercase tracking-wider t-fraco sm:inline-block">
-            {content.tagline}
-          </span>
         </Link>
 
-        {/* Caixa alta e espaçado, como lá. Em caixa normal os rótulos
-            competiam com o corpo do texto da página; em caixa alta e 11px eles
-            leem como navegação e somem quando não são procurados. */}
-        <nav className="hidden items-center gap-space-md lg:flex" aria-label="Principal">
-          {content.navLinks.map((link) => (
-            <Link
-              key={link.url}
-              href={link.url}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] t-fraco transition-colors hover:t-forte"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
+        {/* Navegação e botão num grupo só, encostados à direita, como lá.
+            Separados — navegação ao centro e botão na ponta — os três blocos
+            do cabeçalho ficavam equidistantes e nada parecia pertencer a nada.
+            Juntos, a leitura é: marca de um lado, o que fazer do outro. */}
         <div className="flex items-center gap-space-sm">
+          <nav className="hidden items-center gap-space-md lg:flex" aria-label="Principal">
+            {content.navLinks.map((link) => (
+              <Link
+                key={link.url}
+                href={link.url}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] t-fraco transition-colors hover:t-forte"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
           {/* Compacto e discreto, no formato do "fale conosco" deles: a barra
               é navegação, não o lugar de gritar. O botão grande em pílula
               continua no hero e no fecho da página, onde ele é o assunto. */}
