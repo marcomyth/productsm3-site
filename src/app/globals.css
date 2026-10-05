@@ -135,11 +135,9 @@
   --radius-full: 9999px;
 
   /* ---- Tipografia — serif editorial (display/headline) + sans utilitário (body/label) ---- */
-  /* A serifada saiu de uso. O token fica apontando so para a pilha do
-     sistema: sem isso, `var(--font-instrument-serif)` sem fallback deixaria a
-     declaracao invalida e qualquer `font-serif` esquecido herdaria a sans sem
-     avisar. */
-  --font-serif: ui-serif, Georgia, serif;
+  /* Serifada so na linha de destaque das secoes, nunca no corpo nem na
+     afirmacao principal. Ver TituloSecao.tsx. */
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /**

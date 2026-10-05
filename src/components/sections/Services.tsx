@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
+import { TituloSecao } from "@/components/layout/TituloSecao";
 import type { ServiceItem } from "@/lib/types";
 
 type Props = {
   data: ServiceItem[];
-  /** Número da seção, calculado na ordem de renderização em page.tsx. */
-  index: string;
 };
 
 /**
@@ -17,24 +16,15 @@ type Props = {
  * Escura, seguindo a alternância da referência, onde o bloco que explica o
  * serviço vem em fundo escuro entre dois claros.
  */
-export function Services({ data, index }: Props) {
+export function Services({ data }: Props) {
   return (
     <Section id="servicos" tom="escuro">
-      <div className="mb-space-xl flex flex-col justify-between border-b border-regua pb-space-sm md:flex-row md:items-end">
-        <div>
-          <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
-            {index} / Áreas de Domínio
-          </span>
-          <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
-            Funil sinérgico de venda
-          </h2>
-        </div>
-        <p className="mt-space-xs max-w-md font-body-sm text-body-sm t-fraco md:mt-0">
-          Elevamos a qualidade dos seus processos de marketing sem elevar o custo operacional.
-          Implementamos e gerenciamos o funil sinérgico de vendas com transparência total, para que
-          cada atividade da sua operação de tráfego trabalhe pelos objetivos do seu negócio.
-        </p>
-      </div>
+      <TituloSecao
+        destaque="áreas de domínio"
+        afirmacao="Funil sinérgico de venda"
+        descricao="Elevamos a qualidade dos seus processos de marketing sem elevar o custo operacional. Implementamos e gerenciamos o funil sinérgico de vendas com transparência total, para que cada atividade da sua operação de tráfego trabalhe pelos objetivos do seu negócio."
+        className="mb-space-xl"
+      />
 
       <div className="flex flex-col divide-y divide-regua">
         {data.map((service) => (

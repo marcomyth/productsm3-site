@@ -1,11 +1,10 @@
 import { Plus } from "lucide-react";
 import { Section } from "@/components/layout/Section";
+import { TituloSecao } from "@/components/layout/TituloSecao";
 import type { FaqContent } from "@/lib/types";
 
 type Props = {
   data: FaqContent;
-  /** Número da seção, calculado na ordem de renderização em page.tsx. */
-  index: string;
 };
 
 /**
@@ -21,24 +20,17 @@ type Props = {
  * Em gradiente, como na referência, onde o FAQ é a única seção que troca de
  * cor no meio dela mesma.
  */
-export function Faq({ data, index }: Props) {
+export function Faq({ data }: Props) {
   if (data.items.length === 0) return null;
 
   return (
     <Section id="faq" tom="gradiente">
-      <div className="mb-space-xl max-w-3xl">
-        <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
-          {index} / {data.eyebrow}
-        </span>
-        <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
-          {data.title}
-        </h2>
-        {data.description && (
-          <p className="mt-space-xs font-sans text-body-lead leading-relaxed t-fraco">
-            {data.description}
-          </p>
-        )}
-      </div>
+      <TituloSecao
+        destaque={data.eyebrow}
+        afirmacao={data.title}
+        descricao={data.description}
+        className="mb-space-xl"
+      />
 
       {/* Duas colunas, como na referência, onde os acordeões ficam em duas
           metades e não numa lista única: com `columns` em vez de grid, os

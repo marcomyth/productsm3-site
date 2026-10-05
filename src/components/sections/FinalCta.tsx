@@ -4,8 +4,6 @@ import type { FinalCtaContent } from "@/lib/types";
 
 type Props = {
   data: FinalCtaContent;
-  /** Número da seção, calculado na ordem de renderização em page.tsx. */
-  index: string;
 };
 
 /**
@@ -24,23 +22,27 @@ type Props = {
  * As dores e os metadados, que a referência não tem, descem para depois de
  * uma régua: continuam na página, sem disputar a linha do título.
  */
-export function FinalCta({ data, index }: Props) {
+export function FinalCta({ data }: Props) {
   return (
     <Section id="auditoria" tom="claro" respiro="grande">
-      <span className="block font-label-index text-label-index font-medium uppercase tracking-[0.22em] t-acento">
-        {index} / {data.eyebrow}
-      </span>
+      {/* Titulo estreito a esquerda e texto ao lado, com o botao centralizado
+          embaixo dos dois: e a composicao do fecho da referencia, e o unico
+          lugar em que ela centraliza alguma coisa. */}
+      <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-md lg:grid-cols-12">
+        <p className="font-serif text-headline-md-mobile font-normal leading-tight t-acento md:text-headline-md lg:col-span-4">
+          {data.eyebrow}
+        </p>
+        <div className="lg:col-span-8" />
 
-      <div className="mt-space-sm grid grid-cols-1 gap-x-gutter-desktop gap-y-space-md lg:grid-cols-12">
-        <h2 className="font-sans text-display-xl-mobile font-bold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-xl lg:col-span-7">
+        <h2 className="font-sans text-display-lg-mobile font-extrabold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-lg lg:col-span-4">
           {data.title}
         </h2>
-        <p className="font-sans text-body-lead font-normal leading-relaxed t-fraco lg:col-span-5 lg:pt-space-2xs">
+        <p className="font-sans text-body-default leading-relaxed t-fraco lg:col-span-7 lg:pt-space-2xs">
           {data.description}
         </p>
       </div>
 
-      <div className="mt-space-lg">
+      <div className="mt-space-xl flex justify-center">
         <a href={data.ctaUrl} {...externalLinkProps(data.ctaUrl)} className={BOTAO_ACAO}>
           {data.ctaLabel}
         </a>

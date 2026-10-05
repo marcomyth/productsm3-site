@@ -1,10 +1,9 @@
 import { Section } from "@/components/layout/Section";
+import { TituloSecao } from "@/components/layout/TituloSecao";
 import type { DifferentiatorsContent } from "@/lib/types";
 
 type Props = {
   data: DifferentiatorsContent;
-  /** Número da seção, calculado na ordem de renderização em page.tsx. */
-  index: string;
 };
 
 /**
@@ -13,24 +12,17 @@ type Props = {
  * "objeto separado", e aqui os quatro pontos são um argumento só, lido em
  * sequência.
  */
-export function Differentiators({ data, index }: Props) {
+export function Differentiators({ data }: Props) {
   if (data.items.length === 0) return null;
 
   return (
     <Section id="diferenciais" tom="claro-alt">
-      <div className="mb-space-xl max-w-3xl">
-        <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
-          {index} / {data.eyebrow}
-        </span>
-        <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
-          {data.title}
-        </h2>
-        {data.description && (
-          <p className="mt-space-xs font-sans text-body-lead leading-relaxed t-fraco">
-            {data.description}
-          </p>
-        )}
-      </div>
+      <TituloSecao
+        destaque={data.eyebrow}
+        afirmacao={data.title}
+        descricao={data.description}
+        className="mb-space-xl"
+      />
 
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg md:grid-cols-2">
         {data.items.map((item) => (

@@ -10,35 +10,53 @@ type Props = {
 };
 
 /**
- * Hero no formato da referência: fundo escuro em gradiente, conteúdo na
- * medida larga (1600px, a única seção que abre além dos 1140px), texto à
- * esquerda e imagem à direita.
+ * Hero no arranjo da referência: imagem à esquerda, texto à direita.
  *
- * O título caiu de 78px para 40px junto com a escala nova. Não é perda de
- * presença: a referência ganha presença pelo fundo escuro e pelo botão em
- * pílula, não pelo corpo da letra.
+ * A inversão não é detalhe. Lá o container é `row-reverse`, e o bloco de
+ * texto encostado na direita com a peça visual à esquerda é a primeira coisa
+ * que diferencia aquela página de uma landing comum. Eu tinha lido isso no
+ * CSS e deixado passar, montando texto à esquerda como todo mundo faz.
+ *
+ * O botão ocupa a largura inteira da coluna de texto, também como lá: não é
+ * um botão com letra grande, é uma barra, e é o elemento de maior peso visual
+ * da tela depois do título.
  */
 export function Hero({ data }: Props) {
   return (
-    <Section tom="gradiente" largura="ampla" respiro="grande">
+    <Section tom="gradiente" largura="ampla" respiro="grande" className="pt-[8rem] md:pt-[11rem]">
       <div className="grid grid-cols-1 items-center gap-gutter-desktop lg:grid-cols-12">
-        <div className="flex flex-col justify-between space-y-space-md lg:col-span-6 lg:pr-space-md">
-          <div className="space-y-space-xs">
-            <div className="inline-flex items-center gap-2 rounded-full border border-regua bg-painel px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-secondary-fixed-dim" />
-              <span className="font-label-meta text-[10.5px] font-medium uppercase tracking-[0.2em] t-fraco">
-                {data.eyebrow}
-              </span>
-            </div>
-            <h1 className="mt-space-xs font-sans text-display-xl-mobile font-bold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-xl">
-              {data.title}
-            </h1>
+        {/* Primeiro no DOM e à esquerda na tela. A referência inverte pelo
+            CSS, mas a ordem visual é esta, e aqui ela já nasce certa — assim
+            quem navega por teclado ou leitor de tela percorre a página na
+            mesma ordem em que ela é vista. */}
+        <div className="order-2 lg:order-1 lg:col-span-5">
+          <div className="relative aspect-[17/10] overflow-hidden rounded-lg border border-regua">
+            <Image
+              src={data.figure.imageUrl}
+              alt={data.figure.imageAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 42vw"
+              className="object-cover object-center"
+              priority
+            />
           </div>
-          <p className="max-w-2xl pt-space-2xs font-sans text-body-lead font-normal leading-relaxed t-fraco">
+        </div>
+
+        <div className="order-1 space-y-space-md lg:order-2 lg:col-span-7 lg:pl-space-lg">
+          <span className="block font-label-meta text-label-meta font-semibold uppercase tracking-[0.2em] t-acento">
+            {data.eyebrow}
+          </span>
+
+          <h1 className="font-sans text-display-xl-mobile font-bold uppercase leading-[1.1] tracking-[0.01em] t-forte md:text-display-xl">
+            {data.title}
+          </h1>
+
+          <p className="max-w-xl font-sans text-body-lead font-normal leading-relaxed t-fraco">
             {data.subtitle}
           </p>
-          <div className="flex flex-wrap items-center gap-space-md pt-space-xs">
-            <Link href={data.primaryCta.url} className={BOTAO_ACAO}>
+
+          <div className="space-y-space-sm pt-space-xs">
+            <Link href={data.primaryCta.url} className={`${BOTAO_ACAO} w-full`}>
               {data.primaryCta.label}
             </Link>
             <Link
@@ -51,37 +69,13 @@ export function Hero({ data }: Props) {
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-gutter-tablet border-t border-regua pt-space-lg sm:grid-cols-3">
+
+          <div className="grid grid-cols-1 gap-gutter-tablet border-t border-regua pt-space-md sm:grid-cols-3">
             {data.meta.map((question) => (
-              <div key={question} className="pt-space-xs">
-                <span className="block font-body-sm text-body-sm font-medium t-texto">
-                  {question}
-                </span>
-              </div>
+              <span key={question} className="font-body-sm text-body-sm font-medium t-fraco">
+                {question}
+              </span>
             ))}
-          </div>
-        </div>
-
-        <div className="mt-space-md flex flex-col lg:col-span-6 lg:mt-0">
-          <div className="rounded-lg border border-regua bg-painel p-2.5 shadow-sm">
-            {/* 17:10 é o recorte da foto, que corta fora teto, chão e cadeira:
-                os monitores já ocupavam 96% da largura, então o desperdício
-                era todo vertical.
-
-                As duas colunas são metades iguais, como na referência. A
-                divisão 7/5 anterior existia porque o título tinha 78px e
-                quebrava em quatro linhas numa caixa de 440px; com 40px ele
-                cabe em meia tela. */}
-            <div className="relative aspect-[17/10] overflow-hidden rounded bg-dark-surface">
-              <Image
-                src={data.figure.imageUrl}
-                alt={data.figure.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center transition-all duration-700 hover:scale-[1.02]"
-                priority
-              />
-            </div>
           </div>
         </div>
       </div>

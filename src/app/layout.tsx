@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { getSiteContent } from "@/lib/content";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -14,10 +14,20 @@ const inter = Inter({
 });
 
 /**
- * A Instrument Serif saiu daqui junto com o `font-serif` do site: a estrutura
- * que o cliente pediu resolve titulo em sans pesado e caixa alta, e manter a
- * fonte carregada significaria baixar um arquivo que nenhuma regra usa.
+ * A referencia usa duas familias, nao uma: sans pesada em caixa alta para a
+ * afirmacao, e uma segunda face de display em caixa baixa, na cor de acento,
+ * para a linha que nomeia a secao ("metodologia e entregaveis", "dois
+ * formatos,"). A Instrument Serif cumpre exatamente esse segundo papel, e e
+ * por isso que ela voltou depois de eu te-la removido: sem ela o site ficava
+ * com uma familia so, ou seja, menos parecido com a referencia, nao mais.
  */
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-instrument-serif",
+  display: "swap",
+  fallback: ["Georgia", "ui-serif", "serif"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getSiteContent();
@@ -86,7 +96,7 @@ export default async function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={inter.variable}
+      className={`${inter.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen bg-background font-sans text-body-default text-foreground antialiased">
         <script

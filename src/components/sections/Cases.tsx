@@ -1,31 +1,23 @@
 import Image from "next/image";
 import { ImageOff } from "lucide-react";
 import { Section } from "@/components/layout/Section";
+import { TituloSecao } from "@/components/layout/TituloSecao";
 import { cn } from "@/lib/utils";
 import type { CaseStudy } from "@/lib/types";
 
 type Props = {
   data: CaseStudy[];
-  /** Número da seção, calculado na ordem de renderização em page.tsx. */
-  index: string;
 };
 
-export function Cases({ data, index }: Props) {
+export function Cases({ data }: Props) {
   return (
     <Section id="cases" tom="claro">
-      <div className="mb-space-xl flex flex-col justify-between border-b border-regua pb-space-sm md:flex-row md:items-end">
-        <div>
-          <span className="font-label-index text-label-index uppercase tracking-[0.2em] t-acento">
-            {index} / Evidências Práticas
-          </span>
-          <h2 className="mt-space-2xs font-sans text-display-lg-mobile font-extrabold uppercase tracking-[0.01em] t-forte md:text-display-lg">
-            Cases de Sucesso
-          </h2>
-        </div>
-        <span className="font-label-meta text-label-meta uppercase t-apagado">
-          Período de Análise: 2022–2026
-        </span>
-      </div>
+      <TituloSecao
+        destaque="evidências práticas"
+        afirmacao="Cases de Sucesso"
+        descricao="Período de análise: 2022 a 2026."
+        className="mb-space-xl"
+      />
 
       {/* Sem `items-start`: o padrão do grid é esticar, e é isso que faz os
           dois cards de uma mesma linha terminarem na mesma altura, ainda
