@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import type { CaseStudy } from "@/lib/types";
 
@@ -6,6 +8,9 @@ type Props = {
   /** Vem da mesma lista dos cases: a logo e o nome já estão lá, e duplicar
       isso num campo novo garantiria que um dia os dois divergissem. */
   data: CaseStudy[];
+  /** Link para a página de cases. Na home ele é a ponte para o detalhe, que
+      saiu dali; na própria página de cases não faz sentido e é omitido. */
+  comLink?: boolean;
 };
 
 /**
@@ -20,7 +25,7 @@ type Props = {
  * diferentes (um brasão vertical ao lado de marcas horizontais), e travar a
  * altura é o que faz a fileira parecer alinhada em vez de sete imagens soltas.
  */
-export function Clientes({ data }: Props) {
+export function Clientes({ data, comLink = false }: Props) {
   const comLogo = data.filter((item) => item.imageUrl);
   if (comLogo.length === 0) return null;
 
@@ -45,6 +50,18 @@ export function Clientes({ data }: Props) {
           </li>
         ))}
       </ul>
+
+      {comLink && (
+        <div className="mt-space-xl">
+          <Link
+            href="/cases"
+            className="group inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest t-acento transition-colors hover:t-forte"
+          >
+            Ver os resultados de cada uma
+            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+      )}
     </Section>
   );
 }

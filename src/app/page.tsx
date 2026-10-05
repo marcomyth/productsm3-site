@@ -6,7 +6,6 @@ import { Declaracao } from "@/components/sections/Declaracao";
 import { ProofBar } from "@/components/sections/ProofBar";
 import { Clientes } from "@/components/sections/Clientes";
 import { Services } from "@/components/sections/Services";
-import { Cases } from "@/components/sections/Cases";
 import { Method } from "@/components/sections/Method";
 import { Differentiators } from "@/components/sections/Differentiators";
 import { Formats } from "@/components/sections/Formats";
@@ -17,7 +16,7 @@ import { UltimosPosts } from "@/components/sections/UltimosPosts";
 /**
  * A ordem das seções é a argumentação da página: o problema (Hero), o tamanho
  * dele (ProofBar), com quem já trabalhamos (Clientes), o que fazemos
- * (Services), a prova do que entregamos (Cases), como fazemos (Method), por
+ * (Services), a prova do que entregamos (Clientes), como fazemos (Method), por
  * que nós (Differentiators), como contratar (Formats), o que ainda pesa na
  * decisão (Faq) e o próximo passo (FinalCta).
  *
@@ -32,6 +31,8 @@ import { UltimosPosts } from "@/components/sections/UltimosPosts";
 export default async function HomePage() {
   const { hero, proofBar, services, cases, method, differentiators, formats, faq, finalCta, footer } =
     await getSiteContent();
+  // `cases` continua sendo lido: a grade de logos vive dele. O que saiu da
+  // home foi a galeria com os sete cards, que agora tem pagina propria.
 
   return (
     <>
@@ -42,9 +43,8 @@ export default async function HomePage() {
       <LinhaServicos data={services} />
       <Declaracao />
       <ProofBar data={proofBar} />
-      <Clientes data={cases} />
+      <Clientes data={cases} comLink />
       <Services data={services} />
-      <Cases data={cases} />
       <Method data={method} />
       {differentiators?.items.length ? <Differentiators data={differentiators} /> : null}
       {formats?.items.length ? <Formats data={formats} /> : null}

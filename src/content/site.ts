@@ -68,7 +68,7 @@ export const siteContent: SiteContent = {
     // subia a página em vez de acompanhá-la.
     navLinks: [
       { label: "Serviços", url: "/#servicos" },
-      { label: "Cases", url: "/#cases" },
+      { label: "Cases", url: "/cases" },
       { label: "Método", url: "/#metodo" },
       { label: "Auditoria", url: "/#auditoria" },
       { label: "Blog", url: "/blog" },
@@ -100,7 +100,7 @@ export const siteContent: SiteContent = {
       {
         title: "Estrutura",
         links: [
-          { label: "Índice de Cases", url: "/#cases" },
+          { label: "Índice de Cases", url: "/cases" },
           { label: "O Método M3", url: "/#metodo" },
           { label: "Liderança Técnica", url: "/#auditoria" },
           { label: "Requisitar Parecer", url: "/#auditoria" },
@@ -122,7 +122,7 @@ export const siteContent: SiteContent = {
     subtitle:
       "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
     primaryCta: { label: "Conversar com nossos especialistas", url: "/#auditoria" },
-    secondaryCta: { label: "Cases de sucesso", url: "/#cases" },
+    secondaryCta: { label: "Cases de sucesso", url: "/cases" },
     meta: [
       "Você contrata marketing na fé e reza para vender mais?",
       "Já está na terceira empresa de marketing e nenhuma dá resultado?",

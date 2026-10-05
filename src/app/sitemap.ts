@@ -7,6 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     { url: siteConfig.url, changeFrequency: "weekly", priority: 1 },
+    // Os cases saíram da home e ganharam página própria. Sem esta linha, a
+    // página existiria sem nunca ser anunciada para busca.
+    { url: `${siteConfig.url}/cases`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${siteConfig.url}/blog`, changeFrequency: "daily", priority: 0.8 },
     { url: `${siteConfig.url}/privacidade`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteConfig.url}/compliance`, changeFrequency: "yearly", priority: 0.3 },
