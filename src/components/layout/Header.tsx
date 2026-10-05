@@ -2,10 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import type { SiteHeader } from "@/lib/types";
-import { cn, externalLinkProps, BOTAO_ACAO_COMPACTO } from "@/lib/utils";
+import { cn, externalLinkProps } from "@/lib/utils";
 
 type Props = {
   content: SiteHeader;
@@ -14,17 +15,45 @@ type Props = {
 /**
  * Barra fixa do topo.
  *
- * Escura, acompanhando o hero e a referência. O que viabilizou isso foi a
- * logo: `logo-m3.png` é um traço todo escuro (luminância média 16,7, zero
- * pixel claro) e desapareceria aqui, mas `logo-m3-claro.png`, que o rodapé
- * já usava, é o inverso (241,4, tudo claro). A marca do cliente não precisou
- * ser alterada, só a variante certa precisou ser usada.
+ * Transparente sobre o hero e sólida depois dele, como na referência. Essa é a
+ * diferença que fazia o topo do nosso site parecer cortado: com barra sólida
+ * desde o começo, a peça visual do hero começa abaixo dela e a página abre com
+ * uma faixa chapada. Transparente, a animação de fios sobe até a borda da tela
+ * e o topo lê como uma coisa só.
+ *
+ * A troca é por posição de rolagem (`scrollY > 24`), combinada com a rota: só
+ * a home tem hero atrás da barra, então nas páginas internas ela já nasce
+ * sólida, senão o texto delas começaria por baixo de uma barra invisível.
+ *
+ * A logo clara é obrigatória aqui: `logo-m3.png` é um traço todo escuro
+ * (luminância média 16,7, zero pixel claro) e sumiria tanto sobre o hero
+ * quanto sobre a barra escura.
  */
 export function Header({ content }: Props) {
   const [open, setOpen] = React.useState(false);
+  const [rolou, setRolou] = React.useState(false);
+  // Só a home tem hero atrás da barra. Em /privacidade, /compliance e no blog
+  // o conteúdo começa no topo, e barra transparente o deixaria passar por
+  // baixo dela.
+  const naHome = usePathname() === "/";
+  const solida = rolou || open || !naHome;
+
+  React.useEffect(() => {
+    const aoRolar = () => setRolou(window.scrollY > 24);
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => window.removeEventListener("scroll", aoRolar);
+  }, []);
 
   return (
-    <header className="tom-escuro fixed inset-x-0 top-0 z-50 w-full border-b border-regua bg-dark-surface/90 shadow-[0_1px_14px_rgba(0,0,0,0.18)] backdrop-blur-md">
+    <header
+      className={cn(
+        "tom-escuro fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300",
+        solida
+          ? "border-b border-regua bg-dark-surface/90 shadow-[0_1px_14px_rgba(0,0,0,0.18)] backdrop-blur-md"
+          : "border-b border-transparent bg-transparent",
+      )}
+    >
       {/* Mesma medida larga do hero, pra logo alinhar com a primeira palavra
           do título em vez de encostar na borda da tela. */}
       <div className="mx-auto flex h-[72px] w-full max-w-content-wide items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
@@ -42,14 +71,17 @@ export function Header({ content }: Props) {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-space-md md:flex" aria-label="Principal">
+        {/* Caixa alta e espaçado, como lá. Em caixa normal os rótulos
+            competiam com o corpo do texto da página; em caixa alta e 11px eles
+            leem como navegação e somem quando não são procurados. */}
+        <nav className="hidden items-center gap-space-md lg:flex" aria-label="Principal">
           {content.navLinks.map((link) => (
             <Link
               key={link.url}
               href={link.url}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="font-body-sm text-body-sm tracking-wide t-fraco transition-colors hover:t-forte"
+              className="font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] t-fraco transition-colors hover:t-forte"
             >
               {link.label}
             </Link>
@@ -57,16 +89,19 @@ export function Header({ content }: Props) {
         </nav>
 
         <div className="flex items-center gap-space-sm">
+          {/* Compacto e discreto, no formato do "fale conosco" deles: a barra
+              é navegação, não o lugar de gritar. O botão grande em pílula
+              continua no hero e no fecho da página, onde ele é o assunto. */}
           <Link
             href={content.ctaUrl}
             {...externalLinkProps(content.ctaUrl)}
-            className={cn(BOTAO_ACAO_COMPACTO, "hidden sm:inline-flex")}
+            className="hidden items-center rounded-md bg-action px-4 py-2 font-label-meta text-label-meta font-semibold uppercase tracking-[0.12em] text-on-action transition-all duration-300 hover:brightness-95 sm:inline-flex"
           >
             {content.ctaLabel}
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded t-forte md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded t-forte lg:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             aria-controls="menu-mobile"
@@ -84,7 +119,7 @@ export function Header({ content }: Props) {
         id="menu-mobile"
         inert={!open}
         className={cn(
-          "overflow-hidden border-t border-regua transition-[max-height] duration-300 md:hidden",
+          "overflow-hidden border-t border-regua transition-[max-height] duration-300 lg:hidden",
           open ? "max-h-[360px]" : "max-h-0",
         )}
       >
@@ -95,7 +130,7 @@ export function Header({ content }: Props) {
               href={link.url}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="rounded px-3 py-2 font-body-sm text-body-sm t-texto hover:bg-painel"
+              className="rounded px-3 py-2 font-label-meta text-label-meta font-semibold uppercase tracking-[0.14em] t-texto hover:bg-painel"
               onClick={() => setOpen(false)}
             >
               {link.label}
@@ -104,7 +139,7 @@ export function Header({ content }: Props) {
           <Link
             href={content.ctaUrl}
             {...externalLinkProps(content.ctaUrl)}
-            className={cn(BOTAO_ACAO_COMPACTO, "mt-2 w-full")}
+            className="mt-2 inline-flex w-full items-center justify-center rounded-md bg-action px-4 py-2 font-label-meta text-label-meta font-semibold uppercase tracking-[0.12em] text-on-action transition-all duration-300 hover:brightness-95"
             onClick={() => setOpen(false)}
           >
             {content.ctaLabel}
