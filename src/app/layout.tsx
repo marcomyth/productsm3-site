@@ -116,7 +116,9 @@ export default async function RootLayout({
         </a>
         <div className="flex min-h-screen flex-col">
           <Header content={header} />
-          <main id="conteudo" className="flex-1 pt-[72px]">
+          {/* Sem padding de compensacao: a barra do topo e estatica e ja ocupa o
+            proprio espaco no fluxo. */}
+        <main id="conteudo" className="flex-1">
             {children}
           </main>
           <Footer content={footer} />

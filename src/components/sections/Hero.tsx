@@ -28,10 +28,9 @@ export function Hero({ data }: Props) {
       fios
       largura="ampla"
       respiro="grande"
-      // -mt-[72px] cancela o respiro que o <main> reserva para a barra fixa:
-      // é o que faz a animação subir até a borda da tela, como na referência.
-      // O padding próprio (144px) já passa longe dos 72px da barra.
-      className="-mt-[72px] pt-[11rem] md:pt-[14rem]"
+      // A margem negativa saiu junto com a barra fixa: agora o hero começa
+      // logo abaixo dela, no fluxo normal.
+      className="pt-space-2xl md:pt-[9rem]"
     >
       <div className="max-w-3xl space-y-space-md">
         <span className="block font-label-meta text-label-meta font-semibold uppercase tracking-[0.22em] t-acento">

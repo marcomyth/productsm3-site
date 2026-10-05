@@ -159,7 +159,7 @@ export function FundoFios({ cores = PADRAO, className }: Props) {
         const g = ctx!.createRadialGradient(bx, by, 0, bx, by, raio);
         g.addColorStop(0, cores[0]);
         g.addColorStop(1, "transparent");
-        ctx!.globalAlpha = 0.16 * brilho.forca;
+        ctx!.globalAlpha = 0.22 * brilho.forca;
         ctx!.fillStyle = g;
         ctx!.fillRect(0, 0, L, A);
       }

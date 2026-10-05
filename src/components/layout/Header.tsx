@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import type { SiteHeader } from "@/lib/types";
@@ -13,77 +12,27 @@ type Props = {
 };
 
 /**
- * Barra fixa do topo.
+ * Barra do topo.
  *
- * Transparente sobre o hero e sólida depois dele, como na referência. Essa é a
- * diferença que fazia o topo do nosso site parecer cortado: com barra sólida
- * desde o começo, a peça visual do hero começa abaixo dela e a página abre com
- * uma faixa chapada. Transparente, a animação de fios sobe até a borda da tela
- * e o topo lê como uma coisa só.
+ * Estática, não fixa, como a da referência: medi a página deles e o cabeçalho
+ * sai da tela junto com o resto. A barra fixa que estava aqui obrigava a uma
+ * sequência de remendos — compensar a altura no <main>, puxar o hero para
+ * baixo dela com margem negativa, alternar entre transparente e sólida por
+ * posição de rolagem e por rota — e cada remendo desses era uma chance de
+ * quebrar algo. Tudo isso saiu junto.
  *
- * A troca é por posição de rolagem (`scrollY > 24`), combinada com a rota: só
- * a home tem hero atrás da barra, então nas páginas internas ela já nasce
- * sólida, senão o texto delas começaria por baixo de uma barra invisível.
+ * O fundo é o mesmo tom escuro do hero, sem borda embaixo: a faixa da barra e
+ * o começo da animação leem como um bloco só, que era o efeito que o cliente
+ * tinha pedido quando a barra ainda era fixa.
  *
  * A logo clara é obrigatória aqui: `logo-m3.png` é um traço todo escuro
- * (luminância média 16,7, zero pixel claro) e sumiria tanto sobre o hero
- * quanto sobre a barra escura.
+ * (luminância média 16,7, zero pixel claro) e sumiria sobre este fundo.
  */
 export function Header({ content }: Props) {
   const [open, setOpen] = React.useState(false);
-  const [rolou, setRolou] = React.useState(false);
-  // Só a home tem hero atrás da barra. Em /privacidade, /compliance e no blog
-  // o conteúdo começa no topo, e barra transparente o deixaria passar por
-  // baixo dela.
-  const naHome = usePathname() === "/";
-  const solida = rolou || open || !naHome;
-
-  React.useEffect(() => {
-    /**
-     * A barra só vira sólida depois que o hero termina, e não aos 24px de
-     * rolagem.
-     *
-     * Com o limite curto, bastava rolar um dedo para a barra opaca aparecer
-     * por cima da animação: o fundo a 90% não casa com os fios atrás dele e a
-     * borda de baixo marcava uma linha atravessando a tela. Esperando o hero
-     * passar, a barra só ganha corpo quando já há conteúdo claro atrás dela,
-     * que é onde ela precisa de corpo.
-     *
-     * A altura vem do próprio hero, medida no DOM, em vez de um número fixo:
-     * ela muda com a largura da tela, com o tamanho do título e com a quebra
-     * de linha do texto. Um valor fixo acertaria numa tela e erraria em todas
-     * as outras.
-     */
-    const hero = naHome ? document.querySelector<HTMLElement>("main > section") : null;
-    let limite = 24;
-
-    const medir = () => {
-      limite = hero ? Math.max(24, hero.offsetHeight - 72) : 24;
-      aoRolar();
-    };
-    const aoRolar = () => setRolou(window.scrollY > limite);
-
-    medir();
-    window.addEventListener("scroll", aoRolar, { passive: true });
-
-    const ro = hero ? new ResizeObserver(medir) : null;
-    if (hero && ro) ro.observe(hero);
-
-    return () => {
-      window.removeEventListener("scroll", aoRolar);
-      ro?.disconnect();
-    };
-  }, [naHome]);
 
   return (
-    <header
-      className={cn(
-        "tom-escuro fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300",
-        solida
-          ? "border-b border-regua bg-dark-surface/90 shadow-[0_1px_14px_rgba(0,0,0,0.18)] backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
+    <header className="tom-escuro relative z-20 w-full bg-dark-surface">
       {/* Mesma medida larga do hero, pra logo alinhar com a primeira palavra
           do título em vez de encostar na borda da tela. */}
       <div className="mx-auto flex h-[72px] w-full max-w-content-wide items-center justify-between px-grid-margin-mobile md:px-grid-margin-tablet lg:px-grid-margin-desktop">
