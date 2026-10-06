@@ -417,7 +417,10 @@ export const siteContent: SiteContent = {
     titleLead: "Elas não pediram mais tráfego.",
     titleAccent: "Pediram para ficar incomparáveis.",
     description:
-      "Mueller, Lexus Brasília, Fogatti, Musa, Somos Cria, Vale Europeu e CIMVI já operam com a M3. Os números ao lado são o que aconteceu depois. O oitavo nome desta página ainda está em branco.",
+      // "Os números do placar", e não "ao lado": o placar fica à direita no
+      // desktop e embaixo no celular, e a maior parte de quem lê está no
+      // celular. Chamar o bloco pelo nome vale nas duas larguras.
+      "Mueller, Lexus Brasília, Fogatti, Musa, Somos Cria, Vale Europeu e CIMVI já operam com a M3. Os números do placar são o que aconteceu depois. O oitavo nome desta página ainda está em branco.",
     ctaLabel: "Quero o diagnóstico gratuito",
     meta: ["Diagnóstico em duas semanas", "Gratuito", "Sem compromisso de contrato continuado"],
     placarTitle: "Placar da operação",
