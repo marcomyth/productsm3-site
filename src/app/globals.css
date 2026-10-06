@@ -507,6 +507,35 @@
 }
 
 /**
+ * ---- Relevo dos cartões sobre fundo escuro ----
+ *
+ * Os painéis do Método são #183f3b sobre #123632: seis pontos de luminância
+ * separando um do outro, o que some em tela de celular e em qualquer monitor
+ * mal calibrado. As demais seções com cartão são claras e resolvem isso com o
+ * `shadow-sm` do Tailwind, que é preto — sobre fundo escuro ele não tem o que
+ * escurecer e não aparece.
+ *
+ * O que separa aqui é luz, não sombra:
+ *
+ * A aresta de cima recebe uma linha clara por dentro, que é o cartão pegando
+ * luz de cima — é o que dá a leitura de volume, e sozinha já resolve metade do
+ * problema. O contorno tênue fecha os outros três lados, para o cartão ter
+ * limite também onde a luz não bate.
+ *
+ * As duas sombras escuras vêm depois: uma curta de contato, logo abaixo da
+ * borda, e uma longa e difusa de ambiente. Sobre fundo escuro elas valem
+ * pouco sozinhas, mas é o par luz-em-cima/sombra-embaixo que faz o olho ler
+ * altura em vez de uma mancha de cor diferente.
+ */
+@utility cartao-relevo {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 0 0 1px rgb(255 255 255 / 0.05),
+    0 2px 4px rgb(0 0 0 / 0.18),
+    0 16px 36px -14px rgb(0 0 0 / 0.5);
+}
+
+/**
  * ---- Desfoque ligado ao scroll ----
  *
  * O único efeito de scroll da referência: a imagem de fundo de uma seção
