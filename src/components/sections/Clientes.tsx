@@ -18,7 +18,38 @@ type Props = {
 };
 
 /**
- * Grade de logos de cliente.
+ * Uma das duas cópias da trilha.
+ *
+ * A segunda leva `aria-hidden`: para quem lê a tela as marcas existem uma vez
+ * só, e ouvir a lista inteira duplicada seria ruído sem informação. A duplicata
+ * existe por razão visual — é ela que faz o laço fechar sem emenda.
+ */
+function fileira(itens: CaseStudy[], duplicada: boolean) {
+  return (
+    <ul
+      aria-hidden={duplicada || undefined}
+      className="flex shrink-0 items-center gap-space-lg px-space-lg md:gap-space-xl"
+    >
+      {itens.map((item) => (
+        <li key={item.reference} className="flex w-[150px] shrink-0 justify-center md:w-[210px]">
+          <div className="relative h-20 w-full md:h-28">
+            <Image
+              src={item.imageUrl as string}
+              alt={item.imageAlt ?? item.category}
+              fill
+              loading="eager"
+              sizes="(max-width: 768px) 150px, 210px"
+              className="object-contain object-center"
+            />
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Fileira corrida de logos de cliente.
  *
  * É o bloco de maior retorno da home da referência e o que a M3 tinha pronto
  * sem saber: as sete logos já existiam, mas apareciam uma por vez, enterradas
@@ -29,16 +60,25 @@ type Props = {
  * diferentes (um brasão vertical ao lado de marcas horizontais), e travar a
  * altura é o que faz a fileira parecer alinhada em vez de sete imagens soltas.
  *
- * Quatro por fileira, não sete. Com sete em linha cada logo ficava com 142px
- * de largura, e as marcas horizontais — Lexus, Mueller — são limitadas pela
- * largura, não pela altura: aumentar só a altura da caixa não as faria crescer
- * um pixel. Em quatro, a caixa passa de 142px para cerca de 240px.
+ * Uma fileira só, correndo. É a técnica da faixa do rodapé do Dribbble, que o
+ * cliente mandou como referência: trilha escrita duas vezes e deslocada
+ * exatamente 50%, de modo que o laço não tem emenda. A regra de ritmo e o
+ * comportamento parado vivem em `.trilha-marcas`, no globals.
  *
- * E fileira que quebra, não grade. Sete não é divisível por nada entre 2 e 6,
- * então qualquer número de colunas deixa a última fileira incompleta; em grade
- * ela encosta à esquerda e abre um buraco à direita, que lê como imagem que
- * faltou carregar. Quebrando centralizada, as três últimas ficam no meio e o
- * arranjo parece escolhido.
+ * Resolve de passagem o problema que o arranjo em grade tinha: sete não é
+ * divisível por nada entre 2 e 6, então sobrava sempre uma fileira incompleta.
+ * Correndo, não existe última fileira.
+ *
+ * Atravessa a tela inteira, saindo da medida da seção. Uma tarja que corre
+ * precisa chegar às bordas: contida na coluna de texto, as logos seriam
+ * cortadas no meio do nada a 1140px enquanto a seção segue até a borda, e o
+ * corte leria como defeito. Nas pontas, dois véus na cor da seção dissolvem a
+ * entrada e a saída em vez de guilhotiná-las.
+ *
+ * As imagens carregam com `eager`. O padrão é adiar o que está fora da tela, e
+ * aqui metade da trilha nasce fora: com o padrão, a logo só começaria a baixar
+ * no instante em que entrasse em quadro, e a primeira volta teria buracos.
+ * São sete arquivos, repetidos — o navegador baixa cada um uma vez.
  */
 export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
   const comLogo = data.filter((item) => item.imageUrl);
@@ -50,24 +90,23 @@ export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
         Marcas que já fazem parte da nossa operação
       </h2>
 
-      {/* As larguras ficam um pouco abaixo da fração exata (45% em vez de 50%,
-          22% em vez de 25%) para o `gap` caber sem empurrar a última da fileira
-          para a linha de baixo. */}
-      <ul className="mt-space-xl flex flex-wrap items-center justify-center gap-x-space-md gap-y-space-lg">
-        {comLogo.map((item) => (
-          <li key={item.reference} className="flex w-[45%] justify-center sm:w-[29%] lg:w-[22%]">
-            <div className="relative h-20 w-full md:h-28">
-              <Image
-                src={item.imageUrl as string}
-                alt={item.imageAlt ?? item.category}
-                fill
-                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 29vw, 240px"
-                className="object-contain object-center"
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="relative left-1/2 mt-space-xl w-screen -translate-x-1/2 overflow-hidden">
+        <div className="trilha-marcas flex w-max">
+          {fileira(comLogo, false)}
+          {fileira(comLogo, true)}
+        </div>
+
+        {/* `from-surface` porque esta seção é sempre `tom="claro"`. Se um dia
+            ela mudar de tom, estes dois véus mudam junto. */}
+        <div
+          aria-hidden="true"
+          className="mascara-trilha pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-surface to-transparent md:w-32"
+        />
+        <div
+          aria-hidden="true"
+          className="mascara-trilha pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-surface to-transparent md:w-32"
+        />
+      </div>
 
       {comLink && (
         <div className="mt-space-xl">

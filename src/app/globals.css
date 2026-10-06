@@ -592,3 +592,65 @@
     animation: none;
   }
 }
+
+/**
+ * ---- Fileira corrida de marcas ----
+ *
+ * Mesmo mecanismo da faixa acima — trilha escrita duas vezes, deslocamento de
+ * exatamente 50% da largura total, laço sem emenda e sem JavaScript medindo
+ * nada. Muda o ritmo, não a técnica.
+ *
+ * Corre para o outro lado. A faixa verde já atravessa a página da direita para
+ * a esquerda, e duas tarjas correndo no mesmo sentido na mesma página leem
+ * como a mesma tarja repetida; em sentidos opostos leem como ritmo.
+ *
+ * Para no `hover`, que a faixa de texto não faz. A diferença é o que está
+ * correndo: lá é uma frase, que se lê de passagem; aqui são marcas de cliente,
+ * e quem reconhece uma precisa de um instante parado para confirmar.
+ *
+ * Com `prefers-reduced-motion`, a trilha não só para: a cópia duplicada some e
+ * a primeira volta a quebrar em grade centrada. Parar no lugar aqui esconderia
+ * metade das marcas fora da tela, porque a trilha é mais larga que o monitor —
+ * diferente da faixa de texto, onde parar ainda deixa a frase legível.
+ */
+@keyframes marcas-correm {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.trilha-marcas {
+  animation: marcas-correm 36s linear infinite;
+  will-change: transform;
+}
+/* No celular a trilha é mais curta, porque as caixas e os vãos encolhem. Com a
+   mesma duração ela andaria a 36px/s contra os 52px/s do desktop — mais lenta
+   justamente na tela que mostra duas marcas por vez, onde a volta inteira já
+   demora mais a acontecer. 26s devolve a mesma velocidade linear. */
+@media (width < 48rem) {
+  .trilha-marcas {
+    animation-duration: 26s;
+  }
+}
+.trilha-marcas:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .trilha-marcas {
+    width: 100%;
+    animation: none;
+  }
+  .trilha-marcas > ul {
+    width: 100%;
+    max-width: var(--container-content);
+    margin-inline: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .trilha-marcas > ul + ul,
+  .mascara-trilha {
+    display: none;
+  }
+}
