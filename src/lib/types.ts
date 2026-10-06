@@ -151,18 +151,31 @@ export type CaseStudy = {
   reference: string;
   imageUrl?: string;
   imageAlt?: string;
-  /** Foto do próprio site do cliente, exibida bem apagada atrás da
-      logo. Decorativa: entra com alt vazio. */
+  /** Foto do próprio site do cliente. Hoje ocupa a coluna de mídia da faixa do
+      case; não é decorativa ali, então entra com alt descritivo. */
   backgroundUrl?: string;
+  backgroundAlt?: string;
+  /** Setor e recorte do cliente, na linha de olho acima do número: "linha
+      branca · indústria", "turismo · Santa Catarina". É o que diz de que
+      mundo é aquele resultado antes de a pessoa ler o parágrafo. */
+  sector?: string;
+  /** A frase em negrito entre o número e o parágrafo. O número diz quanto, a
+      frase diz o que aquilo significa, e o parágrafo conta como. Sem ela o
+      salto do número para o texto corrido é grande demais. */
+  headline?: string;
   /** Campos de resultado. Opcionais: um cliente entra na seção assim que a
       logo existe, e ganha os números quando o case for fechado. */
   metricValue?: string;
   metricLabel?: string;
   metricAccent?: boolean;
+  /** Descrição curta do resultado para a linha do placar, no topo da página.
+      É separada de `metricLabel` porque ali ela convive com o nome do cliente
+      numa linha estreita: "crescimento de marca · 12 meses" em vez de "de
+      crescimento de marca em 12 meses". */
+  placarLabel?: string;
   /** Resultados além do principal, quando o case entregou mais de um.
-      Entram como linha compacta abaixo do número grande: dois números
-      do mesmo tamanho brigariam entre si, e a seção perde o ritmo se
-      cada card tiver uma âncora visual diferente. */
+      Entram ao lado do número grande, num corpo menor: dois números do mesmo
+      tamanho brigariam entre si. */
   extraMetrics?: CaseExtraMetric[];
   description?: string;
   platform?: string;
@@ -195,6 +208,42 @@ export type SeoContent = {
   keywords: string[];
 };
 
+/**
+ * A vaga em aberto: a oitava linha do placar e a última faixa da página.
+ *
+ * Vive no conteúdo e não no componente porque aparece em dois lugares — a
+ * linha "[SUA MARCA]" no placar do topo e a faixa de fechamento — e os dois
+ * precisam dizer a mesma coisa.
+ */
+export type CasesVaga = {
+  sector: string;
+  value: string;
+  label: string;
+  placarLabel: string;
+  marca: string;
+  logoLabel: string;
+  headline: string;
+  description: string;
+  ctaLabel: string;
+};
+
+export type CasesPageContent = {
+  eyebrow: string;
+  /** O título vem partido em dois porque a segunda frase é a que recebe a cor
+      de acento. Partir aqui, e não por marcação dentro de uma string, mantém o
+      conteúdo sem HTML. */
+  titleLead: string;
+  titleAccent: string;
+  description: string;
+  ctaLabel: string;
+  /** As condições do diagnóstico, em linha sob o botão. */
+  meta: string[];
+  placarTitle: string;
+  placarPeriod: string;
+  intro: SectionIntro;
+  vaga: CasesVaga;
+};
+
 export type SiteContent = {
   seo: SeoContent;
   header: SiteHeader;
@@ -204,6 +253,7 @@ export type SiteContent = {
   services: ServiceItem[];
   method: MethodPhase[];
   cases: CaseStudy[];
+  casesPage: CasesPageContent;
   /**
    * As três seções abaixo são opcionais de propósito. A estrutura da página
    * já as prevê, mas cada uma só é renderizada quando tiver conteúdo: seção

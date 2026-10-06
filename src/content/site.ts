@@ -284,29 +284,30 @@ export const siteContent: SiteContent = {
    * Sob Medida"). Número de performance só entra num card depois que
    * soubermos de qual cliente ele é.
    */
+  /**
+   * A ordem aqui é a ordem das faixas na página, e não é alfabética nem por
+   * resultado: ela alterna setores para que duas faixas vizinhas nunca contem
+   * a mesma história. O placar do topo é que ordena por resultado, e é por
+   * isso que os dois existem — um dá o ranking, o outro dá o ritmo.
+   */
   cases: [
     {
-      category: "CIMVI",
-      reference: "cimvi",
-      imageUrl: `${CASES_DIR}/cimvi.png`,
-      imageAlt: "Logo da CIMVI",
-      backgroundUrl: `${CASES_DIR}/fundo-cimvi.jpg`,
-      metricValue: "+50%",
-      metricLabel: "de engajamento e visibilidade em 24 meses",
-      metricAccent: true,
-      description: "Catorze prefeituras do Médio Vale do Itajaí operam resíduos como uma coisa só. O público vai do gabinete de cada cidade ao morador da rua, e falar com os dois ao mesmo tempo é um problema de estrutura, não de anúncio. O trabalho contínuo deu ao consórcio visibilidade na região e autoridade reconhecida na pauta do saneamento.",
-    },
-    {
-      category: "Fogatti",
-      reference: "fogatti",
-      imageUrl: `${CASES_DIR}/fogatti.png`,
-      imageAlt: "Logo da Fogatti",
-      backgroundUrl: `${CASES_DIR}/fundo-fogatti.jpg`,
-      metricValue: "+30%",
+      category: "Mueller",
+      reference: "mueller",
+      imageUrl: `${CASES_DIR}/mueller.png`,
+      imageAlt: "Logo da Mueller",
+      backgroundUrl: `${CASES_DIR}/fundo-mueller.jpg`,
+      backgroundAlt: "Lavanderia com lavadora Mueller",
+      sector: "Linha branca · mais de 70 anos de fábrica",
+      metricValue: "+34%",
       metricLabel: "de venda na loja online",
       metricAccent: true,
-      extraMetrics: [{ value: "+27%", label: "na autoridade de domínio" }],
-      description: "A Fogatti fabrica cooktops, fogões de mesa, fornos de embutir, coifas e depuradores. É linha branca, uma categoria em que o consumidor compara preço lado a lado antes de decidir, e em que a marca precisa aparecer antes da comparação. O trabalho construiu autoridade de domínio e reconhecimento de marca, e levou a venda para além da loja própria, com presença firmada nos marketplaces.",
+      placarLabel: "venda na loja online",
+      extraMetrics: [{ value: "+30%", label: "na autoridade de domínio" }],
+      headline:
+        "Setenta anos dentro da cozinha do brasileiro. Agora com o mesmo peso na prateleira digital.",
+      description:
+        "Fogões, cooktops, fornos, lavadoras e secadoras: a marca já era reconhecida dentro de casa. Traduzimos esse peso para o online, firmamos autoridade de domínio e abrimos presença nos marketplaces.",
     },
     {
       category: "Lexus Brasília",
@@ -314,22 +315,16 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/lexus-brasilia.png`,
       imageAlt: "Logo da Lexus Brasília",
       backgroundUrl: `${CASES_DIR}/fundo-lexus-brasilia.jpg`,
+      backgroundAlt: "Lexus sob céu estrelado",
+      sector: "Automotivo premium · Distrito Federal",
       metricValue: "+20%",
       metricLabel: "de reconhecimento de marca em Brasília",
       metricAccent: true,
-      description: "A concessionária Lexus do Distrito Federal atua num segmento em que a decisão passa por reputação antes de passar por preço. A disputa também é local: quem compra premium em Brasília escolhe entre poucas casas. O trabalho ficou concentrado nessa praça, construindo reconhecimento de marca e autoridade de domínio.",
-    },
-    {
-      category: "Mueller",
-      reference: "mueller",
-      imageUrl: `${CASES_DIR}/mueller.png`,
-      imageAlt: "Logo da Mueller",
-      backgroundUrl: `${CASES_DIR}/fundo-mueller.jpg`,
-      metricValue: "+34%",
-      metricLabel: "de venda na loja online",
-      extraMetrics: [{ value: "+30%", label: "na autoridade de domínio" }],
-      metricAccent: true,
-      description: "Há mais de setenta anos a Mueller fabrica para cozinha e lavanderia: fogões, cooktops, fornos, tanquinhos, lavadoras e secadoras. É uma marca que as pessoas reconhecem dentro de casa e que precisava ter o mesmo peso na prateleira digital. O trabalho traduziu esse reconhecimento para o ambiente online, firmando autoridade de domínio e abrindo presença nos marketplaces.",
+      placarLabel: "reconhecimento de marca · Brasília",
+      headline:
+        "Quem compra premium em Brasília escolhe entre poucas casas. A Lexus passou a pesar mais nessa escolha.",
+      description:
+        "Num segmento em que a decisão passa por reputação antes de passar por preço, a disputa é local. Concentramos o trabalho nessa praça, construindo reconhecimento de marca e autoridade de domínio.",
     },
     {
       category: "Musa",
@@ -337,21 +332,16 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/musa.png`,
       imageAlt: "Logo da Musa",
       backgroundUrl: `${CASES_DIR}/fundo-musa.jpg`,
+      backgroundAlt: "Campanha de moda praia da Musa",
+      sector: "Moda praia · loja própria",
       metricValue: "+120%",
       metricLabel: "de reconhecimento de marca",
       metricAccent: true,
-      description: "A Musa vende moda praia em loja própria: biquínis e saídas de praia. Num varejo em que a coleção tem estação e a venda tem janela curta, é a marca que sustenta a procura fora do pico. O trabalho construiu reconhecimento de marca, autoridade de domínio e engajamento, e levou a operação a vender tanto na loja online quanto nos marketplaces.",
-    },
-    {
-      category: "Somos Cria",
-      reference: "somos-cria",
-      imageUrl: `${CASES_DIR}/somos-cria.png`,
-      imageAlt: "Logo da Somos Cria",
-      backgroundUrl: `${CASES_DIR}/fundo-somos-cria.jpg`,
-      metricValue: "+30%",
-      metricLabel: "de crescimento de marca em 24 meses",
-      metricAccent: true,
-      description: "A Somos Cria vende móveis de design autoral direto pelo site: poltronas, bancos e peças exclusivas. Quem compra decide por uma peça de ticket alto sem tocar nela, e é a marca que sustenta essa decisão. O trabalho foi construir exatamente isso: marca, autoridade de domínio e engajamento.",
+      placarLabel: "reconhecimento de marca",
+      headline:
+        "Mais que o dobro de reconhecimento, num varejo em que a estação acaba e a procura some junto.",
+      description:
+        "Coleção com estação, venda com janela curta: é a marca que sustenta a procura fora do pico. Construímos reconhecimento, autoridade de domínio e engajamento, e a Musa passou a vender na loja online e nos marketplaces.",
     },
     {
       category: "Vale Europeu Turismo",
@@ -359,12 +349,98 @@ export const siteContent: SiteContent = {
       imageUrl: `${CASES_DIR}/vale-europeu.png`,
       imageAlt: "Logo do Vale Europeu Turismo",
       backgroundUrl: `${CASES_DIR}/fundo-vale-europeu.jpg`,
+      backgroundAlt: "Cicloturistas em estrada do Vale Europeu",
+      sector: "Turismo · Santa Catarina",
       metricValue: "+150%",
       metricLabel: "de crescimento de marca em 12 meses",
       metricAccent: true,
-      description: "O Vale Europeu Catarinense reúne sete roteiros qualificados, do cicloturismo à rota cervejeira. Um destino não se vende como produto: ele precisa ser lembrado no momento em que alguém decide onde passar as férias, disputando esse lugar com nomes muito mais conhecidos. O trabalho construiu marca, autoridade de domínio e posicionamento para essa disputa.",
+      placarLabel: "crescimento de marca · 12 meses",
+      headline:
+        "Duas vezes e meia mais marca em um ano, disputando férias com destinos muito mais famosos.",
+      description:
+        "Sete roteiros qualificados, do cicloturismo à rota cervejeira. Um destino precisa ser lembrado na hora em que alguém decide onde passar as férias. Construímos marca, autoridade de domínio e posicionamento para essa disputa.",
+    },
+    {
+      category: "Fogatti",
+      reference: "fogatti",
+      imageUrl: `${CASES_DIR}/fogatti.png`,
+      imageAlt: "Logo da Fogatti",
+      backgroundUrl: `${CASES_DIR}/fundo-fogatti.jpg`,
+      backgroundAlt: "Cozinha com coifa Fogatti",
+      sector: "Linha branca · indústria",
+      metricValue: "+30%",
+      metricLabel: "de venda na loja online",
+      metricAccent: true,
+      placarLabel: "venda na loja online",
+      extraMetrics: [{ value: "+27%", label: "na autoridade de domínio" }],
+      headline:
+        "Numa categoria em que todo mundo compara preço, a Fogatti aparece antes da comparação.",
+      description:
+        "Cooktops, fornos de embutir, coifas e depuradores, numa categoria comparada lado a lado. Construímos autoridade de domínio e reconhecimento de marca, e levamos a venda para além da loja própria, com presença firmada nos marketplaces.",
+    },
+    {
+      category: "Somos Cria",
+      reference: "somos-cria",
+      imageUrl: `${CASES_DIR}/somos-cria.png`,
+      imageAlt: "Logo da Somos Cria",
+      backgroundUrl: `${CASES_DIR}/fundo-somos-cria.jpg`,
+      backgroundAlt: "Ambiente com banco e cabideiro da Somos Cria",
+      sector: "Móveis de design autoral · venda direta",
+      metricValue: "+30%",
+      metricLabel: "de crescimento de marca em 24 meses",
+      metricAccent: true,
+      placarLabel: "crescimento de marca · 24 meses",
+      headline: "Vender poltrona de ticket alto para quem nunca sentou nela.",
+      description:
+        "Poltronas, bancos e peças exclusivas, direto pelo site. Quem compra decide sem tocar no produto, e é a marca que sustenta essa decisão. Foi exatamente isso que construímos: marca, autoridade de domínio e engajamento.",
+    },
+    {
+      category: "CIMVI",
+      reference: "cimvi",
+      imageUrl: `${CASES_DIR}/cimvi.png`,
+      imageAlt: "Logo da CIMVI",
+      backgroundUrl: `${CASES_DIR}/fundo-cimvi.jpg`,
+      backgroundAlt: "Sede do CIMVI",
+      sector: "Setor público · consórcio de 14 prefeituras",
+      metricValue: "+50%",
+      metricLabel: "de engajamento e visibilidade em 24 meses",
+      metricAccent: true,
+      placarLabel: "engajamento e visibilidade · 24 meses",
+      headline: "Catorze prefeituras, uma só voz. Do gabinete ao morador da rua.",
+      description:
+        "As prefeituras do Médio Vale do Itajaí operam resíduos como uma coisa só. Falar com o gestor e com o morador ao mesmo tempo é problema de estrutura, não de anúncio. O trabalho contínuo deu ao consórcio visibilidade na região e autoridade reconhecida na pauta do saneamento.",
     },
   ],
+
+  casesPage: {
+    eyebrow: "Cases 2022 a 2026 · sete marcas na operação",
+    titleLead: "Elas não pediram mais tráfego.",
+    titleAccent: "Pediram para ficar incomparáveis.",
+    description:
+      "Mueller, Lexus Brasília, Fogatti, Musa, Somos Cria, Vale Europeu e CIMVI já operam com a M3. Os números ao lado são o que aconteceu depois. O oitavo nome desta página ainda está em branco.",
+    ctaLabel: "Quero o diagnóstico gratuito",
+    meta: ["Diagnóstico em duas semanas", "Gratuito", "Sem compromisso de contrato continuado"],
+    placarTitle: "Placar da operação",
+    placarPeriod: "2022 a 2026",
+    intro: {
+      eyebrow: "evidências práticas",
+      title: "Sete marcas já fazem parte da nossa operação. O oitavo lugar está aberto.",
+      description:
+        "Período de análise: 2022 a 2026. De fabricante com mais de setenta anos de história a destino turístico disputando férias: cada uma chegou com um problema diferente, e todas saíram mais difíceis de copiar.",
+    },
+    vaga: {
+      sector: "Vaga aberta",
+      value: "+?%",
+      label: "o número que ainda não existe",
+      placarLabel: "a próxima linha do placar",
+      marca: "[sua marca]",
+      logoLabel: "sua logo aqui",
+      headline: "O próximo case desta página começa com um diagnóstico de duas semanas.",
+      description:
+        "Operação de mídia, arquitetura técnica do e-commerce e vazamento de margem, tudo no mesmo parecer. Sem compromisso de contrato continuado.",
+      ctaLabel: "Ocupar a oitava vaga",
+    },
+  },
 
   finalCta: {
     eyebrow: "Próximo Passo",

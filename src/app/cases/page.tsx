@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getSiteContent } from "@/lib/content";
-import { Cases } from "@/components/sections/Cases";
+import { Cases, CasesIntro } from "@/components/sections/Cases";
+import { CasesHero } from "@/components/sections/CasesHero";
 import { Clientes } from "@/components/sections/Clientes";
 import { FinalCta } from "@/components/sections/FinalCta";
 
@@ -25,12 +26,18 @@ export const metadata: Metadata = {
 };
 
 export default async function CasesPage() {
-  const { cases, finalCta } = await getSiteContent();
+  const { cases, casesPage, finalCta } = await getSiteContent();
 
   return (
     <>
-      <Cases data={cases} />
+      <CasesHero data={casesPage} cases={cases} ctaUrl={finalCta.ctaUrl} />
+      <CasesIntro pagina={casesPage} />
+      {/* A fileira de marcas entra entre a introdução e as faixas: o texto
+          anuncia as sete, a fileira mostra as sete, e só então a página abre
+          uma por uma. Depois das faixas ela repetiria o que acabou de ser dito
+          em detalhe. */}
       <Clientes data={cases} />
+      <Cases data={cases} pagina={casesPage} ctaUrl={finalCta.ctaUrl} />
       <FinalCta data={finalCta} />
 
       <div className="mx-auto w-full max-w-content px-grid-margin-mobile pb-space-2xl md:px-grid-margin-tablet lg:px-grid-margin-desktop">
