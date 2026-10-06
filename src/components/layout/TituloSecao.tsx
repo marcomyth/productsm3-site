@@ -3,19 +3,18 @@ import { cn } from "@/lib/utils";
 /**
  * Título de seção no padrão da referência: duas linhas, duas famílias.
  *
- * A de cima nomeia a seção em serifada, caixa baixa, na cor de acento — lá é
- * "metodologia e entregáveis", "dois formatos,". A de baixo é a afirmação, em
- * sans pesada e caixa alta. O contraste entre as duas é o que dá o ar
- * editorial da página; com uma família só, qualquer uma das duas, o resultado
- * é uma lista de títulos iguais.
+ * A de cima nomeia a seção em serifada, na cor de acento — "método e
+ * entregáveis", "evidências práticas". A de baixo é a afirmação, em sans
+ * pesada. O contraste entre as duas é o que dá o ar editorial da página; com
+ * uma família só, qualquer uma das duas, o resultado é uma lista de títulos
+ * iguais.
  *
- * `destaque` é a linha serifada e `afirmacao` a de caixa alta. Nenhuma das
- * duas é obrigatória: algumas seções da referência têm só a serifada, outras
- * só a caixa alta.
+ * Nenhuma das duas é obrigatória: algumas seções têm só a serifada, outras só
+ * a afirmação.
  */
 type Props = {
-  /** Linha serifada em caixa baixa. Escrita em caixa baixa no conteúdo: não
-      é transformada por CSS, porque a caixa aqui é escolha de redação. */
+  /** Linha serifada que nomeia a seção. A caixa alta é aplicada por CSS, em
+      `rotulo-serifado`, então o texto aqui pode vir escrito normalmente. */
   destaque?: string;
   afirmacao?: string;
   descricao?: string;
@@ -27,20 +26,15 @@ type Props = {
 export function TituloSecao({ destaque, afirmacao, descricao, centro, className }: Props) {
   return (
     <div className={cn("max-w-3xl", centro && "mx-auto text-center", className)}>
-      {/* A serifada é MAIOR que a linha de caixa alta, não menor: medido na
-          referência, 40px contra 32px. É contraintuitivo — a caixa alta pesada
-          parece o título principal — mas é essa inversão que faz a linha
-          serifada nomear a seção em vez de legendá-la. */}
-      {destaque && (
-        <p className="font-serif text-display-xl-mobile font-normal leading-[1.1] t-acento md:text-display-xl">
-          {destaque}
-        </p>
-      )}
+      {destaque && <p className="rotulo-serifado">{destaque}</p>}
       {afirmacao && (
         <h2
           className={cn(
             "font-sans text-display-lg-mobile font-extrabold leading-tight tracking-[0.01em] t-forte md:text-display-lg",
-            destaque && "mt-space-3xs",
+            // 2px bastavam quando o rótulo era caixa baixa: os descendentes de
+            // "método e entregáveis" já ocupavam o vão. Em caixa alta não há
+            // descendente nenhum e as duas linhas encostam.
+            destaque && "mt-space-xs",
           )}
         >
           {afirmacao}

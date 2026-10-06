@@ -29,12 +29,10 @@ export function FinalCta({ data }: Props) {
           embaixo dos dois: e a composicao do fecho da referencia, e o unico
           lugar em que ela centraliza alguma coisa. */}
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-md lg:grid-cols-12">
-        {/* Mesma proporcao das demais secoes: a serifada e maior que a
-            afirmacao. Aqui ela estava menor, e o fecho da pagina era a unica
-            parte do site com a hierarquia invertida. */}
-        <p className="font-serif text-display-xl-mobile font-normal leading-[1.1] t-acento md:text-display-xl lg:col-span-4">
-          {data.eyebrow}
-        </p>
+        {/* Mesmo rotulo das demais secoes. Aqui ele ja foi menor que a
+            afirmacao, e o fecho da pagina era a unica parte do site com a
+            hierarquia invertida. */}
+        <p className="rotulo-serifado lg:col-span-4">{data.eyebrow}</p>
         <div className="lg:col-span-8" />
 
         <h2 className="font-sans text-display-lg-mobile font-extrabold leading-[1.1] tracking-[0.01em] t-forte md:text-display-lg lg:col-span-4">

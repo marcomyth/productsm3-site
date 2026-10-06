@@ -472,6 +472,41 @@
 }
 
 /**
+ * ---- Rótulo serifado de seção ----
+ *
+ * A linha que nomeia a seção, acima da afirmação: "áreas de domínio",
+ * "método e entregáveis", "evidências práticas". Estava escrita à mão em três
+ * componentes com a mesma sequência de classes, e o cliente pediu caixa alta
+ * nela — o que seria a mesma edição repetida três vezes, com a quarta cópia
+ * fatalmente divergindo. Agora é um utilitário só.
+ *
+ * O espacejamento é positivo de propósito. O token `display-xl` traz -0.015em,
+ * que serve à caixa baixa; em maiúsculas as letras não têm ascendente nem
+ * descendente para separá-las e esse valor negativo as encosta. 0.06em devolve
+ * o ar que a caixa alta precisa.
+ *
+ * O tamanho desce de display-xl para display-lg. Não é para diminuir o rótulo:
+ * é para mantê-lo do mesmo tamanho aparente. Em caixa baixa quem mede a linha
+ * é a altura-de-x, perto de 44% do corpo; em caixa alta é a altura das
+ * maiúsculas, perto de 70%. No mesmo corpo de 2.5rem o rótulo em caixa alta
+ * cresceria cerca de 60% e passaria a pesar mais que a afirmação em sans
+ * logo abaixo, invertendo a hierarquia que o TituloSecao existe para manter.
+ */
+@utility rotulo-serifado {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-display-lg-mobile);
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tom-acento);
+
+  @media (width >= 48rem) {
+    font-size: var(--text-display-lg);
+  }
+}
+
+/**
  * ---- Desfoque ligado ao scroll ----
  *
  * O único efeito de scroll da referência: a imagem de fundo de uma seção

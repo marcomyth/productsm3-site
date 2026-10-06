@@ -28,9 +28,7 @@ export function Services({ data }: Props) {
     <Section id="servicos" tom="escuro">
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <p className="font-serif text-display-xl-mobile font-normal leading-[1.1] t-acento md:text-display-xl">
-            áreas de domínio
-          </p>
+          <p className="rotulo-serifado">áreas de domínio</p>
           <p className="mt-space-sm font-sans text-body-default leading-relaxed t-fraco">
             Elevamos a qualidade dos seus processos de marketing sem elevar o custo operacional.
             Implementamos e gerenciamos o funil sinérgico de vendas com transparência total, para
