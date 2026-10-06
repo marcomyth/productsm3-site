@@ -3,9 +3,19 @@ import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 
 /**
- * Declaração de abertura: a serifada grande em caixa baixa à esquerda e os
- * parágrafos ao lado. É o bloco com que a referência abre o conteúdo, depois
- * da linha de serviços, e o último que faltava espelhar.
+ * Declaração de abertura: a serifada grande à esquerda e os parágrafos ao lado.
+ * É o bloco com que a referência abre o conteúdo, depois da linha de serviços,
+ * e o último que faltava espelhar.
+ *
+ * A frase era toda em caixa baixa, imitando o maneirismo da referência. Fora
+ * do contexto dela aquilo não leu como estilo, leu como erro de digitação —
+ * foi o que o cliente apontou. Agora começa com maiúscula.
+ *
+ * E cresceu. Estava em 2.5rem, o mesmo corpo dos rótulos de seção, sendo que
+ * esta é a tese da página inteira: a frase que explica por que alguém deveria
+ * continuar lendo. Em 3.25rem ela entra na escala entre o título do hero (4rem)
+ * e as afirmações de seção (2rem), que é o degrau que o papel dela pede.
+ * De quebra, preenche a coluna em vez de deixar meia altura vazia embaixo.
  *
  * O texto é novo, e é a única copy que escrevi para este site. Cada parágrafo
  * só reformula algo que a M3 já afirma em outro lugar, para não inventar
@@ -26,8 +36,12 @@ export function Declaracao() {
   return (
     <Section tom="claro">
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg lg:grid-cols-12">
-        <h2 className="font-serif text-display-xl-mobile font-normal leading-[1.1] t-forte md:text-display-xl lg:col-span-5 lg:pr-space-md">
-          como uma operação de tráfego para de desperdiçar
+        {/* `text-balance` reparte as linhas em larguras parecidas. Sem isso o
+            navegador enche cada linha até não caber mais, e a última fica com
+            duas palavras soltas — num bloco de três linhas em corpo grande,
+            isso é a diferença entre parecer composto e parecer derramado. */}
+        <h2 className="text-balance font-serif text-[2.25rem] font-normal leading-[1.05] t-forte md:text-[3.25rem] lg:col-span-5 lg:pr-space-md">
+          Como uma operação de tráfego para de desperdiçar
         </h2>
 
         <div className="space-y-space-md lg:col-span-7">
