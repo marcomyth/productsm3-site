@@ -119,10 +119,12 @@ export default async function RootLayout({
           Pular para o conteúdo
         </a>
         <div className="flex min-h-screen flex-col">
+          {/* A barra e fixa, mas nao ha padding de compensacao aqui: ela traz o
+              proprio espacador, com a altura vinda do mesmo token. Compensar
+              aqui foi o primeiro elo da corrente de remendos da versao
+              anterior, e e justamente o que nao se repete. */}
           <Header content={header} />
-          {/* Sem padding de compensacao: a barra do topo e estatica e ja ocupa o
-            proprio espaco no fluxo. */}
-        <main id="conteudo" className="flex-1">
+          <main id="conteudo" className="flex-1">
             {children}
           </main>
           <Footer content={footer} />

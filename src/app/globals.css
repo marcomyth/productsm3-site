@@ -262,6 +262,12 @@
   --spacing-grid-margin-mobile: 1.25rem;
   --spacing-grid-margin-tablet: 2rem;
   --spacing-grid-margin-desktop: 3rem;
+
+  /* Altura da barra do topo. Vive como token porque a medida aparece em três
+     lugares que não podem divergir: a própria barra, o espaçador que reserva o
+     lugar dela no fluxo, e o recuo das âncoras. Se os três fossem 72px
+     escritos à mão, um dia dois mudariam e o terceiro não. */
+  --spacing-barra: 4.5rem;
 }
 
 @layer base {
@@ -274,6 +280,13 @@
     html {
       scroll-behavior: smooth;
     }
+  }
+  /* Com a barra do topo fixa, toda âncora pararia com o título escondido atrás
+     dela: #servicos, #metodo, #auditoria, #cases. O recuo é a altura da barra
+     mais um respiro, para o alvo chegar abaixo dela e não encostado. Vale
+     também para quem chega pelo link direto, não só para quem clica no menu. */
+  html {
+    scroll-padding-top: calc(var(--spacing-barra) + var(--spacing-space-sm));
   }
   body {
     background-color: var(--color-background);
