@@ -33,20 +33,29 @@ function FaixaCase({ item, escura }: { item: CaseStudy; escura: boolean }) {
             </p>
           )}
           {item.metricLabel && (
-            <p className="mt-space-sm max-w-md font-sans text-headline-sm-mobile font-normal leading-snug t-forte md:text-headline-sm">
+            <p className="mt-space-sm max-w-md font-sans text-headline-md-mobile font-normal leading-snug t-forte md:text-headline-md">
               {item.metricLabel}
             </p>
           )}
-          {/* Resultado de apoio: mesma estrutura, um degrau abaixo. Dois números
-              no mesmo corpo brigariam, e a faixa perderia o ponto de entrada. */}
+          {/* Resultado de apoio, na mesma forma do principal: número em cima,
+              legenda embaixo. Antes era número e legenda na mesma linha, em
+              24px contra os 144px do principal — lia como nota de rodapé, e
+              não como o segundo resultado que ele é. Repetir a estrutura em
+              corpo menor é o que faz os dois lerem como da mesma família, com
+              um claramente maior que o outro.
+              `flex-wrap` com largura mínima: hoje todo caso tem no máximo um
+              apoio, mas se entrarem dois eles se dividem lado a lado em vez de
+              esticar a faixa para baixo. */}
           {item.extraMetrics && item.extraMetrics.length > 0 && (
-            <ul className="mt-space-md space-y-space-2xs border-t border-regua pt-space-sm">
+            <ul className="mt-space-lg flex flex-wrap gap-x-space-xl gap-y-space-md border-t border-regua pt-space-md">
               {item.extraMetrics.map((metric) => (
-                <li key={metric.label} className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="font-sans text-headline-md-mobile font-bold tracking-[-0.02em] t-acento md:text-headline-md">
+                <li key={metric.label} className="min-w-[8rem]">
+                  <p className="font-sans text-[2rem] font-extrabold leading-none tracking-[-0.03em] t-acento md:text-[3rem]">
                     {metric.value}
-                  </span>
-                  <span className="font-sans text-body-default t-fraco">{metric.label}</span>
+                  </p>
+                  <p className="mt-space-2xs font-sans text-body-default leading-snug t-forte">
+                    {metric.label}
+                  </p>
                 </li>
               ))}
             </ul>
