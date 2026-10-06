@@ -66,9 +66,13 @@ export const siteContent: SiteContent = {
     // numeração que elas mesmas exibem: 02 Serviços, 03 Método, 04 Cases,
     // 05 Auditoria. Cases e Método estavam trocados, então o menu descia e
     // subia a página em vez de acompanhá-la.
+    //
+    // Cases é a exceção: saiu da home para a própria página, então aponta
+    // para uma rota e não para uma âncora. Ficou aqui, na posição que já
+    // ocupava, porque o menu segue a ordem do argumento, não a da rolagem.
     navLinks: [
       { label: "Serviços", url: "/#servicos" },
-      { label: "Cases", url: "/#cases" },
+      { label: "Cases", url: "/cases" },
       { label: "Método", url: "/#metodo" },
       { label: "Auditoria", url: "/#auditoria" },
       { label: "Blog", url: "/blog" },
@@ -100,7 +104,7 @@ export const siteContent: SiteContent = {
       {
         title: "Estrutura",
         links: [
-          { label: "Índice de Cases", url: "/#cases" },
+          { label: "Índice de Cases", url: "/cases" },
           { label: "O Método M3", url: "/#metodo" },
           { label: "Liderança Técnica", url: "/#auditoria" },
           { label: "Requisitar Parecer", url: "/#auditoria" },
@@ -122,7 +126,7 @@ export const siteContent: SiteContent = {
     subtitle:
       "Redesenhamos o seu sistema competitivo para a excelência operacional. Agende um diagnóstico para descobrirmos o seu nível de funil sinérgico de vendas",
     primaryCta: { label: "Conversar com nossos especialistas", url: "/#auditoria" },
-    secondaryCta: { label: "Cases de sucesso", url: "/#cases" },
+    secondaryCta: { label: "Cases de sucesso", url: "/cases" },
     meta: [
       "Você contrata marketing na fé e reza para vender mais?",
       "Já está na terceira empresa de marketing e nenhuma dá resultado?",
