@@ -24,22 +24,23 @@ export function externalLinkProps(url: string) {
 }
 
 /**
- * Botão de ação, no formato da referência: pílula, caixa alta, e deliberadamente
- * grande — lá ele tem 1.8rem, maior que vários dos títulos da própria página.
+ * Botão de ação: pílula verde, serifada em itálico e caixa baixa.
  *
- * Eu tinha reduzido isso para 20px por conta própria, com o argumento de que
- * o verde da M3 é muito mais claro que o magenta deles e pesaria demais. O
- * pedido era fidelidade, e o tamanho do botão é uma das coisas que mais
- * define a aparência da referência, então voltou ao tamanho dela. Se pesar na
- * tela, o ajuste é este número.
+ * Ele era caixa alta, negrito e 1.8rem — a medida da referência, que eu tinha
+ * copiado por fidelidade. Na nossa página não funcionou: lá o botão é magenta
+ * sobre branco, aqui é verde claro sobre azul escuro, e o mesmo tamanho que lá
+ * é um acento aqui vira o objeto mais pesado da primeira tela, maior que o
+ * próprio subtítulo que deveria levar até ele.
  *
- * Vive aqui como constante, e não como componente, porque os cinco lugares
- * que usam isso precisam de tags diferentes: `Link` do Next na navegação
- * interna e `<a>` cru nos que vão pro WhatsApp.
+ * O que sustenta o destaque agora não é o tamanho, é a voz. O botão é a única
+ * coisa do site em itálico, e a serifada já era a segunda família da página —
+ * então ele continua se destacando de tudo em volta sem precisar competir em
+ * área com o título. 1.5rem em caixa baixa contra 1.8rem em caixa alta é,
+ * medido pela altura das maiúsculas, menos da metade da mancha anterior.
+ *
+ * Vive aqui como constante, e não como componente, porque os lugares que usam
+ * isso precisam de tags diferentes: `Link` do Next na navegação interna e `<a>`
+ * cru nos que vão pro WhatsApp.
  */
 export const BOTAO_ACAO =
-  "inline-flex max-w-full items-center justify-center rounded-full bg-action px-space-md py-space-sm text-center font-sans text-[1.25rem] font-bold uppercase leading-tight tracking-[0.04em] text-on-action shadow-sm transition-all duration-300 hover:brightness-95 md:px-space-lg md:py-space-md md:text-[1.8rem]";
-
-/** Mesma pílula, na medida que caiba na barra de 72px do cabeçalho. */
-export const BOTAO_ACAO_COMPACTO =
-  "inline-flex items-center justify-center rounded-full bg-action px-5 py-2 font-sans text-body-sm font-semibold uppercase tracking-[0.08em] text-on-action shadow-sm transition-all duration-300 hover:brightness-95";
+  "inline-flex max-w-full items-center justify-center rounded-full bg-action px-space-md py-space-sm text-center font-serif text-[1.25rem] font-normal italic leading-tight text-on-action shadow-sm transition-all duration-300 hover:brightness-95 md:px-space-lg md:text-[1.5rem]";

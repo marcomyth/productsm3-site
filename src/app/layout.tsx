@@ -24,6 +24,10 @@ const inter = Inter({
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
+  // O italico entrou para o botao de acao. E a face mais proxima de caligrafia
+  // que o site ja tem — a alternativa seria uma terceira familia so para um
+  // botao, com mais um arquivo para baixar antes da primeira tela.
+  style: ["normal", "italic"],
   variable: "--font-instrument-serif",
   display: "swap",
   fallback: ["Georgia", "ui-serif", "serif"],
