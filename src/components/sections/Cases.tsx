@@ -1,152 +1,126 @@
 import Image from "next/image";
-import { ImageOff } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { TituloSecao } from "@/components/layout/TituloSecao";
-import { cn } from "@/lib/utils";
 import type { CaseStudy } from "@/lib/types";
 
 type Props = {
   data: CaseStudy[];
 };
 
-export function Cases({ data }: Props) {
+/**
+ * Uma faixa de placar: um caso ocupando a largura inteira da tela.
+ *
+ * O número é o assunto. Ele sai de 2.5rem para 9rem — não é ajuste de escala,
+ * é inversão de hierarquia: antes o maior elemento da página era uma caixa
+ * cinza com a logo dentro, que ocupava 250px de altura por cartão e não dizia
+ * nada; o `+120%` da Musa, que é o melhor resultado da casa, vinha no mesmo
+ * corpo de um título de seção qualquer.
+ *
+ * A logo entra numa placa branca. As sete são artes escuras sobre fundo
+ * transparente — nas faixas escuras elas sumiriam, e inverter a cor por filtro
+ * destruiria o vermelho da Fogatti e o brasão colorido do Vale Europeu. A placa
+ * resolve sem tocar no arquivo, e de quebra dá a mesma moldura para todas, o
+ * que faz sete marcas de proporções diferentes lerem como um conjunto.
+ */
+function FaixaCase({ item, escura }: { item: CaseStudy; escura: boolean }) {
   return (
-    <Section id="cases" tom="claro">
-      <TituloSecao
-        destaque="evidências práticas"
-        afirmacao="Cases de Sucesso"
-        descricao="Período de análise: 2022 a 2026."
-        className="mb-space-xl"
-      />
-
-      {/* Sem `items-start`: o padrão do grid é esticar, e é isso que faz os
-          dois cards de uma mesma linha terminarem na mesma altura, ainda
-          que uma descrição seja mais longa que a outra. É a borda de baixo
-          alinhada que dá a sensação de organizado. */}
-      <div className="grid grid-cols-1 gap-gutter-desktop sm:grid-cols-2">
-        {data.map((item) => (
-          <article
-            key={item.reference}
-            className="flex flex-col justify-between space-y-space-md rounded border border-painel-regua bg-painel p-space-md shadow-sm transition-shadow duration-300 hover:shadow-md"
-          >
-            <div className="space-y-space-sm">
-              <div className="flex items-center">
-                <span className="rounded-full bg-surface-container px-space-xs py-1 font-label-meta text-label-meta font-semibold uppercase tracking-[0.16em] t-texto">
-                  {item.category}
-                </span>
-              </div>
-              {/* Foto do próprio site do cliente ao fundo, bem apagada, com a
-                  logo menor por cima. Diminuir a logo é o que devolve nitidez:
-                  vários arquivos são pequenos — o do CIMVI tem 138px de largura
-                  — e no tamanho anterior o navegador ampliava e borrava. Agora
-                  ele reduz, que é a operação que preserva o traço. */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded border border-regua bg-surface">
-                {item.imageUrl ? (
-                  <div className="absolute inset-0 flex items-center justify-center p-space-md">
-                    {/* Caixa fixa com `contain`: cada logo entra no próprio
-                        formato e é limitada pela largura OU pela altura, o que
-                        vier primeiro — assim uma marca vertical ocupa a altura
-                        inteira em vez de encolher dentro de um quadro largo.
-                        190px é o teto: seis das sete logos têm arquivo maior que
-                        isso e só reduzem; a do CIMVI, de 138px, é a única que
-                        amplia, e ganhar tamanho é o que torna o subtítulo dela
-                        legível; a altura de 144px existe pro brasão vertical do
-                        Vale Europeu, e não afeta as horizontais, que travam na
-                        largura antes. */}
-                    <div className="relative h-36 w-[190px]">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.imageAlt ?? ""}
-                        fill
-                        sizes="170px"
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 t-apagado">
-                    <ImageOff className="h-6 w-6" />
-                    <span className="font-label-meta text-label-meta uppercase tracking-wider">
-                      Imagem pendente
-                    </span>
-                  </div>
-                )}
-              </div>
-              {/* Um cliente pode entrar só com a logo. Enquanto o case não
-                  fecha, o card não inventa um "+000%" nem uma descrição
-                  vazia — simplesmente não mostra o bloco. */}
-              {(item.metricValue || item.extraMetrics?.length || item.description) && (
-                <div className="pt-space-xs">
-                  {item.metricValue && (
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                      <span
-                        className={cn(
-                          "font-sans text-display-xl-mobile font-extrabold tracking-[-0.01em] md:text-display-xl",
-                          item.metricAccent ? "t-acento" : "t-forte",
-                        )}
-                      >
-                        {item.metricValue}
-                      </span>
-                      {item.metricLabel && (
-                        <span className="font-sans text-headline-sm font-normal t-forte">
-                          {item.metricLabel}
-                        </span>
-                      )}
-                    </div>
-                  )}
-                  {/* Mesma estrutura do número principal, um degrau abaixo na
-                      escala. Antes era sans em corpo de texto ao lado de um
-                      serifado gigante: a troca de família somada ao salto de
-                      tamanho fazia os dois lerem como coisas diferentes, e não
-                      como resultado principal e resultado de apoio. */}
-                  {item.extraMetrics && item.extraMetrics.length > 0 && (
-                    <ul className="mt-space-2xs space-y-space-2xs">
-                      {item.extraMetrics.map((metric) => (
-                        <li
-                          key={metric.label}
-                          className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
-                        >
-                          <span className="font-sans text-headline-md-mobile font-bold tracking-[-0.01em] t-acento md:text-headline-md">
-                            {metric.value}
-                          </span>
-                          <span className="font-sans text-body-lead font-normal t-fraco">
-                            {metric.label}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {item.description && (
-                    <p className="mt-space-xs font-sans text-body-default leading-relaxed t-fraco">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-            {(item.platform || item.badge) && (
-              <div className="flex items-center justify-between border-t border-regua pt-space-sm">
-                {/* Condicional, e não um span vazio: com `justify-between`, um
-                    único filho encosta à esquerda. Assim o selo sozinho alinha
-                    com o resto do card em vez de flutuar na margem direita, e
-                    volta pra direita sozinho quando a frase do cliente chegar. */}
-                {item.platform && (
-                  <span className="font-body-sm text-body-sm font-medium t-fraco">
-                    {item.platform}
+    <Section tom={escura ? "escuro" : "claro"} respiro="grande">
+      <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg lg:grid-cols-12 lg:items-center">
+        <div className="lg:col-span-5">
+          {item.metricValue && (
+            <p className="font-sans text-[4rem] font-extrabold leading-[0.82] tracking-[-0.04em] t-acento sm:text-[5.5rem] lg:text-[9rem]">
+              {item.metricValue}
+            </p>
+          )}
+          {item.metricLabel && (
+            <p className="mt-space-sm max-w-md font-sans text-headline-sm-mobile font-normal leading-snug t-forte md:text-headline-sm">
+              {item.metricLabel}
+            </p>
+          )}
+          {/* Resultado de apoio: mesma estrutura, um degrau abaixo. Dois números
+              no mesmo corpo brigariam, e a faixa perderia o ponto de entrada. */}
+          {item.extraMetrics && item.extraMetrics.length > 0 && (
+            <ul className="mt-space-md space-y-space-2xs border-t border-regua pt-space-sm">
+              {item.extraMetrics.map((metric) => (
+                <li key={metric.label} className="flex flex-wrap items-baseline gap-x-3">
+                  <span className="font-sans text-headline-md-mobile font-bold tracking-[-0.02em] t-acento md:text-headline-md">
+                    {metric.value}
                   </span>
-                )}
-                {/* Sempre teal: os dois badges ocupam a mesma posição e fazem o
-                    mesmo trabalho — variar a cor entre eles lia como
-                    inconsistência, não como sinal. A distinção fica no número,
-                    que é teal quando o case é destaque e preto quando não é. */}
-                <span className="font-label-meta text-label-meta font-semibold uppercase tracking-wider t-acento">
-                  {item.badge}
-                </span>
+                  <span className="font-sans text-body-default t-fraco">{metric.label}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="lg:col-span-6 lg:col-start-7">
+          <div className="flex items-center gap-space-sm">
+            {/* A área interna ocupa a placa inteira menos o respiro, em vez de
+                uma altura fixa menor. Com altura travada, as marcas horizontais
+                paravam na largura e sobrava folga, mas o brasão vertical do
+                Vale Europeu — que é limitado pela altura — ficava com metade do
+                tamanho das outras. */}
+            {item.imageUrl && (
+              <div className="flex h-24 w-[190px] shrink-0 items-center justify-center rounded-lg bg-surface-container-lowest p-space-sm shadow-sm">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.imageAlt ?? item.category}
+                    fill
+                    sizes="160px"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             )}
-          </article>
-        ))}
+            <p className="font-sans text-headline-md-mobile font-extrabold leading-tight t-forte md:text-headline-md">
+              {item.category}
+            </p>
+          </div>
+
+          {item.description && (
+            <p className="mt-space-md font-sans text-body-default leading-relaxed t-fraco">
+              {item.description}
+            </p>
+          )}
+        </div>
       </div>
     </Section>
+  );
+}
+
+/**
+ * Página de cases no formato de placar.
+ *
+ * Era uma grade de dois cartões por linha, com moldura, sombra e uma caixa de
+ * logo em cima. Lia como catálogo: `+120%` e `+20%` tinham o mesmo tamanho, a
+ * mesma moldura e o mesmo peso, então a página tratava o melhor resultado da
+ * casa como item de lista.
+ *
+ * Agora cada caso é uma faixa de ponta a ponta, e as faixas alternam fundo
+ * escuro e claro. A alternância é o que cria o ritmo: sem ela, sete blocos
+ * iguais empilhados viram de novo uma lista, só que mais alta. Com ela, o olho
+ * desce batendo de número em número.
+ *
+ * O destaque não é mais escolhido por `metricAccent`. Quando só um número era
+ * de acento, o campo separava o caso em evidência dos demais; aqui todo número
+ * é o assunto da própria faixa, e variar a cor entre eles leria como
+ * inconsistência em vez de sinal. O campo continua no conteúdo, sem uso visual.
+ */
+export function Cases({ data }: Props) {
+  return (
+    <>
+      <Section id="cases" tom="claro">
+        <TituloSecao
+          destaque="evidências práticas"
+          afirmacao="Cases de Sucesso"
+          descricao="Período de análise: 2022 a 2026."
+        />
+      </Section>
+
+      {data.map((item, indice) => (
+        <FaixaCase key={item.reference} item={item} escura={indice % 2 === 0} />
+      ))}
+    </>
   );
 }
