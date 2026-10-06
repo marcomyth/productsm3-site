@@ -23,7 +23,12 @@ export type TomSecao = "claro" | "claro-alt" | "escuro" | "verde" | "gradiente" 
  */
 const FUNDO: Record<TomSecao, string> = {
   claro: "tom-claro bg-surface",
-  "claro-alt": "tom-claro bg-surface-container-low",
+  // `surface-container`, e não o `-low` que estava aqui: contra o `claro`
+  // (#f4f6f6), o -low (#eef1f1) rende 1,05 de contraste. É pouco demais para
+  // separar duas seções, e o recorte em ziguezague entre elas — que existe
+  // justamente para marcar a emenda — sumia junto. Este degrau da mesma rampa
+  // rende 1,12, o dobro da diferença, sem sair da paleta.
+  "claro-alt": "tom-claro bg-surface-container",
   escuro: "tom-escuro bg-dark-surface",
   verde: "tom-escuro bg-dark-green",
   // O hero e o FAQ da referência usam gradiente, não cor plana.

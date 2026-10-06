@@ -27,10 +27,14 @@ type Props = {
 export function LinhaServicos({ data }: Props) {
   if (data.length === 0) return null;
 
+  // `bg-surface-container` é o mesmo cinza do tom `claro-alt`: esta faixa e as
+  // seções alternadas são a mesma superfície secundária, e com dois cinzas
+  // quase iguais na mesma página só se ganha a dúvida de se um deles está
+  // errado.
   return (
     <nav
       aria-label="Serviços"
-      className="tom-claro w-full border-b border-regua bg-surface-container-low"
+      className="tom-claro w-full border-b border-regua bg-surface-container"
     >
       <ul className="mx-auto flex w-full max-w-content flex-wrap items-center justify-start gap-x-space-lg md:justify-between gap-y-space-xs px-grid-margin-mobile py-space-md md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         {data.map((service) => (
