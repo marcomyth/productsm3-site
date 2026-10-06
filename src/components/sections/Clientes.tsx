@@ -28,6 +28,17 @@ type Props = {
  * Altura fixa com `object-contain`: os arquivos têm proporções muito
  * diferentes (um brasão vertical ao lado de marcas horizontais), e travar a
  * altura é o que faz a fileira parecer alinhada em vez de sete imagens soltas.
+ *
+ * Quatro por fileira, não sete. Com sete em linha cada logo ficava com 142px
+ * de largura, e as marcas horizontais — Lexus, Mueller — são limitadas pela
+ * largura, não pela altura: aumentar só a altura da caixa não as faria crescer
+ * um pixel. Em quatro, a caixa passa de 142px para cerca de 240px.
+ *
+ * E fileira que quebra, não grade. Sete não é divisível por nada entre 2 e 6,
+ * então qualquer número de colunas deixa a última fileira incompleta; em grade
+ * ela encosta à esquerda e abre um buraco à direita, que lê como imagem que
+ * faltou carregar. Quebrando centralizada, as três últimas ficam no meio e o
+ * arranjo parece escolhido.
  */
 export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
   const comLogo = data.filter((item) => item.imageUrl);
@@ -35,19 +46,22 @@ export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
 
   return (
     <Section id={id} tom="claro">
-      <h2 className="font-sans text-headline-md-mobile font-bold leading-tight t-forte md:text-headline-md">
+      <h2 className="font-sans text-display-lg-mobile font-extrabold leading-tight tracking-[0.01em] t-forte md:text-display-lg">
         Marcas que já fazem parte da nossa operação
       </h2>
 
-      <ul className="mt-space-xl grid grid-cols-2 items-center gap-x-gutter-desktop gap-y-space-lg sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+      {/* As larguras ficam um pouco abaixo da fração exata (45% em vez de 50%,
+          22% em vez de 25%) para o `gap` caber sem empurrar a última da fileira
+          para a linha de baixo. */}
+      <ul className="mt-space-xl flex flex-wrap items-center justify-center gap-x-space-md gap-y-space-lg">
         {comLogo.map((item) => (
-          <li key={item.reference} className="flex items-center justify-center">
-            <div className="relative h-16 w-full">
+          <li key={item.reference} className="flex w-[45%] justify-center sm:w-[29%] lg:w-[22%]">
+            <div className="relative h-20 w-full md:h-28">
               <Image
                 src={item.imageUrl as string}
                 alt={item.imageAlt ?? item.category}
                 fill
-                sizes="(max-width: 640px) 45vw, (max-width: 1280px) 22vw, 14vw"
+                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 29vw, 240px"
                 className="object-contain object-center"
               />
             </div>
