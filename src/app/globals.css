@@ -466,6 +466,14 @@
   border-color: var(--tom-regua);
 }
 /**
+ * Régua no acento, para quando a borda precisa marcar hierarquia e não só
+ * separar. Existe pelo mesmo motivo de `border-regua`: fixar a cor na classe
+ * do componente quebraria o bloco ao mudar o tom da seção.
+ */
+@utility border-acento {
+  border-color: var(--tom-acento);
+}
+/**
  * `divide-y` do Tailwind desenha a borda nos filhos, não no elemento, então
  * colorir o elemento aqui não teria efeito nenhum: a régua cairia no padrão
  * de `* { border-color }` da camada base, que é claro, e apareceria errada em

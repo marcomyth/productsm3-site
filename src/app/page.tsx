@@ -38,12 +38,17 @@ export default async function HomePage() {
   return (
     <>
       <Hero data={hero} />
-      {/* Faixa e linha de servicos vem coladas no hero, como na referencia:
-          sao a transicao entre a promessa e o conteudo. */}
+      {/* A faixa corrida continua colada no hero, como na referencia: e a
+          transicao entre a promessa e o conteudo. */}
       <FaixaCorrida frases={footer.tagline} />
+      {/* Os numeros vem antes de qualquer argumento. O hero termina com tres
+          perguntas de qualificacao, e o que responde pergunta assim e volume
+          declarado, nao mais texto. Estavam em quarto lugar, depois da linha
+          de servicos e da declaracao, onde so chegava quem ja tinha decidido
+          continuar lendo. */}
+      <ProofBar data={proofBar} />
       <LinhaServicos data={services} />
       <Declaracao />
-      <ProofBar data={proofBar} />
       <Clientes data={cases} comLink id="cases" />
       <Services data={services} />
       <Method data={method} />

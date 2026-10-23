@@ -29,8 +29,8 @@ import { Section } from "@/components/layout/Section";
  *   operacional do rodapé ("transparência total da gestão de fontes de
  *   tráfego").
  *
- * Nenhum número aparece aqui: os números têm lugar próprio na faixa logo
- * abaixo e nos cases, e repeti-los aqui tiraria peso dos dois.
+ * Nenhum número aparece aqui: os números têm lugar próprio na faixa do topo
+ * e nos cases, e repeti-los aqui tiraria peso dos dois.
  */
 export function Declaracao() {
   return (

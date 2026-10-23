@@ -6,12 +6,13 @@ type Props = {
 };
 
 /**
- * Linha com os nomes dos serviços, logo abaixo da faixa corrida.
+ * Linha com os nomes dos serviços, logo abaixo da faixa de números.
  *
- * É o primeiro bloco de conteúdo da home da referência, e cumpre uma função
+ * É o bloco com que a home da referência abre o conteúdo, e cumpre uma função
  * que nenhuma outra seção faz: dizer, em uma linha, tudo o que a empresa
  * oferece, antes de qualquer argumento. Quem chega sabendo o que procura
- * encontra ali e pula o resto.
+ * encontra ali e pula o resto. Aqui ela cedeu o primeiro lugar para a faixa
+ * de números, que responde às perguntas com que o hero termina.
  *
  * O rótulo é a `category`, não o `title`. Os títulos da M3 são frases
  * ("Consultoria, auditoria e governança de marketing digital") e enchiam a

@@ -140,9 +140,17 @@ export const siteContent: SiteContent = {
 
   proofBar: [
     {
-      value: "R$ 40 mi+",
-      label: "Funil sinérgico de vendas",
-      description: "Consultoria, auditoria e governança de tráfego pago",
+      value: "R$ 40 milhões+",
+      label: "Gerenciados em Google e Meta Ads",
+      description:
+        "Consultoria, auditoria e governança de tráfego pago para o funil sinérgico de vendas",
+      destaque: true,
+    },
+    {
+      value: "R$ 120 milhões+",
+      label: "Faturados no Mercado Industrial",
+      description: "Receita que as operações conduzidas pela M3 já geraram na indústria",
+      destaque: true,
     },
     {
       value: "4,2x",

@@ -70,6 +70,14 @@ export type ProofStat = {
   value: string;
   label: string;
   description: string;
+  /**
+   * Põe o dado na primeira fileira, em corpo grande.
+   *
+   * A marca existe porque os cinco números não têm o mesmo papel: dois dizem
+   * quanto dinheiro passa pela operação, e três descrevem como ela opera. Sem
+   * a separação, todos saem no mesmo corpo e nenhum é o primeiro a ser lido.
+   */
+  destaque?: boolean;
 };
 
 export type ServiceItem = {
