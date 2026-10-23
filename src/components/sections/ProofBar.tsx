@@ -40,6 +40,12 @@ type Props = {
  * duas superfícies claras parecidas, e o que está aqui em cima agora é a
  * tarja verde: o recorte viraria um dente claro sobre o verde, que lê como
  * defeito e não como divisa.
+ *
+ * As duas cifras não levam régua em cima, a pedido do cliente. A régua existe
+ * para dizer onde um item começa quando ele corre o risco de se misturar com
+ * o vizinho, e nenhuma das duas corre: elas são o primeiro conteúdo da seção
+ * e estão no maior corpo da página. Os três dados de apoio mantêm a régua
+ * fina, que ali ainda separa as colunas.
  */
 export function ProofBar({ data }: Props) {
   const destaques = data.filter((stat) => stat.destaque);
@@ -51,7 +57,7 @@ export function ProofBar({ data }: Props) {
         {destaques.length > 0 && (
           <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg lg:grid-cols-2">
             {destaques.map((stat) => (
-              <div key={stat.label} className="border-t-2 border-acento pt-space-sm">
+              <div key={stat.label}>
                 {/* `whitespace-nowrap`: os dois valores têm quase o mesmo
                     comprimento, mas não o mesmo. Se um quebrasse em duas
                     linhas e o outro não, os rótulos ao lado deixariam de
