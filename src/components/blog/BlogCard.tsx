@@ -3,32 +3,25 @@ import Image from "next/image";
 import { Clock, Tag } from "lucide-react";
 import { mediaUrl } from "@/lib/media";
 import type { BlogPost } from "@/lib/types";
+import { IDIOMA_HTML, rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 
-const CATEGORY_LABEL: Record<NonNullable<BlogPost["category"]>, string> = {
-  noticia: "Notícia",
-  tutorial: "Tutorial",
-  case: "Case",
-  novidade: "Novidade",
-  tendencia: "Tendência",
-  geral: "Geral",
-};
-
-function formatDate(iso?: string): string {
+function formatDate(iso: string | undefined, idioma: Idioma): string {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString("pt-BR", {
+  return new Date(iso).toLocaleDateString(IDIOMA_HTML[idioma], {
     day: "2-digit",
     month: "short",
     year: "numeric",
   });
 }
 
-export function BlogCard({ post }: { post: BlogPost }) {
+export function BlogCard({ post, idioma }: { post: BlogPost; idioma: Idioma }) {
   const cover = post.cover?.url ? mediaUrl(post.cover.url) : null;
-  const categoryLabel = post.category ? CATEGORY_LABEL[post.category] : null;
+  const categoryLabel = post.category ? textos(idioma).blog.categorias[post.category] : null;
 
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={rota(idioma, `/blog/${post.slug}`)}
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-secondary/40 hover:shadow-lg"
     >
       {cover ? (
@@ -61,7 +54,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-2 text-xs text-muted-foreground">
-          <span>{formatDate(post.publishedAt)}</span>
+          <span>{formatDate(post.publishedAt, idioma)}</span>
           {post.readingTime && (
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3 w-3" /> {post.readingTime} min

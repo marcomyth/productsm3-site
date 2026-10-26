@@ -1,8 +1,11 @@
 import Link from "next/link";
 import type { ServiceItem } from "@/lib/types";
+import { rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 
 type Props = {
   data: ServiceItem[];
+  idioma: Idioma;
 };
 
 /**
@@ -25,8 +28,10 @@ type Props = {
  * numa faixa não parece clicável, e o movimento é o que informa que ali há um
  * caminho.
  */
-export function LinhaServicos({ data }: Props) {
+export function LinhaServicos({ data, idioma }: Props) {
   if (data.length === 0) return null;
+
+  const t = textos(idioma);
 
   // `bg-surface-container` é o mesmo cinza do tom `claro-alt`: esta faixa e as
   // seções alternadas são a mesma superfície secundária, e com dois cinzas
@@ -34,14 +39,14 @@ export function LinhaServicos({ data }: Props) {
   // errado.
   return (
     <nav
-      aria-label="Serviços"
+      aria-label={t.linhaServicos.navegacao}
       className="tom-claro w-full border-b border-regua bg-surface-container"
     >
       <ul className="mx-auto flex w-full max-w-content flex-wrap items-center justify-start gap-x-space-lg md:justify-between gap-y-space-xs px-grid-margin-mobile py-space-md md:px-grid-margin-tablet lg:px-grid-margin-desktop">
         {data.map((service) => (
           <li key={service.index}>
             <Link
-              href={`/#servico-${service.index}`}
+              href={rota(idioma, `/#servico-${service.index}`)}
               aria-label={service.title}
               className="group inline-flex flex-col gap-1 font-label-meta text-label-meta font-semibold uppercase tracking-[0.18em] t-fraco transition-colors hover:t-acento"
             >

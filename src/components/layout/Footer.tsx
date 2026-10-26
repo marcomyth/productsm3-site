@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { SiteFooter } from "@/lib/types";
+import type { Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 
 type Props = {
   content: SiteFooter;
+  idioma: Idioma;
 };
 
 /**
@@ -20,7 +23,8 @@ type Props = {
  * o mais distante da referência, que fecha limpo. Fica registrado aqui porque
  * é uma linha para voltar, se fizer falta.
  */
-export function Footer({ content }: Props) {
+export function Footer({ content, idioma }: Props) {
+  const t = textos(idioma);
   const telefoneUrl = `tel:${content.contactPhone.replace(/[^\d+]/g, "")}`;
 
   return (
@@ -33,7 +37,7 @@ export function Footer({ content }: Props) {
           <div className="md:col-span-4">
             <Image
               src="/images/logo-m3-claro.png"
-              alt="Agência M3"
+              alt={t.layout.logoAlt}
               width={548}
               height={442}
               className="h-12 w-auto"

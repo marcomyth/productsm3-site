@@ -6,9 +6,13 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import type { SiteHeader } from "@/lib/types";
 import { cn, externalLinkProps } from "@/lib/utils";
+import { rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
+import { SeletorIdioma } from "@/components/layout/SeletorIdioma";
 
 type Props = {
   content: SiteHeader;
+  idioma: Idioma;
 };
 
 /**
@@ -34,8 +38,9 @@ type Props = {
  * A logo clara é obrigatória aqui: `logo-m3.png` é um traço todo escuro
  * (luminância média 16,7, zero pixel claro) e sumiria sobre este fundo.
  */
-export function Header({ content }: Props) {
+export function Header({ content, idioma }: Props) {
   const [open, setOpen] = React.useState(false);
+  const t = textos(idioma);
 
   return (
     <>
@@ -47,10 +52,10 @@ export function Header({ content }: Props) {
               separado por uma régua, não tem equivalente na referência e era o
               que deixava o canto esquerdo apertado. Continua no conteúdo
               (`header.tagline`), disponível para outro lugar. */}
-          <Link href="/" className="flex items-center">
+          <Link href={rota(idioma, "/")} className="flex items-center">
             <Image
               src="/images/logo-m3-claro.png"
-              alt="Agência M3"
+              alt={t.layout.logoAlt}
               width={548}
               height={442}
               priority
@@ -63,7 +68,7 @@ export function Header({ content }: Props) {
               do cabeçalho ficavam equidistantes e nada parecia pertencer a nada.
               Juntos, a leitura é: marca de um lado, o que fazer do outro. */}
           <div className="flex items-center gap-space-sm">
-            <nav className="hidden items-center gap-space-md lg:flex" aria-label="Principal">
+            <nav className="hidden items-center gap-space-md lg:flex" aria-label={t.barra.navegacao}>
               {content.navLinks.map((link) => (
                 <Link
                   key={link.url}
@@ -76,6 +81,13 @@ export function Header({ content }: Props) {
                 </Link>
               ))}
             </nav>
+
+            {/* O seletor fica antes do botão, e não depois: o botão é o fim
+                da linha de leitura da barra, e quem chega nele já decidiu. Quem
+                procura a própria língua procura antes de decidir qualquer
+                coisa. Em tela estreita ele desce para o menu, junto do resto da
+                navegação. */}
+            <SeletorIdioma idioma={idioma} className="hidden sm:flex" />
 
             {/* Compacto e discreto, no formato do "fale conosco" deles: a barra
                 é navegação, não o lugar de gritar. O botão grande em pílula
@@ -90,7 +102,7 @@ export function Header({ content }: Props) {
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded t-forte lg:hidden"
-              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-label={open ? t.barra.fecharMenu : t.barra.abrirMenu}
               aria-expanded={open}
               aria-controls="menu-mobile"
               onClick={() => setOpen((v) => !v)}
@@ -108,7 +120,7 @@ export function Header({ content }: Props) {
           inert={!open}
           className={cn(
             "overflow-hidden border-t border-regua transition-[max-height] duration-300 lg:hidden",
-            open ? "max-h-[360px]" : "max-h-0",
+            open ? "max-h-[420px]" : "max-h-0",
           )}
         >
           <div className="flex flex-col gap-1 px-grid-margin-mobile py-space-sm">
@@ -132,6 +144,14 @@ export function Header({ content }: Props) {
             >
               {content.ctaLabel}
             </Link>
+
+            {/* Em tela estreita o seletor vive aqui, separado por uma régua:
+                ele não é um dos links do menu, é a língua em que todos eles
+                serão lidos. */}
+            <SeletorIdioma
+              idioma={idioma}
+              className="mt-space-sm justify-center border-t border-regua pt-space-sm sm:hidden"
+            />
           </div>
         </div>
       </header>

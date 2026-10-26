@@ -3,6 +3,8 @@ import Image from "next/image";
 import { FileText } from "lucide-react";
 import { Section } from "@/components/layout/Section";
 import { getBlogPosts } from "@/lib/content";
+import { rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 
 /**
  * Últimos artigos, antes do rodapé.
@@ -21,21 +23,22 @@ import { getBlogPosts } from "@/lib/content";
  * exemplo: é uma moldura com a palavra "Em breve", e quem olha entende que ali
  * ainda não tem nada em vez de achar que algo não carregou.
  */
-export async function UltimosPosts() {
+export async function UltimosPosts({ idioma }: { idioma: Idioma }) {
   const { posts } = await getBlogPosts({ page: 1, pageSize: 3 });
   const vazios = Math.max(0, 3 - posts.length);
+  const t = textos(idioma);
 
   return (
     <Section tom="claro-alt">
       <h2 className="text-center font-sans text-headline-md-mobile font-bold leading-tight t-forte md:text-headline-md">
-        Últimos artigos sobre tráfego, dados e e-commerce
+        {t.ultimosPosts.titulo}
       </h2>
 
       <ul className="mt-space-xl grid grid-cols-1 gap-gutter-desktop md:grid-cols-3">
         {posts.map((post) => (
           <li key={post.slug}>
             <Link
-              href={`/blog/${post.slug}`}
+              href={rota(idioma, `/blog/${post.slug}`)}
               className="group flex h-full flex-col overflow-hidden rounded-[1.25rem] bg-painel transition-shadow duration-300 hover:shadow-md"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
@@ -63,7 +66,7 @@ export async function UltimosPosts() {
                 <FileText className="h-7 w-7 t-apagado opacity-50" />
               </div>
               <p className="p-space-md font-label-meta text-label-meta uppercase tracking-widest t-apagado">
-                Em breve
+                {t.ultimosPosts.emBreve}
               </p>
             </div>
           </li>
@@ -72,10 +75,10 @@ export async function UltimosPosts() {
 
       <div className="mt-space-xl flex justify-center">
         <Link
-          href="/blog"
+          href={rota(idioma, "/blog")}
           className="inline-flex items-center justify-center rounded-full bg-primary px-space-lg py-space-sm font-sans text-body-default font-semibold uppercase tracking-[0.08em] text-on-primary transition-all duration-300 hover:brightness-125"
         >
-          Confira o blog completo
+          {t.ultimosPosts.verBlog}
         </Link>
       </div>
     </Section>

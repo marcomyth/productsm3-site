@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/Section";
+import { rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 import type { CaseStudy } from "@/lib/types";
 
 type Props = {
   /** Vem da mesma lista dos cases: a logo e o nome já estão lá, e duplicar
       isso num campo novo garantiria que um dia os dois divergissem. */
   data: CaseStudy[];
+  idioma: Idioma;
   /** Link para a página de cases. Na home ele é a ponte para o detalhe, que
       saiu dali; na própria página de cases não faz sentido e é omitido. */
   comLink?: boolean;
@@ -80,14 +83,15 @@ function fileira(itens: CaseStudy[], duplicada: boolean) {
  * no instante em que entrasse em quadro, e a primeira volta teria buracos.
  * São sete arquivos, repetidos — o navegador baixa cada um uma vez.
  */
-export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
+export function Clientes({ data, idioma, comLink = false, id = "clientes" }: Props) {
+  const t = textos(idioma);
   const comLogo = data.filter((item) => item.imageUrl);
   if (comLogo.length === 0) return null;
 
   return (
     <Section id={id} tom="claro">
       <h2 className="font-sans text-display-lg-mobile font-extrabold leading-tight tracking-[0.01em] t-forte md:text-display-lg">
-        Marcas que já fazem parte da nossa operação
+        {t.clientes.titulo}
       </h2>
 
       <div className="relative left-1/2 mt-space-xl w-screen -translate-x-1/2 overflow-hidden">
@@ -111,10 +115,10 @@ export function Clientes({ data, comLink = false, id = "clientes" }: Props) {
       {comLink && (
         <div className="mt-space-xl">
           <Link
-            href="/cases"
+            href={rota(idioma, "/cases")}
             className="group inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest t-acento transition-colors hover:t-forte"
           >
-            Ver os resultados de cada uma
+            {t.clientes.verResultados}
             <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

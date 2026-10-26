@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Inter, Instrument_Serif } from "next/font/google";
 import { getSiteContent } from "@/lib/content";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/config/site";
-import "./globals.css";
+import { alternativas } from "@/lib/seo";
+import { textos } from "@/i18n/dicionario";
+import { ehIdioma, IDIOMAS, IDIOMA_HTML, IDIOMA_OG, rota } from "@/i18n/config";
+import "../globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,8 +37,27 @@ const instrumentSerif = Instrument_Serif({
   fallback: ["Georgia", "ui-serif", "serif"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getSiteContent();
+type Props = {
+  children: React.ReactNode;
+  params: Promise<{ idioma: string }>;
+};
+
+/**
+ * Os três idiomas são gerados no build.
+ *
+ * Sem isto, `[idioma]` seria um parâmetro dinâmico e cada visita renderizaria
+ * a página no servidor — trocando páginas estáticas com revalidação por
+ * execução a cada requisição, que é justamente o que este site não precisa.
+ */
+export function generateStaticParams() {
+  return IDIOMAS.map((idioma) => ({ idioma }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { idioma } = await params;
+  if (!ehIdioma(idioma)) notFound();
+
+  const { seo } = await getSiteContent(idioma);
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -44,13 +67,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: seo.description,
     keywords: seo.keywords,
+    alternates: alternativas(idioma, "/"),
     openGraph: {
       title: seo.title,
       description: seo.description,
       type: "website",
-      url: siteConfig.url,
+      url: rota(idioma, "/"),
       siteName: "M3 Brasil",
-      locale: "pt_BR",
+      locale: IDIOMA_OG[idioma],
     },
     twitter: {
       card: "summary_large_image",
@@ -90,16 +114,16 @@ function organizationSchema(
   };
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { header, footer, seo } = await getSiteContent();
+export default async function RootLayout({ children, params }: Props) {
+  const { idioma } = await params;
+  if (!ehIdioma(idioma)) notFound();
+
+  const { header, footer, seo } = await getSiteContent(idioma);
+  const t = textos(idioma);
 
   return (
     <html
-      lang="pt-BR"
+      lang={IDIOMA_HTML[idioma]}
       className={`${inter.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen bg-background font-sans text-body-default text-foreground antialiased">
@@ -116,18 +140,18 @@ export default async function RootLayout({
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-secondary focus:px-space-sm focus:py-space-xs focus:font-label-meta focus:text-label-meta focus:uppercase focus:tracking-wider focus:text-on-secondary"
         >
-          Pular para o conteúdo
+          {t.layout.pularParaConteudo}
         </a>
         <div className="flex min-h-screen flex-col">
           {/* A barra e fixa, mas nao ha padding de compensacao aqui: ela traz o
               proprio espacador, com a altura vinda do mesmo token. Compensar
               aqui foi o primeiro elo da corrente de remendos da versao
               anterior, e e justamente o que nao se repete. */}
-          <Header content={header} />
+          <Header content={header} idioma={idioma} />
           <main id="conteudo" className="flex-1">
             {children}
           </main>
-          <Footer content={footer} />
+          <Footer content={footer} idioma={idioma} />
         </div>
       </body>
     </html>

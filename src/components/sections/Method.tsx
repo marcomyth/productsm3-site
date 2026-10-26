@@ -1,9 +1,12 @@
 import { Section } from "@/components/layout/Section";
 import { TituloSecao } from "@/components/layout/TituloSecao";
+import type { Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 import type { MethodPhase } from "@/lib/types";
 
 type Props = {
   data: MethodPhase[];
+  idioma: Idioma;
 };
 
 /**
@@ -18,13 +21,15 @@ type Props = {
  * O raio grande é o que mais distingue: com canto de 4px os painéis leem como
  * tabela, e é a curva que os faz lerem como cartão.
  */
-export function Method({ data }: Props) {
+export function Method({ data, idioma }: Props) {
+  const t = textos(idioma);
+
   return (
     <Section id="metodo" tom="verde">
       <TituloSecao
-        destaque="método e entregáveis"
-        afirmacao="Rigor analítico em quatro fases irredutíveis"
-        descricao="Eliminamos o desperdício antes de acelerar. A escala só acontece após a estabilização da margem."
+        destaque={t.metodo.rotulo}
+        afirmacao={t.metodo.afirmacao}
+        descricao={t.metodo.descricao}
       />
 
       <div className="mt-space-xl flex flex-col gap-space-md">

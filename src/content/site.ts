@@ -1,47 +1,17 @@
 import type { SiteContent } from "@/lib/types";
+import { CASES_DIR, HERO_IMAGE, WHATSAPP_PT } from "./midia";
 
 /**
- * Conteúdo da landing page — M3 Brasil (Engenharia & Operação de Mídia para
- * E-Commerce). Transcrito do export Stitch em
- * stitch_m3_brasil_editorial_landing_page.zip (code.html), fonte de verdade
- * visual e de copy aprovada para este brief.
+ * Conteúdo do site em português.
  *
- * Fotografia real já em public/images/: hero.jpg, case-eletronicos.jpg,
- * case-moda-feminina.jpg e case-beleza.jpg. As imagens dos 2 cases reais
- * (Moda & Lifestyle, Casa & Design) ainda são os placeholders do Stitch
- * (lh3.googleusercontent.com/aida-public/...) — trocar antes de qualquer
- * publicação em produção.
- */
-
-/* A mesma foto de estação de trabalho, com os dois monitores fundidos num
-   ultrawide só e o painel real do cliente projetado na perspectiva da tela.
-   O notebook ao lado recebeu uma programação de mídia por canal, sem data
-   nenhuma. A foto original segue em hero.jpg, intacta, e é a base de onde
-   esta é gerada. */
-const HERO_IMAGE = "/images/hero-estacao.jpg";
-
-const CASE_ELETRONICOS_IMAGE = "/images/case-eletronicos.jpg";
-const CASE_MODA_FEMININA_IMAGE = "/images/case-moda-feminina.jpg";
-const CASE_BELEZA_IMAGE = "/images/case-beleza.jpg";
-
-const CASES_DIR = "/images/cases";
-
-/**
- * Destino dos dois botões de diagnóstico — o do topo e o da seção final.
+ * É o idioma do negócio e a fonte de onde saem as outras duas traduções, em
+ * site.en.ts e site.es.ts. Quando uma frase muda aqui, ela tem de mudar nos
+ * três arquivos: o tipo SiteContent garante que nenhum campo suma, mas não
+ * tem como saber que uma frase ficou desatualizada.
  *
- * É o mesmo número do rodapé, só que sem formatação: o wa.me aceita
- * dígitos e nada mais. A mensagem já vem escrita pra quem chega do outro
- * lado saber o que está sendo pedido, que era o papel do `?subject=`
- * quando o botão abria e-mail.
+ * Caminhos de imagem e o link do WhatsApp vivem em midia.ts, compartilhados
+ * pelos três idiomas.
  */
-const WHATSAPP_URL =
-  "https://wa.me/557199216851?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ag%C3%AAncia%20M3%20e%20gostaria%20de%20solicitar%20o%20diagn%C3%B3stico%20gratuito.";
-
-const PLACEHOLDER_CASE_MODA_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuC2HWbjmYGDdnwAI2Y78XAXBPZacJqZwvtoglMEER-ZMKyoPkYZeCaSPG_c4L0YceKIYH2E_LsLDqAfpdH7zTwRq-UmafBjqJiR-TiNh9uxNzO_SYdvLRcTEHUkHvuE1s5g3ombw8N0B4Tq-U8zYF0pRC6cExAxwonQWTkgo8E-bRK0TWxHYvzq-EFQmiUSf3A5vjCb4L1wrmnf77p4u7VLI5nlWWQODmeS_eyGByI45_y1FfwyaiMdxg";
-
-const PLACEHOLDER_CASE_CASA_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBgOj1sY_B-XGI-EiGiwPUdB4XivAYVAua-ADLBa0AIdyaC8tCBTwBauJpeK6fmO2H5gzepeCFCSe354pqtxu_GNv9XHsLgP1YMQY7-247Zysi6IVXiXCM4nu8zuEdVnq-YhYZ5HvsZIR4xfw5ko__ffXH0wvCra-37tIOjJwO0Xx6XntA8xiCHw4L1vZn_0T_Ul7QdN-nxeLRuM7zSYu__hF8fUFh4axUKYPqHfRiud14vn9N9IHIuUg";
 
 export const siteContent: SiteContent = {
   seo: {
@@ -78,7 +48,7 @@ export const siteContent: SiteContent = {
       { label: "Blog", url: "/blog" },
     ],
     ctaLabel: "Pedir Diagnóstico",
-    ctaUrl: WHATSAPP_URL,
+    ctaUrl: WHATSAPP_PT,
   },
 
   footer: {
@@ -165,7 +135,7 @@ export const siteContent: SiteContent = {
     {
       value: "+30",
       label: "E-Commerces Ativos",
-      description: "Gestão de tráfego com plataforma proprietária para clientes...",
+      description: "Gestão de tráfego com plataforma proprietária para os nossos clientes",
     },
   ],
 
@@ -459,7 +429,7 @@ export const siteContent: SiteContent = {
     description:
       "Você não precisa de mais tráfego. Te ajudamos a redesenhar o seu sistema competitivo. Duas semanas. Diagnóstico completo da sua operação de mídia, arquitetura técnica do e-commerce e vazamento de margem. Sem compromisso de contrato continuado.",
     ctaLabel: "Solicitar diagnóstico gratuito",
-    ctaUrl: WHATSAPP_URL,
+    ctaUrl: WHATSAPP_PT,
     meta: [
       { label: "Requisito de Verba", value: "Investimento > R$ 30k/mês" },
       {

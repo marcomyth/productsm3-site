@@ -1,4 +1,6 @@
+import { notFound } from "next/navigation";
 import { getSiteContent } from "@/lib/content";
+import { ehIdioma } from "@/i18n/config";
 import { Hero } from "@/components/sections/Hero";
 import { FaixaCorrida } from "@/components/layout/FaixaCorrida";
 import { FaixaFios } from "@/components/layout/FaixaFios";
@@ -29,9 +31,12 @@ import { UltimosPosts } from "@/components/sections/UltimosPosts";
  * numera seção nenhuma, e o número era invenção nossa. No lugar dele, cada
  * seção abre com a linha serifada em caixa baixa que a nomeia (TituloSecao).
  */
-export default async function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ idioma: string }> }) {
+  const { idioma } = await params;
+  if (!ehIdioma(idioma)) notFound();
+
   const { hero, proofBar, services, cases, method, differentiators, formats, faq, finalCta, footer } =
-    await getSiteContent();
+    await getSiteContent(idioma);
   // `cases` continua sendo lido: a grade de logos vive dele. O que saiu da
   // home foi a galeria com os sete cards, que agora tem pagina propria.
 
@@ -47,11 +52,11 @@ export default async function HomePage() {
           de servicos e da declaracao, onde so chegava quem ja tinha decidido
           continuar lendo. */}
       <ProofBar data={proofBar} />
-      <LinhaServicos data={services} />
-      <Declaracao />
-      <Clientes data={cases} comLink id="cases" />
-      <Services data={services} />
-      <Method data={method} />
+      <LinhaServicos data={services} idioma={idioma} />
+      <Declaracao idioma={idioma} />
+      <Clientes data={cases} idioma={idioma} comLink id="cases" />
+      <Services data={services} idioma={idioma} />
+      <Method data={method} idioma={idioma} />
       {differentiators?.items.length ? <Differentiators data={differentiators} /> : null}
       {formats?.items.length ? <Formats data={formats} /> : null}
       {faq?.items.length ? <Faq data={faq} /> : null}
@@ -59,7 +64,7 @@ export default async function HomePage() {
       {/* Mesma posicao da referencia: respiro animado entre o fecho e os
           artigos, devolvendo a assinatura do hero no meio da pagina. */}
       <FaixaFios />
-      <UltimosPosts />
+      <UltimosPosts idioma={idioma} />
     </>
   );
 }

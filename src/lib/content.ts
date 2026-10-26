@@ -1,7 +1,8 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
-import type { BlogPost, SiteContent } from "./types";
+import type { BlogPost, SiteContent, SiteContentArmazenado } from "./types";
 import { supabase } from "./supabase";
+import { IDIOMA_PADRAO, type Idioma } from "@/i18n/config";
 
 /**
  * Camada de conteúdo do site — lê do Supabase (site_content + blog_posts,
@@ -22,8 +23,24 @@ import { supabase } from "./supabase";
  * `.next/cache/fetch-cache` de um build antigo (Vercel e a maioria dos
  * pipelines de deploy reaproveitam esse cache entre builds pra acelerar) e
  * uma edição de conteúdo não aparece nem depois de redeployar.
+ *
+ * Os três idiomas moram na mesma linha: o português na raiz do JSON e os
+ * outros dois sob `traducoes`.
+ *
+ * O formato parece torto — por que não uma linha por idioma? — e é
+ * deliberado. site_content é escrito por um script fora do Next, e o site
+ * fica no ar durante a escrita. Com o português na raiz, a linha continua
+ * sendo um SiteContent válido para qualquer versão do código: semear o
+ * conteúdo novo antes do deploy subir não derruba nada, porque a versão
+ * antiga simplesmente ignora a chave que não conhece. Uma tabela com coluna
+ * de idioma seria mais bonita e exigiria alterar o schema de uma tabela viva
+ * para ganhar exatamente nada em funcionamento.
+ *
+ * Idioma sem tradução cai no português em vez de estourar. Existe uma janela
+ * real entre publicar código que lê um idioma e semear esse idioma, e nessa
+ * janela uma página em português é melhor do que um 500.
  */
-export async function getSiteContent(): Promise<SiteContent> {
+export async function getSiteContent(idioma: Idioma = IDIOMA_PADRAO): Promise<SiteContent> {
   return unstable_cache(
     async () => {
       const { data, error } = await supabase
@@ -34,9 +51,12 @@ export async function getSiteContent(): Promise<SiteContent> {
 
       if (error) throw new Error(`Falha ao carregar site_content: ${error.message}`);
 
-      return data.data as SiteContent;
+      const { traducoes, ...portugues } = data.data as SiteContentArmazenado;
+
+      if (idioma === IDIOMA_PADRAO) return portugues;
+      return traducoes?.[idioma] ?? portugues;
     },
-    ["site-content"],
+    ["site-content", idioma],
     { revalidate: 60 },
   )();
 }

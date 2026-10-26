@@ -1,3 +1,5 @@
+import type { Idioma } from "@/i18n/config";
+
 export type Media = {
   id: number;
   url: string;
@@ -271,6 +273,18 @@ export type SiteContent = {
   formats?: FormatsContent;
   faq?: FaqContent;
   finalCta: FinalCtaContent;
+};
+
+/**
+ * O que de fato está gravado na linha de site_content: o conteúdo em
+ * português na raiz, e os outros idiomas pendurados em `traducoes`.
+ *
+ * Só src/lib/content.ts conhece este formato; do lado de fora todo mundo
+ * recebe um SiteContent já resolvido no idioma certo. O porquê do formato
+ * está documentado lá.
+ */
+export type SiteContentArmazenado = SiteContent & {
+  traducoes?: Partial<Record<Exclude<Idioma, "pt">, SiteContent>>;
 };
 
 // ---- Blog ----

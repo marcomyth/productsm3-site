@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
 import { Section } from "@/components/layout/Section";
+import { rota, type Idioma } from "@/i18n/config";
+import { textos } from "@/i18n/dicionario";
 import type { ServiceItem } from "@/lib/types";
 
 type Props = {
   data: ServiceItem[];
+  idioma: Idioma;
 };
 
 /**
@@ -23,16 +26,16 @@ type Props = {
  * `<details>` nativo pelo mesmo motivo do FAQ: sem JavaScript, acessível por
  * teclado, e a seção continua Server Component.
  */
-export function Services({ data }: Props) {
+export function Services({ data, idioma }: Props) {
+  const t = textos(idioma);
+
   return (
     <Section id="servicos" tom="escuro">
       <div className="grid grid-cols-1 gap-x-gutter-desktop gap-y-space-lg lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <p className="rotulo-serifado">áreas de domínio</p>
+          <p className="rotulo-serifado">{t.servicos.rotulo}</p>
           <p className="mt-space-sm font-sans text-body-default leading-relaxed t-fraco">
-            Elevamos a qualidade dos seus processos de marketing sem elevar o custo operacional.
-            Implementamos e gerenciamos o funil sinérgico de vendas com transparência total, para
-            que cada atividade da sua operação de tráfego trabalhe pelos objetivos do seu negócio.
+            {t.servicos.intro}
           </p>
         </div>
 
@@ -75,7 +78,7 @@ export function Services({ data }: Props) {
                 </ul>
 
                 <Link
-                  href="/#auditoria"
+                  href={rota(idioma, "/#auditoria")}
                   className="mt-space-md inline-flex items-center gap-2 font-label-meta text-label-meta font-semibold uppercase tracking-widest t-acento transition-colors hover:t-forte"
                 >
                   {service.ctaLabel}

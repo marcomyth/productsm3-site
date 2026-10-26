@@ -13,6 +13,8 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { siteContent } from "../src/content/site";
+import { siteContentEn } from "../src/content/site.en";
+import { siteContentEs } from "../src/content/site.es";
 import { blogPosts } from "../src/content/blog-posts";
 
 function loadEnvLocal(): void {
@@ -44,10 +46,16 @@ if (!url || !serviceKey) {
 const supabase = createClient(url, serviceKey);
 
 async function main() {
-  console.log("Seed site_content...");
-  const { error: contentError } = await supabase
-    .from("site_content")
-    .upsert({ id: 1, data: siteContent, updated_at: new Date().toISOString() });
+  console.log("Seed site_content (pt + en + es)...");
+  // O português vai na raiz do JSON e as traduções penduradas em `traducoes`.
+  // O formato está explicado em src/lib/content.ts: com o português na raiz, a
+  // linha continua sendo um SiteContent válido para qualquer versão do código,
+  // e semear antes do deploy subir não derruba o site que está no ar.
+  const { error: contentError } = await supabase.from("site_content").upsert({
+    id: 1,
+    data: { ...siteContent, traducoes: { en: siteContentEn, es: siteContentEs } },
+    updated_at: new Date().toISOString(),
+  });
   if (contentError) throw contentError;
   console.log("  ✓ site_content");
 

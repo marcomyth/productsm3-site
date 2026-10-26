@@ -7,20 +7,13 @@ import { getBlogPostBySlug, getBlogPostSlugs } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
 import { siteConfig } from "@/config/site";
 import { BlocksRenderer } from "@/components/blog/BlocksRenderer";
+import { ehIdioma, IDIOMA_HTML, rota, type Idioma } from "@/i18n/config";
+import { preencher, textos } from "@/i18n/dicionario";
+import { alternativas } from "@/lib/seo";
 
-
-const CATEGORY_LABEL: Record<string, string> = {
-  noticia: "Notícia",
-  tutorial: "Tutorial",
-  case: "Case",
-  novidade: "Novidade",
-  tendencia: "Tendência",
-  geral: "Geral",
-};
-
-function formatDate(iso?: string): string {
+function formatDate(iso: string | undefined, idioma: Idioma): string {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString("pt-BR", {
+  return new Date(iso).toLocaleDateString(IDIOMA_HTML[idioma], {
     day: "2-digit",
     month: "long",
     year: "numeric",
@@ -37,20 +30,24 @@ export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ idioma: string; slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { idioma, slug } = await params;
+  if (!ehIdioma(idioma)) notFound();
+
   const post = await getBlogPostBySlug(slug);
-  if (!post) return { title: "Post não encontrado" };
+  if (!post) return { title: textos(idioma).blog.postNaoEncontrado };
   const ogImage = post.cover?.url ? mediaUrl(post.cover.url) : undefined;
-  const canonical = post.seo?.canonicalURL || `${siteConfig.url}/blog/${post.slug}`;
+  // A canônica declarada pelo próprio post vence: ela existe justamente para
+  // o caso de o artigo ter sido publicado antes em outro endereço.
+  const canonical = post.seo?.canonicalURL;
   return {
     title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
     keywords: post.seo?.keywords?.split(",").map((k) => k.trim()) ?? post.tags,
-    alternates: { canonical },
+    alternates: canonical ? { canonical } : alternativas(idioma, `/blog/${post.slug}`),
     openGraph: {
       type: "article",
       title: post.seo?.metaTitle || post.title,
@@ -70,12 +67,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { idioma, slug } = await params;
+  if (!ehIdioma(idioma)) notFound();
+
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const t = textos(idioma).blog;
   const cover = post.cover?.url ? mediaUrl(post.cover.url) : null;
-  const categoryLabel = post.category ? CATEGORY_LABEL[post.category] : null;
+  const categoryLabel = post.category ? t.categorias[post.category] : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -97,10 +97,10 @@ export default async function BlogPostPage({ params }: PageProps) {
       {/* Voltar — fica acima da capa, alinhado com o container do post */}
       <div className="container mx-auto max-w-4xl px-4 pt-6 md:pt-10">
         <Link
-          href="/blog"
+          href={rota(idioma, "/blog")}
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" /> Voltar para o blog
+          <ArrowLeft className="h-4 w-4" /> {t.voltarAoBlog}
         </Link>
       </div>
 
@@ -142,10 +142,11 @@ export default async function BlogPostPage({ params }: PageProps) {
               <User className="h-4 w-4" /> {post.author}
             </span>
           )}
-          {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
+          {post.publishedAt && <span>{formatDate(post.publishedAt, idioma)}</span>}
           {post.readingTime && (
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="h-4 w-4" /> {post.readingTime} min de leitura
+              <Clock className="h-4 w-4" />{" "}
+              {preencher(t.tempoDeLeitura, { n: post.readingTime })}
             </span>
           )}
         </div>
@@ -172,10 +173,10 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* CTA voltar */}
         <div className="mt-12 border-t border-border pt-6">
           <Link
-            href="/blog"
+            href={rota(idioma, "/blog")}
             className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
           >
-            <ArrowLeft className="h-4 w-4" /> Voltar para o blog
+            <ArrowLeft className="h-4 w-4" /> {t.voltarAoBlog}
           </Link>
         </div>
       </div>
