@@ -8,7 +8,6 @@ import type { SiteHeader } from "@/lib/types";
 import { cn, externalLinkProps } from "@/lib/utils";
 import { rota, type Idioma } from "@/i18n/config";
 import { textos } from "@/i18n/dicionario";
-import { SeletorIdioma } from "@/components/layout/SeletorIdioma";
 
 type Props = {
   content: SiteHeader;
@@ -82,12 +81,10 @@ export function Header({ content, idioma }: Props) {
               ))}
             </nav>
 
-            {/* O seletor fica antes do botão, e não depois: o botão é o fim
-                da linha de leitura da barra, e quem chega nele já decidiu. Quem
-                procura a própria língua procura antes de decidir qualquer
-                coisa. Em tela estreita ele desce para o menu, junto do resto da
-                navegação. */}
-            <SeletorIdioma idioma={idioma} className="hidden sm:flex" />
+            {/* O seletor de idioma não fica aqui. Nesta barra ele só existiria
+                em tela larga, porque no celular a barra é só logo e botão de
+                menu — e era justamente no celular que ele mais precisava ser
+                visto. Mudou para um canto fixo, em SeletorIdiomaCanto. */}
 
             {/* Compacto e discreto, no formato do "fale conosco" deles: a barra
                 é navegação, não o lugar de gritar. O botão grande em pílula
@@ -120,7 +117,7 @@ export function Header({ content, idioma }: Props) {
           inert={!open}
           className={cn(
             "overflow-hidden border-t border-regua transition-[max-height] duration-300 lg:hidden",
-            open ? "max-h-[420px]" : "max-h-0",
+            open ? "max-h-[360px]" : "max-h-0",
           )}
         >
           <div className="flex flex-col gap-1 px-grid-margin-mobile py-space-sm">
@@ -144,14 +141,6 @@ export function Header({ content, idioma }: Props) {
             >
               {content.ctaLabel}
             </Link>
-
-            {/* Em tela estreita o seletor vive aqui, separado por uma régua:
-                ele não é um dos links do menu, é a língua em que todos eles
-                serão lidos. */}
-            <SeletorIdioma
-              idioma={idioma}
-              className="mt-space-sm justify-center border-t border-regua pt-space-sm sm:hidden"
-            />
           </div>
         </div>
       </header>

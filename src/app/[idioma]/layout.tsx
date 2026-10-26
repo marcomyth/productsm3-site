@@ -4,6 +4,7 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import { getSiteContent } from "@/lib/content";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SeletorIdiomaCanto } from "@/components/layout/SeletorIdiomaCanto";
 import { siteConfig } from "@/config/site";
 import { alternativas } from "@/lib/seo";
 import { textos } from "@/i18n/dicionario";
@@ -153,6 +154,11 @@ export default async function RootLayout({ children, params }: Props) {
           </main>
           <Footer content={footer} idioma={idioma} />
         </div>
+        {/* Fora da coluna da página, porque é fixo na tela e não parte do
+            fluxo. Vem depois do rodapé na marcação para quem navega por
+            teclado só chegar nele no fim: é um controle persistente, não um
+            passo da leitura. */}
+        <SeletorIdiomaCanto idioma={idioma} />
       </body>
     </html>
   );
